@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2024/11/06/TestWP/111.png">
 <meta property="article:published_time" content="2024-11-06T12:25:02.000Z">
-<meta property="article:modified_time" content="2024-11-07T04:32:41.335Z">
+<meta property="article:modified_time" content="2024-11-07T04:34:38.293Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="other">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          246 字
+          249 字
         
       </span>
     
@@ -337,6 +337,26 @@
 <p>Java</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">public</span> <span class="hljs-keyword">class</span> Main &#123;<br>    <span class="hljs-built_in">public</span> static <span class="hljs-type">void</span> main(String[] args) &#123;<br>        Node java= <span class="hljs-built_in">new</span> Node(&quot;java&quot;);<br>        Node rw=<span class="hljs-built_in">new</span> Node(&quot;rw&quot;);<br>        Node urm=<span class="hljs-built_in">new</span> Node(&quot;urm&quot;);<br>        java.next=rw;<br>        rw.next=urm;<br>        <br>        urm.prev=rw;<br>        rw.prev=java;<br>        <br>        Node first=java;<br>        Node last=urm;<br>        <br>        Node <span class="hljs-keyword">temp</span>=first;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">temp</span>!=<span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">temp</span>);<br>            <span class="hljs-keyword">temp</span>=<span class="hljs-keyword">temp</span>.next;<br>        &#125;<br>        <br>        <span class="hljs-keyword">temp</span>=last;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">temp</span>!=<span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">temp</span>);<br>            <span class="hljs-keyword">temp</span>=<span class="hljs-keyword">temp</span>.prev;<br>        &#125;<br>        <br>    &#125;<br>    <br>&#125;<br><span class="hljs-keyword">class</span> Node&#123;<br>    <span class="hljs-built_in">public</span> Node prev;<br>    <span class="hljs-built_in">public</span> Node next;<br>    <span class="hljs-built_in">public</span> <span class="hljs-keyword">Object</span> item;<br>    <br>    <span class="hljs-built_in">public</span> Node(<span class="hljs-keyword">Object</span> item) &#123;<br>        this.item = item;<br>    &#125;<br>    <br>    @Override<br>    <span class="hljs-built_in">public</span> String toString() &#123;<br>        <span class="hljs-keyword">return</span> &quot;Node&#123;&quot; + &quot;item=&quot; + item + <span class="hljs-string">&#x27;&#125;&#x27;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>表格</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody></table>
 
                 
               </div>
