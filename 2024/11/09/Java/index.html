@@ -27,7 +27,7 @@
 <meta property="og:description" content="数据类型八大数据类型数值型​	1.整数类型（byte,short,int,long） ​	2.浮点类型（float,double） 12long num &#x3D;30L;			&#x2F;&#x2F; long 型加 Lfloat num1 &#x3D; 50.1F;		&#x2F;&#x2F; float 型加 F  字符型（char）&#x3D;&#x3D;2个字节&#x3D;&#x3D;布尔型（boolean）引用数据类型类（class）  接口">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-08T18:06:24.000Z">
-<meta property="article:modified_time" content="2024-11-08T18:25:03.798Z">
+<meta property="article:modified_time" content="2024-11-08T18:40:31.347Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -391,8 +391,8 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">访问修饰符 属性类型 属性名<br></code></pre></td></tr></table></figure>
 
 <p>属性类型可以为任意类型，可以是基本数据类型和引用类型，如果没有初始化，有默认值，和数组一致</p>
-<h3 id="Static"><a href="#Static" class="headerlink" title="Static"></a>Static</h3><h4 id="静态属性（类属性）与实例属性（对象属性）"><a href="#静态属性（类属性）与实例属性（对象属性）" class="headerlink" title="静态属性（类属性）与实例属性（对象属性）"></a>静态属性（类属性）与实例属性（对象属性）</h4><p>静态属性，只有一份，可以通过 &#x3D;&#x3D;类名.属性名&#x2F;对象.属性名&#x3D;&#x3D; 来赋值和访问</p>
-<p>实例属性，每个对象有一份，只能通过 &#x3D;&#x3D;对象.属性名&#x3D;&#x3D; 来赋值和访问</p>
+<h3 id="Static"><a href="#Static" class="headerlink" title="Static"></a>Static</h3><h4 id="静态属性（类属性）与实例属性（对象属性）"><a href="#静态属性（类属性）与实例属性（对象属性）" class="headerlink" title="静态属性（类属性）与实例属性（对象属性）"></a>静态属性（类属性）与实例属性（对象属性）</h4><p>静态属性，只有一份，可以通过 <strong>类名.属性名&#x2F;对象.属性名</strong>来赋值和访问</p>
+<p>实例属性，每个对象有一份，只能通过 <strong>对象.属性名</strong>来赋值和访问</p>
 <h4 id="静态方法和实例方法（对象方法）"><a href="#静态方法和实例方法（对象方法）" class="headerlink" title="静态方法和实例方法（对象方法）"></a>静态方法和实例方法（对象方法）</h4><p>静态方法只能调用静态方法，不能访问实例属性</p>
 <p>实例方法中可以调用静态方法和实例方法，也可以访问静态属性和实例属性</p>
 <h4 id="补全method方法"><a href="#补全method方法" class="headerlink" title="补全method方法"></a>补全method方法</h4><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">System.out.println(<span class="hljs-keyword">method</span><span class="hljs-params">(<span class="hljs-keyword">method</span>(100.2,1.0)</span>,100))<br><br><span class="hljs-title function_">static</span> <span class="hljs-title function_">double</span> <span class="hljs-title function_">method</span><span class="hljs-params">(double a,double b)</span><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">  return a+b;</span><br><span class="hljs-comment"> &#125;</span><br></code></pre></td></tr></table></figure>
@@ -412,7 +412,7 @@
 <p>可变参数可以和普通参数以前放在形参列表，但必须保证可变参数在最后一个西餐列表中只能出现一个可变参数</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span> throws Exception</span>&#123;<br>       <br>       <span class="hljs-type">int</span>[] a=<span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>&#125;;<br>        System.out.<span class="hljs-built_in">println</span>(<span class="hljs-built_in">sum</span>(<span class="hljs-string">&quot;java&quot;</span>,<span class="hljs-string">&quot;cpp&quot;</span>,a));<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">String</span> d,<span class="hljs-type">String</span> b,<span class="hljs-type">int</span>... a)</span></span>&#123;<br>        <span class="hljs-type">int</span> result=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;a.length;i++)&#123;<br>            result+=a[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="构造器-构造方法-构造函数"><a href="#构造器-构造方法-构造函数" class="headerlink" title="构造器&#x2F;构造方法&#x2F;构造函数"></a>构造器&#x2F;构造方法&#x2F;构造函数</h1><h2 id="构造器特点"><a href="#构造器特点" class="headerlink" title="构造器特点"></a>构造器特点</h2><p>与类名一致，&#x3D;&#x3D;无返回值&#x3D;&#x3D;；</p>
+<h1 id="构造器-构造方法-构造函数"><a href="#构造器-构造方法-构造函数" class="headerlink" title="构造器&#x2F;构造方法&#x2F;构造函数"></a>构造器&#x2F;构造方法&#x2F;构造函数</h1><h2 id="构造器特点"><a href="#构造器特点" class="headerlink" title="构造器特点"></a>构造器特点</h2><p>与类名一致，<strong>无返回值</strong>；</p>
 <p>当对象创建时，会自动调用对应的构造器</p>
 <p>如果没有定义构造器，会自动生成默认的无参构造器（默认构造器）</p>
 <p>一个类可以定义多个不同的构造器，即构造器重载</p>
@@ -422,9 +422,8 @@
 <p>加载 Person 类信息，只会加载一次</p>
 <p>在堆中分配空间（地址）</p>
 <p>完成对象初始化</p>
-<p>​	默认初始化   age&#x3D;0   name&#x3D;null</p>
-<p>​	显示初始化   age&#x3D;90   name&#x3D;null</p>
-<p>​	构造器初始化   age&#x3D;31   name&#x3D;abc</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">默认初始化   <span class="hljs-attribute">age</span>=0   <span class="hljs-attribute">name</span>=<span class="hljs-literal">null</span><br>显示初始化   <span class="hljs-attribute">age</span>=90   <span class="hljs-attribute">name</span>=<span class="hljs-literal">null</span><br>构造器初始化   <span class="hljs-attribute">age</span>=31   <span class="hljs-attribute">name</span>=abc<br></code></pre></td></tr></table></figure>
+
 <p>在对象在堆中的地址，返回给 p (p是对象名，也可以理解成是对象的引用)</p>
 <h1 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h1><h2 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h2><p>属性（成员变量），可以被本类或其他类使用</p>
 <p>可以加访问修饰符</p>
@@ -433,14 +432,14 @@
 <h2 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h2><p>不可加修饰符</p>
 <p>没有默认值，需要赋值使用</p>
 <p>生命周期短，伴随代码块执行而创建，结束而销毁</p>
-<h2 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h2><p>&#x3D;&#x3D;static静态代码块（最先执行）&#x3D;&#x3D;、构造代码块、方法代码块、局部代码块、语句代码块</p>
-<p>&#x3D;&#x3D;属性和局部变量可以重名&#x3D;&#x3D;，优先使用局部变量，在&#x3D;&#x3D;同一个作用域中两个局部变量不能重名。&#x3D;&#x3D;</p>
+<h2 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h2><p><strong>static静态代码块（最先执行）</strong>、构造代码块、方法代码块、局部代码块、语句代码块</p>
+<p><strong>属性和局部变量可以重名</strong>，优先使用局部变量，在<strong>同一个作用域中两个局部变量不能重名</strong></p>
 <h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><ul>
 <li><p>代表当前对象，打印对象的 hashCode，哪个对象调用方法，this 就指哪个对象</p>
 </li>
 <li><p>this 用于区分当前对象的属性和局部变量</p>
 </li>
-<li><p>this 不能在类外部使用，&#x3D;&#x3D;只能在类内部实例方法中使用，&#x3D;&#x3D;静态方法不可使用</p>
+<li><p>this 不能在类外部使用，<strong>只能在类内部实例方法中使用</strong>，静态方法不可使用</p>
 </li>
 <li><p>类内部赋值和获取实例属性</p>
 </li>
@@ -526,10 +525,10 @@
 <p>如果父类没有提供无参构造器，须在子类构造器中用 super 去知道使用父类哪个构造器</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scss">super(参数列表);<br>e<span class="hljs-selector-class">.g</span>.<br>super(name,age,sex);<br></code></pre></td></tr></table></figure>
 
-<p>&#x3D;&#x3D;super() 和 this() 都只能放在构造器第一行，因此不能共存在同一个构造器；&#x3D;&#x3D;</p>
+<p><strong>super() 和 this() 都只能放在构造器第一行，因此不能共存在同一个构造器；</strong></p>
 <p>3.父类构造器的调用不限于直接父类，一直往上追溯到 Object 类（顶级父类）</p>
 <h2 id="super"><a href="#super" class="headerlink" title="super"></a>super</h2><p>用处</p>
-<p>a) 子类和父类具有同名属性和方法时，&#x3D;&#x3D;默认使用子类的同名属性和方法&#x3D;&#x3D;。访问父类的属性或方法必须通过 super 来调用</p>
+<p>a) 子类和父类具有同名属性和方法时，<strong>默认使用子类的同名属性和方法</strong>。访问父类的属性或方法必须通过 super 来调用</p>
 <p>b) super 代表父类对象的引用，用于访问父类对象的属性、方法、构造器</p>
 <p>访问父类的属性（受访问修饰符影响）</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">super</span>.属性名；<br></code></pre></td></tr></table></figure>
@@ -551,8 +550,8 @@
 <li><p>子类方法不能缩小父类方法的访问权限</p>
 </li>
 </ul>
-<h2 id="重载与重写的区别"><a href="#重载与重写的区别" class="headerlink" title="重载与重写的区别"></a>重载与重写的区别</h2><p><strong>重载：</strong>&#x3D;&#x3D;同一个类&#x3D;&#x3D;，方法名相同，参数类型、个数或顺序不同，与返回值和修饰符无关</p>
-<p><strong>重写：</strong>&#x3D;&#x3D;父类和子类中&#x3D;&#x3D;，方法名、参数相同，子类返回类型与父类一样或者是其子类，子类不能缩小父类的缩小访问范围</p>
+<h2 id="重载与重写的区别"><a href="#重载与重写的区别" class="headerlink" title="重载与重写的区别"></a>重载与重写的区别</h2><p><strong>重载</strong>：<strong>同一个类</strong>，方法名相同，参数类型、个数或顺序不同，与返回值和修饰符无关</p>
+<p><strong>重写</strong>：<strong>父类和子类</strong>中，方法名、参数相同，子类返回类型与父类一样或者是其子类，子类不能缩小父类的缩小访问范围</p>
 <h1 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h1><h2 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h2><p>可以定义多个，与静态属性初始化优先级一样，按照定义顺序执行，随着类的加载而执行，只执行一次，执行时机比普通代码块早</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">static</span> &#123;<br>       System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;abcdef&quot;</span>);<br>   &#125;<br>   <span class="hljs-keyword">static</span> &#123;<br>       System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;abcc&quot;</span>);<br>   &#125;<br></code></pre></td></tr></table></figure>
 
@@ -577,7 +576,7 @@
 <li>子类的普通代码块和普通属性初始化</li>
 <li>子类的构造方法</li>
 </ol>
-<p><strong>&#x3D;&#x3D;静态代码块只能调用静态成员&#x3D;&#x3D;，普通代码块可以调用任意成员</strong></p>
+<p><strong>静态代码块只能调用静态成员，普通代码块可以调用任意成员</strong></p>
 <h2 id="执行-new-Test-会输出什么"><a href="#执行-new-Test-会输出什么" class="headerlink" title="执行 new Test();会输出什么"></a>执行 new Test();会输出什么</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span>&#123;<br>    Demo(String s)&#123;<br>        System.<span class="hljs-keyword">out</span>.println(s);<br>    &#125;<br>    Demo()&#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Demo无参&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span>&#123;<br>    Demo demo1=<span class="hljs-keyword">new</span> Demo(<span class="hljs-string">&quot;Demo1初始化&quot;</span>);    <span class="hljs-comment">//第三步</span><br>    <span class="hljs-keyword">static</span> Demo demo2=<span class="hljs-keyword">new</span> Demo(<span class="hljs-string">&quot;Demo2初始化&quot;</span>); <span class="hljs-comment">//第一步</span><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;static执行&quot;</span>); <span class="hljs-comment">//第二步</span><br>        <span class="hljs-keyword">if</span>(demo2==<span class="hljs-literal">null</span>)<br>            System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;demo2 is null&quot;</span>);<br>    &#125;<br>    Test()&#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Test无参&quot;</span>);   <span class="hljs-comment">//最后一步</span><br>    &#125;<br>&#125;<br>输出：<br>	Demo2初始化<br>	<span class="hljs-keyword">static</span>执行<br>	Demo1初始化<br>	Test无参<br></code></pre></td></tr></table></figure>
 
 <h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><h2 id="多态参数"><a href="#多态参数" class="headerlink" title="多态参数"></a>多态参数</h2><p>参数定义成父类类型，就可以传任意子类类型进去</p>
@@ -587,12 +586,12 @@
 <p><strong>b）</strong> 父类引用指向子类对象</p>
 <p><strong>c）</strong> 编译类型看左边，运行类型看右边</p>
 <p><strong>d）</strong> 可以调用父类中所有成员（受访问修饰符影响）</p>
-<p><strong>e）</strong>调用的时候，&#x3D;&#x3D;子类有就用子类的成员，没有就找父类（就近原则）&#x3D;&#x3D;</p>
+<p><strong>e）</strong>调用的时候，<strong>子类有就用子类的成员，没有就找父类（就近原则）</strong></p>
 <p><strong>f）</strong>不能调用子类中特有成员</p>
-<h2 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h2><p><strong>a）</strong>多态的前提：&#x3D;&#x3D;连个对象（类）存在继承关系&#x3D;&#x3D;</p>
+<h2 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h2><p><strong>a）</strong>多态的前提：<strong>连个对象（类）存在继承关系</strong></p>
 <p><strong>b）</strong>属性的值看编译类型</p>
 <p><strong>c）</strong>方法都看运行类型，属性看编译类型</p>
-<p><strong>d）</strong>&#x3D;&#x3D;instanceof&#x3D;&#x3D;  比较操作符，用于判断对象的运行类型是否为 XX 类型或 XX 类型的子类型</p>
+<p><strong>d）</strong> <strong>instanceof</strong> 比较操作符，用于判断对象的运行类型是否为 XX 类型或 XX 类型的子类型</p>
 <p><strong>e）</strong>要调用子类中的特有成员要向上转型</p>
 <h2 id="多态数组"><a href="#多态数组" class="headerlink" title="多态数组"></a>多态数组</h2><p>数组类型为父类类型，保存实际元素为子类</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Hello</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> main(String[] args) throws Exception &#123;<br>        B b=<span class="hljs-keyword">new</span> B();<br>        System.out.println(b.<span class="hljs-keyword">count</span>);<br>        b.<span class="hljs-keyword">display</span>();<br>        A a=b;<br>        System.out.println(a==b);<br>        System.out.println(a.<span class="hljs-keyword">count</span>);<br>        a.<span class="hljs-keyword">display</span>();<br>    &#125;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span>&#123;<br>    <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>=<span class="hljs-number">100</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-keyword">display</span>()&#123;<br>        System.out.println(<span class="hljs-keyword">this</span>.<span class="hljs-keyword">count</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">A</span>&#123;<br>    <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>=<span class="hljs-number">200</span>;<br>    <br>    @Override<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-keyword">display</span>() &#123;<br>        System.out.println(<span class="hljs-keyword">this</span>.<span class="hljs-keyword">count</span>);<br>    &#125;<br>&#125;<br>输出：<br>	<span class="hljs-number">200</span><br>	<span class="hljs-number">200</span><br>	<span class="hljs-literal">true</span><br>	<span class="hljs-number">100</span><br>	<span class="hljs-number">200</span><br></code></pre></td></tr></table></figure>
@@ -605,7 +604,7 @@
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">equals</span> getClass hashCode toString<br></code></pre></td></tr></table></figure>
 
 <h2 id=""><a href="#" class="headerlink" title="&#x3D;&#x3D;"></a>&#x3D;&#x3D;</h2><p>判断基本类型和引用类型</p>
-<p>基本类型判断&#x3D;&#x3D;值&#x3D;&#x3D;，引用类型判断&#x3D;&#x3D;地址&#x3D;&#x3D;</p>
+<p>基本类型判断<strong>值</strong>，引用类型判断<strong>地址</strong></p>
 <h2 id="equals-1"><a href="#equals-1" class="headerlink" title="equals"></a>equals</h2><p><strong>只能判断引用类型，默认判断地址是否相等</strong></p>
 <p>子类一般会重写 equals 方法，判断内容是否相等，比如 Integer、String</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Person p1=<span class="hljs-built_in">new</span> Person();<br>  p1.name=&quot;abc&quot;;<br>  Person p2=<span class="hljs-built_in">new</span> Person();<br>  p2.name=&quot;abc&quot;;<br>  <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(p1==p2); 		//<span class="hljs-keyword">False</span><br>  <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(p1.equals(p2));  	//<span class="hljs-keyword">False</span><br>  <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(p1.name.equals(p2.name));    //<span class="hljs-keyword">True</span><br>  <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(p1.name==p2.name);  	 //<span class="hljs-keyword">True</span><br>      <br>  String s1=<span class="hljs-built_in">new</span> String(&quot;a&quot;);<br>  String s2=<span class="hljs-built_in">new</span> String(&quot;a&quot;);<br>  <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(s1==s2); 	//<span class="hljs-keyword">False</span><br>  <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(s1.equals(s2)); 	 //<span class="hljs-keyword">True</span><br></code></pre></td></tr></table></figure>
@@ -648,7 +647,7 @@
 <li>一个类同时可以实现多个接口</li>
 <li>接口中的属性都是 <strong>public static final</strong> 修饰符</li>
 </ul>
-<p>​		访问形式：&#x3D;&#x3D;接口名. 属性名&#x3D;&#x3D;</p>
+<p>​		访问形式：<strong>接口名. 属性名</strong></p>
 <h2 id="接口的多态特性"><a href="#接口的多态特性" class="headerlink" title="接口的多态特性"></a>接口的多态特性</h2><p>多态参数、向上转型、多态数组</p>
 <h2 id="接口的多态传递"><a href="#接口的多态传递" class="headerlink" title="接口的多态传递"></a>接口的多态传递</h2><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">interface</span> <span class="hljs-symbol">B</span>()<br><span class="hljs-symbol">interface</span> <span class="hljs-symbol">A</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">B</span>()<br><span class="hljs-symbol">class</span> <span class="hljs-symbol">C</span> <span class="hljs-symbol">implements</span>  <span class="hljs-symbol">A</span>&#123;&#125;<br>B b=new C();<br>A a=new C();<br></code></pre></td></tr></table></figure>
 
