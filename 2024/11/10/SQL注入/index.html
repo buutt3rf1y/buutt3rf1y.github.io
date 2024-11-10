@@ -43,7 +43,7 @@
 <meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL14.png">
 <meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL15.png">
 <meta property="article:published_time" content="2024-11-09T16:07:00.000Z">
-<meta property="article:modified_time" content="2024-11-09T17:24:24.431Z">
+<meta property="article:modified_time" content="2024-11-10T17:30:01.010Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary_large_image">
@@ -327,7 +327,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月10日 凌晨
+                    本文最后更新于 2024年11月11日 凌晨
                   
                 
               </p>
@@ -363,7 +363,7 @@
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">select</span> column1, column2, ... <span class="hljs-keyword">from</span> table_name [<span class="hljs-keyword">where</span> condition] <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> column_name<br></code></pre></td></tr></table></figure>
 
 <p>一般用来判断列数，比如说</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">select</span> column1，column2 <span class="hljs-keyword">from</span> table_name <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>;	<span class="hljs-comment">//不报错</span><br><span class="hljs-keyword">select</span> column1，column2 <span class="hljs-keyword">from</span> table_name <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">2</span>;	<span class="hljs-comment">//不报错</span><br><span class="hljs-keyword">select</span> column1，column2 <span class="hljs-keyword">from</span> table_name <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">3</span>;	<span class="hljs-comment">//报错</span><br><span class="hljs-comment">//说明只有2列</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs s">select column1，column2 from table_name order by 1;	//不报错<br>select column1，column2 from table_name order by 2;	//不报错<br>select column1，column2 from table_name order by 3;	//报错<br>//说明只有2列<br></code></pre></td></tr></table></figure>
 
 <h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><p><code>user()</code>：当前数据库用户</p>
 <p><code>database()</code>：当前数据库名</p>

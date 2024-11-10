@@ -19,24 +19,41 @@
   <meta name="author" content="butt3rf1y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关于 PHP 的一小部分知识">
+    <meta name="description" content="复现复现！猫猫虫真可爱捏 :)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP 基础(部分)">
-<meta property="og:url" content="http://example.com/2024/11/08/PHP%E5%9F%BA%E7%A1%80-%E9%83%A8%E5%88%86/index.html">
+<meta property="og:title" content="NewStarCTF 2024 Week1">
+<meta property="og:url" content="http://example.com/2024/11/11/%E5%A4%8D%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Welcome to butt3rf1y&#39;s space">
-<meta property="og:description" content="关于 PHP 的一小部分知识">
+<meta property="og:description" content="复现复现！猫猫虫真可爱捏 :)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-08T15:42:43.000Z">
-<meta property="article:modified_time" content="2024-11-10T17:30:38.620Z">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/.png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/.png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/.png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/.png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/.png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/.png">
+<meta property="og:image" content="http://example.com/2024/11/06/TestWP/.png">
+<meta property="article:published_time" content="2024-11-10T16:53:48.000Z">
+<meta property="article:modified_time" content="2024-11-10T19:09:55.954Z">
 <meta property="article:author" content="butt3rf1y">
-<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/11/06/TestWP/png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>PHP 基础(部分) - Welcome to butt3rf1y&#39;s space</title>
+  <title>NewStarCTF 2024 Week1 - Welcome to butt3rf1y&#39;s space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="PHP 基础(部分)"></span>
+            <span id="subtitle" data-typed-text="NewStarCTF 2024 Week1"></span>
           
         </div>
 
@@ -236,8 +253,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-08 23:42" pubdate>
-          2024年11月8日 晚上
+        <time datetime="2024-11-11 00:53" pubdate>
+          2024年11月11日 凌晨
         </time>
       </span>
     
@@ -248,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          364 字
         
       </span>
     
@@ -259,7 +276,7 @@
         
         
         
-          10 分钟
+          4 分钟
         
       </span>
     
@@ -305,7 +322,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">PHP 基础(部分)</h1>
+            <h1 id="seo-header">NewStarCTF 2024 Week1</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -318,53 +335,49 @@
             
               <div class="markdown-body">
                 
-                <p>关于 PHP 的一小部分知识</p>
+                <p>复现复现！猫猫虫真可爱捏 :)</p>
 <span id="more"></span>
 
-<h1 id="魔术常量"><a href="#魔术常量" class="headerlink" title="魔术常量"></a>魔术常量</h1><p>如 <code>__FILE__</code> 这样的预定义常量，被称为魔术常量。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">__FILE__</span>			<span class="hljs-comment">// 返回文件完整的路径和文件名</span><br><span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);		<span class="hljs-comment">//代码高亮显示当前文件内容</span><br><span class="hljs-keyword">__LINE__</span>					<span class="hljs-comment">// 表示当前行号</span><br><span class="hljs-keyword">__FILE__</span>					<span class="hljs-comment">// 表示当前文件名</span><br><span class="hljs-keyword">__DIR__</span>						<span class="hljs-comment">// 表示当前文件所在的目录</span><br><span class="hljs-keyword">__FUNCTION__</span>				<span class="hljs-comment">// 表示当前函数名</span><br><span class="hljs-keyword">__CLASS__</span>					<span class="hljs-comment">// 表示当前类名</span><br><span class="hljs-keyword">__METHOD__</span>					<span class="hljs-comment">// 表示当前方法名</span><br><span class="hljs-keyword">__NAMESPACE__</span>				<span class="hljs-comment">// 表示当前命名空间</span><br></code></pre></td></tr></table></figure>
+<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="Simple-encryption"><a href="#Simple-encryption" class="headerlink" title="Simple_encryption"></a>Simple_encryption</h2><p>ida 打开</p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>主要逻辑是根据输入的字符串长度，如果<code>j%3==0</code> ，那么就将输入的索引为<code>j</code> 的值减去 <code>31</code>，如果 <code>j%3==1</code>，加上<code>41</code>,如果 <code>j%3==2</code>，那么和 <code>0x55</code> 异或。然后值与 <code>buffer</code> 数组相比较，一样就成功，所以点进数组提取数据。</p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>可以写出 python 脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">buffer = [<span class="hljs-number">0x47</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0x34</span>, <span class="hljs-number">0x48</span>, <span class="hljs-number">0xA4</span>, <span class="hljs-number">0x1C</span>, <span class="hljs-number">0x35</span>, <span class="hljs-number">0x88</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x16</span>,<br>          <span class="hljs-number">0x88</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0x14</span>, <span class="hljs-number">0x6A</span>, <span class="hljs-number">0x39</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0xA2</span>, <span class="hljs-number">0x0A</span>, <span class="hljs-number">0x37</span>, <span class="hljs-number">0x5C</span>,<br>          <span class="hljs-number">0x07</span>, <span class="hljs-number">0x5A</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0x60</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0x76</span>, <span class="hljs-number">0x25</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0x8E</span>, <span class="hljs-number">0x28</span>,<br>          <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(buffer)):<br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>:<br>        buffer[i] += <span class="hljs-number">0x1f</span><br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">1</span>:<br>        buffer[i] -= <span class="hljs-number">0x29</span><br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">2</span>:<br>        buffer[i] ^= <span class="hljs-number">0x55</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">chr</span>(buffer[i]), end=<span class="hljs-string">&#x27;&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="文件操作函数"><a href="#文件操作函数" class="headerlink" title="文件操作函数"></a>文件操作函数</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">include</span>(): 包含并运行指定文件，包含文件发生错误，程序警告，但会继续执行<br><span class="hljs-built_in">include_once</span>(): 检查这个文件是否已经被导入，如果已导入，下文便不会再导入，直面 once 理解就是只导入一次<br><span class="hljs-built_in">require</span>(): 包含并运行指定的文件，包含文件发生错误时，程序直接终止执行<br><span class="hljs-built_in">require_once</span>():	和 require 类似，不同处在于 require_once 只导入一次<br><span class="hljs-built_in">fopen</span>(): 打开一个文件或 URL<br><span class="hljs-built_in">file_get_contents</span>(): 读取文件的全部内容到一个字符串，例如 <span class="hljs-variable">$content</span> = <span class="hljs-built_in">file_get_contents</span>(<span class="hljs-string">&quot;test.txt&quot;</span>);<br><span class="hljs-built_in">file_put_contents</span>(): 将一个字符串写入文件。例如：<span class="hljs-built_in">file_put_contents</span>(<span class="hljs-string">&quot;test.txt&quot;</span>, <span class="hljs-string">&quot;Hello butt3rf1y!&quot;</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="ezAndroidStudy"><a href="#ezAndroidStudy" class="headerlink" title="ezAndroidStudy"></a>ezAndroidStudy</h2><p>我记得之前在哪个师傅博客看到过说先看 <code>.xml</code> 文件的 <code>activity</code> 可以快速找到。</p>
+<p>看看提示</p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>所以查看 <code>AndroidManifest.xml</code>，看见 <code>activity</code> 只有 <code>work.pangbai.ezandroidstudy.Homo</code> 和 <code>work.pangbai.ezandroidstudy.MainActivity</code></p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>拿到 flag1</p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>看下一个</p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>resources.arsc/res/value/string.xml</code> 找到了</p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>根据提示去查找 flag3</p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><code>/layout/activity_main.xml</code> 里的 <code>activity_main.xml</code></p>
+<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p>查找 flag4</p>
+<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p>打开 <code>/res/raw</code> 发现目录下有个 <code>flag4.txt</code></p>
+<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p>flag 5</p>
+<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p>需要逆向 so 层，那么将 <code>.so</code> 提取出来，可以使用<code>apktool</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">apktool</span> d ezAndroidStudy.apk -o <span class="hljs-string">&quot;需要生成的文件夹&quot;</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="代码执行函数"><a href="#代码执行函数" class="headerlink" title="代码执行函数"></a>代码执行函数</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">eval</span>(): 将字符串当中php代码来执行，比如: 一句话木马@<span class="hljs-built_in">eval</span>(_POST[<span class="hljs-string">&quot;1&quot;</span>]);<br><span class="hljs-built_in">assert</span>(): 检测执行条件是否为 true<br></code></pre></td></tr></table></figure>
-
-<p>调用系统底层的4个方法-system , shell_exec , exec , passthru</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">system</span>(): 调用系统底层，执行系统命令，例如 <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;ls /&quot;</span>); 列出当前目录下所有文件<br><span class="hljs-built_in">shell_exc</span>(): 通过 shell 环境执行命令，并且将完整的输出以字符串的方式返回<br><span class="hljs-built_in">exec</span>():执行一个外部程序<br><span class="hljs-built_in">passthru</span>():执行外部程序并且显示原始输出，当所执行的 Unix<br>命令输出二进制数据， 并且需要直接传送到浏览器的时候， 需要用此函数来替代 <span class="hljs-built_in">exec</span>() 或 <span class="hljs-built_in">system</span>() 函数<br></code></pre></td></tr></table></figure>
-
-<h2 id="反序列化函数"><a href="#反序列化函数" class="headerlink" title="反序列化函数"></a>反序列化函数</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">unserialize</span>(): 将一个已序列化的字符串转换回 PHP 的值。例如：<span class="hljs-variable">$array</span> = <span class="hljs-built_in">unserialize</span>(<span class="hljs-variable">$serializedStr</span>); 可以将一个序列化的数组字符串转换为数组。<br></code></pre></td></tr></table></figure>
-
-<h2 id="数据库操作函数"><a href="#数据库操作函数" class="headerlink" title="数据库操作函数"></a>数据库操作函数</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">mysql_query</span>(), <span class="hljs-built_in">mysqli_query</span>(): 发送一个 MySQL 查询。例如：<span class="hljs-variable">$result</span> = <span class="hljs-built_in">mysql_query</span>(<span class="hljs-string">&quot;SELECT * FROM users&quot;</span>);<br></code></pre></td></tr></table></figure>
-
-<h2 id="正则表达式函数"><a href="#正则表达式函数" class="headerlink" title="正则表达式函数"></a>正则表达式函数</h2><p><strong>preg_match():</strong></p>
-<p>用于进行正则表达式匹配，成功返回 1，否则返回 0。</p>
-<p>注: <code>preg_match() </code>第一次匹配成功后就会停止匹配，如果要实现全部结果的匹配，即搜索到检索对象的结尾处，则需使用 <code>preg_match_all()</code> 函数。 </p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>   <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/php/i&quot;</span>, <span class="hljs-string">&quot;PHP is the web scripting language of choice.&quot;</span>, <span class="hljs-variable">$matches</span>))<br>   &#123;<br>      <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;A match was found:&quot;</span>. <span class="hljs-variable">$matches</span>[<span class="hljs-number">0</span>]; <br>   &#125; <br>   <span class="hljs-keyword">else</span><br>   &#123;<br>      <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;A match was not found.&quot;</span>; <br>   &#125; <br><span class="hljs-meta">?&gt;</span> <br><span class="hljs-comment">//A match was found: PHP </span><br></code></pre></td></tr></table></figure>
-
-<p><strong>preg_match_all():</strong> </p>
-<p>用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br>   <span class="hljs-variable">$str</span> = <span class="hljs-string">&quot;&lt;pre&gt;学习php是一件快乐的事。&lt;/pre&gt;&lt;pre&gt;所有的 phper 需要共同努力！&lt;/pre&gt;&quot;</span>; <br>   <span class="hljs-variable">$kw</span> = <span class="hljs-string">&quot;php&quot;</span>; <span class="hljs-title function_ invoke__">preg_match_all</span>(<span class="hljs-string">&#x27;/&lt;pre&gt;([sS]*?)&lt;/pre&gt;/&#x27;</span>,<span class="hljs-variable">$str</span>,<span class="hljs-variable">$mat</span>); <br>   <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;<span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$mat</span>[<span class="hljs-number">0</span>]);<span class="hljs-variable">$i</span>++)<br>   &#123;<br>      <span class="hljs-variable">$mat</span>[<span class="hljs-number">0</span>][<span class="hljs-variable">$i</span>] = <span class="hljs-variable">$mat</span>[<span class="hljs-number">1</span>][<span class="hljs-variable">$i</span>]; <br>      <span class="hljs-variable">$mat</span>[<span class="hljs-number">0</span>][<span class="hljs-variable">$i</span>] = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-variable">$kw</span>, <span class="hljs-string">&#x27;&lt;span style=&quot;color:#ff0000&quot;&gt;&#x27;</span>.<span class="hljs-variable">$kw</span>.<span class="hljs-string">&#x27;&lt;/span&gt;&#x27;</span>, <span class="hljs-variable">$mat</span>[<span class="hljs-number">0</span>][<span class="hljs-variable">$i</span>]); <br>      <span class="hljs-variable">$str</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-variable">$mat</span>[<span class="hljs-number">1</span>][<span class="hljs-variable">$i</span>], <span class="hljs-variable">$mat</span>[<span class="hljs-number">0</span>][<span class="hljs-variable">$i</span>], <span class="hljs-variable">$str</span>); <br>   &#125; <br>   <span class="hljs-keyword">echo</span> <span class="hljs-variable">$str</span>; <br><span class="hljs-meta">?&gt;</span><br><span class="hljs-comment">//将所有 &lt;pre&gt;&lt;/pre&gt; 标签内的关键字显示为红色</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>preg_match_all()</strong></p>
-<p>用于进行正则表达式全局匹配，成功返回整个模式匹配的次数（可能为零），如果出错返回 FALSE 。</p>
-<p><strong>preg_replace()</strong></p>
-<p> 执行正则表达式搜索和替换</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br>	<span class="hljs-variable">$str</span> = <span class="hljs-string">&quot;butt3rf1y&quot;</span>;<br>	<span class="hljs-variable">$pattern</span> = <span class="hljs-string">&#x27;/\d+/&#x27;</span>;	<span class="hljs-comment">// \d+是匹配一个或多个数字</span><br>	<span class="hljs-variable">$replacement</span> = <span class="hljs-string">&#x27;R&#x27;</span>;<br>	<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">preg_replace</span>(<span class="hljs-variable">$pattern</span>, <span class="hljs-variable">$replacement</span>, <span class="hljs-variable">$str</span>);<br>	<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>; <br><span class="hljs-meta">?&gt;</span><br><span class="hljs-comment">// buttRrfRy</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>preg_split()</strong></p>
-<p>将字符串依指定的规则切开。</p>
-<h1 id="表单数据"><a href="#表单数据" class="headerlink" title="表单数据"></a>表单数据</h1><p><strong>$_GET</strong></p>
-<p>接受 GET 请求传递的参数</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">example.com/index.php?<span class="hljs-attribute">bu</span>=butt3rf1y，你可以使用 <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;bu&#x27;</span>] 来获取相应的值<br></code></pre></td></tr></table></figure>
-
-<p><strong>$_POST</strong></p>
-<p>接受 POST 传参</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">example.com/index.php 进行 POST 传参，参数名为 bu 内容为 but3rf1y，可以使用 <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;bu&#x27;</span>] 来获取相应的值。<br></code></pre></td></tr></table></figure>
-
-<p><strong>$_REQUEST</strong></p>
-<p>接受 GET 和 POST 以及 Cookie 请求传递的参数</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">通过 <span class="hljs-built_in">GET</span> 请求 URL 传递了一个参数 example.com/index.php?<span class="hljs-attribute">key</span>=value_from_get，可以通过 <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;key&#x27;</span>] 获取这个值。<br>通过 POST 方法提交了一个表单，其中有一个名为 key 的字段且其值为 value_from_post，可以通过 <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;key&#x27;</span>] 获取这个值。<br>设置了一个名为 key 的 cookie，其值为 value_from_cookie,可以使用 <span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;key&#x27;</span>] 来获取这个值。<br></code></pre></td></tr></table></figure>
-
-<p>有点小累……</p>
+<p> 将<code>&quot;/lib/x86_64/libezandroidstudy.so&quot;</code>丢进 ida 反编译就出来了</p>
+<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="ez-debug"><a href="#ez-debug" class="headerlink" title="ez_debug"></a>ez_debug</h2><p>根据题目丢进 <code>x64dbg</code> 动调</p>
+<p>首先查找字符串，看看有没有可以字符串，可以发现有一些 <code>flag</code> 字样</p>
+<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>Decrypted flag</code> 处下个断点运行，得到结果</p>
+<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p>太喜欢逆向了有种做不出来但又想做的崩溃感</p>
 
                 
               </div>
@@ -383,13 +396,20 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Web/" class="category-chain-item">Web</a>
+  <a href="/categories/Reverse/" class="category-chain-item">Reverse</a>
   
   
     <span>></span>
     
-  <a href="/categories/Web/PHP/" class="category-chain-item">PHP</a>
+  <a href="/categories/Reverse/%E8%B5%9B%E9%A2%98%E5%A4%8D%E7%8E%B0/" class="category-chain-item">赛题复现</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/Reverse/%E8%B5%9B%E9%A2%98%E5%A4%8D%E7%8E%B0/NewStarCTF-2024/" class="category-chain-item">NewStarCTF 2024</a>
+  
+  
+
   
 
   
@@ -405,7 +425,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/PHP/" class="print-no-link">#PHP</a>
+        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
       
     </div>
   
@@ -417,8 +437,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>PHP 基础(部分)</div>
-      <div>http://example.com/2024/11/08/PHP基础-部分/</div>
+      <div>NewStarCTF 2024 Week1</div>
+      <div>http://example.com/2024/11/11/复现/</div>
     </div>
     <div class="license-meta">
       
@@ -430,7 +450,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月8日</div>
+          <div>2024年11月11日</div>
         </div>
       
       
@@ -462,18 +482,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/09/Java/" title="Java 基础">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java 基础</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/07/BUUBasic-1/" title="BUU Basic(1)">
-                        <span class="hidden-mobile">BUU Basic(1)</span>
+                      <a href="/2024/11/10/HackMyVM-1/" title="HackMyVM-Chromatic(1)">
+                        <span class="hidden-mobile">HackMyVM-Chromatic(1)</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
