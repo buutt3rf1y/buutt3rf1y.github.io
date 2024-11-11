@@ -19,21 +19,37 @@
   <meta name="author" content="butt3rf1y">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="复现2">
+    <meta name="description" content="有 Java 代码审计，好难，Java 我讨厌你qwq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NewStarCTF 2024 Week2">
 <meta property="og:url" content="http://example.com/2024/11/11/%E5%A4%8D%E7%8E%B02/index.html">
 <meta property="og:site_name" content="Welcome to butt3rf1y&#39;s space">
+<meta property="og:description" content="有 Java 代码审计，好难，Java 我讨厌你qwq">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/15b058a1dd2841b6.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/2d0da2054ad0d700.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/82229bdabbecb98c.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/c57b3908876d84ca.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/22dcddbe3c87348b.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/2d292afff47f2193.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/f133efd830a5c77f.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/89a3916d618ae9df.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/924ab39eead959c4.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/9fbf4e8780ac5eba.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/80a38a07ee4a66f3.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/ba83c2581a55c526.png">
 <meta property="article:published_time" content="2024-11-11T07:23:23.000Z">
-<meta property="article:modified_time" content="2024-11-11T07:23:23.722Z">
+<meta property="article:modified_time" content="2024-11-11T15:19:24.955Z">
 <meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2024/12/15b058a1dd2841b6.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>复现2 - Welcome to butt3rf1y&#39;s space</title>
+  <title>NewStarCTF 2024 Week2 - Welcome to butt3rf1y&#39;s space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +238,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="复现2"></span>
+            <span id="subtitle" data-typed-text="NewStarCTF 2024 Week2"></span>
           
         </div>
 
@@ -245,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.6k 字
         
       </span>
     
@@ -256,7 +272,7 @@
         
         
         
-          1 分钟
+          14 分钟
         
       </span>
     
@@ -302,12 +318,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">复现2</h1>
+            <h1 id="seo-header">NewStarCTF 2024 Week2</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月11日 下午
+                    本文最后更新于 2024年11月11日 晚上
                   
                 
               </p>
@@ -315,7 +331,75 @@
             
               <div class="markdown-body">
                 
-                
+                <p>有 Java 代码审计，好难，Java 我讨厌你qwq</p>
+<span id="more"></span>
+
+<h1 id="Pangbai-泰拉记（1）"><a href="#Pangbai-泰拉记（1）" class="headerlink" title="Pangbai 泰拉记（1）"></a>Pangbai 泰拉记（1）</h1><p>ida 打开反汇编查看，<code>flag</code> 和一个 <code>key</code> 异或</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">__int64 __fastcall <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>  std::ostream *v0; <span class="hljs-comment">// rax</span><br>  std::ostream *v1; <span class="hljs-comment">// rax</span><br>  <span class="hljs-type">int</span> i; <span class="hljs-comment">// [rsp+24h] [rbp+4h]</span><br><br>  <span class="hljs-built_in">j___CheckForDebuggerJustMyCode</span>(&amp;_6D<span class="hljs-number">15E8</span>DE_Pangbai____1__Pangbai____1__1_cpp);<br>  v0 = std::<span class="hljs-keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="hljs-type">char</span>&gt;&gt;(std::cout, <span class="hljs-string">&quot;Use your debugger to discover the hidden flag!&quot;</span>);<br>  std::ostream::<span class="hljs-keyword">operator</span>&lt;&lt;(v0, std::endl&lt;<span class="hljs-type">char</span>,std::char_traits&lt;<span class="hljs-type">char</span>&gt;&gt;);<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; ++i )<br>    flag[i] ^= key[i];<br>  v1 = std::<span class="hljs-keyword">operator</span>&lt;&lt;&lt;std::char_traits&lt;<span class="hljs-type">char</span>&gt;&gt;(std::cout, <span class="hljs-string">&quot;Click on the flag to obtain?&quot;</span>);<br>  std::ostream::<span class="hljs-keyword">operator</span>&lt;&lt;(v1, std::endl&lt;<span class="hljs-type">char</span>,std::char_traits&lt;<span class="hljs-type">char</span>&gt;&gt;);<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>i64;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对 <code>key</code> 交叉引用能看见还没 <code>main0</code> 函数调用，进去看看</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/15b058a1dd2841b6.png"></p>
+<p>发现有两个函数 <code>IsDebuggerPresent()</code> 和 <code>CheckRemoteDebuggerPresent()</code>，这是两个反调试函数</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/2d0da2054ad0d700.png"></p>
+<p>对于 <code>CheckRemoteDebuggerPresent()</code> 函数：</p>
+<p><code>kernel32</code> 的 <code>CheckRemoteDebuggerPresent() </code>函数用于检测指定进程是否正在被调试. <code>Remote</code> 指同一个机器中的不同进程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs assembly">BOOL WINAPI CheckRemoteDebuggerPresent(<br>  _In_    HANDLE hProcess,<br>  _Inout_ PBOOL  pbDebuggerPresent<br>);<br></code></pre></td></tr></table></figure>
+
+<p>如果说检测到正在被调试，那么 <code>pbDebuggerPresent</code> 指向的值会被设置为 <code>0xffffffff</code>。</p>
+<p>对于这道题，调试一下可以看得出来流程，进程会跳转到右边这里，这里执行的是将 <code>key</code> 替换为不正确的 <code>key</code> ，所以可以将 <code>jz</code> 指令改为 <code>jnz</code> 指令，让程序跳转不了</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">jz: </span><span class="hljs-keyword">Jump </span>if <span class="hljs-built_in">Zero</span>,零标志位 ZF=<span class="hljs-number">1</span> 时,<span class="hljs-keyword">jz </span>指令执行跳转<br><span class="hljs-keyword">jnz: </span><span class="hljs-keyword">Jump </span>if Not <span class="hljs-built_in">Zero</span>,零标志位 ZF=<span class="hljs-number">0</span> 时,<span class="hljs-keyword">jnz </span>指令执行跳转<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2024/12/82229bdabbecb98c.png"></p>
+<p>然后进行调试</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/c57b3908876d84ca.png"></p>
+<p>提取数据，写脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">flag = [<span class="hljs-number">0x63</span>, <span class="hljs-number">0x61</span>, <span class="hljs-number">0x6E</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x79</span>, <span class="hljs-number">0x6F</span>, <span class="hljs-number">0x75</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x66</span>, <span class="hljs-number">0x69</span>,<br>        <span class="hljs-number">0x6E</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x6D</span>, <span class="hljs-number">0x65</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x63</span>, <span class="hljs-number">0x61</span>, <span class="hljs-number">0x6E</span>, <span class="hljs-number">0x20</span>,<br>        <span class="hljs-number">0x79</span>, <span class="hljs-number">0x6F</span>, <span class="hljs-number">0x75</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x66</span>, <span class="hljs-number">0x69</span>, <span class="hljs-number">0x6E</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x6D</span>,<br>        <span class="hljs-number">0x65</span>, <span class="hljs-number">0x3F</span>]<br>key = [<span class="hljs-number">0x05</span>, <span class="hljs-number">0x0D</span>, <span class="hljs-number">0x0F</span>, <span class="hljs-number">0x47</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x0C</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0x5A</span>,<br>       <span class="hljs-number">0x0C</span>, <span class="hljs-number">0x11</span>, <span class="hljs-number">0x47</span>, <span class="hljs-number">0x0A</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0x52</span>, <span class="hljs-number">0x3C</span>, <span class="hljs-number">0x0C</span>, <span class="hljs-number">0x0F</span>, <span class="hljs-number">0x59</span>,<br>       <span class="hljs-number">0x26</span>, <span class="hljs-number">0x5E</span>, <span class="hljs-number">0x06</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x04</span>, <span class="hljs-number">0x08</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x0A</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0x09</span>,<br>       <span class="hljs-number">0x5A</span>, <span class="hljs-number">0x42</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">32</span>):<br>    flag[i] ^= key[i]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">chr</span>(flag[i]), end=<span class="hljs-string">&quot;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h1 id="drink-tea"><a href="#drink-tea" class="headerlink" title="drink_tea"></a>drink_tea</h1><p>先读一遍流程，输入长度为 32 的字符串，进入 <code>sub_140001180</code>，然后再比较</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">int</span> __cdecl <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **envp)</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-type">int</span> i; <span class="hljs-comment">// [rsp+20h] [rbp-28h]</span><br>  __int64 v5; <span class="hljs-comment">// [rsp+28h] [rbp-20h]</span><br><br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please Input: \n&quot;</span>);<br>  <span class="hljs-built_in">sub_140001120</span>(<span class="hljs-string">&quot;%32s&quot;</span>, byte_140004700);<br>  v5 = <span class="hljs-number">-1</span>i64;<br>  <span class="hljs-keyword">do</span><br>    ++v5;<br>  <span class="hljs-keyword">while</span> ( byte_140004700[v5] );<br>  <span class="hljs-keyword">if</span> ( v5 == dword_140004078 )<br>  &#123;<br>    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; dword_140004078; i += <span class="hljs-number">8</span> )<br>      <span class="hljs-built_in">sub_140001180</span>(&amp;byte_140004700[i], aWelcometonewst);<br>    <span class="hljs-keyword">if</span> ( !<span class="hljs-built_in">memcmp</span>(byte_140004700, &amp;unk_140004080, dword_140004078) )<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Right! \n&quot;</span>);<br>    <span class="hljs-keyword">else</span><br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;wrong!&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br>  <span class="hljs-keyword">else</span><br>  &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Wrong! \n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>进入 <code>sub_140001180</code> 函数查看</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">__int64</span> __fastcall sub_140001180(unsigned int *<span class="hljs-built_in">a1</span>, _DWORD *<span class="hljs-built_in">a2</span>)<br>&#123;<br>  __int64 result<span class="hljs-comment">; // rax</span><br>  unsigned int <span class="hljs-built_in">v3</span><span class="hljs-comment">; // [rsp+0h] [rbp-38h]</span><br>  unsigned int <span class="hljs-built_in">v4</span><span class="hljs-comment">; // [rsp+4h] [rbp-34h]</span><br>  int <span class="hljs-built_in">v5</span><span class="hljs-comment">; // [rsp+8h] [rbp-30h]</span><br>  unsigned int i<span class="hljs-comment">; // [rsp+Ch] [rbp-2Ch]</span><br><br>  <span class="hljs-built_in">v3</span> = *<span class="hljs-built_in">a1</span><span class="hljs-comment">;</span><br>  <span class="hljs-built_in">v4</span> = <span class="hljs-built_in">a1</span>[<span class="hljs-number">1</span>]<span class="hljs-comment">;</span><br>  <span class="hljs-built_in">v5</span> = <span class="hljs-number">0</span><span class="hljs-comment">;</span><br>  for ( i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 0x20; ++i )</span><br>  &#123;<br>    <span class="hljs-built_in">v5</span> -= <span class="hljs-number">1640531527</span><span class="hljs-comment">;</span><br>    <span class="hljs-built_in">v3</span> += (<span class="hljs-built_in">a2</span>[<span class="hljs-number">1</span>] + (<span class="hljs-built_in">v4</span> &gt;&gt; <span class="hljs-number">5</span>)) ^ (<span class="hljs-built_in">v5</span> + <span class="hljs-built_in">v4</span>) ^ (*<span class="hljs-built_in">a2</span> + <span class="hljs-number">16</span> * <span class="hljs-built_in">v4</span>)<span class="hljs-comment">;</span><br>    <span class="hljs-built_in">v4</span> += (<span class="hljs-built_in">a2</span>[<span class="hljs-number">3</span>] + (<span class="hljs-built_in">v3</span> &gt;&gt; <span class="hljs-number">5</span>)) ^ (<span class="hljs-built_in">v5</span> + <span class="hljs-built_in">v3</span>) ^ (<span class="hljs-built_in">a2</span>[<span class="hljs-number">2</span>] + <span class="hljs-number">16</span> * <span class="hljs-built_in">v3</span>)<span class="hljs-comment">;</span><br>  &#125;<br>  *<span class="hljs-built_in">a1</span> = <span class="hljs-built_in">v3</span><span class="hljs-comment">;</span><br>  result = <span class="hljs-number">4</span>i64<span class="hljs-comment">;</span><br>  <span class="hljs-built_in">a1</span>[<span class="hljs-number">1</span>] = <span class="hljs-built_in">v4</span><span class="hljs-comment">;</span><br>  return result<span class="hljs-comment">;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>看到这个加密流程就能发现是 tea 算法加密找到<code>key</code> 和输入的值直接逆</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/22dcddbe3c87348b.png"></p>
+<p>脚本如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdint.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">decrypt</span> <span class="hljs-params">(<span class="hljs-type">uint32_t</span>* v, <span class="hljs-type">uint32_t</span>* k)</span> &#123;<br>    <span class="hljs-type">uint32_t</span> v0=v[<span class="hljs-number">0</span>], v1=v[<span class="hljs-number">1</span>], sum=<span class="hljs-number">0xC6EF3720</span>, i;  <br>    <span class="hljs-type">uint32_t</span> delta=<span class="hljs-number">0x9e3779b9</span>;                     <br>    <span class="hljs-type">uint32_t</span> k0=k[<span class="hljs-number">0</span>], k1=k[<span class="hljs-number">1</span>], k2=k[<span class="hljs-number">2</span>], k3=k[<span class="hljs-number">3</span>];   <br>    <span class="hljs-keyword">for</span> (i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">32</span>; i++) &#123;                         <br>        v1 -= ((v0&lt;&lt;<span class="hljs-number">4</span>) + k2) ^ (v0 + sum) ^ ((v0&gt;&gt;<span class="hljs-number">5</span>) + k3);<br>        v0 -= ((v1&lt;&lt;<span class="hljs-number">4</span>) + k0) ^ (v1 + sum) ^ ((v1&gt;&gt;<span class="hljs-number">5</span>) + k1);<br>        sum -= delta;<br>    &#125;                                              <br>    v[<span class="hljs-number">0</span>]=v0; v[<span class="hljs-number">1</span>]=v1;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> i,j;<br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> flag[] = &#123;<span class="hljs-number">0x78</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0xF7</span>, <span class="hljs-number">0xB3</span>, <span class="hljs-number">0xC5</span>, <span class="hljs-number">0x42</span>, <span class="hljs-number">0xCE</span>, <span class="hljs-number">0xDA</span>, <span class="hljs-number">0x85</span>,<br>		<span class="hljs-number">0x59</span>, <span class="hljs-number">0x21</span>, <span class="hljs-number">0x1A</span>, <span class="hljs-number">0x26</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0x5A</span>, <span class="hljs-number">0x59</span>, <span class="hljs-number">0x29</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x0D</span>, <span class="hljs-number">0xED</span>, <span class="hljs-number">0x07</span>, <br>		<span class="hljs-number">0xA8</span>,<span class="hljs-number">0xB9</span>, <span class="hljs-number">0xEE</span>, <span class="hljs-number">0x36</span>, <span class="hljs-number">0x59</span>, <span class="hljs-number">0x11</span>, <span class="hljs-number">0x87</span>, <span class="hljs-number">0xFD</span>, <span class="hljs-number">0x5C</span>, <span class="hljs-number">0x23</span>, <span class="hljs-number">0x24</span>&#125;;<br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> keys[]=<span class="hljs-string">&quot;WelcomeToNewStar&quot;</span>;<br><br>    <span class="hljs-type">uint32_t</span> *v = (<span class="hljs-type">uint32_t</span>*)flag;<br>    <span class="hljs-type">uint32_t</span> *k = (<span class="hljs-type">uint32_t</span>*)keys;<br><br>    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;i+=<span class="hljs-number">2</span>)&#123;	<span class="hljs-comment">//每8个字节(2个 uint32)解密</span><br>        decrypt(v+i,k);<br>    &#125;<br>    <span class="hljs-keyword">for</span>(j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">32</span>;j++)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>,flag[j]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="ezencrypt"><a href="#ezencrypt" class="headerlink" title="ezencrypt"></a>ezencrypt</h1><p>先查看 <code>MainActivity</code> 函数发现有加密逻辑，<code>Enc enc = new Enc(tx)</code>，那就去 <code>Enc</code> 函数看看</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/2d292afff47f2193.png"></p>
+<p><code>Enc</code> 的构造函数里进行第一次加密，<code>ECB</code> 模式的 <code>AES</code> 加密，密钥是 <code>MainActivity</code> 的 <code>title</code></p>
+<p><code>doEncCheck</code> 函数进行加密数据检查，发现有 <code>native</code> 关键字，在 Java 中，<code>native </code>关键字用于声明一个方法是由本地代码（通常是C或C++）实现的，所以说明函数是 C&#x2F;C++ 编写的，所以主体在 so 文件，进行 so 提取</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/f133efd830a5c77f.png"></p>
+<p>IDA 打开 so 文件，找到 <code>doEncCheck</code> ，点进去查看</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/89a3916d618ae9df.png"></p>
+<p><code>enc</code> 函数的加密伪代码</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">__int64 __fastcall enc(char *<span class="hljs-built_in">a1</span>)<br>&#123;<br>  int i<span class="hljs-comment">; // [rsp+0h] [rbp-20h]</span><br>  int v3<span class="hljs-comment">; // [rsp+4h] [rbp-1Ch]</span><br><br>  v3 = __strlen_chk(<span class="hljs-built_in">a1</span>, -<span class="hljs-number">1</span>LL);<br>  for ( i = <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; v3; ++i )</span><br>    <span class="hljs-built_in">a1</span>[i] ^= <span class="hljs-keyword">xork[i </span>% <span class="hljs-number">4</span>];<br>  return encc(<span class="hljs-keyword">xork, </span><span class="hljs-built_in">a1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>又看见一个 <code>encc</code> 加密函数，（太好了，又有个算法加密，我们有救了!）</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs smali">__int64 __fastcall encc(char *a1, char *a2)<br>&#123;<br>  unsigned __int64 v2; // rcx<br>  __int64 result; // rax<br>  unsigned __int8 v4; // [rsp+Ch] [rbp-34h]<br> <span class="hljs-built_in"> int </span>v5; // [rsp+14h] [rbp-2Ch]<br> <span class="hljs-built_in"> int </span>v6; // [rsp+18h] [rbp-28h]<br> <span class="hljs-built_in"> int </span>i; // [rsp+1Ch] [rbp-24h]<br><br>  init_sbox(a1);<br>  v5 = 0;<br>  v6 = 0;<br>  for ( i = 0; ; ++i )<br>  &#123;<br>    v2 = __strlen_chk(a2, -1<span class="hljs-class">LL);</span><br>    result = i;<br>   <span class="hljs-built_in"> if </span>( i &gt;= v2 )<br>      break;<br>    v6 = (v6 + 1) % 256;<br>    v5 = (sbox[v6] + v5) % 256;<br>    v4 = sbox[v6];<br>    sbox[v6] = sbox[v5];<br>    sbox[v5] = v4;<br>    a2[i] ^= sbox[(sbox[v5] + sbox[v6]) % 256];<br>  &#125;<br> <span class="hljs-built_in"> return </span>result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>一个异或，一个 RC4 加密，找到了异或的字符串 “meow” 和要解密的数据</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/924ab39eead959c4.png"></p>
+<p>解密流程：RC4-&gt;异或-&gt;Base64-&gt;AES</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-type">char</span> sbox[<span class="hljs-number">257</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br><span class="hljs-type">char</span> xork[] = <span class="hljs-string">&quot;meow&quot;</span>;<br><span class="hljs-comment">//s盒</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">init_sbox</span><span class="hljs-params">(<span class="hljs-type">char</span>*a1)</span>&#123;<br>  <span class="hljs-type">int</span> i,j,k,tmp;<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">0x100</span>; i++ )<br>    sbox[i] = i;<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">0x100</span>; i++ )<br>  &#123;<br>    tmp = sbox[i];<br>    j = (a1[k] + tmp + j) % <span class="hljs-number">256</span>;<br>    sbox[i] = sbox[j];<br>    sbox[j] = tmp;<br>    <span class="hljs-keyword">if</span> ( ++k &gt;= <span class="hljs-built_in">strlen</span>(a1))<br>      k = <span class="hljs-number">0</span>;<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">//解密 RC4</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">encc</span><span class="hljs-params">(<span class="hljs-type">char</span> *a1,<span class="hljs-type">char</span>*data)</span>&#123;<br>  init_sbox(a1);<br>  <span class="hljs-type">int</span> i,j,k,tmp;<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>;i&lt;<span class="hljs-built_in">strlen</span>(data) ; i++ )<br>  &#123;<br>    j = (j + <span class="hljs-number">1</span>) % <span class="hljs-number">256</span>;<br>    k = (sbox[j] + k) % <span class="hljs-number">256</span>;<br>    tmp = sbox[j];<br>    sbox[j] = sbox[k];<br>    sbox[k] = tmp;<br>    data[i] ^= sbox[(sbox[j] + sbox[k]) % <span class="hljs-number">256</span>];<br>  &#125;<br>&#125;<br><span class="hljs-comment">//异或</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">enc</span><span class="hljs-params">(<span class="hljs-type">char</span> *a1)</span>&#123;<br>	<span class="hljs-type">int</span> i;<br>    <span class="hljs-type">int</span> len=<span class="hljs-built_in">strlen</span>(a1);<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; len; ++i )<br>    a1[i] ^= xork[i % <span class="hljs-number">4</span>];<br>  encc(xork, a1);<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br>  <span class="hljs-type">int</span> i;<br>  <span class="hljs-type">char</span> mm[]=&#123;<span class="hljs-number">0xC2</span>, <span class="hljs-number">0x6C</span>, <span class="hljs-number">0x73</span>, <span class="hljs-number">0xF4</span>, <span class="hljs-number">0x3A</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0x0E</span>, <span class="hljs-number">0xBA</span>, <span class="hljs-number">0x47</span>, <span class="hljs-number">0x81</span>, <br>	  <span class="hljs-number">0x2A</span>, <span class="hljs-number">0x26</span>, <span class="hljs-number">0xF6</span>, <span class="hljs-number">0x79</span>, <span class="hljs-number">0x60</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0xB3</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x6D</span>, <span class="hljs-number">0xDC</span>, <span class="hljs-number">0xC9</span>, <span class="hljs-number">0x04</span>,<br>	  <span class="hljs-number">0x32</span>, <span class="hljs-number">0x3B</span>, <span class="hljs-number">0x9F</span>, <span class="hljs-number">0x32</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0x60</span>, <span class="hljs-number">0xEE</span>, <span class="hljs-number">0x82</span>, <span class="hljs-number">0x97</span>, <span class="hljs-number">0xE7</span>, <span class="hljs-number">0xCA</span>, <span class="hljs-number">0x3D</span>,<br>	  <span class="hljs-number">0xAA</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0x76</span>, <span class="hljs-number">0xC5</span>, <span class="hljs-number">0x9B</span>, <span class="hljs-number">0x1D</span>, <span class="hljs-number">0x89</span>, <span class="hljs-number">0xDB</span>, <span class="hljs-number">0x98</span>, <span class="hljs-number">0x5D</span>&#125;;<br>  enc(mm);<br>  <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">44</span>;i++)&#123;<br>    <span class="hljs-built_in">putchar</span>(mm[i]);<br>  &#125;<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>AES 密钥是&#96;&#96;MainActivity.title&#96; 也就是 “IamEzEncryptGame” ，厨子梭出来</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/9fbf4e8780ac5eba.png"></p>
+<h1 id="Dirty-flowers"><a href="#Dirty-flowers" class="headerlink" title="Dirty_flowers"></a>Dirty_flowers</h1><p>不能 f5，有花指令，那就按下 space 键看文本流程，直接将 push-pop 的指令也就是 <code>0x4012f1~0x401302</code> 的指令全部 nop 掉 ,然后在 <code>main</code> 函数头按下 U 和 P 重新编译</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/80a38a07ee4a66f3.png"></p>
+<p>伪代码大概流程：输入 36 长度字符串，进入 <code>sub_401100</code> 加密，再与 <code>sub_4011D0</code> 判断</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> ( <span class="hljs-built_in">strlen</span>(v4) == <span class="hljs-number">36</span> )<br>  &#123;<br>    sub_401100(v4, <span class="hljs-number">36</span>);<br>    <span class="hljs-keyword">if</span> ( sub_4011D0(v4, <span class="hljs-number">36</span>) )<br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;success!\n&quot;</span>);<br>    <span class="hljs-keyword">else</span><br>      <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;no!\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br>  <span class="hljs-keyword">else</span><br>  &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;wrong length!\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>sub_401100</code> 也有花指令，和上面的一样流程来去花</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">signed</span> <span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">sub_401100</span><span class="hljs-params">(<span class="hljs-type">int</span> a1, <span class="hljs-type">int</span> a2)</span><br>&#123;<br>  <span class="hljs-type">signed</span> <span class="hljs-type">int</span> v2; <span class="hljs-comment">// kr00_4</span><br>  <span class="hljs-type">signed</span> <span class="hljs-type">int</span> result; <span class="hljs-comment">// eax</span><br>  <span class="hljs-type">int</span> i; <span class="hljs-comment">// [esp+1Ch] [ebp-1Ch]</span><br>  <span class="hljs-type">char</span> v5[<span class="hljs-number">16</span>]; <span class="hljs-comment">// [esp+24h] [ebp-14h] BYREF</span><br><br>  <span class="hljs-built_in">strcpy</span>(v5, <span class="hljs-string">&quot;dirty_flower&quot;</span>);<br>  v2 = <span class="hljs-built_in">strlen</span>(v5);<br>  result = v2;<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; a2; ++i )<br>  &#123;<br>    result = i + a1;<br>    *(_BYTE *)(i + a1) ^= v5[i % v2];<br>  &#125;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>sub_4011D0</code> 函数比较内容大概是：（我比较喜欢看汇编流程图，感觉比伪代码更方便 :) 嘻嘻）</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/ba83c2581a55c526.png"></p>
+<p>解密脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">enc = [<span class="hljs-number">0x02</span>, <span class="hljs-number">0x05</span>, <span class="hljs-number">0x13</span>, <span class="hljs-number">0x13</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x1e</span>, <span class="hljs-number">0x53</span>, <span class="hljs-number">0x1f</span>, <span class="hljs-number">0x5c</span>, <span class="hljs-number">0x1a</span>, <span class="hljs-number">0x27</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x1d</span>, <span class="hljs-number">0x36</span>, <span class="hljs-number">0x43</span>,<br>       <span class="hljs-number">0x07</span>, <span class="hljs-number">0x26</span>, <span class="hljs-number">0x2d</span>, <span class="hljs-number">0x55</span>, <span class="hljs-number">0x0d</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0x1b</span>, <span class="hljs-number">0x1c</span>, <span class="hljs-number">0x2d</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x1c</span>, <span class="hljs-number">0x1c</span>, <span class="hljs-number">0x30</span>, <span class="hljs-number">0x38</span>, <span class="hljs-number">0x32</span>,<br>       <span class="hljs-number">0x55</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x1b</span>, <span class="hljs-number">0x16</span>, <span class="hljs-number">0x54</span>, <span class="hljs-number">0x0f</span>, <span class="hljs-number">0x00</span>]<br><span class="hljs-built_in">str</span> = <span class="hljs-string">&quot;dirty_flower&quot;</span><br>flag = <span class="hljs-string">&quot;&quot;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(enc)):<br>    enc[i] ^= <span class="hljs-built_in">ord</span>(<span class="hljs-built_in">str</span>[i % <span class="hljs-built_in">len</span>(<span class="hljs-built_in">str</span>)])<br>    flag += <span class="hljs-built_in">chr</span>(enc[i])<br><span class="hljs-built_in">print</span>(flag)<br></code></pre></td></tr></table></figure>
+
+<h1 id="Ptrace"><a href="#Ptrace" class="headerlink" title="Ptrace"></a>Ptrace</h1>
                 
               </div>
             
@@ -323,6 +407,48 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Reverse/" class="category-chain-item">Reverse</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Reverse/%E8%B5%9B%E9%A2%98%E5%A4%8D%E7%8E%B0/" class="category-chain-item">赛题复现</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Reverse/%E8%B5%9B%E9%A2%98%E5%A4%8D%E7%8E%B0/NewStarCTF-2024/" class="category-chain-item">NewStarCTF 2024</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
+      
+    </div>
   
 </div>
 
@@ -332,7 +458,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>复现2</div>
+      <div>NewStarCTF 2024 Week2</div>
       <div>http://example.com/2024/11/11/复现2/</div>
     </div>
     <div class="license-meta">
@@ -376,6 +502,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/11/11/Privilege%20Escalation%20with%20LXD/Privilege%20Escalation%20with%20LXD/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -705,3 +837,6 @@
   </noscript>
 </body>
 </html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
