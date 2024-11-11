@@ -12,6 +12,6 @@
          document.title = 'o(╥﹏╥)o别走qwq';
          titleTime = setTimeout(function () {
              document.title = OriginTitle;
-         }, 2000);
+         }, 10000);
      }
  });
