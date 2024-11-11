@@ -91,7 +91,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -339,43 +339,43 @@
 <span id="more"></span>
 
 <h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="Simple-encryption"><a href="#Simple-encryption" class="headerlink" title="Simple_encryption"></a>Simple_encryption</h2><p>ida 打开</p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p>主要逻辑是根据输入的字符串长度，如果<code>j%3==0</code> ，那么就将输入的索引为<code>j</code> 的值减去 <code>31</code>，如果 <code>j%3==1</code>，加上<code>41</code>,如果 <code>j%3==2</code>，那么和 <code>0x55</code> 异或。然后值与 <code>buffer</code> 数组相比较，一样就成功，所以点进数组提取数据。</p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p>可以写出 python 脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">buffer = [<span class="hljs-number">0x47</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0x34</span>, <span class="hljs-number">0x48</span>, <span class="hljs-number">0xA4</span>, <span class="hljs-number">0x1C</span>, <span class="hljs-number">0x35</span>, <span class="hljs-number">0x88</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x16</span>,<br>          <span class="hljs-number">0x88</span>, <span class="hljs-number">0x07</span>, <span class="hljs-number">0x14</span>, <span class="hljs-number">0x6A</span>, <span class="hljs-number">0x39</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0xA2</span>, <span class="hljs-number">0x0A</span>, <span class="hljs-number">0x37</span>, <span class="hljs-number">0x5C</span>,<br>          <span class="hljs-number">0x07</span>, <span class="hljs-number">0x5A</span>, <span class="hljs-number">0x56</span>, <span class="hljs-number">0x60</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0x76</span>, <span class="hljs-number">0x25</span>, <span class="hljs-number">0x12</span>, <span class="hljs-number">0x8E</span>, <span class="hljs-number">0x28</span>,<br>          <span class="hljs-number">0x00</span>, <span class="hljs-number">0x00</span>]<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(buffer)):<br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">0</span>:<br>        buffer[i] += <span class="hljs-number">0x1f</span><br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">1</span>:<br>        buffer[i] -= <span class="hljs-number">0x29</span><br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">3</span> == <span class="hljs-number">2</span>:<br>        buffer[i] ^= <span class="hljs-number">0x55</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">chr</span>(buffer[i]), end=<span class="hljs-string">&#x27;&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <h2 id="ezAndroidStudy"><a href="#ezAndroidStudy" class="headerlink" title="ezAndroidStudy"></a>ezAndroidStudy</h2><p>我记得之前在哪个师傅博客看到过说先看 <code>.xml</code> 文件的 <code>activity</code> 可以快速找到。</p>
 <p>看看提示</p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p>所以查看 <code>AndroidManifest.xml</code>，看见 <code>activity</code> 只有 <code>work.pangbai.ezandroidstudy.Homo</code> 和 <code>work.pangbai.ezandroidstudy.MainActivity</code></p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p>拿到 flag1</p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p>看下一个</p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p>在 <code>resources.arsc/res/value/string.xml</code> 找到了</p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p><code>/layout/activity_main.xml</code> 里的 <code>activity_main.xml</code></p>
-<p><img src="/2024/11/06/TestWP/png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/png"></p>
 <p>查找 flag4</p>
-<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/.png"></p>
 <p>打开 <code>/res/raw</code> 发现目录下有个 <code>flag4.txt</code></p>
-<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/.png"></p>
 <p>flag 5</p>
-<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/.png"></p>
 <p>需要逆向 so 层，那么将 <code>.so</code> 提取出来，可以使用<code>apktool</code></p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">apktool</span> d ezAndroidStudy.apk -o <span class="hljs-string">&quot;需要生成的文件夹&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p> 将<code>&quot;/lib/x86_64/libezandroidstudy.so&quot;</code>丢进 ida 反编译就出来了</p>
-<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/.png"></p>
 <h2 id="ez-debug"><a href="#ez-debug" class="headerlink" title="ez_debug"></a>ez_debug</h2><p>根据题目丢进 <code>x64dbg</code> 动调</p>
 <p>首先查找字符串，看看有没有可以字符串，可以发现有一些 <code>flag</code> 字样</p>
-<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/.png"></p>
 <p>在 <code>Decrypted flag</code> 处下个断点运行，得到结果</p>
-<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/11/06/TestWP/.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/11/06/TestWP/.png"></p>
+<p><img src="/2024/11/06/TestWP/.png"></p>
 <p>太喜欢逆向了有种做不出来但又想做的崩溃感</p>
 
                 
@@ -505,7 +505,7 @@
             
   
   
-    <article id="comments" lazyload>
+    <article id="comments">
       
   <div id="valine"></div>
   <script type="text/javascript">
@@ -698,10 +698,6 @@
 
 
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 
