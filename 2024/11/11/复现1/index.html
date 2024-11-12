@@ -35,15 +35,15 @@
 <meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/cdf9036f6f299c85.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/fd4cd1392593c483.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/8fb3d0ba6b81c630.png">
-<meta property="og:image" content="http://example.com/re10.png">
-<meta property="og:image" content="http://example.com/re11.png">
-<meta property="og:image" content="http://example.com/re12.png">
-<meta property="og:image" content="http://example.com/re13.png">
-<meta property="og:image" content="http://example.com/re14.png">
-<meta property="og:image" content="http://example.com/re15.png">
-<meta property="og:image" content="http://example.com/re16.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/fd86d0f76ba83a70.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/bbfa8ee63b0b9c03.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/6f609d03f4d2cc66.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/94ea73f36dd81624.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/c4ab9716a8f2bb1b.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/be3f66141d6c7ac6.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/42e30da474972b02.png">
 <meta property="article:published_time" content="2024-11-11T04:20:30.000Z">
-<meta property="article:modified_time" content="2024-11-11T15:40:18.866Z">
+<meta property="article:modified_time" content="2024-11-12T05:14:41.088Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary_large_image">
@@ -328,7 +328,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月11日 晚上
+                    本文最后更新于 2024年11月12日 下午
                   
                 
               </p>
@@ -362,22 +362,22 @@
 <p><code>/layout/activity_main.xml</code> 里的 <code>activity_main.xml</code></p>
 <p><img src="https://img.dkdun.cn/v1/2024/12/8fb3d0ba6b81c630.png"></p>
 <p>查找 flag4</p>
-<p><img src="/re10.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/fd86d0f76ba83a70.png"></p>
 <p>打开 <code>/res/raw</code> 发现目录下有个 <code>flag4.txt</code></p>
-<p><img src="/re11.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/bbfa8ee63b0b9c03.png"></p>
 <p>flag 5</p>
-<p><img src="/re12.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/6f609d03f4d2cc66.png"></p>
 <p>需要逆向 so 层，那么将 <code>.so</code> 提取出来，可以使用<code>apktool</code></p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">apktool</span> d ezAndroidStudy.apk -o <span class="hljs-string">&quot;需要生成的文件夹&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p> 将<code>&quot;/lib/x86_64/libezandroidstudy.so&quot;</code>丢进 ida 反编译就出来了</p>
-<p><img src="/re13.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/94ea73f36dd81624.png"></p>
 <h1 id="ez-debug"><a href="#ez-debug" class="headerlink" title="ez_debug"></a>ez_debug</h1><p>根据题目丢进 <code>x64dbg</code> 动调</p>
 <p>首先查找字符串，看看有没有可以字符串，可以发现有一些 <code>flag</code> 字样</p>
-<p><img src="/re14.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/c4ab9716a8f2bb1b.png"></p>
 <p>在 <code>Decrypted flag</code> 处下个断点运行，得到结果</p>
-<p><img src="/re15.png"></p>
-<p><img src="/re16.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/be3f66141d6c7ac6.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/42e30da474972b02.png"></p>
 <p>太喜欢逆向了有种做不出来但又想做的崩溃感</p>
 
                 
