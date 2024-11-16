@@ -32,8 +32,10 @@
 <meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/f4fb59bd9b159a1a.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/cfa0a4036c1e3ed4.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/8d9abae0ff32d920.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/996d02236c2e81ab.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2024/12/e545a4d1493aea08.png">
 <meta property="article:published_time" content="2024-11-14T13:17:53.000Z">
-<meta property="article:modified_time" content="2024-11-16T04:14:29.133Z">
+<meta property="article:modified_time" content="2024-11-16T05:23:32.014Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary_large_image">
@@ -255,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          713 字
+          765 字
         
       </span>
     
@@ -266,7 +268,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -318,7 +320,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年11月16日 中午
+                    本文最后更新于 2024年11月16日 下午
                   
                 
               </p>
@@ -352,8 +354,12 @@
 <p>脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><br>result = <span class="hljs-string">&quot;&quot;</span><br>enc = [<span class="hljs-number">0xB2</span>, <span class="hljs-number">0x74</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0x16</span>, <span class="hljs-number">0x47</span>, <span class="hljs-number">0x34</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0x36</span>, <span class="hljs-number">0x17</span>, <span class="hljs-number">0xF4</span>,<br>       <span class="hljs-number">0x43</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0xD6</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x95</span>, <span class="hljs-number">0xC6</span>, <span class="hljs-number">0xD6</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x36</span>,<br>       <span class="hljs-number">0xA7</span>, <span class="hljs-number">0x35</span>, <span class="hljs-number">0xE6</span>, <span class="hljs-number">0x36</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x57</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x16</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x97</span>,<br>       <span class="hljs-number">0xE6</span>, <span class="hljs-number">0x16</span>]<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(enc)):<br>    enc[i] = (enc[i] &lt;&lt; <span class="hljs-number">4</span> | enc[i] &gt;&gt; <span class="hljs-number">4</span>) &amp; <span class="hljs-number">0xff</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(enc)//<span class="hljs-number">2</span>):<br>    tmp = enc[i]<br>    enc[i] = enc[<span class="hljs-built_in">len</span>(enc) - i - <span class="hljs-number">1</span>]<br>    enc[<span class="hljs-built_in">len</span>(enc) - i - <span class="hljs-number">1</span>] = tmp<br><br>result = <span class="hljs-string">&#x27;&#x27;</span>.join([<span class="hljs-built_in">chr</span>(a) <span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> enc])<br>CHAR_DATA = <span class="hljs-string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span><br>NewStringUTF = <span class="hljs-string">&quot;BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/A&quot;</span><br><span class="hljs-built_in">print</span>(base64.b64decode(result.translate(<span class="hljs-built_in">str</span>.maketrans(NewStringUTF, CHAR_DATA))))<br><br>&gt;&gt;<span class="hljs-string">b&#x27;flag&#123;android_is_simple!&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="SecertsOfKawaii"><a href="#SecertsOfKawaii" class="headerlink" title="SecertsOfKawaii"></a>SecertsOfKawaii</h1><p><code>Andriod逆向 </code>可以分为 <code>native层逆向</code>和<code> java 层逆向</code>，这个就是个 <code>java 层逆向</code></p>
+<h1 id="SecertsOfKawaii"><a href="#SecertsOfKawaii" class="headerlink" title="SecertsOfKawaii"></a>SecertsOfKawaii</h1><p>查看 <code>MainActivity</code> 代码，看起来好像被混淆了，乱乱的</p>
 <p><img src="https://img.dkdun.cn/v1/2024/12/8d9abae0ff32d920.png"></p>
+<p>可以使用 jeb 去混淆，解析成 Java 代码，怎么这些工具这么强啊啊啊啊</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/996d02236c2e81ab.png"></p>
+<p>往下看代码流程，Java 层有一个 <code>RC4</code> 加密，<code>key</code>是 <code>rc4k4y</code>，加密后 <code>Base64</code> 一下传到 <code>so</code> 层，值在 <code>so</code> 层检查</p>
+<p><img src="https://img.dkdun.cn/v1/2024/12/e545a4d1493aea08.png"></p>
 
                 
               </div>
