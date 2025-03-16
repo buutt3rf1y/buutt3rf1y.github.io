@@ -1,1 +1,1 @@
-hexo.extend.injector.register('body_begin', '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/TrymenT-ClocK/TrymenT-ClocK.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/TrymenT-ClocK/TrymenT-ClocK.min.js"></script>', 'default');
+hexo.extend.injector.register('body_begin', '<link rel="stylesheet" href=""E:/GithubBlog/Node/hexo-blog/themes/fluid/source/css/TrymenT-ClocK.css""><script type="text/javascript" src=""E:/GithubBlog/Node/hexo-blog/themes/fluid/source/js/TrymenT-ClocK.min.js""></script>', 'default');
