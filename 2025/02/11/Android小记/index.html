@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="最近 SWDD 师傅（Android 神!）给了几道简单的 Android 题目，我拿来做了做，感觉 Android 真有意思吧hhhhhh可惜我不会呜呜呜。做题期间在 ida 的深色和浅色模式下反复横跳，最终选择了深色（果然一开始干正事什么都变得有趣了起来）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android小记">
+<meta property="og:url" content="http://example.com/2025/02/11/Android%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="最近 SWDD 师傅（Android 神!）给了几道简单的 Android 题目，我拿来做了做，感觉 Android 真有意思吧hhhhhh可惜我不会呜呜呜。做题期间在 ida 的深色和浅色模式下反复横跳，最终选择了深色（果然一开始干正事什么都变得有趣了起来）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e4fbcd1524596e6e.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/fb79af6175c32845.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e02ce8479e10fbfa.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5c77e2e9e0f3031a.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/52d5d49ec7b27e07.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/f1df02fcb69e0554.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/336e506c9ec7a7de.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/338a59f0d8c91616.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/acef11ddd1eea039.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/77a2c254193111c4.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ff917dbc6e5c5c71.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ee3e640eabe6526b.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/2f5d4e6f30c67607.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/83eba5c9f480fd9f.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/c2343f20172c0f9d.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/0cf6bfb81fd443cd.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/308618ee3d58d3f3.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8da71fcd02c31a16.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d0d1117d0513d160.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/92a8ced625aec488.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/342d0198eba009a7.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e46f7cc7608020b7.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5fe15c2bd9761773.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/49f0f9abdb1a4e9a.png">
+<meta property="article:published_time" content="2025-02-11T14:09:08.000Z">
+<meta property="article:modified_time" content="2025-02-11T21:44:13.295Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="Andriod">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/e4fbcd1524596e6e.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Android小记 - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/471b481805b41f51.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Android小记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-11 22:09" pubdate>
+          2025年2月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Android小记</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年2月12日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>最近 SWDD 师傅（Android 神!）给了几道简单的 Android 题目，我拿来做了做，感觉 Android 真有意思吧hhhhhh可惜我不会呜呜呜。做题期间在 ida 的深色和浅色模式下反复横跳，最终选择了深色（果然一开始干正事什么都变得有趣了起来）</p>
+<span id="more"></span>
+
+<h1 id="APK-反编译-level1"><a href="#APK-反编译-level1" class="headerlink" title="APK 反编译-level1"></a>APK 反编译-level1</h1><p>jeb 反编译</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e4fbcd1524596e6e.png"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;Your_are_go0d_at_Uncompile_Android!&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Native-层反编译-level2"><a href="#Native-层反编译-level2" class="headerlink" title="Native 层反编译-level2"></a><strong>Native 层反编译</strong>-level2</h1><p><code>Native</code>层反编译，那么我们得去把 <code>so</code> 层提取出来，用 apktool</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">apktool</span> d apk名 -o <span class="hljs-string">&quot;需要生成的文件夹&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>找到 <code>\lib\x86_64\libsummertrain.so</code> 文件丢入 ida 就出来</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/fb79af6175c32845.png"></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">flag</span><span class="hljs-template-variable">&#123;Now_You_Know_Native_uncompile&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="静态注册-level3"><a href="#静态注册-level3" class="headerlink" title="静态注册-level3"></a><strong>静态注册</strong>-level3</h1><p>提取 <code>.so</code> 文件丢入 ida，找到 <code>Java_com_swdd_summertrain_MainActivity_Check</code> 函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs c">__int64 __fastcall <span class="hljs-title function_">Java_com_swdd_summertrain_MainActivity_Check</span><span class="hljs-params">(__int64 a1, __int64 a2, __int64 a3)</span><br>&#123;<br>   ...<br>  v27 = v3;<br>  v5 = <span class="hljs-number">0LL</span>;<br>  v6 = (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *)(*(__int64 (__fastcall **)(__int64, __int64, _QWORD))(*(_QWORD *)a1 + <span class="hljs-number">1352LL</span>))(a1, a3, <span class="hljs-number">0LL</span>);<br>  <span class="hljs-keyword">if</span> ( v6 )<br>  &#123;<br>    v7 = v6;<br>    v8 = <span class="hljs-built_in">strlen</span>(v6);<br>    v9 = (<span class="hljs-type">char</span> *)operator new[](v8 + <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">if</span> ( !v8 )<br>      <span class="hljs-keyword">goto</span> LABEL_11;<br>    <span class="hljs-keyword">if</span> ( v8 &lt; <span class="hljs-number">8</span> || v9 &lt; &amp;v7[v8] &amp;&amp; v7 &lt; &amp;v9[v8] )<br>    &#123;<br>      v10 = <span class="hljs-number">0LL</span>;<br>LABEL_7:<br>      v11 = v8 + ~v10;<br>      v12 = v8 &amp; <span class="hljs-number">3</span>;<br>      <span class="hljs-keyword">if</span> ( (v8 &amp; <span class="hljs-number">3</span>) != <span class="hljs-number">0</span> )<br>      &#123;<br>        <span class="hljs-keyword">do</span><br>        &#123;<br>          v9[v10] = v7[v10] ^ <span class="hljs-number">0x33</span>;<br>          ++v10;<br>          --v12;<br>        &#125;<br>        <span class="hljs-keyword">while</span> ( v12 );<br>      &#125;<br>      <span class="hljs-keyword">if</span> ( v11 &gt;= <span class="hljs-number">3</span> )<br>      &#123;<br>        <span class="hljs-keyword">do</span><br>        &#123;<br>          v9[v10] = v7[v10] ^ <span class="hljs-number">0x33</span>;<br>          v9[v10 + <span class="hljs-number">1</span>] = v7[v10 + <span class="hljs-number">1</span>] ^ <span class="hljs-number">0x33</span>;<br>          v9[v10 + <span class="hljs-number">2</span>] = v7[v10 + <span class="hljs-number">2</span>] ^ <span class="hljs-number">0x33</span>;<br>          v9[v10 + <span class="hljs-number">3</span>] = v7[v10 + <span class="hljs-number">3</span>] ^ <span class="hljs-number">0x33</span>;<br>          v10 += <span class="hljs-number">4LL</span>;<br>        &#125;<br>        <span class="hljs-keyword">while</span> ( v8 != v10 );<br>      &#125;<br>      <span class="hljs-keyword">goto</span> LABEL_11;<br>    &#125;<br>    <span class="hljs-keyword">if</span> ( v8 &lt; <span class="hljs-number">0x20</span> )<br>    &#123;<br>      v10 = <span class="hljs-number">0LL</span>;<br>LABEL_22:<br>      v26 = v10;<br>      v10 = v8 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFF8</span>LL;<br>      <span class="hljs-keyword">do</span><br>      &#123;<br>        *(_QWORD *)&amp;v9[v26] = *(_QWORD *)&amp;v7[v26] ^ <span class="hljs-number">0x3333333333333333</span>LL;<br>        v26 += <span class="hljs-number">8LL</span>;<br>      &#125;<br>      <span class="hljs-keyword">while</span> ( v10 != v26 );<br>      <span class="hljs-keyword">if</span> ( v8 != v10 )<br>        <span class="hljs-keyword">goto</span> LABEL_7;<br>LABEL_11:<br>      v9[v8] = <span class="hljs-number">0</span>;<br>      v13 = <span class="hljs-built_in">memcmp</span>(v9, <span class="hljs-string">&quot;U_RTH&#125;\\Dlj\\Flx]\\Dl&#125;RGZEVlWJ]R^ZPlAVTZ@GARGZ\\]Ncovariant return thunk to &quot;</span>, v8) == <span class="hljs-number">0</span>;<br>      v14 = (*(__int64 (__fastcall **)(__int64, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_QWORD *)a1 + <span class="hljs-number">48LL</span>))(a1, <span class="hljs-string">&quot;java/lang/Boolean&quot;</span>);<br>      v15 = v14;<br>      v16 = (*(__int64 (__fastcall **)(__int64, __int64, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_QWORD *)a1 + <span class="hljs-number">264LL</span>))(<br>              a1,<br>              v14,<br>              <span class="hljs-string">&quot;&lt;init&gt;&quot;</span>,<br>              <span class="hljs-string">&quot;(Z)V&quot;</span>);<br>      v5 = _JNIEnv::NewObject(a1, v15, v16, v13, v17, v18, v27);<br>      (*(<span class="hljs-type">void</span> (__fastcall **)(__int64, __int64, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_QWORD *)a1 + <span class="hljs-number">1360LL</span>))(a1, a3, v7);<br>      operator delete[](v9);<br>      <span class="hljs-keyword">return</span> v5;<br>    &#125;<br>    v10 = v8 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFE0</span>LL;<br>    v20 = (((v8 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFE0</span>LL) - <span class="hljs-number">32</span>) &gt;&gt; <span class="hljs-number">5</span>) + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> ( (v8 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFE0</span>LL) == <span class="hljs-number">32</span> )<br>    &#123;<br>      v22 = <span class="hljs-number">0LL</span>;<br>      <span class="hljs-keyword">if</span> ( (v20 &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> )<br>        <span class="hljs-keyword">goto</span> LABEL_20;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>      v21 = v20 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFFE</span>LL;<br>      v22 = <span class="hljs-number">0LL</span>;<br>      <span class="hljs-keyword">do</span><br>      &#123;<br>        v23 = _mm_xor_ps(*(__m128 *)&amp;v7[v22 + <span class="hljs-number">16</span>], (__m128)xmmword_CA80);<br>        *(__m128 *)&amp;v9[v22] = _mm_xor_ps(*(__m128 *)&amp;v7[v22], (__m128)xmmword_CA80);<br>        *(__m128 *)&amp;v9[v22 + <span class="hljs-number">16</span>] = v23;<br>        v24 = _mm_xor_ps(*(__m128 *)&amp;v7[v22 + <span class="hljs-number">48</span>], (__m128)xmmword_CA80);<br>        *(__m128 *)&amp;v9[v22 + <span class="hljs-number">32</span>] = _mm_xor_ps(*(__m128 *)&amp;v7[v22 + <span class="hljs-number">32</span>], (__m128)xmmword_CA80);<br>        *(__m128 *)&amp;v9[v22 + <span class="hljs-number">48</span>] = v24;<br>        v22 += <span class="hljs-number">64LL</span>;<br>        v21 -= <span class="hljs-number">2LL</span>;<br>      &#125;<br>      <span class="hljs-keyword">while</span> ( v21 );<br>      <span class="hljs-keyword">if</span> ( (v20 &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> )<br>        <span class="hljs-keyword">goto</span> LABEL_20;<br>    &#125;<br>    v25 = _mm_xor_ps(*(__m128 *)&amp;v7[v22 + <span class="hljs-number">16</span>], (__m128)xmmword_CA80);<br>    *(__m128 *)&amp;v9[v22] = _mm_xor_ps(*(__m128 *)&amp;v7[v22], (__m128)xmmword_CA80);<br>    *(__m128 *)&amp;v9[v22 + <span class="hljs-number">16</span>] = v25;<br>LABEL_20:<br>    <span class="hljs-keyword">if</span> ( v8 == v10 )<br>      <span class="hljs-keyword">goto</span> LABEL_11;<br>    <span class="hljs-keyword">if</span> ( (v8 &amp; <span class="hljs-number">0x18</span>) == <span class="hljs-number">0</span> )<br>      <span class="hljs-keyword">goto</span> LABEL_7;<br>    <span class="hljs-keyword">goto</span> LABEL_22;<br>  &#125;<br>  <span class="hljs-keyword">return</span> v5;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码主要流程为：对字符串 <code>v6</code> 进行异或，分为几种情况：</p>
+<ul>
+<li>如果字符串长度小于 8，逐字节进行异或，每个字符都与 <code>0x33</code> 异或</li>
+<li>如果长度在 8 ~ 32 之间，按 8 字节为一组进行异或，异或值是 <code>0x3333333333333333LL</code></li>
+<li>如果长度超过 32 字节，使用 <strong>SSE 指令</strong>（<code>_mm_xor_ps</code>），每次处理 16 字节，用一个全局常量 <code>xmmword_CA80</code> 进行异或</li>
+</ul>
+<p>解码后的字符串会与一个固定字符串 <code>U_RTH&#125;\\Dlj\\Flx]\\Dl&#125;RGZEVlWJ]R^ZPlAVTZ@GARGZ\\]Ncovariant return thunk to</code> 进行比较，相等则正确，exp 如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdafx.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;immintrin.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdint&gt;</span></span><br><br><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">decode</span><span class="hljs-params">(<span class="hljs-type">char</span>* encoded, <span class="hljs-type">size_t</span> length)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (length &lt; <span class="hljs-number">8</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; length; ++i) &#123;<br>            encoded[i] ^= <span class="hljs-number">0x33</span>;<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (length &lt; <span class="hljs-number">32</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; length; i += <span class="hljs-number">8</span>) &#123;<br>            <span class="hljs-type">uint64_t</span>* block = <span class="hljs-built_in">reinterpret_cast</span>&lt;<span class="hljs-type">uint64_t</span>*&gt;(encoded + i);<br>            *block ^= <span class="hljs-number">0x3333333333333333LL</span>;<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; length; ++i) &#123;<br>            encoded[i] ^= <span class="hljs-number">0x33</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* originalEncodedString = <span class="hljs-string">&quot;U_RTH&#125;\\Dlj\\Flx]\\Dl&#125;RGZEVlWJ]R^ZPlAVTZ@GARGZ\\]Ncovariant return thunk to&quot;</span>;<br>    <span class="hljs-type">size_t</span> length = <span class="hljs-built_in">strlen</span>(originalEncodedString);<br><br>    <span class="hljs-comment">// 动态分配内存，防止栈溢出</span><br>    <span class="hljs-type">char</span>* encodedString = <span class="hljs-keyword">new</span> <span class="hljs-type">char</span>[length + <span class="hljs-number">1</span>];<br>    <span class="hljs-built_in">strcpy</span>(encodedString, originalEncodedString);<br><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;加密字符串: &quot;</span> &lt;&lt; encodedString &lt;&lt; std::endl;<br><br>    <span class="hljs-built_in">decode</span>(encodedString, length);<br><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;解密后的字符串: &quot;</span> &lt;&lt; encodedString &lt;&lt; std::endl;<br><br>    <span class="hljs-comment">// 释放动态分配的内存</span><br>    <span class="hljs-keyword">delete</span>[] encodedString;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/e02ce8479e10fbfa.png"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;Now_You_Know_Native_dynamic_registration&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="动态注册-level4"><a href="#动态注册-level4" class="headerlink" title="动态注册-level4"></a><strong>动态注册</strong>-level4</h1><p>动态注册的方法一般来说需要分析 <code>JNI_OnLoad</code> 函数，把 <code>libsummertrain.so</code> 丢进 ida分析</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/5c77e2e9e0f3031a.png"></p>
+<p>emmmmm，这里我似乎没分析出什么来，然后看了眼其他函数，发现了 <code>sub_172E0</code> 函数有东西</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">sub_110B0</span><span class="hljs-params">(<span class="hljs-type">int</span> a1, <span class="hljs-type">int</span> a2, <span class="hljs-type">int</span> a3)</span><br>&#123;<br>    ...<br>  v3 = (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *)(*(<span class="hljs-type">int</span> (__cdecl **)(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>, _DWORD))(*(_DWORD *)a1 + <span class="hljs-number">676</span>))(a1, a3, <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">if</span> ( v3 )<br>  &#123;<br>    v4 = (<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)v3;<br>    v5 = <span class="hljs-built_in">strlen</span>(v3);<br>    v6 = (_BYTE *)operator new[](v5 + <span class="hljs-number">1</span>);<br>    v7 = v5;<br>    v8 = v6;<br>    <span class="hljs-keyword">if</span> ( !v7 )<br>      <span class="hljs-keyword">goto</span> LABEL_21;<br>    v9 = <span class="hljs-number">0</span>;<br>    v24 = v7;<br>    <span class="hljs-keyword">if</span> ( v7 &lt; <span class="hljs-number">8</span> || (<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)v8 &lt; v4 + v7 &amp;&amp; v4 &lt; (<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)&amp;v8[v7] )<br>      <span class="hljs-keyword">goto</span> LABEL_17;<br>    v9 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">if</span> ( v7 &lt; <span class="hljs-number">0x20</span> )<br>    &#123;<br>LABEL_14:<br>      v17 = v9;<br>      v9 = v7 &amp; <span class="hljs-number">0xFFFFFFF8</span>;<br>      <span class="hljs-keyword">do</span><br>      &#123;<br>        *(_QWORD *)&amp;v8[v17] = _mm_xor_si128(_mm_loadl_epi64((<span class="hljs-type">const</span> __m128i *)(v4 + v17)), (__m128i)<span class="hljs-number">-1LL</span>).m128i_u64[<span class="hljs-number">0</span>];<br>        v17 += <span class="hljs-number">8</span>;<br>      &#125;<br>      <span class="hljs-keyword">while</span> ( v9 != v17 );<br>      <span class="hljs-keyword">if</span> ( v7 != v9 )<br>        <span class="hljs-keyword">goto</span> LABEL_17;<br>LABEL_21:<br>      v8[v7] = <span class="hljs-number">0</span>;<br>      v25 = <span class="hljs-built_in">memcmp</span>(v8, &amp;unk_78FD, v7) == <span class="hljs-number">0</span>;<br>      v20 = (*(<span class="hljs-type">int</span> (__cdecl **)(<span class="hljs-type">int</span>, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_DWORD *)a1 + <span class="hljs-number">24</span>))(a1, <span class="hljs-string">&quot;java/lang/Boolean&quot;</span>);<br>      v21 = (*(<span class="hljs-type">int</span> (__cdecl **)(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_DWORD *)a1 + <span class="hljs-number">132</span>))(a1, v20, <span class="hljs-string">&quot;&lt;init&gt;&quot;</span>, <span class="hljs-string">&quot;(Z)V&quot;</span>);<br>      v22 = _JNIEnv::NewObject(a1, v20, v21, v25);<br>      (*(<span class="hljs-type">void</span> (__cdecl **)(<span class="hljs-type">int</span>))(*(_DWORD *)a1 + <span class="hljs-number">680</span>))(a1);<br>      operator delete[](v8);<br>      <span class="hljs-keyword">return</span> v22;<br>    &#125;<br>    v9 = v7 &amp; <span class="hljs-number">0xFFFFFFE0</span>;<br>    v10 = (v7 &amp; <span class="hljs-number">0xFFFFFFE0</span>) - <span class="hljs-number">32</span>;<br>    v11 = (v10 &gt;&gt; <span class="hljs-number">5</span>) + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> ( v10 )<br>    &#123;<br>      v12 = v11 &amp; <span class="hljs-number">0xFFFFFFFE</span>;<br>      v13 = <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">do</span><br>      &#123;<br>        v14 = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)(v4 + v13 + <span class="hljs-number">16</span>)), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v13] = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)(v4 + v13)), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v13 + <span class="hljs-number">16</span>] = v14;<br>        v15 = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)(v4 + v13 + <span class="hljs-number">48</span>)), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v13 + <span class="hljs-number">32</span>] = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)(v4 + v13 + <span class="hljs-number">32</span>)), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v13 + <span class="hljs-number">48</span>] = v15;<br>        v13 += <span class="hljs-number">64</span>;<br>        v12 -= <span class="hljs-number">2</span>;<br>      &#125;<br>      <span class="hljs-keyword">while</span> ( v12 );<br>      <span class="hljs-keyword">if</span> ( (v11 &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> )<br>        <span class="hljs-keyword">goto</span> LABEL_12;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>      v13 = <span class="hljs-number">0</span>;<br>      <span class="hljs-keyword">if</span> ( (v11 &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> )<br>        <span class="hljs-keyword">goto</span> LABEL_12;<br>    &#125;<br>    v16 = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)(v4 + v13 + <span class="hljs-number">16</span>)), (__m128i)<span class="hljs-number">-1LL</span>);<br>    *(__m128i *)&amp;v8[v13] = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)(v4 + v13)), (__m128i)<span class="hljs-number">-1LL</span>);<br>    *(__m128i *)&amp;v8[v13 + <span class="hljs-number">16</span>] = v16;<br>LABEL_12:<br>    v7 = v24;<br>    <span class="hljs-keyword">if</span> ( v24 == v9 )<br>      <span class="hljs-keyword">goto</span> LABEL_21;<br>    <span class="hljs-keyword">if</span> ( (v24 &amp; <span class="hljs-number">0x18</span>) == <span class="hljs-number">0</span> )<br>    &#123;<br>LABEL_17:<br>      v18 = v7 + ~v9;<br>      <span class="hljs-keyword">for</span> ( i = v7 &amp; <span class="hljs-number">3</span>; i; --i )<br>      &#123;<br>        v8[v9] = ~*(_BYTE *)(v4 + v9);<br>        ++v9;<br>      &#125;<br>      v7 = v24;<br>      <span class="hljs-keyword">if</span> ( v18 &gt;= <span class="hljs-number">3</span> )<br>      &#123;<br>        <span class="hljs-keyword">do</span><br>        &#123;<br>          v8[v9] = ~*(_BYTE *)(v4 + v9);<br>          v8[v9 + <span class="hljs-number">1</span>] = ~*(_BYTE *)(v4 + v9 + <span class="hljs-number">1</span>);<br>          v8[v9 + <span class="hljs-number">2</span>] = ~*(_BYTE *)(v4 + v9 + <span class="hljs-number">2</span>);<br>          v8[v9 + <span class="hljs-number">3</span>] = ~*(_BYTE *)(v4 + v9 + <span class="hljs-number">3</span>);<br>          v9 += <span class="hljs-number">4</span>;<br>        &#125;<br>        <span class="hljs-keyword">while</span> ( v24 != v9 );<br>      &#125;<br>      <span class="hljs-keyword">goto</span> LABEL_21;<br>    &#125;<br>    <span class="hljs-keyword">goto</span> LABEL_14;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>首先用 <code>v5</code> 存储调用 <code>(*(_QWORD *)a1 + 1352LL)</code> 所返回的字符串，<code>v6</code> 指向指向 <code>v5</code>，然后 <code>v8</code>来存储字符串</p>
+<p>而且代码根据字符串长度进行不同的解密处理：</p>
+<ul>
+<li><strong>长度小于 8 的情况</strong>，逐字节进行按位<strong>取反</strong></li>
+<li><strong>长度大于或等于 8 小于 32 的情况</strong>，利用 <strong><code>_mm_xor_si128</code></strong> 进行 8 字节为单位的批量解密</li>
+<li><strong>长度大于或等于 32 的情况</strong>，一次处理 64 字节<ul>
+<li>**<code>_mm_xor_si128</code>**：通过向量化操作，将 16 字节数据与 <code>-1</code> 进行异或，相当于每个字节都执行 <code>~</code> 操作（按位取反）</li>
+</ul>
+</li>
+</ul>
+<p>代码中有一句 <code>v12 = memcmp(v8, &amp;unk_DCF0, v7) == 0</code>，主要作用是通过 <strong><code>memcmp</code></strong> 函数比较两个内存区域的内容是否相等，那么 <code>v5</code> 中的字符串就存储在 <code>unk_DCF0</code> 中，提取出来</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/52d5d49ec7b27e07.png"></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">0x99</span>, <span class="hljs-number">0</span>x93, <span class="hljs-number">0</span>x9E, <span class="hljs-number">0</span>x98, <span class="hljs-number">0</span>x84, <span class="hljs-number">0</span>xB1, <span class="hljs-number">0</span>x90, <span class="hljs-number">0</span>x88, <span class="hljs-number">0</span>xA0, <span class="hljs-number">0</span>xA6, <span class="hljs-number">0</span>x90, <span class="hljs-number">0</span>x8A, <span class="hljs-number">0</span>xA0, <span class="hljs-number">0</span>xB4, <span class="hljs-number">0</span>x91, <span class="hljs-number">0</span>x90, <span class="hljs-number">0</span>x88, <span class="hljs-number">0</span>xA0, <span class="hljs-number">0</span>xB1, <span class="hljs-number">0</span>x9E, <span class="hljs-number">0</span>x8B, <span class="hljs-number">0</span>x96, <span class="hljs-number">0</span>x89, <span class="hljs-number">0</span>x9A, <span class="hljs-number">0</span>xA0, <span class="hljs-number">0</span>x8D, <span class="hljs-number">0</span>x9A, <span class="hljs-number">0</span>x9E, <span class="hljs-number">0</span>x93, <span class="hljs-number">0</span>xA0, <span class="hljs-number">0</span>x9B, <span class="hljs-number">0</span>x86, <span class="hljs-number">0</span>x91, <span class="hljs-number">0</span>x9E, <span class="hljs-number">0</span>x92, <span class="hljs-number">0</span>x96, <span class="hljs-number">0</span>x9C, <span class="hljs-number">0</span>xA0, <span class="hljs-number">0</span>x8D, <span class="hljs-number">0</span>x9A, <span class="hljs-number">0</span>x98, <span class="hljs-number">0</span>x96, <span class="hljs-number">0</span>x8C, <span class="hljs-number">0</span>x8B, <span class="hljs-number">0</span>x8D, <span class="hljs-number">0</span>x9E, <span class="hljs-number">0</span>x8B, <span class="hljs-number">0</span>x96, <span class="hljs-number">0</span>x90, <span class="hljs-number">0</span>x91, <span class="hljs-number">0</span>x82<br></code></pre></td></tr></table></figure>
+
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">ida_chars = [<br>    <span class="hljs-number">0x99</span>, <span class="hljs-number">0x93</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x98</span>, <span class="hljs-number">0x84</span>, <span class="hljs-number">0xB1</span>, <span class="hljs-number">0x90</span>, <span class="hljs-number">0x88</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0xA6</span>,<br>    <span class="hljs-number">0x90</span>, <span class="hljs-number">0x8A</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0xB4</span>, <span class="hljs-number">0x91</span>, <span class="hljs-number">0x90</span>, <span class="hljs-number">0x88</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0xB1</span>, <span class="hljs-number">0x9E</span>,<br>    <span class="hljs-number">0x8B</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x89</span>, <span class="hljs-number">0x9A</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0x9A</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x93</span>, <span class="hljs-number">0xA0</span>,<br>    <span class="hljs-number">0x9B</span>, <span class="hljs-number">0x86</span>, <span class="hljs-number">0x91</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x92</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x9C</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0x9A</span>,<br>    <span class="hljs-number">0x98</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x8C</span>, <span class="hljs-number">0x8B</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x8B</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x90</span>, <span class="hljs-number">0x91</span>,<br>    <span class="hljs-number">0x82</span><br>]<br><br>decrypted_string = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">chr</span>(~byte &amp; <span class="hljs-number">0xFF</span>) <span class="hljs-keyword">for</span> byte <span class="hljs-keyword">in</span> ida_chars)<br><span class="hljs-built_in">print</span>(decrypted_string)<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;Now_You_Know_Native_real_dynamic_registration&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="GAME-level5"><a href="#GAME-level5" class="headerlink" title="GAME-level5"></a>GAME-level5</h1><p>Jeb 打开发现了关于 Unity 的东西，猜测这个程序估计是用 Unity 写的</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/f1df02fcb69e0554.png"></p>
+<p>把 <code>\assets\bin\Data\Managed\</code> 下的 <code>Assembly-CSharp.dll</code>  文件丢进 dnSpy 看看，在 <code>GameWindow</code> 找到 flag</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/336e506c9ec7a7de.png"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;justaeasyunitygame&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="GAME-level6"><a href="#GAME-level6" class="headerlink" title="GAME-level6"></a>GAME-level6</h1><p>第一次见这个东西，还挺新奇hhhhh</p>
+<p>发现有一个 Mono 文件夹 </p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/338a59f0d8c91616.png"></p>
+<p>Unity 使用 Mono 方式打出来的 apk，如果没有加密我们可以直接从包内拿到 <code>Assembly-CSharp.dll</code>，可以直接使用 <code>dnSpy.exe </code>对其进行反编译。<br>如果使用 <code>IL2CPP</code> 方式出包，则没有 <code>Assembly-CSharp.dll</code>，有一个 <code>IL2CppDumper</code> 工具，<a target="_blank" rel="noopener" href="https://github.com/Perfare/Il2CppDumper%EF%BC%8C%E9%80%9A%E8%BF%87%E5%AE%83%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E9%80%86%E5%90%91%E5%BE%97%E5%88%B0">https://github.com/Perfare/Il2CppDumper，通过它，我们可以逆向得到</a> <code>Assembly-CSharp.dll</code></p>
+<p>创建一个 <code>input</code> 和 <code>output</code>，将 <code>libil2cpp.so</code> 与 <code>global-metadata.dat</code> 拷贝到 <code>input</code> 目录中，</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/acef11ddd1eea039.png"></p>
+<p>可以创建一个批处理文件到 <code>input</code></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bat">..\Il2CppDumper.exe libil2cpp.so global-metadata.dat ..\output<br></code></pre></td></tr></table></figure>
+
+<p>环境 <code>.NET</code> 需要用 <code>6.0.0</code> 版本</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/77a2c254193111c4.png"></p>
+<p>然后打开这个 <code>.dll</code> 文件发现有一个 <code>FlagText</code>，但是是没有内容的</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/ff917dbc6e5c5c71.png"></p>
+<p>打开 <code>libil2cpp.so</code> ,加载 IL2CppDumper 文件夹里的 ida_py3.py 文件把 dump 出来的 script.json 加载进去,<code>FlagText</code> 偏移值为 <code>0x40</code>，在 ida 里面跳转，可以看到有 Flags 字样，但是还是什么都没有</p>
+<p>查看 <code>LoadLevel</code> 函数，加载到了 <code>UnityEngine_Transform__SetParent_8767024</code> 函数，但是我 ida 后面加载不出来了，唉唉唉</p>
+<h1 id="Init-Array-level7"><a href="#Init-Array-level7" class="headerlink" title="Init_Array-level7"></a>Init_Array-level7</h1><p>看源码，调用了 <code>native</code> 层 <code>Check</code>，因此就应该去分析 <code>.so</code> 文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.swdd.summertrain;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.view.View;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> android.widget.Toast;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><span class="hljs-keyword">import</span> com.swdd.summertrain.databinding.ActivityMainBinding;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    <span class="hljs-keyword">private</span> ActivityMainBinding binding;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.loadLibrary(<span class="hljs-string">&quot;summertrain&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> Boolean <span class="hljs-title function_">Check</span><span class="hljs-params">(String arg1)</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View V)</span> &#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.Check(((TextView)<span class="hljs-built_in">this</span>.findViewById(id.input)).getText().toString()).booleanValue()) &#123;<br>            Toast.makeText(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;Good!&quot;</span>, <span class="hljs-number">0</span>).show();<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        Toast.makeText(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;Try Again&quot;</span>, <span class="hljs-number">0</span>).show();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span>  <span class="hljs-comment">// androidx.fragment.app.FragmentActivity</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        <span class="hljs-type">ActivityMainBinding</span> <span class="hljs-variable">activityMainBinding0</span> <span class="hljs-operator">=</span> ActivityMainBinding.inflate(<span class="hljs-built_in">this</span>.getLayoutInflater());<br>        <span class="hljs-built_in">this</span>.binding = activityMainBinding0;<br>        <span class="hljs-built_in">this</span>.setContentView(activityMainBinding0.getRoot());<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>查看 <code>Java_com_swdd_summertrain_MainActivity_Check</code> 函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">__int64 __fastcall <span class="hljs-title">Java_com_swdd_summertrain_MainActivity_Check</span><span class="hljs-params">(__int64 a1, __int64 a2, __int64 a3)</span></span><br><span class="hljs-function"></span>&#123;<br>    ...<br>  v3 = a3;<br>  v4 = <span class="hljs-number">0LL</span>;<br>  v5 = (<span class="hljs-type">const</span> <span class="hljs-type">char</span> *)(*(__int64 (__fastcall **)(__int64, __int64, _QWORD))(*(_QWORD *)a1 + <span class="hljs-number">1352LL</span>))(a1, a3, <span class="hljs-number">0LL</span>);<br>  <span class="hljs-keyword">if</span> ( !v5 )<br>    <span class="hljs-keyword">return</span> v4;<br>  v6 = v5;<br>  v26 = v3;<br>  v7 = <span class="hljs-built_in">strlen</span>(v5);<br>  v8 = (<span class="hljs-type">char</span> *)<span class="hljs-keyword">operator</span> <span class="hljs-keyword">new</span>[](v7 + <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">if</span> ( !v7 )<br>    <span class="hljs-keyword">goto</span> LABEL_11;<br>  <span class="hljs-keyword">if</span> ( v7 &lt; <span class="hljs-number">8</span> || v8 &lt; &amp;v6[v7] &amp;&amp; v6 &lt; &amp;v8[v7] )<br>  &#123;<br>    v9 = <span class="hljs-number">0LL</span>;<br>LABEL_7:<br>    v10 = v7 + ~v9;<br>    v11 = v7 &amp; <span class="hljs-number">3</span>;<br>    <span class="hljs-keyword">if</span> ( (v7 &amp; <span class="hljs-number">3</span>) != <span class="hljs-number">0</span> )<br>    &#123;<br>      <span class="hljs-keyword">do</span><br>      &#123;<br>        v8[v9] = ~v6[v9];<br>        ++v9;<br>        --v11;<br>      &#125;<br>      <span class="hljs-keyword">while</span> ( v11 );<br>    &#125;<br>    <span class="hljs-keyword">if</span> ( v10 &gt;= <span class="hljs-number">3</span> )<br>    &#123;<br>      <span class="hljs-keyword">do</span><br>      &#123;<br>        v8[v9] = ~v6[v9];<br>        v8[v9 + <span class="hljs-number">1</span>] = ~v6[v9 + <span class="hljs-number">1</span>];<br>        v8[v9 + <span class="hljs-number">2</span>] = ~v6[v9 + <span class="hljs-number">2</span>];<br>        v8[v9 + <span class="hljs-number">3</span>] = ~v6[v9 + <span class="hljs-number">3</span>];<br>        v9 += <span class="hljs-number">4LL</span>;<br>      &#125;<br>      <span class="hljs-keyword">while</span> ( v7 != v9 );<br>    &#125;<br>    <span class="hljs-keyword">goto</span> LABEL_11;<br>  &#125;<br>  <span class="hljs-keyword">if</span> ( v7 &gt;= <span class="hljs-number">0x20</span> )<br>  &#123;<br>    v9 = v7 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFE0LL</span>;<br>    v19 = (((v7 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFE0LL</span>) - <span class="hljs-number">32</span>) &gt;&gt; <span class="hljs-number">5</span>) + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> ( (v7 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFE0LL</span>) == <span class="hljs-number">32</span> )<br>    &#123;<br>      v21 = <span class="hljs-number">0LL</span>;<br>      <span class="hljs-keyword">if</span> ( (v19 &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> )<br>        <span class="hljs-keyword">goto</span> LABEL_22;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>      v20 = v19 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFFELL</span>;<br>      v21 = <span class="hljs-number">0LL</span>;<br>      <span class="hljs-keyword">do</span><br>      &#123;<br>        v22 = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)&amp;v6[v21 + <span class="hljs-number">16</span>]), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v21] = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)&amp;v6[v21]), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v21 + <span class="hljs-number">16</span>] = v22;<br>        v23 = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)&amp;v6[v21 + <span class="hljs-number">48</span>]), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v21 + <span class="hljs-number">32</span>] = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)&amp;v6[v21 + <span class="hljs-number">32</span>]), (__m128i)<span class="hljs-number">-1LL</span>);<br>        *(__m128i *)&amp;v8[v21 + <span class="hljs-number">48</span>] = v23;<br>        v21 += <span class="hljs-number">64LL</span>;<br>        v20 -= <span class="hljs-number">2LL</span>;<br>      &#125;<br>      <span class="hljs-keyword">while</span> ( v20 );<br>      <span class="hljs-keyword">if</span> ( (v19 &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> )<br>        <span class="hljs-keyword">goto</span> LABEL_22;<br>    &#125;<br>    v24 = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)&amp;v6[v21 + <span class="hljs-number">16</span>]), (__m128i)<span class="hljs-number">-1LL</span>);<br>    *(__m128i *)&amp;v8[v21] = _mm_xor_si128(_mm_loadu_si128((<span class="hljs-type">const</span> __m128i *)&amp;v6[v21]), (__m128i)<span class="hljs-number">-1LL</span>);<br>    *(__m128i *)&amp;v8[v21 + <span class="hljs-number">16</span>] = v24;<br>LABEL_22:<br>    <span class="hljs-keyword">if</span> ( v7 == v9 )<br>      <span class="hljs-keyword">goto</span> LABEL_11;<br>    <span class="hljs-keyword">if</span> ( (v7 &amp; <span class="hljs-number">0x18</span>) == <span class="hljs-number">0</span> )<br>      <span class="hljs-keyword">goto</span> LABEL_7;<br>    <span class="hljs-keyword">goto</span> LABEL_24;<br>  &#125;<br>  v9 = <span class="hljs-number">0LL</span>;<br>LABEL_24:<br>  v25 = v9;<br>  v9 = v7 &amp; <span class="hljs-number">0xFFFFFFFFFFFFFFF8LL</span>;<br>  <span class="hljs-keyword">do</span><br>  &#123;<br>    *(_QWORD *)&amp;v8[v25] = _mm_xor_si128(_mm_loadl_epi64((<span class="hljs-type">const</span> __m128i *)&amp;v6[v25]), (__m128i)<span class="hljs-number">-1LL</span>).m128i_u64[<span class="hljs-number">0</span>];<br>    v25 += <span class="hljs-number">8LL</span>;<br>  &#125;<br>  <span class="hljs-keyword">while</span> ( v9 != v25 );<br>  <span class="hljs-keyword">if</span> ( v7 != v9 )<br>    <span class="hljs-keyword">goto</span> LABEL_7;<br>LABEL_11:<br>  v8[v7] = <span class="hljs-number">0</span>;<br>  v12 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> ( v7 == (<span class="hljs-type">int</span>)__strlen_chk(&amp;storedBytes, <span class="hljs-number">256LL</span>) )<br>    v12 = <span class="hljs-built_in">memcmp</span>(v8, &amp;storedBytes, v7) == <span class="hljs-number">0</span>;<br>  v13 = (*(__int64 (__fastcall **)(__int64, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_QWORD *)a1 + <span class="hljs-number">48LL</span>))(a1, <span class="hljs-string">&quot;java/lang/Boolean&quot;</span>);<br>  v14 = v13;<br>  v15 = (*(__int64 (__fastcall **)(__int64, __int64, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_QWORD *)a1 + <span class="hljs-number">264LL</span>))(<br>          a1,<br>          v13,<br>          <span class="hljs-string">&quot;&lt;init&gt;&quot;</span>,<br>          <span class="hljs-string">&quot;(Z)V&quot;</span>);<br>  v4 = _JNIEnv::<span class="hljs-built_in">NewObject</span>(a1, v14, v15, v12, v16, v17, v26);<br>  (*(<span class="hljs-built_in">void</span> (__fastcall **)(__int64, __int64, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *))(*(_QWORD *)a1 + <span class="hljs-number">1360LL</span>))(a1, v27, v6);<br>  <span class="hljs-keyword">operator</span> <span class="hljs-keyword">delete</span>[](v8);<br>  <span class="hljs-keyword">return</span> v4;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>大概流程和 “动态注册” 这个题差不多，对传入字符串按位取反，最后存储在 <code>storedBytes</code> 中，把密文提取出来，解出来居然是假的，what can i say.jpg</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/ee3e640eabe6526b.png"></p>
+<p>然后看了下 <a target="_blank" rel="noopener" href="https://bbs.kanxue.com/user-home-979679.htm">Shangwendada</a> 的《对init_array段调用的方法进行Hook》这篇文章，首先我们在 <code>segments</code> 窗口中看到各个段的偏移，找到了 <code>.init_array</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/2f5d4e6f30c67607.png"></p>
+<p>找到了 <code>sub_17360</code> 函数</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/83eba5c9f480fd9f.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">__int64 <span class="hljs-title">sub_17360</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-built_in">memcpy</span>(&amp;storedBytes, &amp;unk_CA70, <span class="hljs-number">0x100uLL</span>);<br>  <span class="hljs-keyword">return</span> __android_log_print(<span class="hljs-number">4LL</span>, <span class="hljs-string">&quot;GenFunction&quot;</span>, <span class="hljs-string">&quot;Gen function called.&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>原来 <code>storedBytes</code> 保存了从 <code>unk_CA70</code> 复制的数据，那 <code>unk_CA70</code> 应该就是正确的密文</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/c2343f20172c0f9d.png"></p>
+<p>exp 也是和之前那个题一样，换一下密文就行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">ida_chars = [<br>  <span class="hljs-number">0x99</span>, <span class="hljs-number">0x93</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x98</span>, <span class="hljs-number">0x84</span>, <span class="hljs-number">0xBA</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x8C</span>, <span class="hljs-number">0x86</span>, <span class="hljs-number">0xB6</span>,<br>  <span class="hljs-number">0x91</span>, <span class="hljs-number">0x96</span>, <span class="hljs-number">0x8B</span>, <span class="hljs-number">0xBE</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0x9E</span>, <span class="hljs-number">0x86</span>, <span class="hljs-number">0x82</span><br>]<br><br>decrypted_string = <span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">chr</span>(~byte &amp; <span class="hljs-number">0xFF</span>) <span class="hljs-keyword">for</span> byte <span class="hljs-keyword">in</span> ida_chars)<br><span class="hljs-built_in">print</span>(decrypted_string)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;EasyInitArray&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Frida-端口检测-level8"><a href="#Frida-端口检测-level8" class="headerlink" title="Frida 端口检测-level8"></a><strong>Frida 端口检测</strong>-level8</h1><p>先反编译一下，在 <code>native</code> 层调用了 <code>Check</code> 函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.swdd.summertrain;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.view.View;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> android.widget.Toast;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><span class="hljs-keyword">import</span> com.swdd.summertrain.databinding.ActivityMainBinding;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    <span class="hljs-keyword">private</span> ActivityMainBinding binding;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.loadLibrary(<span class="hljs-string">&quot;summertrain&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> Boolean <span class="hljs-title function_">Check</span><span class="hljs-params">(String arg1)</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View view0)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> ((TextView)<span class="hljs-built_in">this</span>.findViewById(id.input)).getText().toString();<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.Check(s).booleanValue()) &#123;<br>            Toast.makeText(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;Good! Your flag is flag&#123;&quot;</span> + s + <span class="hljs-string">&quot;&#125;&quot;</span>, <span class="hljs-number">0</span>).show();<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        Toast.makeText(<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;Try Again&quot;</span>, <span class="hljs-number">0</span>).show();<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span>  <span class="hljs-comment">// androidx.fragment.app.FragmentActivity</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle bundle0)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(bundle0);<br>        <span class="hljs-type">ActivityMainBinding</span> <span class="hljs-variable">activityMainBinding0</span> <span class="hljs-operator">=</span> ActivityMainBinding.inflate(<span class="hljs-built_in">this</span>.getLayoutInflater());<br>        <span class="hljs-built_in">this</span>.binding = activityMainBinding0;<br>        <span class="hljs-built_in">this</span>.setContentView(activityMainBinding0.getRoot());<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+<p>没啥有用的信息，直接运行一下程序，正常是可以运行的，在启动了 <code>frida</code> 后程序停止运行了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/0cf6bfb81fd443cd.png"></p>
+<p>这个时候就可以查看 <code>.so</code>  文件了，在 <code>segments</code> 窗口中看各个段的偏移，找到了 <code>.init_array</code> 然后进入<code>sub_F40</code> 函数</p>
+<p>下面的一大堆什么玩意儿我也看不懂qwq，但是前面有一个 <code>check_ports</code> 函数</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/308618ee3d58d3f3.png"></p>
+<p>大概内容是通过 <code>connect</code> 检测连接 <code>127.0.0.1</code> 的两个端口检测是否被连接</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">*&amp;addr.s<span class="hljs-built_in">a_family</span> = <span class="hljs-number">0</span>xA2690002<span class="hljs-comment">;       </span><br>*addr.s<span class="hljs-built_in">a_data</span> = <span class="hljs-number">0</span>x8A5D<span class="hljs-comment">;              </span><br></code></pre></td></tr></table></figure>
+
+<p>这里有一个网络字节转换的知识点（emmm计网的东西还没学），网络字节序是大端模式（Big-Endian），而主机字节序可能是小端模式（Little-Endian），关于这个大小端（死去的回忆突然开始攻击我），简单说一下</p>
+<ul>
+<li>大端字节序（Big Endian）：最高有效位存于最低内存地址处，最低有效位存于最高内存处</li>
+<li>小端字节序（Little Endian）：最高有效位存于最高内存地址，最低有效位存于最低内存处</li>
+</ul>
+<p>所以我们可以根据信息得出端口</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-number">0</span><span class="hljs-function"><span class="hljs-title">xA2690002</span>	-&gt;</span>	<span class="hljs-number">0</span><span class="hljs-function"><span class="hljs-title">xA269</span>	-&gt;</span>	<span class="hljs-number">0</span><span class="hljs-function"><span class="hljs-title">x69A2</span>	-&gt;</span>	<span class="hljs-number">27042</span><br><span class="hljs-number">0</span><span class="hljs-function"><span class="hljs-title">x8A5D</span>	-&gt;</span>	<span class="hljs-number">0</span><span class="hljs-function"><span class="hljs-title">x5D8A</span>	-&gt;</span>	<span class="hljs-number">23946</span>	<br></code></pre></td></tr></table></figure>
+
+<p><code>23946</code> 端口是 IDA android_server 的默认端口，<code>27042</code> 是 Frida 默认端口</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/8da71fcd02c31a16.png"></p>
+<p>因此我们解决办法就是开启 frida 时把端口改了，不然会被检测到</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">./frida-server -l <span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span>:<span class="hljs-number">9997</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/d0d1117d0513d160.png"></p>
+<p>然后我打开程序的时候老是跳出这个弹窗，烦死了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/92a8ced625aec488.png"></p>
+<p>可以使用这个命令来关掉（菜鸡，还不知道有什么其他方法）</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">adb shell am clear-debug-app<br></code></pre></td></tr></table></figure>
+
+<p>写一个脚本 hook.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> targetAddress = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>, <span class="hljs-string">&quot;strcmp&quot;</span>);<br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(targetAddress, &#123;<br>        <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-keyword">var</span> input = <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">0</span>]);<br>                <span class="hljs-keyword">if</span> (input.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;aaa&quot;</span>)) &#123;<br>                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;FLAG: &quot;</span> + <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">1</span>]));<br>                &#125;<br>            &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;Error: &quot;</span> + e);<br>            &#125;<br>        &#125;<br>    &#125;);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-title function_">hook</span>();<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.swdd.summertrain.MainActivity&quot;</span>);<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivityInstance</span> = <span class="hljs-title class_">MainActivity</span>.$new();<br>        <span class="hljs-title class_">MainActivityInstance</span>.<span class="hljs-title class_">Check</span>(<span class="hljs-string">&quot;aaa&quot;</span>);<br>    &#125;);<br>&#125;<br><span class="hljs-title function_">setImmediate</span>(main);<br></code></pre></td></tr></table></figure>
+
+<p>这里需要先把端口转发一下，把模拟器的 <code>9997</code> 端口转发到本地的 <code>9997</code>，因为通过 <code>adb forward</code> 把它的端口映射到了本地，hook 时需要写一个  <code>127.0.0.1:9997</code> （其实还可以用本机的 IP，但是有时候可能会比较麻烦，模拟器有时候无法直接通过 IP 访问设备上的一些服务）连接到这个端口</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dns">./frida-server <span class="hljs-number">0.0.0.0</span>:<span class="hljs-number">9997</span><br>adb forward tcp:<span class="hljs-number">9997</span> tcp:<span class="hljs-number">9997</span><br>frida -H <span class="hljs-number">127.0.0.1</span>:<span class="hljs-number">9997</span> -f com.swdd.summertrain -l hook.js<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/342d0198eba009a7.png"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;<span class="hljs-number">53</span>cd3f37664bd01357182ca13bc2f9b6&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Frida检测之Maps-level9"><a href="#Frida检测之Maps-level9" class="headerlink" title="Frida检测之Maps-level9"></a>Frida检测之Maps-level9</h1><p>Java 层没什么东西，同样是看 <code>Native</code> 层，这里有一个检测 <code>maps</code> 的。</p>
+<p><code>/proc/self/maps</code> 是一个特殊的文件，它包含了当前进程的内存映射信息。当你打开这个文件时，它会显示一个列表，其中包含了进程中每个内存区域的详细信息。这些信息通常包括：</p>
+<ul>
+<li>起始地址（Start Address）</li>
+<li>结束地址（End Address）</li>
+<li>权限（如可读、可写、可执行）</li>
+<li>共享&#x2F;私有标志（Shared or Private）</li>
+<li>关联的文件或设备（如果内存区域是文件映射的）</li>
+<li>内存区域的偏移量</li>
+<li>内存区域的类型（如匿名映射、文件映射、设备映射等）</li>
+</ul>
+<p>当注入frida后，在maps文件中就会存在 <code>frida-agent-64.so</code>、<code>frida-agent-32.so</code> 等文件。</p>
+<p>（上面这段专业术语 copy 的 52 的正己师傅的hhhhh）</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e46f7cc7608020b7.png"></p>
+<p>这个函数流程就是打开 <code>proc/self/maps</code> ，然后检测是否有这些内存特征，如果有就直接终止程序</p>
+<ul>
+<li><code>frida</code>：检测 Frida 注入的 Agent 或 Server</li>
+<li><code>gadget</code>&#x2F;<code>agent</code>：检测 Frida Gadget 或调试工具组件</li>
+<li><code>/data/local/tmp/</code>：检测临时目录下的注入文件（如 Frida Server）</li>
+<li><code>-64.so</code>&#x2F;<code>-32.so</code>：检测特定架构的动态库（如 Frida 的 64&#x2F;32 位库）</li>
+</ul>
+<p>hook 脚本，重定向一个 <code>maps</code> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 定义一个函数，用于重定向并修改maps文件内容，以隐藏特定的库和路径信息</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">mapsRedirect</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 定义伪造的maps文件路径</span><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">FakeMaps</span> = <span class="hljs-string">&quot;/data/data/com.swdd.summertrain/maps&quot;</span>;<br>    <span class="hljs-comment">// 获取libc.so库中&#x27;open&#x27;函数的地址</span><br>    <span class="hljs-keyword">const</span> openPtr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">getExportByName</span>(<span class="hljs-string">&#x27;libc.so&#x27;</span>, <span class="hljs-string">&#x27;open&#x27;</span>);<br>    <span class="hljs-comment">// 根据地址创建一个新的NativeFunction对象，表示原生的&#x27;open&#x27;函数</span><br>    <span class="hljs-keyword">const</span> open = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(openPtr, <span class="hljs-string">&#x27;int&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]);<br>    <span class="hljs-comment">// 查找并获取libc.so库中&#x27;read&#x27;函数的地址</span><br>    <span class="hljs-keyword">var</span> readPtr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>, <span class="hljs-string">&quot;read&quot;</span>);<br>    <span class="hljs-comment">// 创建新的NativeFunction对象表示原生的&#x27;read&#x27;函数</span><br>    <span class="hljs-keyword">var</span> read = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(readPtr, <span class="hljs-string">&#x27;int&#x27;</span>, [<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&quot;int&quot;</span>]);<br>    <span class="hljs-comment">// 分配512字节的内存空间，用于临时存储从maps文件读取的内容</span><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MapsBuffer</span> = <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">alloc</span>(<span class="hljs-number">512</span>);<br>    <span class="hljs-comment">// 创建一个伪造的maps文件，用于写入修改后的内容，模式为&quot;w&quot;（写入）</span><br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MapsFile</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-title class_">FakeMaps</span>, <span class="hljs-string">&quot;w&quot;</span>);<br>    <span class="hljs-comment">// 使用Interceptor替换原有的&#x27;open&#x27;函数，注入自定义逻辑</span><br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">replace</span>(openPtr, <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeCallback</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">pathname, flag</span>) &#123;<br>        <span class="hljs-comment">// 调用原始的&#x27;open&#x27;函数，并获取文件描述符（FD）</span><br>        <span class="hljs-keyword">var</span> <span class="hljs-variable constant_">FD</span> = <span class="hljs-title function_">open</span>(pathname, flag);<br>        <span class="hljs-comment">// 读取并打印尝试打开的文件路径</span><br>        <span class="hljs-keyword">var</span> ch = pathname.<span class="hljs-title function_">readCString</span>();<br>        <span class="hljs-keyword">if</span> (ch.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;/proc/&quot;</span>) &gt;= <span class="hljs-number">0</span> &amp;&amp; ch.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;maps&quot;</span>) &gt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;open : &quot;</span>, pathname.<span class="hljs-title function_">readCString</span>());<br>            <span class="hljs-comment">// 循环读取maps内容，并写入伪造的maps文件中，同时进行字符串替换以隐藏特定信息</span><br>            <span class="hljs-keyword">while</span> (<span class="hljs-built_in">parseInt</span>(<span class="hljs-title function_">read</span>(<span class="hljs-variable constant_">FD</span>, <span class="hljs-title class_">MapsBuffer</span>, <span class="hljs-number">512</span>)) !== <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">var</span> <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MapsBuffer</span>.<span class="hljs-title function_">readCString</span>();<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;/data/local/tmp/re.frida.server/frida-agent-64.so&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;re.frida.server&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;frida&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;agent&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;-32.so&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;-64.so&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;gadget&quot;</span>, <span class="hljs-string">&quot;1&quot;</span>);<br>                <span class="hljs-title class_">MBuffer</span> = <span class="hljs-title class_">MBuffer</span>.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;/data/local/tmp&quot;</span>, <span class="hljs-string">&quot;/1&quot;</span>);<br>                <span class="hljs-comment">// 将修改后的内容写入伪造的maps文件</span><br>                <span class="hljs-title class_">MapsFile</span>.<span class="hljs-title function_">write</span>(<span class="hljs-title class_">MBuffer</span>);<br>            &#125;<br>            <span class="hljs-comment">// 为返回伪造maps文件的打开操作，分配UTF8编码的文件名字符串</span><br>            <span class="hljs-keyword">var</span> filename = <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">allocUtf8String</span>(<span class="hljs-title class_">FakeMaps</span>);<br>            <span class="hljs-comment">// 返回打开伪造maps文件的文件描述符</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-title function_">open</span>(filename, flag);<br>        &#125;<br>        <span class="hljs-comment">// 如果不是目标maps文件，则直接返回原open调用的结果</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-variable constant_">FD</span>;<br>    &#125;, <span class="hljs-string">&#x27;int&#x27;</span>, [<span class="hljs-string">&#x27;pointer&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]));<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">mapsRedirect</span>();<br>    <span class="hljs-keyword">var</span> targetAddress=<span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>,<span class="hljs-string">&quot;strcmp&quot;</span>);<br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(targetAddress,&#123;<br>        <span class="hljs-attr">onEnter</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>)&#123;<br>            <span class="hljs-keyword">var</span> input =<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">0</span>]);<br>            <span class="hljs-keyword">if</span> (input.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;aaa&quot;</span>))&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;FLAG:&quot;</span>+<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">1</span>]));<br>            &#125;<br>        &#125;,<span class="hljs-attr">onLeave</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>)&#123;<br><br>        &#125;<br>    &#125;)<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span>=<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.swdd.summertrain.MainActivity&quot;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivityInstance</span>=<span class="hljs-title class_">MainActivity</span>.$new();<br>    <span class="hljs-title class_">MainActivityInstance</span>.<span class="hljs-title class_">Check</span>(<span class="hljs-string">&quot;aaa&quot;</span>);<br><br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br>    &#125;)<br>&#125;<br><span class="hljs-title function_">setImmediate</span>(main);<br><br></code></pre></td></tr></table></figure>
+
+<p>运行得出 flag</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/5fe15c2bd9761773.png"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;f5d02d7eede3a75ee6e6cc0a9673c76f&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Frida-检测之-inlineHook-level10"><a href="#Frida-检测之-inlineHook-level10" class="headerlink" title="Frida 检测之 inlineHook-level10"></a><strong>Frida 检测之 inlineHook</strong>-level10</h1><p>看 <code>native</code>  层的 <code>check</code> 函数</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/49f0f9abdb1a4e9a.png"></p>
+<p>读取磁盘中 <code>libc.so</code> 文件 <code>signal</code> 函数的原始 8 字节数，获取内存中 <code>signal</code> 函数的实际代码比较二者是否一致，如果不一致程序就会退出，所以我们要模拟 <code>fread</code> 读取了预期数据，伪造返回值</p>
+<p>获取 hook 前面的 8 个字节</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> bytes_count = <span class="hljs-number">8</span><br><span class="hljs-keyword">let</span> address = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">getExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>,<span class="hljs-string">&quot;signal&quot;</span>)<br><span class="hljs-comment">//读取 signal 函数</span><br><br><span class="hljs-keyword">let</span> before = <span class="hljs-title function_">ptr</span>(address)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;&quot;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot; before hook: &quot;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">hexdump</span>(before, &#123;<br>    <span class="hljs-attr">offset</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">length</span>: bytes_count,<br>    <span class="hljs-attr">header</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">ansi</span>: <span class="hljs-literal">true</span><br>  &#125;));<br><br></code></pre></td></tr></table></figure>
+
+<p>得出</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">e9 <span class="hljs-number">7</span>f f7 <span class="hljs-number">97</span> f4 <span class="hljs-number">83</span> e4 f0<br></code></pre></td></tr></table></figure>
+
+<p>hook 脚本</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook_memcmp_addr</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-comment">//hook反调试</span><br>    <span class="hljs-keyword">var</span> memcmp_addr = <span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>, <span class="hljs-string">&quot;fread&quot;</span>);<br>    <span class="hljs-keyword">if</span> (memcmp_addr !== <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;fread address: &quot;</span>, memcmp_addr);<br>        <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(memcmp_addr, &#123;<br>        <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">buffer</span> = args[<span class="hljs-number">0</span>];   <span class="hljs-comment">// 保存 buffer 参数</span><br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">size</span> = args[<span class="hljs-number">1</span>];     <span class="hljs-comment">// 保存 size 参数</span><br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span> = args[<span class="hljs-number">2</span>];    <span class="hljs-comment">// 保存 count 参数</span><br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">stream</span> = args[<span class="hljs-number">3</span>];   <span class="hljs-comment">// 保存 FILE* 参数</span><br>        &#125;,<br>        <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>) &#123;<br>            <span class="hljs-comment">// 这里可以修改 buffer 的内容，假设我们知道何时 fread 被用于敏感操作</span><br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>.<span class="hljs-title function_">toInt32</span>());<br>            <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>.<span class="hljs-title function_">toInt32</span>() == <span class="hljs-number">8</span>) &#123;<br>                <span class="hljs-comment">// 模拟 fread 读取了预期数据，伪造返回值</span><br>                <span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">writeByteArray</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">buffer</span>, [<span class="hljs-number">0xe9</span>, <span class="hljs-number">0x7f</span>, <span class="hljs-number">0xf7</span>, <span class="hljs-number">0x97</span>, <span class="hljs-number">0xf4</span>, <span class="hljs-number">0x83</span>, <span class="hljs-number">0xe4</span>, <span class="hljs-number">0xf0</span>]); <br>                retval.<span class="hljs-title function_">replace</span>(<span class="hljs-number">8</span>); <span class="hljs-comment">// 填充前8字节</span><br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">hexdump</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">buffer</span>));<br>            &#125;<br>        &#125;<br>    &#125;);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Error: memcmp function not found in libc.so&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">hook_memcmp_addr</span>();<br>    <span class="hljs-keyword">var</span> targetAddress=<span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>,<span class="hljs-string">&quot;strcmp&quot;</span>);<br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(targetAddress,&#123;<br>        <span class="hljs-attr">onEnter</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>)&#123;<br>            <span class="hljs-keyword">var</span> input =<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">0</span>]);<br>            <span class="hljs-keyword">if</span> (input.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;aaaaaaa&quot;</span>))&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;FLAG:&quot;</span>+<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">1</span>]));<br>            &#125;<br>        &#125;,<span class="hljs-attr">onLeave</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>)&#123;<br><br><br>        &#125;<br>    &#125;)<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span>=<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.swdd.summertrain.MainActivity&quot;</span>);<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivityInstance</span>=<span class="hljs-title class_">MainActivity</span>.$new();<br>    <span class="hljs-title class_">MainActivityInstance</span>.<span class="hljs-title class_">Check</span>(<span class="hljs-string">&quot;aaaaaaa&quot;</span>);<br><br>&#125;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook</span>();<br><br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br><br></code></pre></td></tr></table></figure>
+
+<p>得出 flag</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">flag&#123;a8490cd255d3a0a982fac16130183b76&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Android/Android%E9%A2%98/" class="category-chain-item">Android题</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Andriod/" class="print-no-link">#Andriod</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Android小记</div>
+      <div>http://example.com/2025/02/11/Android小记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/14/Shop/" title="THM-Publisher&amp;The Sticker Shop">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">THM-Publisher&amp;The Sticker Shop</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/01/31/Platter/" title="THM-Silver Platter">
+                        <span class="hidden-mobile">THM-Silver Platter</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
