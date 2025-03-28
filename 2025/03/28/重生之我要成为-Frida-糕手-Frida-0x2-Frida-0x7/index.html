@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今天时间多点，多看了几道，终于要周末了嘿嘿，Java 层的 hook 练习结束了，然后就是 Native 层了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重生之我要成为 Frida 糕手:Frida 0x2-Frida 0x7">
+<meta property="og:url" content="http://example.com/2025/03/28/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA-Frida-%E7%B3%95%E6%89%8B-Frida-0x2-Frida-0x7/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="今天时间多点，多看了几道，终于要周末了嘿嘿，Java 层的 hook 练习结束了，然后就是 Native 层了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/3b8ec63ea132fe79.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/a4dd2f8fd02552e1.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/446e6378ec5d70d2.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d5c41a54bb0558cd.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/df67d0a70ca92131.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/eeb729d7f873b417.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/fd1bc91eb334e1a0.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ba13423709189d44.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5083d2738271bf78.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/51528caae6e8f981.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/4468d0ddf458822d.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b2e578f70007aa20.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/1a78d2196107b283.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/005cc375e853f8e1.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b144d16e1471e3bf.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/365f04385e2b91f9.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/7130cf6add20a96a.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d1326b6de17553b3.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/85032a4bbeb78354.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/20b50e74531882b5.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/0da7e5811ca7f6aa.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/245631b863645523.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/56ea579e5977c8bc.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/53ce8a3da16591e3.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d74a4ac3cfb64e35.png">
+<meta property="article:published_time" content="2025-03-28T13:35:28.000Z">
+<meta property="article:modified_time" content="2025-03-28T13:56:27.035Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="Andriod">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/3b8ec63ea132fe79.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>重生之我要成为 Frida 糕手:Frida 0x2-Frida 0x7 - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/3473793514d205aa.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="重生之我要成为 Frida 糕手:Frida 0x2-Frida 0x7"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-28 21:35" pubdate>
+          2025年3月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          26 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">重生之我要成为 Frida 糕手:Frida 0x2-Frida 0x7</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年3月28日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>今天时间多点，多看了几道，终于要周末了嘿嘿，Java 层的 hook 练习结束了，然后就是 Native 层了</p>
+<span id="more"></span>
+
+<h1 id="Frida-0x2"><a href="#Frida-0x2" class="headerlink" title="Frida 0x2"></a>Frida 0x2</h1><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>这次没有输入也没有按钮</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/3b8ec63ea132fe79.png"></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>直接反编译，代码还是挺简单的，流程也清晰</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x2;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.util.Base64;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><span class="hljs-keyword">import</span> javax.crypto.Cipher;<br><span class="hljs-keyword">import</span> javax.crypto.spec.IvParameterSpec;<br><span class="hljs-keyword">import</span> javax.crypto.spec.SecretKeySpec;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    <span class="hljs-keyword">static</span> TextView t1;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">get_flag</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> &#123;<br>        <span class="hljs-keyword">if</span>(a == <span class="hljs-number">4919</span>) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher0</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;AES/CBC/PKCS5Padding&quot;</span>);<br>                <span class="hljs-type">IvParameterSpec</span> <span class="hljs-variable">iv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IvParameterSpec</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">16</span>]);<br>                cipher0.init(<span class="hljs-number">2</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SecretKeySpec</span>(<span class="hljs-string">&quot;HILLBILLWILLBINN&quot;</span>.getBytes(), <span class="hljs-string">&quot;AES&quot;</span>), iv);<br>                <span class="hljs-type">String</span> <span class="hljs-variable">decryptedText</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(cipher0.doFinal(Base64.decode(<span class="hljs-string">&quot;q7mBQegjhpfIAr0OgfLvH0t/D0Xi0ieG0vd+8ZVW+b4=&quot;</span>, <span class="hljs-number">0</span>)));<br>                MainActivity.t1.setText(decryptedText);<br>            &#125;<br>            <span class="hljs-keyword">catch</span>(Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br><br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span>  <span class="hljs-comment">// androidx.fragment.app.FragmentActivity</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        <span class="hljs-built_in">this</span>.setContentView(layout.activity_main);<br>        MainActivity.t1 = (TextView)<span class="hljs-built_in">this</span>.findViewById(id.textview);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="MainActivity-类"><a href="#MainActivity-类" class="headerlink" title="MainActivity 类"></a>MainActivity 类</h3><p><code>MainActivity</code> 类中有一个静态方法 <code>get_flag()</code> ，如果传入的 参数 <code>a==4919</code>，那么就解密 flag 输出</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/a4dd2f8fd02552e1.png"></p>
+<p>可以发现 <code>get_flag()</code> 方法在程序中并没有被调用，所以我们需要在注入时去调用这个静态方法</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/446e6378ec5d70d2.png"></p>
+<p>方法就是：主动去调用静态方法</p>
+<h2 id="Hook"><a href="#Hook" class="headerlink" title="Hook"></a>Hook</h2><h3 id="Method-1"><a href="#Method-1" class="headerlink" title="Method 1"></a>Method 1</h3><p>demo</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook2</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span>=<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);<br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">4919</span>);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook2</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br></code></pre></td></tr></table></figure>
+
+<p>先启动程序（必须），然后进行 hook，直接把代码写在终端运行，保证在启动之后运行，如果像以前一样加上文件执行会 hook 不到，看到 SWDD 用 <code>frida -U &#39;Frida 0x2&#39; -l hook2.js</code>  命令能执行，但是我的 cmd 和 PowerShell 都不能转义空格，单引号双引号也不行，然后就识别不到进程名称，所以这个方法实现不了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/d5c41a54bb0558cd.png"></p>
+<h3 id="Method-2"><a href="#Method-2" class="headerlink" title="Method 2"></a>Method 2</h3><p>更加简洁的 demo，虽然核心代码差不多一样，但是方法 1 中多了个 <code>setImmediate()</code> 函数，它会比程序先执行，也就是说在程序还没执行之前它调用的函数就已经执行完了，如果没有运行程序的话，相当于没有 hook</p>
+<p>本方法中是注入之后立即调用执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span> = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);<br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">4919</span>);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>先打开程序用 <code>-F</code> 命令直接附加到当前前台正在运行的程序上，秒出结果</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">frida -U -F -l hook2.js<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/df67d0a70ca92131.png"></p>
+<h3 id="Method-3"><a href="#Method-3" class="headerlink" title="Method 3"></a>Method 3</h3><p>对于方法 1 的 <code>setImmediate(main)</code>，还可以改为 <code>setTimeout(main,1000)</code>，参考 SWDD 的：<a target="_blank" rel="noopener" href="https://blog.shangwendada.top/index.php/2024/03/03/fridafrida%e6%93%8d%e4%bd%9c%e6%89%8b%e5%86%8c/">https://blog.shangwendada.top/index.php/2024/03/03/fridafrida%e6%93%8d%e4%bd%9c%e6%89%8b%e5%86%8c/</a></p>
+<p>对于 <code>setImmediate</code> 和 <code>setTimeout</code>：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fsjohnhuang/p/4151595.html">https://www.cnblogs.com/fsjohnhuang/p/4151595.html</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook2</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">MainActivity</span>=<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x2.MainActivity&quot;</span>);<br>    <span class="hljs-title class_">MainActivity</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">4919</span>);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook2</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/eeb729d7f873b417.png"></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>主要是 hook 调用未被执行的静态方法，指定的类中包含了静态的方法，则我们可以直接调用该方法</p>
+<p>hook 模板如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>     <span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(“&lt;package_name&gt;.&lt;<span class="hljs-keyword">class</span>&gt;”);<br>     &lt;class_reference&gt;.<span class="hljs-keyword">function</span>(<span class="hljs-params">val</span>); <span class="hljs-comment">// 需要调用的方法名称</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h1 id="Frida-0x3"><a href="#Frida-0x3" class="headerlink" title="Frida 0x3"></a>Frida 0x3</h1><h2 id="运行-1"><a href="#运行-1" class="headerlink" title="运行"></a>运行</h2><p>这一次有按钮了，并且点击会出现 【TRY AGAIN】</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/fd1bc91eb334e1a0.png"></p>
+<h2 id="反编译"><a href="#反编译" class="headerlink" title="反编译"></a>反编译</h2><p>还是反编译看 Jvav 代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x3;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.view.View.OnClickListener;<br><span class="hljs-keyword">import</span> android.view.View;<br><span class="hljs-keyword">import</span> android.widget.Button;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> android.widget.Toast;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><span class="hljs-keyword">import</span> java.nio.charset.Charset;<br><span class="hljs-keyword">import</span> java.security.InvalidKeyException;<br><span class="hljs-keyword">import</span> java.security.NoSuchAlgorithmException;<br><span class="hljs-keyword">import</span> java.util.Base64;<br><span class="hljs-keyword">import</span> javax.crypto.BadPaddingException;<br><span class="hljs-keyword">import</span> javax.crypto.Cipher;<br><span class="hljs-keyword">import</span> javax.crypto.IllegalBlockSizeException;<br><span class="hljs-keyword">import</span> javax.crypto.NoSuchPaddingException;<br><span class="hljs-keyword">import</span> javax.crypto.spec.SecretKeySpec;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    TextView t1;<br><br>    <span class="hljs-meta">@Override</span>  <span class="hljs-comment">// androidx.fragment.app.FragmentActivity</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        <span class="hljs-built_in">this</span>.setContentView(layout.activity_main);<br>        <span class="hljs-type">Button</span> <span class="hljs-variable">btn</span> <span class="hljs-operator">=</span> (Button)<span class="hljs-built_in">this</span>.findViewById(id.button);<br>        <span class="hljs-built_in">this</span>.t1 = (TextView)<span class="hljs-built_in">this</span>.findViewById(id.textView);<br>        btn.setOnClickListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>.OnClickListener() &#123;<br>            <span class="hljs-meta">@Override</span>  <span class="hljs-comment">// android.view.View$OnClickListener</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View v)</span> &#123;<br>                <span class="hljs-type">byte</span>[] arr_b1;<br>                <span class="hljs-keyword">if</span>(Checker.code == <span class="hljs-number">0x200</span>) &#123;<br>                    Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>.getApplicationContext(), <span class="hljs-string">&quot;YOU WON!!!&quot;</span>, <span class="hljs-number">1</span>).show();<br>                    <span class="hljs-type">SecretKeySpec</span> <span class="hljs-variable">KS</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SecretKeySpec</span>(<span class="hljs-string">&quot;glass123&quot;</span>.getBytes(), <span class="hljs-string">&quot;Blowfish&quot;</span>);<br>                    <span class="hljs-type">byte</span>[] arr_b = Base64.getDecoder().decode(<span class="hljs-string">&quot;MKxsZsY9Usw3ozXKKzTF0ymIaC8rs0AY74GnaKqkUrk=&quot;</span>);<br>                    <span class="hljs-keyword">try</span> &#123;<br>                        <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;Blowfish&quot;</span>);<br>                        cipher.init(<span class="hljs-number">2</span>, KS);<br>                        arr_b1 = cipher.doFinal(arr_b);<br>                    &#125;<br>                    <span class="hljs-keyword">catch</span>(NoSuchAlgorithmException e) &#123;<br>                        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>                    &#125;<br>                    <span class="hljs-keyword">catch</span>(NoSuchPaddingException e) &#123;<br>                        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>                    &#125;<br>                    <span class="hljs-keyword">catch</span>(IllegalBlockSizeException e) &#123;<br>                        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>                    &#125;<br>                    <span class="hljs-keyword">catch</span>(BadPaddingException e) &#123;<br>                        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>                    &#125;<br>                    <span class="hljs-keyword">catch</span>(InvalidKeyException e) &#123;<br>                        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>                    &#125;<br><br>                    <span class="hljs-type">String</span> <span class="hljs-variable">decryptedString</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(arr_b1, Charset.forName(<span class="hljs-string">&quot;UTF-8&quot;</span>));<br>                    MainActivity.<span class="hljs-built_in">this</span>.t1.setText(decryptedString);<br>                    <span class="hljs-keyword">return</span>;<br>                &#125;<br><br>                Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>.getApplicationContext(), <span class="hljs-string">&quot;TRY AGAIN&quot;</span>, <span class="hljs-number">1</span>).show();<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><h3 id="MainActivity-类-1"><a href="#MainActivity-类-1" class="headerlink" title="MainActivity 类"></a>MainActivity 类</h3><p>可以看到设置了一个按钮点击监听器，当点击按钮时，会检查 <code>Checker.code</code> 是否为 <code>0x200</code>，如果是则显示 flag</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/ba13423709189d44.png"></p>
+<h3 id="Checker-类"><a href="#Checker-类" class="headerlink" title="Checker 类"></a>Checker 类</h3><p>分析 <code>Checker</code> 类能发现有一个静态变量 <code>code</code>，值为 0，还有一个静态方法 <code>increase()</code> 让 <code>code+2</code>，但是在程序中并没有被调用</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/5083d2738271bf78.png"></p>
+<p>这时有两个方法：</p>
+<ol>
+<li>直接 hook <code>Checker</code> 类的 <code>code</code> 变量，值为 <code>0x200</code></li>
+<li>主动调用 <code>increase()</code> 方法让 <code>code</code> 累加到 <code>0x200</code></li>
+</ol>
+<h2 id="Hook-1"><a href="#Hook-1" class="headerlink" title="Hook"></a>Hook</h2><h3 id="hook-静态变量-code"><a href="#hook-静态变量-code" class="headerlink" title="hook 静态变量 code"></a>hook 静态变量 code</h3><p>现在 hook 代码中的类不再是 <code>MainActivity</code> 而是 <code>Checker</code> 了，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook3</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span>=<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x3.Checker&quot;</span>);<br>   <span class="hljs-title class_">Checker</span>.<span class="hljs-property">code</span>.<span class="hljs-property">value</span>=<span class="hljs-number">0x200</span>;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook3</span>();<br>    &#125;)<br>&#125;<br><span class="hljs-title function_">setImmediate</span>(main)<br></code></pre></td></tr></table></figure>
+
+<p>点击一下就得出结果</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/51528caae6e8f981.png"></p>
+<h3 id="主动调用-increase-方法"><a href="#主动调用-increase-方法" class="headerlink" title="主动调用 increase() 方法"></a>主动调用 increase() 方法</h3><p>写一个简单的 <code>for</code> 循环，累加 0x100 次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook3</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span>=<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x3.Checker&quot;</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">0x100</span>;i++)&#123;<br>        <span class="hljs-title class_">Checker</span>.<span class="hljs-title function_">increase</span>();<br>       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;value:&quot;</span>,<span class="hljs-title class_">Checker</span>.<span class="hljs-property">code</span>.<span class="hljs-property">value</span>);	<span class="hljs-comment">//可以选择不打印</span><br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook3</span>();<br>    &#125;)<br>&#125;<br><span class="hljs-title function_">setImmediate</span>(main)<br></code></pre></td></tr></table></figure>
+
+<p>当累加到 512 时就得到结果</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/4468d0ddf458822d.png"></p>
+<h2 id="Conclusion-1"><a href="#Conclusion-1" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>主要是去改变类中的静态变量的值</p>
+<p>Frida 更改变量值的模板：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>     <span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(“&lt;package_name&gt;.&lt;<span class="hljs-keyword">class</span>&gt;”);<br>     &lt;class_reference&gt;.&lt;variable&gt;.<span class="hljs-property">value</span> = &lt;value&gt;; <span class="hljs-comment">//需要修改的变量</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h1 id="Frida-0x4"><a href="#Frida-0x4" class="headerlink" title="Frida 0x4"></a>Frida 0x4</h1><h2 id="运行-2"><a href="#运行-2" class="headerlink" title="运行"></a>运行</h2><p>也是一个没有输入的只有一个静态页面</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b2e578f70007aa20.png"></p>
+<h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><p>反编译看代码，这次用的 Jadx</p>
+<p>MainActivity</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x4;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><br><span class="hljs-comment">/* loaded from: classes3.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    TextView t1;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: protected */</span><br>    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-built_in">this</span>.t1 = (TextView) findViewById(R.id.txtview);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Check</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x4;<br><br><span class="hljs-comment">/* loaded from: classes3.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Check</span> &#123;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">get_flag</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span> &#123;<br>        <span class="hljs-keyword">if</span> (a == <span class="hljs-number">1337</span>) &#123;<br>            <span class="hljs-type">byte</span>[] decoded = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-string">&quot;I]FKNtW@]JKPFA\\[NALJr&quot;</span>.getBytes().length];<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-string">&quot;I]FKNtW@]JKPFA\\[NALJr&quot;</span>.getBytes().length; i++) &#123;<br>                decoded[i] = (<span class="hljs-type">byte</span>) (<span class="hljs-string">&quot;I]FKNtW@]JKPFA\\[NALJr&quot;</span>.getBytes()[i] ^ <span class="hljs-number">15</span>);<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(decoded);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Check-类"><a href="#Check-类" class="headerlink" title="Check 类"></a>Check 类</h3><p><code>MainActivity</code> 类中没啥好分析的，重点来分析 <code>Check</code> 类</p>
+<p><code>Check</code> 类中有一个 <code>get_flag</code> 方法，当 <code>a==1337</code> 时，会输出解密的字符串，可以发现程序没有对这个方法调用，并且它也不是静态方法，这是一个方法的声明，所以需要先实例化，再通过实例去调用这个方法返回结果</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/1a78d2196107b283.png"></p>
+<h2 id="Hook-2"><a href="#Hook-2" class="headerlink" title="Hook"></a>Hook</h2><p>使用 <code>$new()</code> 实例化 <code>Check</code> 类的对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook4</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-keyword">var</span> <span class="hljs-title class_">Check</span> =<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x4.Check&quot;</span>);<br>	<span class="hljs-keyword">var</span> <span class="hljs-title class_">CheckObj</span>=<span class="hljs-title class_">Check</span>.$new();<br>	<span class="hljs-keyword">var</span> result=<span class="hljs-title class_">CheckObj</span>.<span class="hljs-title function_">get_flag</span>(<span class="hljs-number">1337</span>);<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title function_">hook4</span>();<br>	&#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br></code></pre></td></tr></table></figure>
+
+<p>直接输出结果</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/005cc375e853f8e1.png"></p>
+<h2 id="Conclusion-2"><a href="#Conclusion-2" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>非静态方法 -&gt; 实例化 -&gt; 通过实例调用方法</p>
+<p>Frida 创建类实例的模板如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><br>  <span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);<br>  <span class="hljs-keyword">var</span> &lt;class_instance&gt; = &lt;class_reference&gt;.$new(); <span class="hljs-comment">// 创建类的实例</span><br>  &lt;class_instance&gt;.&lt;method&gt;(); <span class="hljs-comment">// 调用该实例中的方法</span><br><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h1 id="Frida-0x5"><a href="#Frida-0x5" class="headerlink" title="Frida 0x5"></a>Frida 0x5</h1><h2 id="运行-3"><a href="#运行-3" class="headerlink" title="运行"></a>运行</h2><p>也是一个什么都没有的静态页面</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b144d16e1471e3bf.png"></p>
+<h2 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x5;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><span class="hljs-keyword">import</span> java.util.Base64;<br><span class="hljs-keyword">import</span> javax.crypto.Cipher;<br><span class="hljs-keyword">import</span> javax.crypto.spec.IvParameterSpec;<br><span class="hljs-keyword">import</span> javax.crypto.spec.SecretKeySpec;<br><br><span class="hljs-comment">/* loaded from: classes3.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    TextView t1;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: protected */</span><br>    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-built_in">this</span>.t1 = (TextView) findViewById(R.id.textview);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">flag</span><span class="hljs-params">(<span class="hljs-type">int</span> code)</span> &#123;<br>        <span class="hljs-keyword">if</span> (code == <span class="hljs-number">1337</span>) &#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                <span class="hljs-type">SecretKeySpec</span> <span class="hljs-variable">secretKeySpec</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SecretKeySpec</span>(<span class="hljs-string">&quot;WILLIWOMNKESAWEL&quot;</span>.getBytes(), <span class="hljs-string">&quot;AES&quot;</span>);<br>                <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;AES/CBC/PKCS5Padding&quot;</span>);<br>                <span class="hljs-type">IvParameterSpec</span> <span class="hljs-variable">iv</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IvParameterSpec</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">16</span>]);<br>                cipher.init(<span class="hljs-number">2</span>, secretKeySpec, iv);<br>                <span class="hljs-type">byte</span>[] decodedEnc = Base64.getDecoder().decode(<span class="hljs-string">&quot;2Y2YINP9PtJCS/7oq189VzFynmpG8swQDmH4IC9wKAY=&quot;</span>);<br>                <span class="hljs-type">byte</span>[] decryptedBytes = cipher.doFinal(decodedEnc);<br>                <span class="hljs-type">String</span> <span class="hljs-variable">decryptedText</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(decryptedBytes);<br>                <span class="hljs-built_in">this</span>.t1.setText(decryptedText);<br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="MainActivity-类-2"><a href="#MainActivity-类-2" class="headerlink" title="MainActivity 类"></a>MainActivity 类</h3><p>有一个 <code>flag</code> 方法，与上一题类似，但这一题是  <code>flag</code> 方法在 <code>MainActivity</code> 类里，并且 <code>MainActivity</code> 已经在应用程序启动的时候实例化了，使用 <code>Java.use</code> 获取 <code>MainActivity</code> 类并调用 <code>new()</code> 创建实例会导致错误，所以可以获取 <code>MainActivity</code> 的实例，然后调用就可以了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/365f04385e2b91f9.png"></p>
+<h2 id="Hook-3"><a href="#Hook-3" class="headerlink" title="Hook"></a>Hook</h2><h3 id="在现有的实例上调用方法"><a href="#在现有的实例上调用方法" class="headerlink" title="在现有的实例上调用方法"></a>在现有的实例上调用方法</h3><p>demo</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook5</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&quot;com.ad2001.frida0x5.MainActivity&quot;</span>,&#123;<br>		<span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">instance</span>)&#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance);<br>			instance.<span class="hljs-title function_">flag</span>(<span class="hljs-number">1337</span>)<br>		&#125;,<br>		<span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;endhook&quot;</span>)<br>		&#125;<br>	&#125;)<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title function_">hook5</span>();<br>	&#125;)<br>&#125;<br><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+
+<p>demo 中使用了一些 API 和 回调函数：</p>
+<ul>
+<li><code>Java.choose</code>：遍历 Java 堆，枚举指定类的活动实例。</li>
+<li><code>onMatch()</code> 回调函数：每当找到一个实例时触发定义的操作。</li>
+<li><code>onComplete()</code> 回调函数：执行一些清理工作，或者根据请求的结果更新。</li>
+</ul>
+<p><img src="https://img.dkdun.cn/v1/2025/12/7130cf6add20a96a.png"></p>
+<h2 id="Conclusion-3"><a href="#Conclusion-3" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>大概流程：调用 <code>MainActivity</code> 中的非静态方法 -&gt; 通过 <code>Java.choose</code> 搜索实例对象 -&gt; 通过 <code>onMatch()</code> 回调进行 hook 逻辑 -&gt; <code>onComplete()</code> 进行结束处理</p>
+<p>Frida 在现有实例上调用方法的模板：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">performNow</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;&lt;Package&gt;.&lt;class_Name&gt;&#x27;</span>, &#123;<br>		<span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">instance</span>) &#123;<br>		<span class="hljs-comment">// 匹配到类实例时进行的操作</span><br>		&#125;,<br>		<span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;<br>		<span class="hljs-comment">// 完成操作后的回调函数</span><br>	&#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>这里的 <code>Java.performNow</code> 是 Frida 中的一个函数，用于在 Java 运行时环境中执行代码</p>
+<h1 id="Frida-0x6"><a href="#Frida-0x6" class="headerlink" title="Frida 0x6"></a>Frida 0x6</h1><h2 id="运行-4"><a href="#运行-4" class="headerlink" title="运行"></a>运行</h2><p>还是一样的静态页面</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/d1326b6de17553b3.png"></p>
+<h2 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h2><p>MainActivity 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x6;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><span class="hljs-keyword">import</span> java.security.InvalidKeyException;<br><span class="hljs-keyword">import</span> java.security.NoSuchAlgorithmException;<br><span class="hljs-keyword">import</span> java.util.Base64;<br><span class="hljs-keyword">import</span> javax.crypto.BadPaddingException;<br><span class="hljs-keyword">import</span> javax.crypto.Cipher;<br><span class="hljs-keyword">import</span> javax.crypto.IllegalBlockSizeException;<br><span class="hljs-keyword">import</span> javax.crypto.NoSuchPaddingException;<br><span class="hljs-keyword">import</span> javax.crypto.spec.SecretKeySpec;<br><br><span class="hljs-comment">/* loaded from: classes3.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    TextView t1;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: protected */</span><br>    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-built_in">this</span>.t1 = (TextView) findViewById(R.id.textview);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">get_flag</span><span class="hljs-params">(Checker A)</span> <span class="hljs-keyword">throws</span> NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-number">1234</span> == A.num1 &amp;&amp; <span class="hljs-number">4321</span> == A.num2) &#123;<br>            <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;AES&quot;</span>);<br>            <span class="hljs-type">SecretKeySpec</span> <span class="hljs-variable">secretKeySpec</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SecretKeySpec</span>(<span class="hljs-string">&quot;MySecureKey12345&quot;</span>.getBytes(), <span class="hljs-string">&quot;AES&quot;</span>);<br>            cipher.init(<span class="hljs-number">2</span>, secretKeySpec);<br>            <span class="hljs-type">byte</span>[] decryptedBytes = Base64.getDecoder().decode(<span class="hljs-string">&quot;QQzMj/JNaTblEHnIzgJAQkvWJV2oK9G2/UmrCs85fog=&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">decrypted</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(cipher.doFinal(decryptedBytes));<br>            <span class="hljs-built_in">this</span>.t1.setText(decrypted);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Checker 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x6;<br><br><span class="hljs-comment">/* loaded from: classes3.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Checker</span> &#123;<br>    <span class="hljs-type">int</span> num1;<br>    <span class="hljs-type">int</span> num2;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="MainActivity-类-3"><a href="#MainActivity-类-3" class="headerlink" title="MainActivity 类"></a>MainActivity 类</h3><p><code>MainActivity</code> 类的 <code>get_flag()</code> 方法传入一个 <code>Checker</code> 实例，当 <code>num1==1234</code>且 <code>num2==4321</code> 时获取 flag，这个 <code>get_flag()</code> 方法也并没有被调用</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/85032a4bbeb78354.png"></p>
+<h3 id="Checker"><a href="#Checker" class="headerlink" title="Checker"></a>Checker</h3><p>两个变量 <code>num1</code> 和 <code>num2</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/20b50e74531882b5.png"></p>
+<p>所以解决方法就是创建 <code>Checker</code> 类的实例，给两个变量设置值，获取 <code>MainActivity</code> 实例然后将实例作为参数调用 <code>get_flag</code> 方法</p>
+<h2 id="Hook-4"><a href="#Hook-4" class="headerlink" title="Hook"></a>Hook</h2><p>创建一个符合条件的实例，传递给  <code>get_flag</code> 方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook6</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&quot;com.ad2001.frida0x6.MainActivity&quot;</span>,&#123;<br>		<span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">instance</span>)&#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance);<br>			<br>			<span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> =<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x6.Checker&quot;</span>);<br>			<span class="hljs-keyword">var</span> <span class="hljs-title class_">CheckerObj</span>=<span class="hljs-title class_">Checker</span>.$new();<br>            <br>            <span class="hljs-comment">//实例化对象</span><br>			<span class="hljs-title class_">CheckerObj</span>.<span class="hljs-property">num1</span>.<span class="hljs-property">value</span>=<span class="hljs-number">1234</span>;<br>			<span class="hljs-title class_">CheckerObj</span>.<span class="hljs-property">num2</span>.<span class="hljs-property">value</span>=<span class="hljs-number">4321</span>;<br>            <br>			instance.<span class="hljs-title function_">get_flag</span>(<span class="hljs-title class_">CheckerObj</span>);	<span class="hljs-comment">//调用 get_flag 方法</span><br>		&#125;,<br>		<span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;endhook&quot;</span>);<br>		&#125;<br>	&#125;)<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title function_">hook6</span>();<br>	&#125;)<br>&#125;<br><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/0da7e5811ca7f6aa.png"></p>
+<h2 id="Conclusion-4"><a href="#Conclusion-4" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>对 <code>MainActivity</code> 中非静态方法且参数为非静态变量进行对象参数调用</p>
+<p>Frida 使用对象参数调用方法的模板：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">performNow</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&#x27;&lt;Package&gt;.&lt;class_Name&gt;&#x27;</span>, &#123;<br>    <span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">instance</span>) &#123;<br>      <span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);<br>      <span class="hljs-keyword">var</span> &lt;class_instance&gt; = &lt;class_reference&gt;.$new(); <span class="hljs-comment">// 创建类的实例</span><br>        <br>      &lt;class_reference&gt;.&lt;variable&gt;.<span class="hljs-property">value</span> = &lt;value&gt;;	<span class="hljs-comment">// 实例化对象</span><br>      <br>      instance.&lt;method&gt;(class_instance); <span class="hljs-comment">// 调用方法</span><br>    &#125;,<br>    <span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;&#125;<br>    <span class="hljs-comment">// 完成操作后的回调函数</span><br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h1 id="Frida-0x7"><a href="#Frida-0x7" class="headerlink" title="Frida 0x7"></a>Frida 0x7</h1><h2 id="运行-5"><a href="#运行-5" class="headerlink" title="运行"></a>运行</h2><p>依旧是一样的静态界面</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/245631b863645523.png"></p>
+<h2 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h2><p>MainActivity 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x7;<br><br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><span class="hljs-keyword">import</span> java.security.InvalidKeyException;<br><span class="hljs-keyword">import</span> java.security.NoSuchAlgorithmException;<br><span class="hljs-keyword">import</span> java.util.Base64;<br><span class="hljs-keyword">import</span> javax.crypto.BadPaddingException;<br><span class="hljs-keyword">import</span> javax.crypto.Cipher;<br><span class="hljs-keyword">import</span> javax.crypto.IllegalBlockSizeException;<br><span class="hljs-keyword">import</span> javax.crypto.NoSuchPaddingException;<br><span class="hljs-keyword">import</span> javax.crypto.spec.SecretKeySpec;<br><br><span class="hljs-comment">/* loaded from: classes3.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    TextView t1;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: protected */</span><br>    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-built_in">this</span>.t1 = (TextView) findViewById(R.id.textview);<br>        <span class="hljs-type">Checker</span> <span class="hljs-variable">ch</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Checker</span>(<span class="hljs-number">123</span>, <span class="hljs-number">321</span>);<br>        <span class="hljs-keyword">try</span> &#123;<br>            flag(ch);<br>        &#125; <span class="hljs-keyword">catch</span> (InvalidKeyException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125; <span class="hljs-keyword">catch</span> (NoSuchAlgorithmException e2) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e2);<br>        &#125; <span class="hljs-keyword">catch</span> (BadPaddingException e3) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e3);<br>        &#125; <span class="hljs-keyword">catch</span> (IllegalBlockSizeException e4) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e4);<br>        &#125; <span class="hljs-keyword">catch</span> (NoSuchPaddingException e5) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e5);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">flag</span><span class="hljs-params">(Checker A)</span> <span class="hljs-keyword">throws</span> NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException &#123;<br>        <span class="hljs-keyword">if</span> (A.num1 &gt; <span class="hljs-number">512</span> &amp;&amp; <span class="hljs-number">512</span> &lt; A.num2) &#123;<br>            <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;AES&quot;</span>);<br>            <span class="hljs-type">SecretKeySpec</span> <span class="hljs-variable">secretKeySpec</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SecretKeySpec</span>(<span class="hljs-string">&quot;MySecureKey12345&quot;</span>.getBytes(), <span class="hljs-string">&quot;AES&quot;</span>);<br>            cipher.init(<span class="hljs-number">2</span>, secretKeySpec);<br>            <span class="hljs-type">byte</span>[] decryptedBytes = Base64.getDecoder().decode(<span class="hljs-string">&quot;cL/bBqDmfO0IXXJCVFwYLeHp1k3mQr+SP6rlQGUPZTY=&quot;</span>);<br>            <span class="hljs-type">String</span> <span class="hljs-variable">decrypted</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(cipher.doFinal(decryptedBytes));<br>            <span class="hljs-built_in">this</span>.t1.setText(decrypted);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Checker 类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.ad2001.frida0x7;<br><br><span class="hljs-comment">/* loaded from: classes3.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Checker</span> &#123;<br>    <span class="hljs-type">int</span> num1;<br>    <span class="hljs-type">int</span> num2;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: package-private */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Checker</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> &#123;<br>        <span class="hljs-built_in">this</span>.num1 = a;<br>        <span class="hljs-built_in">this</span>.num2 = b;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="MainActivity-类-4"><a href="#MainActivity-类-4" class="headerlink" title="MainActivity 类"></a>MainActivity 类</h3><p>先 <code>Checker ch = new Checker(123, 321);</code> 创建了一个 <code>Checker</code> 实例，然后 <code>Checker</code> 类的对象调用 <code>flag</code> 方法传入该对象，之后对 <code>num1</code> 和 <code>num2</code> 的两个值分别进行判断，两个参数必须都大于 512</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/56ea579e5977c8bc.png"></p>
+<h3 id="Checker-类-1"><a href="#Checker-类-1" class="headerlink" title="Checker 类"></a>Checker 类</h3><p>两个变量 <code>num1</code> 和 <code>num2</code>，通过构造函数去赋值</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/53ce8a3da16591e3.png"></p>
+<h2 id="Hook-5"><a href="#Hook-5" class="headerlink" title="Hook"></a>Hook</h2><h3 id="通过构造函数传参"><a href="#通过构造函数传参" class="headerlink" title="通过构造函数传参"></a>通过构造函数传参</h3><p>跟 0x6 一样的步骤，不过要通过构造函数传参</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook7</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">choose</span>(<span class="hljs-string">&quot;com.ad2001.frida0x7.MainActivity&quot;</span>,&#123;<br>		<span class="hljs-attr">onMatch</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">instance</span>)&#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance);<br>			<br>			<span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> =<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);<br>			<span class="hljs-keyword">var</span> <span class="hljs-title class_">CheckerObj</span>=<span class="hljs-title class_">Checker</span>.$new(<span class="hljs-number">520</span>,<span class="hljs-number">520</span>);	<span class="hljs-comment">//直接赋值</span><br><br>			instance.<span class="hljs-title function_">flag</span>(<span class="hljs-title class_">CheckerObj</span>);	<span class="hljs-comment">// hook Checker 方法</span><br>		&#125;,<br>		<span class="hljs-attr">onComplete</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;endhook&quot;</span>);<br>		&#125;<br>	&#125;)<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>		<span class="hljs-title function_">hook7</span>();<br>	&#125;)<br>&#125;<br><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/d74a4ac3cfb64e35.png"></p>
+<p>在实例化对象时我直接赋值了，也可以先实例化后赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">520</span>;<br><span class="hljs-keyword">var</span> b = <span class="hljs-number">520</span>;<br><span class="hljs-keyword">var</span> check = checker.$new(a,b);<br>instance.<span class="hljs-title function_">flag</span>(check);<br></code></pre></td></tr></table></figure>
+
+<h3 id="hook-构造方法"><a href="#hook-构造方法" class="headerlink" title="hook 构造方法"></a>hook 构造方法</h3><p><code>Checker</code> 类中声明了构造方法，所以我们也可以直接 hook 构造方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook7</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-keyword">var</span> <span class="hljs-title class_">Checker</span> =<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;com.ad2001.frida0x7.Checker&quot;</span>);<br>	<span class="hljs-title class_">Checker</span>.<span class="hljs-property">$init</span>.<span class="hljs-property">implementation</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">a,b</span>)&#123;<br>		<span class="hljs-variable language_">this</span>.$init(<span class="hljs-number">520</span>,<span class="hljs-number">520</span>);<br>	&#125;<br><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>	<span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>		<span class="hljs-title function_">hook7</span>();<br>	&#125;)<br>&#125;<br><br><span class="hljs-title function_">setImmediate</span>(main);<br></code></pre></td></tr></table></figure>
+
+<h2 id="Conclusion-5"><a href="#Conclusion-5" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Frida Hook 构造方法的模板</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">var</span> &lt;class_reference&gt; = <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">use</span>(<span class="hljs-string">&quot;&lt;package_name&gt;.&lt;class&gt;&quot;</span>);<br>  &lt;class_reference&gt;.<span class="hljs-property">$init</span>.<span class="hljs-property">implementation</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">&lt;args&gt;</span>)&#123;<br><br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    自定义方法实现</span><br><span class="hljs-comment">    */</span><br><br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Android/Frida/" class="category-chain-item">Frida</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Andriod/" class="print-no-link">#Andriod</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>重生之我要成为 Frida 糕手:Frida 0x2-Frida 0x7</div>
+      <div>http://example.com/2025/03/28/重生之我要成为-Frida-糕手-Frida-0x2-Frida-0x7/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/27/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA-Frida-%E7%B3%95%E6%89%8B-Frida-Labs-0x1/" title="重生之我要成为 Frida 糕手:Frida-Labs 0x1">
+                        <span class="hidden-mobile">重生之我要成为 Frida 糕手:Frida-Labs 0x1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+  <!--下面两行是核心内容-->
+  <link  rel="stylesheet" href="/css/TrymenT-ClocK.min.css" />
+  <script  src="/js/TrymenT-ClocK.min.js" ></script>
+ 
