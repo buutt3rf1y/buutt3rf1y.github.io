@@ -1,0 +1,862 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Hook Native 层调用的函数并读取传入的参数、Hook 修改 Native 层函数的返回值、主动调用 Native 层未被调用的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重生之我要成为 Frida 糕手:关于 Frida Native 层 Hook">
+<meta property="og:url" content="http://example.com/2025/04/03/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA-Frida-%E7%B3%95%E6%89%8B-%E5%85%B3%E4%BA%8E-Frida-Native-%E5%B1%82-Hook/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="Hook Native 层调用的函数并读取传入的参数、Hook 修改 Native 层函数的返回值、主动调用 Native 层未被调用的方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/858fe4f6f6c7f820.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/807d469991b3a316.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b12bc6896c9adb27.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/a634dd71c68bc4c5.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/94586fc7026b26c2.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/0cd696bfcff4ced9.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/1185151e0e7ed1e7.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/7d671cab49c80993.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/12afbf8a84595366.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/a4bb8d6e41a8292e.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/a7d6e6d8a80d009e.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e3b1b404a1f9260e.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8b6f59b1c7195af5.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/448aa425377824d6.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/95e0099d84953b70.png">
+<meta property="article:published_time" content="2025-04-03T15:51:03.000Z">
+<meta property="article:modified_time" content="2025-04-03T15:46:55.876Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="Andriod">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/858fe4f6f6c7f820.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>重生之我要成为 Frida 糕手:关于 Frida Native 层 Hook - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/3473793514d205aa.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="重生之我要成为 Frida 糕手:关于 Frida Native 层 Hook"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-03 23:51" pubdate>
+          2025年4月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">重生之我要成为 Frida 糕手:关于 Frida Native 层 Hook</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年4月3日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Hook Native 层调用的函数并读取传入的参数、Hook 修改 Native 层函数的返回值、主动调用 Native 层未被调用的方法</p>
+<span id="more"></span>
+
+<h1 id="Process、Module、Memory"><a href="#Process、Module、Memory" class="headerlink" title="Process、Module、Memory"></a>Process、Module、Memory</h1><p>参考 52 的正己师傅的文章：<a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1840174-1-1.html"><strong>《安卓逆向这档事》十五、是时候学习一下Frida一把梭了(下)</strong> </a></p>
+<h2 id="1、Process"><a href="#1、Process" class="headerlink" title="1、Process"></a>1、Process</h2><p><code>Process</code> 对象代表当前被 hook 的进程，能获取进程的信息，枚举模块、范围等</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Process</span>.<span class="hljs-property">id</span>			返回附加进程的 <span class="hljs-variable constant_">PID</span><br><span class="hljs-title class_">Process</span>.<span class="hljs-title function_">isDebuggerAttached</span>()			检测当前是否对目标程序已经附加<br><span class="hljs-title class_">Process</span>.<span class="hljs-title function_">enumerateMedules</span>()				枚举当前加载模块，返回模块对象数组<br><span class="hljs-title class_">Process</span>.<span class="hljs-title function_">enumerateThreads</span>()				枚举当前所有的线程，返回包含 id，state，context 等属性的对象数组<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、Module"><a href="#2、Module" class="headerlink" title="2、Module"></a>2、Module</h2><p><code>Module</code> 对象代表加载到进程的模块，能查询模块的信息，如模块的基址、名称、导入、导出函数等</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Module</span>.<span class="hljs-title function_">load</span>()							加载指定 so 文件，返回一个 <span class="hljs-title class_">Module</span> 对象<br><span class="hljs-title function_">enumerateImports</span>()						枚举所有的 <span class="hljs-title class_">Import</span> 库函数，返回 <span class="hljs-title class_">Module</span> 数组对象<br><span class="hljs-title function_">enumerateExports</span>()						枚举所有的 <span class="hljs-title class_">Export</span> 库函数，返回 <span class="hljs-title class_">Module</span> 数组对象<br><span class="hljs-title function_">enumerateSymbols</span>()						枚举所有的 <span class="hljs-title class_">Symbol</span> 库函数，返回 <span class="hljs-title class_">Module</span> 数组对象<br><span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(exportName)、<span class="hljs-title class_">Module</span>.<span class="hljs-title function_">getExportByName</span>(exportName)	寻找指定 so 中 <span class="hljs-keyword">export</span> 库中函数地址<br><span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findBaseAddress</span>(name)、<span class="hljs-title class_">Module</span>.<span class="hljs-title function_">getBaseAddress</span>(name)				返回 so 的基地址<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、Memory"><a href="#3、Memory" class="headerlink" title="3、Memory"></a>3、Memory</h2><p><code>Memory</code> 提供直接读取和修改进程内存的功能，能够读取特定地址的值、写入数据、分配内存等</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">copy</span>()							复制内存<br><span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">scan</span>()							搜索内存中特定模式的数据<br><span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">scanSync</span>()						搜索内存中特定模式的数据，返回多个匹配数据<br><span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">alloc</span>()							在目标进程的堆上申请指定大小的内存，返回一个 <span class="hljs-title class_">NativePointer</span><br><span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">writeByteArray</span>()					将字节数组写入一个指定内存<br><span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readByteArray</span>()					读取内存<br></code></pre></td></tr></table></figure>
+
+<h1 id="Hook-Native-层调用的函数并读取传入的参数"><a href="#Hook-Native-层调用的函数并读取传入的参数" class="headerlink" title="Hook Native 层调用的函数并读取传入的参数"></a>Hook Native 层调用的函数并读取传入的参数</h1><h2 id="Hook-模板"><a href="#Hook-模板" class="headerlink" title="Hook 模板"></a>Hook 模板</h2><p>Native 层函数 hook 模板</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(targetAddress,&#123;<br>    <span class="hljs-attr">onEnter</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Entering&#x27;</span>+functionName);<br>        <span class="hljs-comment">//打印和修改参数</span><br>    &#125;,<br>    <span class="hljs-attr">onLeave</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Leaving&#x27;</span>+functionName);<br>        <span class="hljs-comment">//打印和修改返回值</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Interceptor.attach</code>：将回调函数附加到指定的函数地址，挂钩函数，拦截所有对它的调用。</li>
+<li><code>targetAddress</code> ：需要挂钩的本地函数的地址。</li>
+<li><code>onEnter</code>：当挂钩的函数被调用时，提供对函数参数 (<code>args</code>) 的访问，可以执行访问函数的参数，修改参数的值，记录函数调用信息等操作。</li>
+<li><code>onLeave</code>：当挂钩的函数即将退出时，调用此回调，提供对返回值 (<code>retval</code>) 的访问。</li>
+</ul>
+<h2 id="Frida-0x8-Native-Hook"><a href="#Frida-0x8-Native-Hook" class="headerlink" title="Frida 0x8 Native Hook"></a>Frida 0x8 Native Hook</h2><h3 id="MainActivity"><a href="#MainActivity" class="headerlink" title="MainActivity"></a>MainActivity</h3><p>jadx 打开查看源码，输入的字符串作为 <code>cmpstr</code> 方法的参数，返回1 则显示 flag，能看到 <code>cmpstr</code> 方法实现位于 Native 层</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/858fe4f6f6c7f820.png"></p>
+<h3 id="Native-层逻辑"><a href="#Native-层逻辑" class="headerlink" title="Native 层逻辑"></a>Native 层逻辑</h3><p>可以发现使用了 <code>strcmp</code> 函数，如果输入的参数  <code>s1</code> 和 <code>s2</code>  比较相等的话返回 0，从而输出结果。因此只需要 hook <code>strcmp</code> 函数拿到它的参数就可以了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/807d469991b3a316.png"></p>
+<h3 id="Hook-API"><a href="#Hook-API" class="headerlink" title="Hook API"></a>Hook API</h3><p>hook 之前需要先获取函数地址、函数的导入导出库、库基址等等，如前面的 <code>Module</code> 中的 API。</p>
+<h4 id="查找当前调用的动态库"><a href="#查找当前调用的动态库" class="headerlink" title="查找当前调用的动态库"></a>查找当前调用的动态库</h4><p>第一种就是在 jadx 中能看到，在 <code>frida0x8</code> 库中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> &#123;<br>	System.loadLibrary(<span class="hljs-string">&quot;frida0x8&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>还有一种方法就是 ida 中找到 <code>String Table</code> 片段</p>
+<p>有一些运行时调用的函数，<code>Java_com_ad2001_frida0x8_MainActivity_cmpstr</code> 对于 Java 类中的 Native 方法 <code>cmpstr</code> ，遵循  JNI 函数的命名规范：<strong>Java_+classname+_+functionname</strong>，其中 <code>classname</code> 是该函数所属的 Java 类的名称，<code>functionname</code> 是该函数的名称。可以看到后面还有一些动态库：<code>libc.so，liblog.so，libm.so，libdl.so，libfrida0x8.so</code>，而 <code>libfrida0x8.so</code> 就是当前分析的动态库，也是需要查找的动态库</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b12bc6896c9adb27.png"></p>
+<h4 id="Module-enumerateImports-libname"><a href="#Module-enumerateImports-libname" class="headerlink" title="Module.enumerateImports(libname)"></a>Module.enumerateImports(libname)</h4><p>查看导入函数表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Module</span>.<span class="hljs-title function_">enumerateImports</span>(<span class="hljs-string">&quot;libfrida0x8.so&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/a634dd71c68bc4c5.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<br>    <span class="hljs-string">&quot;address&quot;</span>: <span class="hljs-string">&quot;0x7ffff5e67020&quot;</span>,<br>    <span class="hljs-string">&quot;module&quot;</span>: <span class="hljs-string">&quot;/system/lib64/libc.so&quot;</span>,<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;strcmp&quot;</span>,<br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;function&quot;</span><br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<p>根据信息可以得到 <code>strcmp</code> 函数来自于 <code>libc.so</code>，可以使用 <code>Module.getExportByName(libname,funcname)</code> 来找到 <code>strcmp</code> 地址信息</p>
+<h4 id="Module-getExportByName-libname-funcname"><a href="#Module-getExportByName-libname-funcname" class="headerlink" title="Module.getExportByName(libname,funcname)"></a>Module.getExportByName(libname,funcname)</h4><p>获取 <code>strcmp</code> 函数的地址</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Module</span>.<span class="hljs-title function_">getExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>,<span class="hljs-string">&quot;strcmp&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/94586fc7026b26c2.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">0x7ffff5e67020</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="hook-代码"><a href="#hook-代码" class="headerlink" title="hook 代码"></a>hook 代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook8</span>(<span class="hljs-params"></span>)&#123;<br><br>    <span class="hljs-keyword">var</span> targetAddress=<span class="hljs-title class_">Module</span>.<span class="hljs-title function_">getExportByName</span>(<span class="hljs-string">&quot;libc.so&quot;</span>,<span class="hljs-string">&quot;strcmp&quot;</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Strcmp Address:&quot;</span>,targetAddress.<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>));<br>    <span class="hljs-comment">//打印 strcmp 的地址，以十六进制格式输出</span><br><br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(targetAddress,&#123;<br>        <span class="hljs-attr">onEnter</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>)&#123;<br>            <span class="hljs-keyword">var</span> input=<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">0</span>]);<br>            <span class="hljs-comment">// 获取输入的字符串</span><br>            <span class="hljs-keyword">if</span> (input.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;11111&quot;</span>))&#123;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Memory</span>.<span class="hljs-title function_">readUtf8String</span>(args[<span class="hljs-number">1</span>]));<br>                <span class="hljs-comment">// 打印输出 strcmp 的第二个参数的值</span><br>            &#125;<br><br>        &#125;,<span class="hljs-attr">onLeave</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>)&#123;<br><br>        &#125;<br>    &#125;)<br>   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Success!&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook8</span>();<br>    &#125;)<br>&#125;<br><span class="hljs-title function_">setImmediate</span>(main)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/0cd696bfcff4ced9.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="如何-Hook"><a href="#如何-Hook" class="headerlink" title="如何 Hook"></a>如何 Hook</h3><p>Hook Java 层函数需要知道函数的包名和类名，但对于 Native 层函数的 hook，需要知道 Native 层函数的地址，然后使用 Frida 的 <code>Interceptor</code>API 进行 Hook</p>
+<h3 id="如何获取函数地址"><a href="#如何获取函数地址" class="headerlink" title="如何获取函数地址"></a>如何获取函数地址</h3><ol>
+<li>查找导入表利用 <code>Module.enumerateImports</code> 获取函数所属库。</li>
+<li>利用函数名，通过 <code>Module.getExportByName</code> 函数获取函数地址。</li>
+<li>通过函数地址拦截输出参数。</li>
+</ol>
+<h1 id="Hook-修改-Native-层函数的返回值"><a href="#Hook-修改-Native-层函数的返回值" class="headerlink" title="Hook 修改 Native 层函数的返回值"></a>Hook 修改 Native 层函数的返回值</h1><h2 id="Hook-模板-1"><a href="#Hook-模板-1" class="headerlink" title="Hook 模板"></a>Hook 模板</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(targetAddress, &#123;<br>    <span class="hljs-attr">onEnter</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>) &#123;<br><br>    &#125;,<br>    <span class="hljs-attr">onLeave</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Leaving &#x27;</span> + functionName);<br>        retval.<span class="hljs-title function_">replace</span>(value)<br>        <span class="hljs-comment">// 将目标函数返回值修改为 value</span><br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="Frida-0x9-Native-Hook"><a href="#Frida-0x9-Native-Hook" class="headerlink" title="Frida 0x9 Native Hook"></a>Frida 0x9 Native Hook</h2><h3 id="MainActivity-1"><a href="#MainActivity-1" class="headerlink" title="MainActivity"></a>MainActivity</h3><p><code>check_flag</code> 方法定义在 native 层的  <code>a0x9</code> 库中，方法没有任何调用和返回值，当按钮被点击时，<code>check_flag</code> 的返回值与 1337 比较，如果匹配就输出 flag</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/1185151e0e7ed1e7.png"></p>
+<h3 id="Native-层逻辑-1"><a href="#Native-层逻辑-1" class="headerlink" title="Native 层逻辑"></a>Native 层逻辑</h3><p>返回了个 1，那么只需要使得函数结束后返回 1337 就行了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/7d671cab49c80993.png"></p>
+<h3 id="hook-代码-1"><a href="#hook-代码-1" class="headerlink" title="hook 代码"></a>hook 代码</h3><p>查看导出表，找到 JNI 函数名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Module</span>.<span class="hljs-title function_">enumerateExports</span>(<span class="hljs-string">&quot;liba0x9.so&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/12afbf8a84595366.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript">&#123;<br>    <span class="hljs-string">&quot;address&quot;</span>: <span class="hljs-string">&quot;0x7fff57b7a670&quot;</span>, <br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Java_com_ad2001_a0x9_MainActivity_check_1flag&quot;</span>, <br>    <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;function&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>根据函数名精确查找目标函数地址</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hook9</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> check_flag=<span class="hljs-title class_">Module</span>.<span class="hljs-title function_">findExportByName</span>(<span class="hljs-string">&quot;liba0x9.so&quot;</span>,<span class="hljs-string">&quot;Java_com_ad2001_a0x9_MainActivity_check_1flag&quot;</span>)<br>    <span class="hljs-comment">// 通过查找导出函数的方式获取目标函数地址</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Func Address:&quot;</span>,check_flag);<br>    <br>    <span class="hljs-title class_">Interceptor</span>.<span class="hljs-title function_">attach</span>(check_flag,&#123;<br>        <span class="hljs-attr">onEnter</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">args</span>)&#123;<br><br>        &#125;,<span class="hljs-attr">onLeave</span>:<span class="hljs-keyword">function</span> (<span class="hljs-params">retval</span>)&#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Origin retval:&quot;</span>,retval);<br>        retval.<span class="hljs-title function_">replace</span>(<span class="hljs-number">1337</span>);<br>        &#125;<br>    &#125;)<br>   <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Success!&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hook9</span>();<br>    &#125;)<br>&#125;<br><br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/a4bb8d6e41a8292e.png"></p>
+<h1 id="主动调用-Native-层未被调用的方法"><a href="#主动调用-Native-层未被调用的方法" class="headerlink" title="主动调用 Native 层未被调用的方法"></a>主动调用 Native 层未被调用的方法</h1><h2 id="Hook-模板-2"><a href="#Hook-模板-2" class="headerlink" title="Hook 模板"></a>Hook 模板</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> native_adr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(&lt;address_of_the_native_function&gt;);<br><span class="hljs-comment">// 创建一个 NativePointer 对象，用于操作和访问 &lt;address_of_the_native_function&gt;内存地址。</span><br><br><span class="hljs-keyword">const</span> native_function = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(native_adr, <span class="hljs-string">&#x27;&lt;return type&gt;&#x27;</span>, [<span class="hljs-string">&#x27;argument_data_type&#x27;</span>]);<br><span class="hljs-comment">// 创建一个 NativeFunction 对象，实现对 native 函数的调用和控制。</span><br><span class="hljs-comment">// native_adr：使用native_adr NativePointer对象；</span><br><span class="hljs-comment">// &#x27;&lt;return type&gt;&#x27;：函数的返回值类型；</span><br><span class="hljs-comment">// [&#x27;argument_data_type&#x27;]：传递给函数的参数类型列表。</span><br><br><span class="hljs-title function_">native_function</span>(&lt;<span class="hljs-variable language_">arguments</span>&gt;);<br><span class="hljs-comment">// 调用 native_function 函数，如果需要，可以传递&lt;arguments&gt;参数。</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>NativePointer</code>：Frida 中一个表示 native 内存地址的 JavaScript 对象，它用于在 Frida 脚本中操作和访问 native 内存地址，比如读取或写入内存中的数据，调用内存中的函数等。</li>
+<li><code>NativeFunction</code>：Frida 中用于在 JavaScript 中调用 native 函数的对象。通过 NativeFunction 对象，可以在 Frida 脚本中调用 native 共享库（如动态链接库）中的函数，实现对 native 函数的调用和控制。</li>
+</ul>
+<h2 id="Frida-0xA-Native-Hook"><a href="#Frida-0xA-Native-Hook" class="headerlink" title="Frida 0xA Native Hook"></a>Frida 0xA Native Hook</h2><p>雷电模拟器打开直接闪退运行不了，后面换成了 Android Studio</p>
+<h3 id="MainActivity-2"><a href="#MainActivity-2" class="headerlink" title="MainActivity"></a>MainActivity</h3><p>声明了一个 native 层的 <code>stringFromJNI</code> 方法</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/a7d6e6d8a80d009e.png"></p>
+<h3 id="Native-层逻辑-2"><a href="#Native-层逻辑-2" class="headerlink" title="Native 层逻辑"></a>Native 层逻辑</h3><p>查看  <code>stringFromJNI</code> 方法发现并没有什么有用的信息，同时能看见有一个 <code>get_flag</code> 函数，跟进发现是一个 flag 自解密程序，满足参数和为 3 会触发解密，并将结果通过 <code>__android_log_print</code> 打印在日志中，这个函数在程序中并没有被调用</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e3b1b404a1f9260e.png"></p>
+<p>因此方法就是在 frida 之中进行 native 层的声明实例化，主动调用函数</p>
+<h3 id="hook-代码-2"><a href="#hook-代码-2" class="headerlink" title="hook 代码"></a>hook 代码</h3><p>开始直接 hook 这个 <code>get_flag</code> 函数会报错 <code>Error: libfrida0xa.so: unable to find export &#39;get_flag&#39;</code> 找不到这个函数名</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/8b6f59b1c7195af5.png"></p>
+<p>按 <code>Space</code> 在  <code>get_flag</code> 的反汇编窗口切换文本能发现其实函数名是  <code>_Z8get_flagii</code>，所以换成这个就成功了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/448aa425377824d6.png"></p>
+<p>可以根据写出 hook 代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hookA</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> addr=<span class="hljs-title class_">Module</span>.<span class="hljs-title function_">getExportByName</span>(<span class="hljs-string">&quot;libfrida0xa.so&quot;</span>,<span class="hljs-string">&quot;_Z8get_flagii&quot;</span>)<br>    <span class="hljs-comment">// 获取 get_flag() 函数地址</span><br>    <span class="hljs-keyword">var</span> get_flag_ptr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativePointer</span>(addr);<br><span class="hljs-comment">// 创建一个 NativePointer 对象，用于操作和访问 get_flag() 函数内存地址。</span><br><br>    <span class="hljs-keyword">const</span> get_flag = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NativeFunction</span>(get_flag_ptr, <span class="hljs-string">&#x27;void&#x27;</span>, [<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-string">&#x27;int&#x27;</span>]);<br><span class="hljs-comment">// 创建一个名为 get_flag 的 NativeFunction 对象，实现对 native 函数的调用和控制。</span><br>    <br>    <span class="hljs-title function_">get_flag</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Success!&quot;</span>);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title class_">Java</span>.<span class="hljs-title function_">perform</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-title function_">hookA</span>();<br>    &#125;)<br>&#125;<br><span class="hljs-built_in">setTimeout</span>(main,<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/95e0099d84953b70.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android/" class="category-chain-item">Android</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Android/Frida/" class="category-chain-item">Frida</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Andriod/" class="print-no-link">#Andriod</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>重生之我要成为 Frida 糕手:关于 Frida Native 层 Hook</div>
+      <div>http://example.com/2025/04/03/重生之我要成为-Frida-糕手-关于-Frida-Native-层-Hook/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/02/THM-Billing/" title="THM-Billing">
+                        <span class="hidden-mobile">THM-Billing</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+  <!--下面两行是核心内容-->
+  <link  rel="stylesheet" href="/css/TrymenT-ClocK.min.css" />
+  <script  src="/js/TrymenT-ClocK.min.js" ></script>
+ 
