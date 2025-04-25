@@ -109,7 +109,7 @@
     
     <tags>
       
-      <tag>HTB 渗透</tag>
+      <tag>symlinks</tag>
       
     </tags>
     
@@ -244,7 +244,7 @@
     
     <tags>
       
-      <tag>THM fail2ban</tag>
+      <tag>fail2ban</tag>
       
     </tags>
     
@@ -921,7 +921,7 @@
     
     <tags>
       
-      <tag>THM 渗透</tag>
+      <tag>AppArmor</tag>
       
     </tags>
     
@@ -1143,7 +1143,7 @@
     
     <tags>
       
-      <tag>渗透</tag>
+      <tag>Android</tag>
       
     </tags>
     
