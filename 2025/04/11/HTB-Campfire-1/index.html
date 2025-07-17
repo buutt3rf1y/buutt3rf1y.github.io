@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/cedebdfa1d18fa1f.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ab59c5c5ffce9d25.png">
 <meta property="article:published_time" content="2025-04-11T14:10:30.000Z">
-<meta property="article:modified_time" content="2025-04-25T07:00:30.404Z">
+<meta property="article:modified_time" content="2025-07-17T07:13:21.436Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="Kerberos">
 <meta name="twitter:card" content="summary_large_image">
@@ -320,7 +320,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年4月25日 下午
+                    本文最后更新于 2025年7月17日 下午
                   
                 
               </p>
@@ -342,7 +342,7 @@
 </ul>
 <h2 id="prefetch"><a href="#prefetch" class="headerlink" title="prefetch"></a>prefetch</h2><p>Windows 中的预读取文件夹，存放系统已访问的文件的预读信息，程序首次运行时会存储有关在加载该文件时访问的所有文件的信息，还存储元数据。</p>
 <h2 id="kerberoasting-攻击"><a href="#kerberoasting-攻击" class="headerlink" title="kerberoasting 攻击"></a>kerberoasting 攻击</h2><p>kerberoasting 攻击是在 TGS_REP 过程中用户会收到由目标服务实例的 NTLM hash 加密的 TGS，如果得到了这个 TGS，由于该 TGS 是用服务端 hash 加密，那么客户端拿到 TGS 后可以本地爆破，如果字典足够大则能爆破出 SPN（服务主体名称） 链接用户的明文密码，当该服务在域内权限很高时，攻击者能接管整个域。</p>
-<h2 id="分析-DC-的安全日志，确认-Kerberoasting-活动发生的日期和时间"><a href="#分析-DC-的安全日志，确认-Kerberoasting-活动发生的日期和时间" class="headerlink" title="分析 DC 的安全日志，确认 Kerberoasting 活动发生的日期和时间"></a>分析 DC 的安全日志，确认 Kerberoasting 活动发生的日期和时间</h2><p>查看 <code>Domain Controller</code> 中的安全日志，根据 kerberoasting 原理查看 TGS 相关日志，筛选事件 ID 4769，查找服务名称不为 <code>krbtgt</code> 或以 $ 结尾（比如 DC01$ ）的任何事件。票证加密类型为 <code>0x17</code>，用于 RC4 类型加密，故障代码为 0x0</p>
+<h2 id="分析-DC-的安全日志，确认-Kerberoasting-活动发生的日期和时间"><a href="#分析-DC-的安全日志，确认-Kerberoasting-活动发生的日期和时间" class="headerlink" title="分析 DC 的安全日志，确认 Kerberoasting 活动发生的日期和时间"></a>分析 DC 的安全日志，确认 Kerberoasting 活动发生的日期和时间</h2><p>查看 <code>Domain Controller</code> 中的安全日志，根据 kerberoasting 原理查看 TGS 相关日志，筛选事件 ID 4769，查找服务名称不为 <code>krbtgt</code> 或以 <code>$</code> 结尾（比如 DC01$ ）的任何事件。票证加密类型为 <code>0x17</code>，用于 RC4 类型加密，故障代码为 0x0</p>
 <p><img src="https://img.dkdun.cn/v1/2025/12/0f7e4ec4280961ce.png"></p>
 <p>时间转换成 UTC</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2024</span>-<span class="hljs-number">05</span>-<span class="hljs-number">21</span> <span class="hljs-number">11</span>:<span class="hljs-number">18</span>:<span class="hljs-number">09</span> -&gt; <span class="hljs-number">2024</span>-<span class="hljs-number">05</span>-<span class="hljs-number">21</span> <span class="hljs-number">03</span>:<span class="hljs-number">18</span>:<span class="hljs-number">09</span><br></code></pre></td></tr></table></figure>
