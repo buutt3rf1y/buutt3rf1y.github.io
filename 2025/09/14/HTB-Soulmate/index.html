@@ -19,12 +19,12 @@
   <meta name="author" content="butt3rf1y">
   <meta name="keywords" content="">
   
-    <meta name="description" content="难度：easy，没啥意思。文件上传拿 shell，再利用 Erlang 加载的 OS 模块获取权限">
+    <meta name="description" content="难度：easy，没啥意思。文件上传拿 shell，再利用 Erlang 加载的 OS 模块命令执行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTB-Soulmate">
 <meta property="og:url" content="http://example.com/2025/09/14/HTB-Soulmate/index.html">
 <meta property="og:site_name" content="(｡･ω･｡)Welcome~">
-<meta property="og:description" content="难度：easy，没啥意思。文件上传拿 shell，再利用 Erlang 加载的 OS 模块获取权限">
+<meta property="og:description" content="难度：easy，没啥意思。文件上传拿 shell，再利用 Erlang 加载的 OS 模块命令执行">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/db25d3c66d73e2fe.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/ebcacdf782ce05c8.png">
@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/795b09dc4713527b.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/9715edfc4918a477.png">
 <meta property="article:published_time" content="2025-09-14T14:20:41.000Z">
-<meta property="article:modified_time" content="2025-09-14T14:27:29.729Z">
+<meta property="article:modified_time" content="2025-09-14T14:29:27.147Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="文件上传 Erlang">
 <meta name="twitter:card" content="summary_large_image">
@@ -325,7 +325,7 @@
             
               <div class="markdown-body">
                 
-                <p>难度：easy，没啥意思。文件上传拿 shell，再利用 Erlang 加载的 OS 模块获取权限</p>
+                <p>难度：easy，没啥意思。文件上传拿 shell，再利用 Erlang 加载的 OS 模块命令执行</p>
 <span id="more"></span>
 
 <h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash">└─# nmap -sS -sV -A -Pn 10.10.11.86<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-14 19:47 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 10.10.11.86<br>Host is up (0.23s latency).<br>Not shown: 998 closed tcp ports (reset)<br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.13 (Ubuntu Linux; protocol 2.0)<br>| ssh-hostkey:<br>|   256 3e:ea:45:4b:c5:d1:6d:6f:e2:d4:d1:3b:0a:3d:a9:4f (ECDSA)<br>|_  256 64:cc:75:de:4a:e6:a5:b4:73:eb:3f:1b:cf:b4:e3:94 (ED25519)<br>80/tcp open  http    nginx 1.18.0 (Ubuntu)<br>|_http-title: Did not follow redirect to http://soulmate.htb/<br>|_http-server-header: nginx/1.18.0 (Ubuntu)<br>No exact OS matches <span class="hljs-keyword">for</span> host (If you know what OS is running on it, see https://nmap.org/submit/ ).<br>TCP/IP fingerprint:<br>OS:SCAN(V=7.94SVN%E=4%D=9/14%OT=22%CT=1%CU=42823%PV=Y%DS=3%DC=T%G=Y%TM=68C6<br>OS:AB7A%P=x86_64-pc-linux-gnu)SEQ(SP=100%GCD=1%ISR=10F%TI=Z%CI=Z)SEQ(SP=100<br>OS:%GCD=1%ISR=10F%TI=Z%CI=Z%TS=A)SEQ(SP=100%GCD=1%ISR=10F%TI=Z%CI=Z%II=I)SE<br>OS:Q(SP=100%GCD=1%ISR=10F%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M542ST11NW7%O2=M542ST1<br>OS:1NW7%O3=M542NNT11NW7%O4=M542ST11NW7%O5=M542ST11NW7%O6=M542ST11)WIN(W1=FE<br>OS:88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)ECN(R=Y%DF=Y%T=40%W=FAF0%O=M5<br>OS:42NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4<br>OS:(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%<br>OS:F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=N)U1(R=<br>OS:Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=F279%RUD=G)IE(R=Y%DFI<br>OS:=N%T=40%CD=S)<br><br>Network Distance: 3 hops<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br></code></pre></td></tr></table></figure>
@@ -359,7 +359,7 @@
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;ben&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;HouseH0ldings998&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>拿到 userflag</p>
-<h1 id="利用-Erlang-服务加载的-os-模块获取权限"><a href="#利用-Erlang-服务加载的-os-模块获取权限" class="headerlink" title="利用 Erlang 服务加载的 os 模块获取权限"></a>利用 Erlang 服务加载的 os 模块获取权限</h1><p>查看端口开放情况，发现 2222 端口运行了基于 Erlang 的 SSH 服务</p>
+<h1 id="利用-Erlang-服务加载的-os-模块命令执行"><a href="#利用-Erlang-服务加载的-os-模块命令执行" class="headerlink" title="利用 Erlang 服务加载的 os 模块命令执行"></a>利用 Erlang 服务加载的 os 模块命令执行</h1><p>查看端口开放情况，发现 2222 端口运行了基于 Erlang 的 SSH 服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ben@soulmate:~$ nc 127.0.0.1 2222<br>SSH-2.0-Erlang/5.2.9<br></code></pre></td></tr></table></figure>
 
 <p>登录查看</p>
