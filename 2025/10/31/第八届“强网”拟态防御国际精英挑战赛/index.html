@@ -251,26 +251,24 @@
 
   
 
-<!-- 全屏固定背景 -->
-<div id="web_bg"
-     style="
-       background-image: url('https://img.dkdun.cn/v1/2025/12/ee5d8516e3530463.png');
-       background-size: cover;
-       background-position: center;
-       background-attachment: fixed;
-       position: fixed;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       z-index: -1;
-     ">
-</div>
+<!-- 全屏固定背景层 -->
+<div id="web_bg" style="
+  background-image: url('https://img.dkdun.cn/v1/2025/12/ee5d8516e3530463.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+"></div>
 
-<!-- banner 容器（透明） -->
-<div id="banner" class="banner" style="background: none;">
+<!-- banner容器（透明背景） -->
+<div id="banner" class="banner" parallax=true style="background: none;">
   <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+    <div class="mask flex-center" style="background-color: rgba(0,0,0,0)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
