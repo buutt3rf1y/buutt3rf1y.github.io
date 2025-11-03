@@ -141,6 +141,44 @@ Fluid.events = {
       };
       if (img.complete) { img.onload(); }
     }
+
+    // If there is a separate full-page background container (#web_bg),
+    // copy banner's background to it, then clear the banner background
+    // and make the banner mask transparent. This is done safely with
+    // existence checks to avoid errors when elements are missing.
+    try {
+      var bannerEl = document.querySelector('.banner');
+      var webBgEl = document.querySelector('#web_bg');
+      var bannerElNode = document.querySelector('#banner');
+      var maskEl = document.querySelector('#banner .mask');
+
+      if (bannerEl && webBgEl) {
+        // Prefer inline style background if present, otherwise use computed style
+        var bgValue = '';
+        if (bannerEl.style && bannerEl.style.background && bannerEl.style.background.trim() !== '') {
+          bgValue = bannerEl.style.background.split(' ')[0];
+        } else {
+          var computed = window.getComputedStyle(bannerEl).backgroundImage || '';
+          bgValue = computed && computed !== 'none' ? computed : '';
+        }
+        if (bgValue) {
+          webBgEl.setAttribute('style', 'background-image: ' + bgValue + ';position: fixed;width: 100%;height: 100%;z-index: -1;background-size: cover;');
+        }
+      }
+
+      if (bannerElNode) {
+        // clear banner inline background to avoid double display
+        bannerElNode.setAttribute('style', 'background-image: url()');
+      }
+
+      if (maskEl) {
+        maskEl.setAttribute('style', 'background-color:rgba(0,0,0,0)');
+      }
+    } catch (e) {
+      // fail silently to avoid breaking the page if anything unexpected occurs
+      // eslint-disable-next-line no-console
+      console && console.warn && console.warn('Failed to sync banner background to #web_bg', e);
+    }
   },
 
   registerRefreshCallback: function(callback) {
