@@ -286,7 +286,7 @@ sup > a::before,
 }
 .navbar {
   background-color: transparent;
-  font-size: 1.125rem;
+  font-size: 2.5rem;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 }
@@ -458,11 +458,11 @@ sup > a::before,
 }
 @media (max-width: 575px) {
   .banner-text {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   #subtitle,
   .typed-cursor {
-    font-size: 1.35rem;
+    font-size: 1.5rem;
   }
 }
 .modal-dialog .modal-content {
@@ -837,7 +837,7 @@ i.iconfont {
   --color-mode: "light";
   --body-bg-color: #eee;
   --board-bg-color: #fff;
-  --text-color: #3c4858;
+  --text-color: #06080b;
   --sec-text-color: #718096;
   --post-text-color: #2c3e50;
   --post-heading-color: #1a202c;
@@ -853,8 +853,8 @@ i.iconfont {
   --button-bg-color: transparent;
   --button-hover-bg-color: #f2f3f5;
   --highlight-bg-color: #f6f8fa;
-  --inlinecode-bg-color: rgba(175,184,193,0.2);
-  --fold-title-color: #3c4858;
+  --inlinecode-bg-color: rgba(72, 83, 136, 0.2);
+  --fold-title-color: #4a6180;
   --fold-border-color: #eaecef;
 }
 @media (prefers-color-scheme: dark) {
@@ -873,14 +873,14 @@ i.iconfont {
     --link-hover-bg-color: #364151;
     --line-color: #435266;
     --navbar-bg-color: #1f3144;
-    --navbar-text-color: #d0d0d0;
+    --navbar-text-color: #ffffff;
     --subtitle-color: #d0d0d0;
     --scrollbar-color: #687582;
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
     --button-hover-bg-color: #46647e;
     --highlight-bg-color: #303030;
-    --inlinecode-bg-color: rgba(99,110,123,0.4);
+    --inlinecode-bg-color: rgba(113, 152, 196, 0.4);
     --fold-title-color: #c4c6c9;
     --fold-border-color: #435266;
   }
@@ -1459,7 +1459,7 @@ figure.highlight td.code > pre {
   transition: border-color 0.2s ease-in-out;
 }
 .markdown-body pre {
-  font-size: 85% !important;
+  font-size: 90% !important;
 }
 .markdown-body pre .mermaid {
   text-align: center;

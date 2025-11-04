@@ -10,7 +10,7 @@ function  snowFall(snow) {
 
  this.flakeSize  =  snow.flakeSize  ||  10;  /* 雪花形状 */
 
- this.fallSpeed  =  snow.fallSpeed  ||  1; /* 坠落速度 */
+ this.fallSpeed  =  snow.fallSpeed  ||  0.5; /* 坠落速度 */
 
 }
 
