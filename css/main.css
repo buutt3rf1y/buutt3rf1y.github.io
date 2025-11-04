@@ -308,7 +308,7 @@ sup > a::before,
   color: var(--navbar-text-color);
 }
 .navbar .nav-item .nav-link i {
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   line-height: inherit;
 }
 .navbar .nav-item .nav-link i:only-child {
