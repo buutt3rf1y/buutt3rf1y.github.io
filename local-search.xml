@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>2025极客大挑战-Reverse</title>
+    <link href="/2025/11/19/2025%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Reverse/"/>
+    <url>/2025/11/19/2025%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Reverse/</url>
+    
+    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="7adc86bf2662c490e2760b5bb311de92a1394efe91ba8733e363d51c87e0dacb">17272fca1cfe8fd64e35b245c9ecc692a258a4560fdc3e79b76c0b68466c96f9</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    
+    
+    <categories>
+      
+      <category>只关于 Reverse</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Reverse</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>RCTF-2025</title>
     <link href="/2025/11/19/RCTF-2025/"/>
     <url>/2025/11/19/RCTF-2025/</url>
