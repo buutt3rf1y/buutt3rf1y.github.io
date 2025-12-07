@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2024/12/83e0272660805f52.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ezmac加密逻辑，简单异或 12345678910111213141516171819202122232425262728__int64 __fastcall sub_10000045C(__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5)&#123;  return sub_100000634(a1, a2, a3, a4, a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DASCTF 2025下半年赛-Reverse">
+<meta property="og:url" content="http://example.com/2025/12/07/DASCTF-2025%E4%B8%8B%E5%8D%8A%E5%B9%B4%E8%B5%9B-Reverse/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="ezmac加密逻辑，简单异或 12345678910111213141516171819202122232425262728__int64 __fastcall sub_10000045C(__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5)&#123;  return sub_100000634(a1, a2, a3, a4, a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/d5db2af81a3d7e24.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/7c8b5cf92d414e1e.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/f99c9e94693d4436.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/822f6b147f2533e1.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2025/12/2bdf2f6e733492ef.png">
+<meta property="article:published_time" content="2025-12-07T07:03:05.000Z">
+<meta property="article:modified_time" content="2025-12-07T07:17:04.375Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2025/12/d5db2af81a3d7e24.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>DASCTF 2025下半年赛-Reverse - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="web_bg" style="
+  background-image: url('https://img.dkdun.cn/v1/2025/12/250ec4831b1a4577.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+"></div>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/250ec4831b1a4577.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DASCTF 2025下半年赛-Reverse"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-07 15:03" pubdate>
+          2025年12月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DASCTF 2025下半年赛-Reverse</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年12月7日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ezmac"><a href="#ezmac" class="headerlink" title="ezmac"></a>ezmac</h1><p>加密逻辑，简单异或</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c">__int64 __fastcall <span class="hljs-title function_">sub_10000045C</span><span class="hljs-params">(__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5)</span><br>&#123;<br>  <span class="hljs-keyword">return</span> sub_100000634(a1, a2, a3, a4, a5, <span class="hljs-number">57</span>);<br>&#125;<br><br>__int64 __fastcall <span class="hljs-title function_">sub_100000634</span><span class="hljs-params">(__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5, <span class="hljs-type">char</span> a6)</span><br>&#123;<br>  <span class="hljs-type">unsigned</span> __int8 *v6; <span class="hljs-comment">// x21</span><br>  <span class="hljs-type">char</span> v7; <span class="hljs-comment">// w3</span><br>  <span class="hljs-type">unsigned</span> __int8 *v8; <span class="hljs-comment">// x21</span><br>  <span class="hljs-type">int</span> v9; <span class="hljs-comment">// t1</span><br>  <span class="hljs-type">unsigned</span> __int8 v11; <span class="hljs-comment">// w3</span><br>  <span class="hljs-type">unsigned</span> __int8 *v12; <span class="hljs-comment">// x21</span><br><br>  <span class="hljs-keyword">while</span> ( <span class="hljs-number">1</span> )<br>  &#123;<br>    v9 = *v6;<br>    v8 = v6 + <span class="hljs-number">1</span>;<br>    v7 = v9;<br>    <span class="hljs-keyword">if</span> ( !v9 )<br>      <span class="hljs-keyword">break</span>;<br>    v11 = v7 ^ a6++;<br>    v12 = v8 - <span class="hljs-number">1</span>;<br>    *v12 = v11;<br>    v6 = v12 + <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> sub_100000654();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>解密脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">data = [<span class="hljs-number">0x7D</span>, <span class="hljs-number">0x7B</span>, <span class="hljs-number">0x68</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x69</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0x44</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0x72</span>, <span class="hljs-number">0x21</span>, <span class="hljs-number">0x74</span>, <span class="hljs-number">0x76</span>, <span class="hljs-number">0x75</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0x26</span>, <span class="hljs-number">0x7B</span>, <span class="hljs-number">0x7C</span>, <span class="hljs-number">0x7E</span>, <span class="hljs-number">0x78</span>, <span class="hljs-number">0x7A</span>, <span class="hljs-number">0x2E</span>, <span class="hljs-number">0x2D</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x2D</span>]<br>res = []<br><span class="hljs-keyword">for</span> i,b <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(data):<br>    key = <span class="hljs-number">57</span> + i<br>    orig = b ^ key<br>    res.append(orig)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>.join(<span class="hljs-built_in">chr</span>(x) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> res))<br></code></pre></td></tr></table></figure>
+
+<p>flag</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">DASCTF&#123;<span class="hljs-number">83</span><span class="hljs-keyword">c</span><span class="hljs-number">720</span>da<span class="hljs-number">35436</span><span class="hljs-keyword">cc</span><span class="hljs-number">0</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="androidfile"><a href="#androidfile" class="headerlink" title="androidfile"></a>androidfile</h1><p>Java 层生成两个随机字符串 s、s1 作为 AES 的 key 和 iv，再进行 RSA 公钥加密，调用 native 层</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.dasctf.androidfile;<br><br><span class="hljs-keyword">import</span> R0.c;<br><span class="hljs-keyword">import</span> android.content.res.Resources;<br><span class="hljs-keyword">import</span> android.os.Build.VERSION;<br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.util.Base64;<br><span class="hljs-keyword">import</span> android.view.View;<br><span class="hljs-keyword">import</span> android.view.Window;<br><span class="hljs-keyword">import</span> android.widget.Button;<br><span class="hljs-keyword">import</span> android.widget.TextView;<br><span class="hljs-keyword">import</span> androidx.activity.J;<br><span class="hljs-keyword">import</span> androidx.activity.K;<br><span class="hljs-keyword">import</span> androidx.activity.p;<br><span class="hljs-keyword">import</span> androidx.activity.q;<br><span class="hljs-keyword">import</span> androidx.activity.r;<br><span class="hljs-keyword">import</span> androidx.activity.s;<br><span class="hljs-keyword">import</span> androidx.activity.t;<br><span class="hljs-keyword">import</span> androidx.activity.u;<br><span class="hljs-keyword">import</span> c0.a;<br><span class="hljs-keyword">import</span> f.g;<br><span class="hljs-keyword">import</span> f.h;<br><span class="hljs-keyword">import</span> java.security.KeyFactory;<br><span class="hljs-keyword">import</span> java.security.PublicKey;<br><span class="hljs-keyword">import</span> java.security.spec.X509EncodedKeySpec;<br><span class="hljs-keyword">import</span> java.util.Random;<br><span class="hljs-keyword">import</span> javax.crypto.Cipher;<br><span class="hljs-keyword">import</span> javax.crypto.spec.IvParameterSpec;<br><span class="hljs-keyword">import</span> javax.crypto.spec.SecretKeySpec;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">h</span> &#123;<br>    <span class="hljs-keyword">public</span> TextView A;<br>    <span class="hljs-keyword">public</span> Button y;<br>    <span class="hljs-keyword">public</span> TextView z;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.loadLibrary(<span class="hljs-string">&quot;androidfile&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MainActivity</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">a</span> <span class="hljs-variable">a0</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">a</span>(<span class="hljs-built_in">this</span>);<br>        <span class="hljs-built_in">this</span>.d.b.f(<span class="hljs-string">&quot;androidx:appcompat&quot;</span>, a0);<br>        <span class="hljs-built_in">this</span>.i(<span class="hljs-keyword">new</span> <span class="hljs-title class_">g</span>(<span class="hljs-built_in">this</span>));<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">A</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">StringBuffer</span> <span class="hljs-variable">stringBuffer0</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>();<br>        <span class="hljs-type">Random</span> <span class="hljs-variable">random0</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">v</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; v &lt; <span class="hljs-number">16</span>; ++v) &#123;<br>            stringBuffer0.append(((<span class="hljs-type">char</span>)<span class="hljs-string">&quot;0123456bcdefghijklmnopqrstuvwEFGHIJKLMNOPQRSTUVWXYZ&quot;</span>.charAt(random0.nextInt(<span class="hljs-number">51</span>))));<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> stringBuffer0.toString();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">C</span><span class="hljs-params">(String s, String s1, String s2)</span> &#123;<br>        <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher0</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;AES/CBC/PKCS5Padding&quot;</span>);<br>        cipher0.init(<span class="hljs-number">1</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">SecretKeySpec</span>(s1.getBytes(), <span class="hljs-string">&quot;AES&quot;</span>), <span class="hljs-keyword">new</span> <span class="hljs-title class_">IvParameterSpec</span>(s2.getBytes()));<br>        <span class="hljs-keyword">return</span> Base64.encodeToString(cipher0.doFinal(s.getBytes(<span class="hljs-string">&quot;UTF-8&quot;</span>)), <span class="hljs-number">0</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">D</span><span class="hljs-params">(String s)</span> &#123;<br>        <span class="hljs-type">X509EncodedKeySpec</span> <span class="hljs-variable">x509EncodedKeySpec0</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">X509EncodedKeySpec</span>(Base64.decode(<span class="hljs-string">&quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ3AfAR+HoKn8iQaFT8xjSLkJf+uHuX5dSH/gsLSAlqIkVeADHx7okRAfl5U2sCe0A/2SY9sDurGOLHTYcmHAuECAwEAAQ==&quot;</span>, <span class="hljs-number">0</span>));<br>        <span class="hljs-type">PublicKey</span> <span class="hljs-variable">publicKey0</span> <span class="hljs-operator">=</span> KeyFactory.getInstance(<span class="hljs-string">&quot;RSA&quot;</span>).generatePublic(x509EncodedKeySpec0);<br>        <span class="hljs-type">Cipher</span> <span class="hljs-variable">cipher0</span> <span class="hljs-operator">=</span> Cipher.getInstance(<span class="hljs-string">&quot;RSA&quot;</span>);<br>        cipher0.init(<span class="hljs-number">1</span>, publicKey0);<br>        <span class="hljs-keyword">return</span> Base64.encodeToString(cipher0.doFinal(s.getBytes()), <span class="hljs-number">0</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">native</span> String <span class="hljs-title function_">a_p</span><span class="hljs-params">(String arg1)</span> &#123;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span>  <span class="hljs-comment">// f.h</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle bundle0)</span> &#123;<br>        r r0;<br>        <span class="hljs-built_in">super</span>.onCreate(bundle0);<br>        <span class="hljs-type">K</span> <span class="hljs-variable">k0</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">K</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, J.a);<br>        <span class="hljs-type">K</span> <span class="hljs-variable">k1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">K</span>(p.a, p.b, J.a);<br>        <span class="hljs-type">View</span> <span class="hljs-variable">view0</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getWindow().getDecorView();<br>        c.d(view0, <span class="hljs-string">&quot;window.decorView&quot;</span>);<br>        <span class="hljs-type">Resources</span> <span class="hljs-variable">resources0</span> <span class="hljs-operator">=</span> view0.getResources();<br>        c.d(resources0, <span class="hljs-string">&quot;view.resources&quot;</span>);<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">z</span> <span class="hljs-operator">=</span> ((Boolean)J.a.b(resources0)).booleanValue();<br>        <span class="hljs-type">Resources</span> <span class="hljs-variable">resources1</span> <span class="hljs-operator">=</span> view0.getResources();<br>        c.d(resources1, <span class="hljs-string">&quot;view.resources&quot;</span>);<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">z1</span> <span class="hljs-operator">=</span> ((Boolean)J.a.b(resources1)).booleanValue();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">v</span> <span class="hljs-operator">=</span> Build.VERSION.SDK_INT;<br>        <span class="hljs-keyword">if</span>(v &gt;= <span class="hljs-number">30</span>) &#123;<br>            r0 = __alloc_invoke__ u, Object();  <span class="hljs-comment">// Mismatched object-allocation/constructor-invocation, likely indicating an inlined constructor call</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(v &gt;= <span class="hljs-number">29</span>) &#123;<br>            r0 = __alloc_invoke__ t, Object();  <span class="hljs-comment">// Mismatched object-allocation/constructor-invocation, likely indicating an inlined constructor call</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(v &gt;= <span class="hljs-number">28</span>) &#123;<br>            r0 = __alloc_invoke__ s, Object();  <span class="hljs-comment">// Mismatched object-allocation/constructor-invocation, likely indicating an inlined constructor call</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(v &gt;= <span class="hljs-number">26</span>) &#123;<br>            r0 = __alloc_invoke__ r, Object();  <span class="hljs-comment">// Mismatched object-allocation/constructor-invocation, likely indicating an inlined constructor call</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            r0 = __alloc_invoke__ q, Object();  <span class="hljs-comment">// Mismatched object-allocation/constructor-invocation, likely indicating an inlined constructor call</span><br>        &#125;<br><br>        <span class="hljs-type">Window</span> <span class="hljs-variable">window0</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getWindow();<br>        c.d(window0, <span class="hljs-string">&quot;window&quot;</span>);<br>        r0.C0(k0, k1, window0, view0, z, z1);<br>        <span class="hljs-type">Window</span> <span class="hljs-variable">window1</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getWindow();<br>        c.d(window1, <span class="hljs-string">&quot;window&quot;</span>);<br>        r0.d(window1);<br>        <span class="hljs-built_in">this</span>.setContentView(<span class="hljs-number">0x7F0B001C</span>);  <span class="hljs-comment">// layout:activity_main</span><br>        <span class="hljs-built_in">this</span>.y = (Button)<span class="hljs-built_in">this</span>.findViewById(<span class="hljs-number">0x7F080130</span>);  <span class="hljs-comment">// id:mybutton1</span><br>        <span class="hljs-built_in">this</span>.z = (TextView)<span class="hljs-built_in">this</span>.findViewById(<span class="hljs-number">0x7F0800AC</span>);  <span class="hljs-comment">// id:edit_text_1</span><br>        <span class="hljs-built_in">this</span>.A = (TextView)<span class="hljs-built_in">this</span>.findViewById(<span class="hljs-number">0x7F0800AD</span>);  <span class="hljs-comment">// id:edit_text_2</span><br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAncB8BH4egqfyJBoVPzGNIuQl/64e5fl1If+CwtICWoiRV4AMfHuiREB+XlTawJ7QD/ZJj2wO6sY4sdNhyYcC4QIDAQABAkEAh81Gdg+kcFHoD9AsbkRX/atuUtcwXkYL4gK2LMThpdEFHIO7Scr+SYfwqmm/LMtkbojEGEnNoIfmoLvGfhXaAQIhANDWo8OSMSQFnvh129cFiVfYKlS4ec24ixvFD8fUD4SRAiEAwWBuZ3kox1n21AsTAxom+E3z5KUUOSUjPXvG6tZBgVECIDOP2y0tSi6/qIll6BqFxmxG9eSnC4PMfaQkmonXBOHRAiBmJUPsUGmj8/eXxknCp7vSCYs9SZ3HGcDlp05Jmed8IQIhAJnE1PNe9lC5OazgRYhSG6bGCTbfFHT6OuwCVIxRSx4P&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> MainActivity.A();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> MainActivity.A();<br>        <span class="hljs-built_in">this</span>.y.setOnClickListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">i0</span>.a(<span class="hljs-built_in">this</span>, s, <span class="hljs-string">&quot;MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ3AfAR+HoKn8iQaFT8xjSLkJf+uHuX5dSH/gsLSAlqIkVeADHx7okRAfl5U2sCe0A/2SY9sDurGOLHTYcmHAuECAwEAAQ==&quot;</span>, s1));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>给了数据</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cmd">EvB2udc3ofALSbCxeH5j4O2QZjfyZ151Nj3tOBVpt+<span class="hljs-number">99</span>XXudbbzYknID0CxFcVO5+Vf16SjxzVbCuOizTIm3TVXXprsM1IlyjzJnTIUc8s4cFIX+clb1zN5PqUm11Z9LDlUMGYu+fa0fZqB5o7EMXWJvl+uKOsk/K3zzrnU0Rdpn/Ylm0ZBBDqpaNDYeXkGM52Uj6NxOhRRMaW2VcH/u4rNg7y7/X6OKa68G2TstGohwelnKpzgp4eFBNxn2&lt;-encrypt<br><br>input-&gt;UBUSWb+<span class="hljs-number">1</span>P3Z/aokV67e5xQ7eaHoEj3JAeC0XA1RckTWdWZYCB/+D7qC3Hao74goX<br><br>获取的RSA公钥和私钥<br>-----BEGIN PUBLIC KEY-----  <br>MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ3AfAR+HoKn8iQaFT8xjSLkJf+uHuX5  dSH/gsLSAlqIkVeADHx7okRAfl5U2sCe0A/<span class="hljs-number">2</span>SY9sDurGOLHTYcmHAuECAwEAAQ\=\=  <br>-----END PUBLIC KEY-----<br><br>-----BEGIN PRIVATE KEY-----  <br>MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAncB8BH4egqfyJBoVPzGNIuQl/<span class="hljs-number">64</span>e5fl1If+CwtICWoiRV4AMfHuiREB+XlTawJ7QD/ZJj2wO6sY4sdNh  yYcC4QIDAQABAkEAh81Gdg+kcFHoD9AsbkRX/atuUtcwXkYL4gK2LMThpdEFHIO7  Scr+SYfwqmm/LMtkbojEGEnNoIfmoLvGfhXaAQIhANDWo8OSMSQFnvh129cFiVfY  KlS4ec24ixvFD8fUD4SRAiEAwWBuZ3kox1n21AsTAxom+E3z5KUUOSUjPXvG6tZB  gVECIDOP2y0tSi6/qIll6BqFxmxG9eSnC4PMfaQkmonXBOHRAiBmJUPsUGmj8/eX  xknCp7vSCYs9SZ3HGcDlp05Jmed8IQIhAJnE1PNe9lC5OazgRYhSG6bGCTbfFHT6  OuwCVIxRSx4P  <br>-----END PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>so 里面是标准 RC4 加密</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/d5db2af81a3d7e24.png"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cmd">enkey_QMz2qirA80LJiOs30Efl00JsrIv+ZdrM9iB74P/nCWOrzEemEOaq2lN1/V5/rOAoTgBanJO/Acpo<br>okhVIOVdsA==<br>eniv_hKH/M/v8zwVICeWlc652BZk2eA/c2g0cLpBwvWBVlphiwBBasdn9HPWk7sb/IaRh8eppZrToUwz6<br>f1eomFJkEQ=<br></code></pre></td></tr></table></figure>
+
+<p>解得 RSA 加密后的 key 和 iv，最后用私钥进行解密密文</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">from</span> Crypto.PublicKey <span class="hljs-keyword">import</span> RSA<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><span class="hljs-keyword">from</span> Crypto.Util.number <span class="hljs-keyword">import</span> bytes_to_long, long_to_bytes<br><span class="hljs-keyword">from</span> Crypto.Util.Padding <span class="hljs-keyword">import</span> unpad<br><br>RSA_PRIV_KEY = <span class="hljs-string">&quot;&quot;&quot;-----BEGIN PRIVATE KEY-----</span><br><span class="hljs-string">MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAncB8BH4egqfyJBoV</span><br><span class="hljs-string">PzGNIuQl/64e5fl1If+CwtICWoiRV4AMfHuiREB+XlTawJ7QD/ZJj2wO6sY4sdNh</span><br><span class="hljs-string">yYcC4QIDAQABAkEAh81Gdg+kcFHoD9AsbkRX/atuUtcwXkYL4gK2LMThpdEFHIO7</span><br><span class="hljs-string">Scr+SYfwqmm/LMtkbojEGEnNoIfmoLvGfhXaAQIhANDWo8OSMSQFnvh129cFiVfY</span><br><span class="hljs-string">KlS4ec24ixvFD8fUD4SRAiEAwWBuZ3kox1n21AsTAxom+E3z5KUUOSUjPXvG6tZB</span><br><span class="hljs-string">gVECIDOP2y0tSi6/qIll6BqFxmxG9eSnC4PMfaQkmonXBOHRAiBmJUPsUGmj8/eX</span><br><span class="hljs-string">xknCp7vSCYs9SZ3HGcDlp05Jmed8IQIhAJnE1PNe9lC5OazgRYhSG6bGCTbfFHT6</span><br><span class="hljs-string">OuwCVIxRSx4P</span><br><span class="hljs-string">-----END PRIVATE KEY-----&quot;&quot;&quot;</span><br><br>RSA_ENC_KEY_B64 = <span class="hljs-string">&quot;QMz2qirA80LJiOs30Efl00JsrIv+ZdrM9iB74P/nCWOrzEemEOaq2lN1/V5/rOAoTgBanJO/AcpookhVIOVdsA==&quot;</span><br>RSA_ENC_IV_B64  = <span class="hljs-string">&quot;hKH/M/v8zwVICeWlc652BZk2eA/c2g0cLpBwvWBVlphiwBBasdn9HPWk7sb/IaRh8eppZrToUwz6f1eomFJkEQ=&quot;</span><br>TARGET_FLAG_B64 = <span class="hljs-string">&quot;UBUSWb+1P3Z/aokV67e5xQ7eaHoEj3JAeC0XA1RckTWdWZYCB/+D7qC3Hao74goX&quot;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">safe_b64decode</span>(<span class="hljs-params">d</span>):<br>    d = d.strip().replace(<span class="hljs-string">&quot;\n&quot;</span>,<span class="hljs-string">&quot;&quot;</span>).replace(<span class="hljs-string">&quot;\r&quot;</span>,<span class="hljs-string">&quot;&quot;</span>)<br>    m = <span class="hljs-built_in">len</span>(d) % <span class="hljs-number">4</span><br>    <span class="hljs-keyword">if</span> m:<br>        d += <span class="hljs-string">&quot;=&quot;</span> * (<span class="hljs-number">4</span> - m)<br>    <span class="hljs-keyword">return</span> base64.b64decode(d)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">raw_rsa_decrypt</span>(<span class="hljs-params">enc, key</span>):<br>    c = bytes_to_long(safe_b64decode(enc))<br>    m = long_to_bytes(<span class="hljs-built_in">pow</span>(c, key.d, key.n))<br>    <span class="hljs-keyword">return</span> m[-<span class="hljs-number">16</span>:] <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(m) &gt;= <span class="hljs-number">16</span> <span class="hljs-keyword">else</span> m.rjust(<span class="hljs-number">16</span>, <span class="hljs-string">b&#x27;\x00&#x27;</span>)<br><br>k = RSA.import_key(RSA_PRIV_KEY)<br>aes_k = raw_rsa_decrypt(RSA_ENC_KEY_B64, k)<br>aes_iv = raw_rsa_decrypt(RSA_ENC_IV_B64, k)<br><br>cipher = AES.new(aes_k, AES.MODE_CBC, aes_iv)<br>pt = cipher.decrypt(safe_b64decode(TARGET_FLAG_B64))<br>flag = unpad(pt, <span class="hljs-number">16</span>).decode(<span class="hljs-string">&quot;utf-8&quot;</span>)<br><br><span class="hljs-built_in">print</span>(flag)<br><br></code></pre></td></tr></table></figure>
+
+<p>拿到 flag</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">DASCTF</span><span class="hljs-template-variable">&#123;android_encrypto_file_and_plains&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="login"><a href="#login" class="headerlink" title="login"></a>login</h1><p>client 端发送了三个字段，account，key，password</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/7c8b5cf92d414e1e.png"></p>
+<p>并且 sub_49DD 和 sub_4125 函数这里进行了 AES-128 CBC 加密</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">unsigned</span> __int64 __fastcall <span class="hljs-title function_">sub_49DD</span><span class="hljs-params">(__int64 a1, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a2, __int64 a3, _QWORD *a4, __int64 a5)</span><br>&#123;<br>  __int64 *v5; <span class="hljs-comment">// rax</span><br>  __int64 v6; <span class="hljs-comment">// rdx</span><br>  _QWORD *v7; <span class="hljs-comment">// rax</span><br>  __int64 v8; <span class="hljs-comment">// rdx</span><br>  <span class="hljs-type">int</span> v13; <span class="hljs-comment">// [rsp+24h] [rbp-3Ch]</span><br>  <span class="hljs-type">int</span> i; <span class="hljs-comment">// [rsp+34h] [rbp-2Ch]</span><br>  __int64 v15; <span class="hljs-comment">// [rsp+38h] [rbp-28h]</span><br>  __int64 v16; <span class="hljs-comment">// [rsp+40h] [rbp-20h] BYREF</span><br>  __int64 v17; <span class="hljs-comment">// [rsp+48h] [rbp-18h]</span><br>  <span class="hljs-type">unsigned</span> __int64 v18; <span class="hljs-comment">// [rsp+58h] [rbp-8h]</span><br><br>  v18 = __readfsqword(<span class="hljs-number">0x28</span>u);<br>  v15 = sub_48ED(a1, a2, <span class="hljs-number">16</span>);<br>  v13 = sub_49A4(a2, <span class="hljs-number">16</span>);<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; v13 / <span class="hljs-number">16</span>; ++i )<br>  &#123;<br>    v16 = <span class="hljs-number">0</span>;<br>    v17 = <span class="hljs-number">0</span>;<br>    v5 = (<span class="hljs-number">16</span> * i + v15);<br>    v6 = v5[<span class="hljs-number">1</span>];<br>    v16 = *v5;<br>    v17 = v6;<br>    sub_4125(a3, <span class="hljs-number">16</span>, &amp;v16, <span class="hljs-number">16</span> * i + a5, <span class="hljs-number">16</span>, a4);<br>    v7 = (<span class="hljs-number">16</span> * i + a5);<br>    v8 = v7[<span class="hljs-number">1</span>];<br>    *a4 = *v7;<br>    a4[<span class="hljs-number">1</span>] = v8;<br>  &#125;<br>  <span class="hljs-keyword">return</span> __readfsqword(<span class="hljs-number">0x28</span>u) ^ v18;<br>&#125;<br><br>__int64 __fastcall <span class="hljs-title function_">sub_4125</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">void</span> *a1, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a2, __int64 a3, __int64 a4, <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> a5, __int64 a6)</span><br>&#123;<br>  <span class="hljs-type">int</span> v6; <span class="hljs-comment">// eax</span><br>  __int64 v8; <span class="hljs-comment">// [rsp+18h] [rbp-1E8h]</span><br>  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> v10; <span class="hljs-comment">// [rsp+30h] [rbp-1D0h]</span><br>  <span class="hljs-type">int</span> v11; <span class="hljs-comment">// [rsp+34h] [rbp-1CCh]</span><br>  <span class="hljs-type">unsigned</span> <span class="hljs-type">int</span> i; <span class="hljs-comment">// [rsp+38h] [rbp-1C8h]</span><br>  <span class="hljs-type">int</span> j; <span class="hljs-comment">// [rsp+3Ch] [rbp-1C4h]</span><br>  __int64 v14; <span class="hljs-comment">// [rsp+40h] [rbp-1C0h]</span><br>  _BYTE *v15; <span class="hljs-comment">// [rsp+48h] [rbp-1B8h]</span><br>  _QWORD v16[<span class="hljs-number">2</span>]; <span class="hljs-comment">// [rsp+50h] [rbp-1B0h] BYREF</span><br>  _BYTE v17[<span class="hljs-number">368</span>]; <span class="hljs-comment">// [rsp+60h] [rbp-1A0h] BYREF</span><br>  __int64 v18; <span class="hljs-comment">// [rsp+1D0h] [rbp-30h]</span><br>  __int64 v19; <span class="hljs-comment">// [rsp+1D8h] [rbp-28h]</span><br>  _QWORD dest[<span class="hljs-number">4</span>]; <span class="hljs-comment">// [rsp+1E0h] [rbp-20h] BYREF</span><br><br>  v8 = a3;<br>  dest[<span class="hljs-number">3</span>] = __readfsqword(<span class="hljs-number">0x28</span>u);<br>  v10 = <span class="hljs-number">0</span>;<br>  v11 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">while</span> ( a5 &gt; v10 )<br>  &#123;<br>    <span class="hljs-keyword">while</span> ( v11 &lt;= <span class="hljs-number">15</span> )<br>    &#123;<br>      v6 = v11++;<br>      *(v10++ + a3) ^= *(v6 + a6);<br>    &#125;<br>    v11 = <span class="hljs-number">0</span>;<br>  &#125;<br>  v14 = a4;<br>  v15 = v17;<br>  v18 = <span class="hljs-number">0</span>;<br>  v19 = <span class="hljs-number">0</span>;<br>  dest[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>  dest[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>  v16[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>  v16[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> ( a1 &amp;&amp; a3 &amp;&amp; a4 )<br>  &#123;<br>    <span class="hljs-keyword">if</span> ( a2 &lt;= <span class="hljs-number">0x10</span> )<br>    &#123;<br>      <span class="hljs-keyword">if</span> ( (a5 &amp; <span class="hljs-number">0xF</span>) != <span class="hljs-number">0</span> )<br>      &#123;<br>        <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;inLen is invalid.&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0xFFFFFFFF</span>LL;<br>      &#125;<br>      <span class="hljs-keyword">else</span><br>      &#123;<br>        <span class="hljs-built_in">memcpy</span>(dest, a1, a2);<br>        sub_33F6(dest, <span class="hljs-number">16</span>, v17);<br>        <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; a5 &gt; i; i += <span class="hljs-number">16</span> )<br>        &#123;<br>          sub_3323(v16, v8);<br>          sub_36C5(v16, v17);<br>          <span class="hljs-keyword">for</span> ( j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">9</span>; ++j )<br>          &#123;<br>            v15 += <span class="hljs-number">16</span>;<br>            sub_37D2(v16);<br>            sub_38D8(v16);<br>            sub_3CB1(v16);<br>            sub_36C5(v16, v15);<br>          &#125;<br>          sub_37D2(v16);<br>          sub_38D8(v16);<br>          sub_36C5(v16, v15 + <span class="hljs-number">16</span>);<br>          sub_338C(v16, v14);<br>          v14 += <span class="hljs-number">16</span>;<br>          v8 += <span class="hljs-number">16</span>;<br>          v15 = v17;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>      <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;keyLen must be 16.&quot;</span>);<br>      <span class="hljs-keyword">return</span> <span class="hljs-number">0xFFFFFFFF</span>LL;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">else</span><br>  &#123;<br>    <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;param err.&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0xFFFFFFFF</span>LL;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>server 这边收到的数据依次进行校验，account -&gt; byte_C1A0，key -&gt; byte_C0A0，password -&gt; byte_CA20</p>
+<p>account 和 key 验证之后调用 sub_73B2 函数进行了 RSA 解密，这里拿到 RSA 私钥也就是 off_C2F0 ，然后对这两个字段的数据进行解密</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/f99c9e94693d4436.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.PublicKey <span class="hljs-keyword">import</span> RSA<br><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> PKCS1_OAEP<br><span class="hljs-keyword">import</span> binascii<br><br>mod_hex = (<br>    <span class="hljs-string">&quot;9a49428cadd84b7a81cb80f916e645a6a9dd23c2fe679f93af6a77eff0f0bb13&quot;</span><br>    <span class="hljs-string">&quot;09b77fb7861275f07ab41e98ae5c2ecf933f27d47b9ce0a55a3e06569cacbb4&quot;</span><br>    <span class="hljs-string">&quot;c9183f8ee9a47f2cfbb3a5965c9326f45d2d608cfeabea1a1879eae95b70224&quot;</span><br>    <span class="hljs-string">&quot;d2e7736b9bc4109756f55a3f70f11a9b9c6564fb6456d329c336fbb59859db5&quot;</span><br>    <span class="hljs-string">&quot;fde1f2338294e863c4f05b4a89e6c3b761d52a2081a0af0a320fde831daa741f&quot;</span><br>    <span class="hljs-string">&quot;ad77aa7ef2dd30b3e33d1a6e7b44ed44ef40de4557a4fd65b63db63d105386bb&quot;</span><br>    <span class="hljs-string">&quot;d81071739ec3d0fe44b6a0952a2b065bededfecea6e22229fea32adfc9a6e2cc&quot;</span><br>    <span class="hljs-string">&quot;fdf5da437a56ad41d7ef08c2c4635d3a0218aab2a5ed6e9dd42d684bc918efe2&quot;</span><br>    <span class="hljs-string">&quot;4d3&quot;</span><br>)<br>exp_hex = <span class="hljs-string">&quot;10001&quot;</span><br>priv_hex = (<br>    <span class="hljs-string">&quot;28c7df24a5798679db2a44979275f5f3179db180d91335702942fb1b70e985de&quot;</span><br>    <span class="hljs-string">&quot;825da90f2eb65d20ddf8be1d9d4e15bc1d84e95795ff8c0c28ce3c33fde054f6&quot;</span><br>    <span class="hljs-string">&quot;e82a4f4cc22597b350c9c62ccc0188bd4152a701a3601558f22aa9fae8b9fdac&quot;</span><br>    <span class="hljs-string">&quot;6c2bc09b1637f71e0511805e04b203c4fdb2b36ad232fe819b06ed4e57c74f39&quot;</span><br>    <span class="hljs-string">&quot;fd9b72623c16ff2100f148f622bf12876260c4859672360dc0da3da6b45c5c8c&quot;</span><br>    <span class="hljs-string">&quot;6215ccda072765840c213fba11a91d6bf598a8a8065797566c8950a34ea0a072&quot;</span><br>    <span class="hljs-string">&quot;a9ed0c38bdc58662f186ec578ca55d5098443fd566cc722ace9c4e89afc4e302&quot;</span><br>    <span class="hljs-string">&quot;c8a4870e11a003b935f4a102695bfd64bb0fa74dcc372682e2b24ff45a1a69&quot;</span><br>)<br><br>acct_hex = (<br>    <span class="hljs-string">&quot;1638e0eb936140b5527033292cbefcd73b55cfc7fb79df51ae3768a0dd9c84ae&quot;</span><br>    <span class="hljs-string">&quot;4580e47a5133b425f4c93eac97e4b1aa0b4cd30589d004f6d0d19fcbc709e86c&quot;</span><br>    <span class="hljs-string">&quot;c2996b433d29f650b69987a466f05bef7f69945860dcc44742a511f3621385c8&quot;</span><br>    <span class="hljs-string">&quot;9fbd4d73153615789634b25cfc3151a4115bc30c96979e5f965290f36a863e33&quot;</span><br>    <span class="hljs-string">&quot;78b5cfc9ba31438c4bae22b23ef815edf7cf1771803bd392a5072b468900b75f&quot;</span><br>    <span class="hljs-string">&quot;5a4377d1daf3d6f7b7b6850d1a4a4134f2f65840efaa9b83d31083051df0fc80&quot;</span><br>    <span class="hljs-string">&quot;a786529159484f62bbb9524f68285f48c7ab8e03bdfeca1a6025aaed9f9728b3&quot;</span><br>    <span class="hljs-string">&quot;90689c0c963920c728eb5695fcb9413f9f4e06d3b93db40e26d6275c84e6126a&quot;</span><br>)<br><br>key_hex = (<br>    <span class="hljs-string">&quot;373a2a27b38fd778c716728ebb95be89a0a057109119a08d5ce49261ebb0e077&quot;</span><br>    <span class="hljs-string">&quot;6d254a40c4d21bd2463e61608771de401eed13ac6660d996bea8c8b82bdd0eaf&quot;</span><br>    <span class="hljs-string">&quot;56c38466776eba31f7b2219230b654a77ec0af395a01c31c139a4f6b7b8ba845&quot;</span><br>    <span class="hljs-string">&quot;192096165dd7acd0331e79dbe434ed8c9a66581d26f69e5faa295f66010076b9&quot;</span><br>    <span class="hljs-string">&quot;1a6dd61db7abd325f8bd25d928debcc02e5555ff81f7ae3e548e3e4659a37f5d&quot;</span><br>    <span class="hljs-string">&quot;3d3c39fbcad1b583e42fb04fa328ebb77e7841f45b711e77ee23e11989db2c0e&quot;</span><br>    <span class="hljs-string">&quot;06b8191a456d56bd1a7d42c47fdfdf1179228b57c6efca9b9b6a7d22682e5b67&quot;</span><br>    <span class="hljs-string">&quot;c7c46a877fb677f5f317b4823fcdc812f0362be27c0f5453037148ed30127b26&quot;</span><br>)<br><br>acct_bytes = binascii.unhexlify(acct_hex)<br>key_bytes = binascii.unhexlify(key_hex)<br><br>mod = <span class="hljs-built_in">int</span>(mod_hex, <span class="hljs-number">16</span>)<br>exp = <span class="hljs-built_in">int</span>(exp_hex, <span class="hljs-number">16</span>)<br>priv = <span class="hljs-built_in">int</span>(priv_hex, <span class="hljs-number">16</span>)<br><br>rsa = RSA.construct((mod, exp, priv))<br>cipher = PKCS1_OAEP.new(rsa)<br><br>aes_iv  = cipher.decrypt(acct_bytes)<br>aes_key = cipher.decrypt(key_bytes)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;AES key:&quot;</span>, aes_key)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;AES iv:&quot;</span>, aes_iv)<br></code></pre></td></tr></table></figure>
+
+<p>解得 key 和 iv</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd">AES key: b&#x27;qqwweerrttyyuuii&#x27;<br>AES iv: b&#x27;aassddffgghhjjll&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>根据拿到的 key 和 iv 解密</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/822f6b147f2533e1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> AES<br><br>key = <span class="hljs-string">b&#x27;qqwweerrttyyuuii&#x27;</span>       <br>iv  = <span class="hljs-string">b&#x27;aassddffgghhjjll&#x27;</span>       <br><br>raw_bytes = <span class="hljs-built_in">bytes</span>([<br>    <span class="hljs-number">0xAD</span>, <span class="hljs-number">0xD1</span>, <span class="hljs-number">0xD1</span>, <span class="hljs-number">0x19</span>, <span class="hljs-number">0x60</span>, <span class="hljs-number">0xC2</span>, <span class="hljs-number">0x2D</span>, <span class="hljs-number">0x91</span>, <span class="hljs-number">0x66</span>, <span class="hljs-number">0xDA</span>,<br>    <span class="hljs-number">0xC3</span>, <span class="hljs-number">0xC2</span>, <span class="hljs-number">0x67</span>, <span class="hljs-number">0x25</span>, <span class="hljs-number">0xC8</span>, <span class="hljs-number">0x19</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0x17</span>, <span class="hljs-number">0x6B</span>, <span class="hljs-number">0x23</span>,<br>    <span class="hljs-number">0x8E</span>, <span class="hljs-number">0x30</span>, <span class="hljs-number">0x03</span>, <span class="hljs-number">0xAA</span>, <span class="hljs-number">0x57</span>, <span class="hljs-number">0xAA</span>, <span class="hljs-number">0xCB</span>, <span class="hljs-number">0xA0</span>, <span class="hljs-number">0xA2</span>, <span class="hljs-number">0x26</span>,<br>    <span class="hljs-number">0xB7</span>, <span class="hljs-number">0xC3</span>, <span class="hljs-number">0x1C</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0x0B</span>, <span class="hljs-number">0x8D</span>, <span class="hljs-number">0x20</span>, <span class="hljs-number">0x9C</span>, <span class="hljs-number">0xB4</span>, <span class="hljs-number">0x95</span>,<br>    <span class="hljs-number">0xB5</span>, <span class="hljs-number">0x5D</span>, <span class="hljs-number">0xB4</span>, <span class="hljs-number">0xE2</span>, <span class="hljs-number">0x7D</span>, <span class="hljs-number">0x4E</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x8E</span><br>])<br><br>cipher = AES.new(key, AES.MODE_CBC, iv)<br>decrypted = cipher.decrypt(raw_bytes)<br><span class="hljs-built_in">print</span>(decrypted.decode(<span class="hljs-string">&#x27;utf-8&#x27;</span>, errors=<span class="hljs-string">&#x27;ignore&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>得到 flag</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">DASCTF&#123;dqmaxfwk<span class="hljs-name">m921</span>kr<span class="hljs-number">21</span>m;df<span class="hljs-number">1</span><span class="hljs-name">m1</span>dqmlk<span class="hljs-number">1</span>d<span class="hljs-number">12</span>d<span class="hljs-number">1</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="androidfff"><a href="#androidfff" class="headerlink" title="androidfff"></a>androidfff</h1><p>flutter 框架的 apk，blutter 解包后 IDA 加载 libapp.so 导入符号表（结束之后 <a target="_blank" rel="noopener" href="https://quietdawn.github.io/">p3c0wn</a> 师傅给我说这个可以直接看 asm\untitled3\main.dart 文件，确实这样不需要载入符号表了更方便^~^）</p>
+<p>跟进定位到 untitled3_main__FlagCheckerState::ctor_2f7c1c 这里，初始化一个 FlagCheckerState 对象，并向对象内部写入一段字节数组进行校验，这就是密文</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs dart">__int64 __fastcall untitled3_main__FlagCheckerState::ctor_2f7c1c(__int64 a1, __int64 a2)<br>&#123;<br>  __int64 v2; <span class="hljs-comment">// x15</span><br>  __int64 v3; <span class="hljs-comment">// x22</span><br>  __int64 v4; <span class="hljs-comment">// x26</span><br>  _QWORD *v5; <span class="hljs-comment">// x27</span><br>  unsigned __int64 v6; <span class="hljs-comment">// x28</span><br>  __int64 v7; <span class="hljs-comment">// x29</span><br>  __int64 v8; <span class="hljs-comment">// x30</span><br>  __int64 v9; <span class="hljs-comment">// x29</span><br>  __int64 v10; <span class="hljs-comment">// x0</span><br>  __int64 v11; <span class="hljs-comment">// x2</span><br>  __int64 TextEditingControllerStub_2f7e14; <span class="hljs-comment">// x1</span><br>  __int64 v13; <span class="hljs-comment">// x0</span><br>  __int64 v14; <span class="hljs-comment">// x0</span><br>  <span class="hljs-built_in">int</span> v15; <span class="hljs-comment">// w1</span><br>  __int64 v16; <span class="hljs-comment">// x0</span><br>  __int64 v17; <span class="hljs-comment">// x3</span><br>  __int64 ArrayStub_3b8244; <span class="hljs-comment">// x0</span><br>  __int64 GrowableArrayStub_3b716c; <span class="hljs-comment">// x0</span><br>  __int64 v20; <span class="hljs-comment">// x1</span><br><br>  *(v2 - <span class="hljs-number">16</span>) = v7;<br>  *(v2 - <span class="hljs-number">8</span>) = v8;<br>  v9 = v2 - <span class="hljs-number">16</span>;<br>  v10 = v5[<span class="hljs-number">60</span>];<br>  v11 = a2;<br>  *(v2 - <span class="hljs-number">24</span>) = a2;<br>  <span class="hljs-keyword">if</span> ( (v2 - <span class="hljs-number">32</span>) &lt;= *(v4 + <span class="hljs-number">56</span>) )<br>    LODWORD(v10) = StackOverflowSharedWithoutFPURegsStub_3b834c(v10);<br>  *(v11 + <span class="hljs-number">23</span>) = v10;<br>  TextEditingControllerStub_2f7e14 = AllocateTextEditingControllerStub_2f7e14();<br>  v13 = v5[<span class="hljs-number">5963</span>];<br>  *(v9 - <span class="hljs-number">16</span>) = TextEditingControllerStub_2f7e14;<br>  *(TextEditingControllerStub_2f7e14 + <span class="hljs-number">39</span>) = v13;<br>  *(TextEditingControllerStub_2f7e14 + <span class="hljs-number">7</span>) = <span class="hljs-number">0</span>;<br>  *(TextEditingControllerStub_2f7e14 + <span class="hljs-number">19</span>) = <span class="hljs-number">0</span>;<br>  *(TextEditingControllerStub_2f7e14 + <span class="hljs-number">27</span>) = <span class="hljs-number">0</span>;<br>  v14 = *(*(v4 + <span class="hljs-number">104</span>) + <span class="hljs-number">2520</span>LL);<br>  <span class="hljs-keyword">if</span> ( v14 == v5[<span class="hljs-number">8</span>] )<br>    LODWORD(v14) = InitLateFinalStaticFieldStub_3b6290();<br>  v15 = v14;<br>  v16 = *(v9 - <span class="hljs-number">16</span>);<br>  *(v16 + <span class="hljs-number">15</span>) = v15;<br>  v17 = *(v9 - <span class="hljs-number">8</span>);<br>  *(v17 + <span class="hljs-number">19</span>) = v16;<br>  <span class="hljs-keyword">if</span> ( (*(v16 - <span class="hljs-number">1</span>) &amp; (*(v17 - <span class="hljs-number">1</span>) &gt;&gt; <span class="hljs-number">2</span>) &amp; HIDWORD(v6)) != <span class="hljs-number">0</span> )<br>    v16 = WriteBarrierWrappersStub_3b69a4();<br>  ArrayStub_3b8244 = AllocateArrayStub_3b8244(v16, v5[<span class="hljs-number">275</span>], <span class="hljs-number">52</span>);<br>  *(v9 - <span class="hljs-number">16</span>) = ArrayStub_3b8244;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">15</span>) = <span class="hljs-number">236</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">19</span>) = <span class="hljs-number">230</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">23</span>) = <span class="hljs-number">194</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">27</span>) = <span class="hljs-number">226</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">31</span>) = <span class="hljs-number">204</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">35</span>) = <span class="hljs-number">232</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">39</span>) = <span class="hljs-number">146</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">43</span>) = <span class="hljs-number">168</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">47</span>) = <span class="hljs-number">188</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">51</span>) = <span class="hljs-number">142</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">55</span>) = <span class="hljs-number">140</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">59</span>) = <span class="hljs-number">140</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">63</span>) = <span class="hljs-number">174</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">67</span>) = <span class="hljs-number">128</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">71</span>) = <span class="hljs-number">218</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">75</span>) = <span class="hljs-number">182</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">79</span>) = <span class="hljs-number">130</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">83</span>) = <span class="hljs-number">218</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">87</span>) = <span class="hljs-number">130</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">91</span>) = <span class="hljs-number">186</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">95</span>) = <span class="hljs-number">218</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">99</span>) = <span class="hljs-number">174</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">103</span>) = <span class="hljs-number">166</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">107</span>) = <span class="hljs-number">130</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">111</span>) = <span class="hljs-number">150</span>;<br>  *(ArrayStub_3b8244 + <span class="hljs-number">115</span>) = <span class="hljs-number">158</span>;<br>  GrowableArrayStub_3b716c = AllocateGrowableArrayStub_3b716c();<br>  *(GrowableArrayStub_3b716c + <span class="hljs-number">15</span>) = *(v9 - <span class="hljs-number">16</span>);<br>  *(GrowableArrayStub_3b716c + <span class="hljs-number">11</span>) = <span class="hljs-number">52</span>;<br>  v20 = *(v9 - <span class="hljs-number">8</span>);<br>  *(v20 + <span class="hljs-number">27</span>) = GrowableArrayStub_3b716c;<br>  <span class="hljs-keyword">if</span> ( (*(GrowableArrayStub_3b716c - <span class="hljs-number">1</span>) &amp; (*(v20 - <span class="hljs-number">1</span>) &gt;&gt; <span class="hljs-number">2</span>) &amp; HIDWORD(v6)) != <span class="hljs-number">0</span> )<br>    WriteBarrierWrappersStub_3b6964();<br>  <span class="hljs-keyword">return</span> v3;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里在进行 xor </p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs dart">__int64 untitled3_main__FlagCheckerState::_anon_closure_29cba4()<br>&#123;<br>  __int64 v0; <span class="hljs-comment">// x15</span><br>  __int64 v1; <span class="hljs-comment">// x29</span><br>  __int64 v2; <span class="hljs-comment">// x30</span><br>  __int64 v3; <span class="hljs-comment">// x3</span><br>  __int64 result; <span class="hljs-comment">// x0</span><br>  __int64 v5; <span class="hljs-comment">// x2</span><br><br>  v3 = (*v0 &lt;&lt; <span class="hljs-number">32</span>) &gt;&gt; <span class="hljs-number">33</span>;<br>  <span class="hljs-keyword">if</span> ( (*v0 &amp; <span class="hljs-number">1</span>) != <span class="hljs-number">0</span> )<br>    v3 = *(*v0 + <span class="hljs-number">7</span>LL);<br>  result = (<span class="hljs-number">2</span> * (v3 ^ <span class="hljs-number">0x32</span>));<br>  <span class="hljs-keyword">if</span> ( (v3 ^ <span class="hljs-number">0x32</span>) != result &gt;&gt; <span class="hljs-number">1</span> )<br>  &#123;<br>    *(v0 - <span class="hljs-number">16</span>) = v1;<br>    *(v0 - <span class="hljs-number">8</span>) = v2;<br>    result = AllocateMintSharedWithoutFPURegsStub_3b84cc();<br>    *(result + <span class="hljs-number">7</span>) = v5;<br>  &#125;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>因为 xor 函数中进行了 result &#x3D; (2 * (v3 ^ 0x32)) 操作，所以对密文除以 2 才是真正的密文</p>
+<p><img src="https://img.dkdun.cn/v1/2025/12/2bdf2f6e733492ef.png"></p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ceylon">DASCTF&#123;fluttr<span class="hljs-number">_</span><span class="hljs-keyword">is</span><span class="hljs-number">_</span>so<span class="hljs-number">_</span>easy&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%AF%94%E8%B5%9B/" class="category-chain-item">比赛</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF/" class="print-no-link">#CTF</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DASCTF 2025下半年赛-Reverse</div>
+      <div>http://example.com/2025/12/07/DASCTF-2025下半年赛-Reverse/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/03/2025%E7%AC%AC%E5%85%AB%E5%B1%8A%E2%80%9C%E5%BC%BA%E7%BD%91%E2%80%9D%E6%8B%9F%E6%80%81%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9BFinal%E5%A4%8D%E7%8E%B0/" title="2025第八届“强网”拟态防御国际精英挑战赛Final复现">
+                        <span class="hidden-mobile">2025第八届“强网”拟态防御国际精英挑战赛Final复现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/snow.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+<script type="text/javascript" src="\js\snow.js"></script>
+<script type="text/javascript" src="\js\backgroundize.js"></script>
+
