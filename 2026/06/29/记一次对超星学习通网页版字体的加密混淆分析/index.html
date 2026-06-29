@@ -21,7 +21,7 @@
   
     <meta name="description" content="声明：本文仅用于学习与研究字体混淆的实现思路，严禁用于任何未授权的非法用途。  好久没发博客了，来水一篇~~~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一次对超星学习通网页版字体的混淆加密分析">
+<meta property="og:title" content="记一次对某某通网页版字体的混淆加密分析">
 <meta property="og:url" content="http://example.com/2026/06/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E8%B6%85%E6%98%9F%E5%AD%A6%E4%B9%A0%E9%80%9A%E7%BD%91%E9%A1%B5%E7%89%88%E5%AD%97%E4%BD%93%E7%9A%84%E5%8A%A0%E5%AF%86%E6%B7%B7%E6%B7%86%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="(｡･ω･｡)Welcome~">
 <meta property="og:description" content="声明：本文仅用于学习与研究字体混淆的实现思路，严禁用于任何未授权的非法用途。  好久没发博客了，来水一篇~~~">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://img.dkdun.cn/v1/2026/12/e5e78479951b2bd0.png">
 <meta property="og:image" content="https://img.dkdun.cn/v1/2026/12/2576c1fd05cf2dc9.png">
 <meta property="article:published_time" content="2026-06-29T11:10:50.000Z">
-<meta property="article:modified_time" content="2026-06-29T11:46:57.509Z">
+<meta property="article:modified_time" content="2026-06-29T15:36:23.406Z">
 <meta property="article:author" content="butt3rf1y">
 <meta property="article:tag" content="Web Reverse">
 <meta name="twitter:card" content="summary_large_image">
@@ -40,7 +40,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>记一次对超星学习通网页版字体的混淆加密分析 - (｡･ω･｡)Welcome~</title>
+  <title>记一次对某某通网页版字体的混淆加密分析 - (｡･ω･｡)Welcome~</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -246,7 +246,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记一次对超星学习通网页版字体的混淆加密分析"></span>
+            <span id="subtitle" data-typed-text="记一次对某某通网页版字体的混淆加密分析"></span>
           
         </div>
 
@@ -332,7 +332,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记一次对超星学习通网页版字体的混淆加密分析</h1>
+            <h1 id="seo-header">记一次对某某通网页版字体的混淆加密分析</h1>
             
               <p id="updated-time" class="note note-info" style="">
                 
@@ -351,10 +351,10 @@
 <p>好久没发博客了，来水一篇~~~</p>
 <span id="more"></span>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>打开学习通网页做题的时候本来想美美地复制给 AI 大人答疑（bushi），结果发现复制出来是一串生僻字？打开网页源码发现对字符进行了加密（恕我孤陋寡闻了~）</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>打开某某通网页做题的时候本来想美美地复制给 AI 大人答疑（bushi），结果发现复制出来是一串生僻字？打开网页源码发现对字符进行了加密（恕我孤陋寡闻了~）</p>
 <img src="https://img.dkdun.cn/v1/2026/12/b6d5626164c61b2a.png" style="zoom: 50%;" />
 
-<h1 id="加密分析"><a href="#加密分析" class="headerlink" title="加密分析"></a>加密分析</h1><p>可以看到这个 div 元素使用的 <code>font-cxsecret</code> 字体，也就是学习通用于混淆显示内容的自定义字体。</p>
+<h1 id="加密分析"><a href="#加密分析" class="headerlink" title="加密分析"></a>加密分析</h1><p>可以看到这个 div 元素使用的 <code>font-cxsecret</code> 字体，也就是它用于混淆显示内容的自定义字体。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;<span class="hljs-selector-tag">div</span> class=&quot;clearfix <span class="hljs-attribute">font</span>-cxsecret fontLabel&quot; style=&quot;<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.5</span>; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>; <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">15px</span>;&quot;tabindex=&quot;<span class="hljs-number">0</span>&quot; role=&quot;<span class="hljs-selector-tag">option</span>&quot;&gt;<br></code></pre></td></tr></table></figure>
 
 <p>搜索找到可以找到对应的字体声明。其本质上是把字体文件直接以内联 Base64 的方式放进 CSS 中（太多了省略了部分）</p>
@@ -363,7 +363,7 @@
 <p>解码之后保存为了 ttf 格式</p>
 <img src="https://img.dkdun.cn/v1/2026/12/e5e78479951b2bd0.png" style="zoom: 33%;" />
 
-<p>找了个网站查看了一下，<a target="_blank" rel="noopener" href="https://www.luxa.org/zh/font">字体查看器和分析器 - 在线预览和检查字体</a>，字体是 <strong>Source Han Sans CN Normal，版本 Version 1.000;PS 1;hotconv 1.0.78;makeotf.lib2.5.61930</strong>，看着是正常的，这些字符本身都属于合法 Unicode，但大多比较冷门。也就是说，学习通这里是挑了一批合法但很少见的 Unicode 字符，当成占位符塞进 HTML，再让自定义字体把这些占位符显示成真正想显示的文字。</p>
+<p>找了个网站查看了一下，<a target="_blank" rel="noopener" href="https://www.luxa.org/zh/font">字体查看器和分析器 - 在线预览和检查字体</a>，字体是 <strong>Source Han Sans CN Normal，版本 Version 1.000;PS 1;hotconv 1.0.78;makeotf.lib2.5.61930</strong>，看着是正常的，这些字符本身都属于合法 Unicode，但大多比较冷门。也就是说，它这里是挑了一批合法但很少见的 Unicode 字符，当成占位符塞进 HTML，再让自定义字体把这些占位符显示成真正想显示的文字。</p>
 <img src="https://img.dkdun.cn/v1/2026/12/2576c1fd05cf2dc9.png" style="zoom: 33%;" />
 
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><code class="hljs css">冩 U+<span class="hljs-number">51</span>A9<br>孇 U+<span class="hljs-number">5</span>B47<br>孈 U+<span class="hljs-number">5</span>B48<br>孉 U+<span class="hljs-number">5</span>B49<br>孊 U+<span class="hljs-number">5</span>B4A<br>孋 U+<span class="hljs-number">5</span>B4B<br>孌 U+<span class="hljs-number">5</span>B4C<br>孍 U+<span class="hljs-number">5</span>B4D<br>孎 U+<span class="hljs-number">5</span>B4E<br>孏 U+<span class="hljs-number">5</span>B4F<br>孞 U+<span class="hljs-number">5</span>B5E<br>孠 U+<span class="hljs-number">5</span>B60<br>孡 U+<span class="hljs-number">5</span>B61<br>孢 U+<span class="hljs-number">5</span>B62<br>孥 U+<span class="hljs-number">5</span>B65<br>孧 U+<span class="hljs-number">5</span>B67<br>孨 U+<span class="hljs-number">5</span>B68<br>孫 U+<span class="hljs-number">5</span>B6B<br>孬 U+<span class="hljs-number">5</span>B6C<br>孭 U+<span class="hljs-number">5</span>B6D<br>孮 U+<span class="hljs-number">5</span>B6E<br>孯 U+<span class="hljs-number">5</span>B6F<br>孰 U+<span class="hljs-number">5</span>B70<br>孱 U+<span class="hljs-number">5</span>B71<br>孲 U+<span class="hljs-number">5</span>B72<br>孳 U+<span class="hljs-number">5</span>B73<br>孴 U+<span class="hljs-number">5</span>B74<br>孵 U+<span class="hljs-number">5</span>B75<br>孶 U+<span class="hljs-number">5</span>B76<br>孷 U+<span class="hljs-number">5</span>B77<br>孹 U+<span class="hljs-number">5</span>B79<br>孻 U+<span class="hljs-number">5</span>B7B<br>孼 U+<span class="hljs-number">5</span>B7C<br>孾 U+<span class="hljs-number">5</span>B7E<br>孿 U+<span class="hljs-number">5</span>B7F<br>宄 U+<span class="hljs-number">5</span>B84<br>宆 U+<span class="hljs-number">5</span>B86<br>宊 U+<span class="hljs-number">5</span>B8A<br>宍 U+<span class="hljs-number">5</span>B8D<br>宎 U+<span class="hljs-number">5</span>B8E<br>宐 U+<span class="hljs-number">5</span>B90<br>宑 U+<span class="hljs-number">5</span>B91<br>宒 U+<span class="hljs-number">5</span>B92<br>宓 U+<span class="hljs-number">5</span>B93<br>宔 U+<span class="hljs-number">5</span>B94<br>宖 U+<span class="hljs-number">5</span>B96<br>実 U+<span class="hljs-number">5</span>B9F<br>宥 U+<span class="hljs-number">5</span>BA5<br>宧 U+<span class="hljs-number">5</span>BA7<br>宨 U+<span class="hljs-number">5</span>BA8<br>宩 U+<span class="hljs-number">5</span>BA9<br>宬 U+<span class="hljs-number">5</span>BAC<br>宭 U+<span class="hljs-number">5</span>BAD<br>宯 U+<span class="hljs-number">5</span>BAF<br>宱 U+<span class="hljs-number">5</span>BB1<br>宲 U+<span class="hljs-number">5</span>BB2<br>宷 U+<span class="hljs-number">5</span>BB7<br>宸 U+<span class="hljs-number">5</span>BB8<br>宺 U+<span class="hljs-number">5</span>BBA<br>宻 U+<span class="hljs-number">5</span>BBB<br>宼 U+<span class="hljs-number">5</span>BBC<br>寀 U+<span class="hljs-number">5</span>BC0<br>寁 U+<span class="hljs-number">5</span>BC1<br>寃 U+<span class="hljs-number">5</span>BC3<br>寈 U+<span class="hljs-number">5</span>BC8<br>寉 U+<span class="hljs-number">5</span>BC9<br>寊 U+<span class="hljs-number">5</span>BCA<br>寋 U+<span class="hljs-number">5</span>BCB<br>寍 U+<span class="hljs-number">5</span>BCD<br>寎 U+<span class="hljs-number">5</span>BCE<br>寏 U+<span class="hljs-number">5</span>BCF<br>寑 U+<span class="hljs-number">5</span>BD1<br>寔 U+<span class="hljs-number">5</span>BD4<br>寕 U+<span class="hljs-number">5</span>BD5<br>寖 U+<span class="hljs-number">5</span>BD6<br>寗 U+<span class="hljs-number">5</span>BD7<br>寘 U+<span class="hljs-number">5</span>BD8<br>寙 U+<span class="hljs-number">5</span>BD9<br>寚 U+<span class="hljs-number">5</span>BDA<br>寜 U+<span class="hljs-number">5</span>BDC<br>寠 U+<span class="hljs-number">5</span>BE0<br>寡 U+<span class="hljs-number">5</span>BE1<br>寣 U+<span class="hljs-number">5</span>BE3<br>寥 U+<span class="hljs-number">5</span>BE5<br>實 U+<span class="hljs-number">5</span>BE6<br>寨 U+<span class="hljs-number">5</span>BE8<br>寪 U+<span class="hljs-number">5</span>BEA<br>寬 U+<span class="hljs-number">5</span>BEC<br>寭 U+<span class="hljs-number">5</span>BED<br>寮 U+<span class="hljs-number">5</span>BEE<br>寯 U+<span class="hljs-number">5</span>BEF<br>寱 U+<span class="hljs-number">5</span>BF1<br>寲 U+<span class="hljs-number">5</span>BF2<br>寴 U+<span class="hljs-number">5</span>BF4<br>寵 U+<span class="hljs-number">5</span>BF5<br>寶 U+<span class="hljs-number">5</span>BF6<br>寷 U+<span class="hljs-number">5</span>BF7<br>寽 U+<span class="hljs-number">5</span>BFD<br>対 U+<span class="hljs-number">5</span>BFE<br>尀 U+<span class="hljs-number">5</span>C00<br>専 U+<span class="hljs-number">5</span>C02<br>尃 U+<span class="hljs-number">5</span>C03<br>尅 U+<span class="hljs-number">5</span>C05<br>將 U+<span class="hljs-number">5</span>C07<br>尌 U+<span class="hljs-number">5</span>C0C<br>尐 U+<span class="hljs-number">5</span>C10<br>尗 U+<span class="hljs-number">5</span>C17<br>尛 U+<span class="hljs-number">5</span>C1B<br>尜 U+<span class="hljs-number">5</span>C1C<br>尞 U+<span class="hljs-number">5</span>C1E<br>尟 U+<span class="hljs-number">5</span>C1F<br>尠 U+<span class="hljs-number">5</span>C20<br>尢 U+<span class="hljs-number">5</span>C22<br>尣 U+<span class="hljs-number">5</span>C23<br>尥 U+<span class="hljs-number">5</span>C25<br>尦 U+<span class="hljs-number">5</span>C26<br>尨 U+<span class="hljs-number">5</span>C28<br>尩 U+<span class="hljs-number">5</span>C29<br>尪 U+<span class="hljs-number">5</span>C2A<br>尫 U+<span class="hljs-number">5</span>C2B<br>尬 U+<span class="hljs-number">5</span>C2C<br>尭 U+<span class="hljs-number">5</span>C2D<br>尮 U+<span class="hljs-number">5</span>C2E<br>尯 U+<span class="hljs-number">5</span>C2F<br>尰 U+<span class="hljs-number">5</span>C30<br>尲 U+<span class="hljs-number">5</span>C32<br>尳 U+<span class="hljs-number">5</span>C33<br>屆 U+<span class="hljs-number">5</span>C46<br>屇 U+<span class="hljs-number">5</span>C47<br>屈 U+<span class="hljs-number">5</span>C48<br>屍 U+<span class="hljs-number">5</span>C4D<br>屐 U+<span class="hljs-number">5</span>C50<br>屑 U+<span class="hljs-number">5</span>C51<br>屒 U+<span class="hljs-number">5</span>C52<br>屓 U+<span class="hljs-number">5</span>C53<br>屔 U+<span class="hljs-number">5</span>C54<br>屖 U+<span class="hljs-number">5</span>C56<br>屗 U+<span class="hljs-number">5</span>C57<br>屘 U+<span class="hljs-number">5</span>C58<br>屙 U+<span class="hljs-number">5</span>C59<br>屟 U+<span class="hljs-number">5</span>C5F<br>摶 U+<span class="hljs-number">6476</span><br>敩 U+<span class="hljs-number">6569</span><br>潯 U+<span class="hljs-number">6</span>F6F<br>糵 U+<span class="hljs-number">7</span>CF5<br>苧 U+<span class="hljs-number">82</span>E7<br>谉 U+<span class="hljs-number">8</span>C09<br>迉 U+<span class="hljs-number">8</span>FC9<br></code></pre></td></tr></table></figure>
@@ -1578,14 +1578,14 @@
 </tr>
 </tbody></table>
 <p>这里的距离越小，说明形状越接近，像 <code>冩 -&gt; 为</code>、<code>孉 -&gt; 段</code>、<code>孍 -&gt; 主</code> 这种，第一候选和第二候选差距比较明显，可信度就更高。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实原理很简单，学习通网页版的这层混淆本质上：</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实原理很简单，某某通网页版的这层混淆本质上：</p>
 <ol>
 <li>页面里放的是合法 Unicode 生僻字。</li>
 <li>让它看起来正常的是内联的自定义字体。</li>
 <li>只要拿到子集字体，再找到同版本完整字符集，就可以通过位图相似匹配把映射关系恢复出来。</li>
 </ol>
 <p>说白了就是底层源码里塞的生僻字，渲染成了常见的字，复制粘贴的还是底层的生僻字。这种混淆防君子不防小人~（已学习到如何阴一手hhh），更多是为了干扰复制、搜索和简单脚本提取，不过只需要把“字符”和“字形”分开看就行了。做个作业可太难了~</p>
-<p>还可以看看 52 的这篇文章 <a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1631357-1-1.html"><strong>关于超星学习通网页版字体加密分析</strong></a></p>
+<p>还可以看看 52 的这篇文章 <a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1631357-1-1.html">https://www.52pojie.cn/thread-1631357-1-1.html</a></p>
 
                 
               </div>
@@ -1638,7 +1638,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>记一次对超星学习通网页版字体的混淆加密分析</div>
+      <div>记一次对某某通网页版字体的混淆加密分析</div>
       <div>http://example.com/2026/06/29/记一次对超星学习通网页版字体的加密混淆分析/</div>
     </div>
     <div class="license-meta">
