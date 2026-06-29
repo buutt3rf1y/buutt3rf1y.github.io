@@ -1,0 +1,2020 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fuk.png">
+  <link rel="icon" href="https://img.dkdun.cn/v1/2025/12/c9ecee707ed47139.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="butt3rf1y">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="声明：本文仅用于学习与研究字体混淆的实现思路，严禁用于任何未授权的非法用途。  前言好久没发博客了，来水一篇~~~，打开学习通网页做题的时候本来想美美地复制给 AI 大人答疑（bushi），结果发现复制出来是一串生僻字？打开网页源码发现对字符进行了加密（恕我孤陋寡闻了~）   加密分析可以看到这个 div 元素使用的 font-cxsecret 字体，也就是学习通用于混淆显示内容的自定义字体。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次对超星学习通网页版字体的混淆加密分析">
+<meta property="og:url" content="http://example.com/2026/06/29/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E8%B6%85%E6%98%9F%E5%AD%A6%E4%B9%A0%E9%80%9A%E7%BD%91%E9%A1%B5%E7%89%88%E5%AD%97%E4%BD%93%E7%9A%84%E5%8A%A0%E5%AF%86%E6%B7%B7%E6%B7%86%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="(｡･ω･｡)Welcome~">
+<meta property="og:description" content="声明：本文仅用于学习与研究字体混淆的实现思路，严禁用于任何未授权的非法用途。  前言好久没发博客了，来水一篇~~~，打开学习通网页做题的时候本来想美美地复制给 AI 大人答疑（bushi），结果发现复制出来是一串生僻字？打开网页源码发现对字符进行了加密（恕我孤陋寡闻了~）   加密分析可以看到这个 div 元素使用的 font-cxsecret 字体，也就是学习通用于混淆显示内容的自定义字体。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2026/12/b6d5626164c61b2a.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2026/12/e5e78479951b2bd0.png">
+<meta property="og:image" content="https://img.dkdun.cn/v1/2026/12/2576c1fd05cf2dc9.png">
+<meta property="article:published_time" content="2026-06-29T11:10:50.000Z">
+<meta property="article:modified_time" content="2026-06-29T10:13:03.010Z">
+<meta property="article:author" content="butt3rf1y">
+<meta property="article:tag" content="Web Reverse">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.dkdun.cn/v1/2026/12/b6d5626164c61b2a.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>记一次对超星学习通网页版字体的混淆加密分析 - (｡･ω･｡)Welcome~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>butt3rf1y&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="web_bg" style="
+  background-image: url('https://img.dkdun.cn/v1/2025/12/250ec4831b1a4577.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+"></div>
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://img.dkdun.cn/v1/2025/12/250ec4831b1a4577.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="记一次对超星学习通网页版字体的混淆加密分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-29 19:10" pubdate>
+          2026年6月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+	<link rel="icon" href="https://img.dkdun.cn/v1/2024/12/e40f2f1a8320e35c.png" type="image/x-icon">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">记一次对超星学习通网页版字体的混淆加密分析</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年6月29日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>声明：本文仅用于学习与研究字体混淆的实现思路，严禁用于任何未授权的非法用途。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>好久没发博客了，来水一篇~~~，打开学习通网页做题的时候本来想美美地复制给 AI 大人答疑（bushi），结果发现复制出来是一串生僻字？打开网页源码发现对字符进行了加密（恕我孤陋寡闻了~）</p>
+<img src="https://img.dkdun.cn/v1/2026/12/b6d5626164c61b2a.png" style="zoom: 50%;" />
+
+<h1 id="加密分析"><a href="#加密分析" class="headerlink" title="加密分析"></a>加密分析</h1><p>可以看到这个 div 元素使用的 <code>font-cxsecret</code> 字体，也就是学习通用于混淆显示内容的自定义字体。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;<span class="hljs-selector-tag">div</span> class=&quot;clearfix <span class="hljs-attribute">font</span>-cxsecret fontLabel&quot; style=&quot;<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.5</span>; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>; <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">15px</span>;&quot;tabindex=&quot;<span class="hljs-number">0</span>&quot; role=&quot;<span class="hljs-selector-tag">option</span>&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>搜索找到可以找到对应的字体声明。其本质上是把字体文件直接以内联 Base64 的方式放进 CSS 中（太多了省略了部分）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@font-face</span>&#123;<br>    <span class="hljs-attribute">font-family</span>:<span class="hljs-string">&#x27;font-cxsecret&#x27;</span>;<br>    <span class="hljs-attribute">src</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;data:application/font-ttf;charset=utf-8;base64,AAEAAAAMAIAAAwBAQkFTRRuOGNgAAH88AAAA5E9TLzKUGwCtAAABSAAAAGBWT1JHUavDeAAAgCAAAAN0Y21hcJ99mAgAAALUAAADFGdseWYryQfIAAAIQAAAZqBoZWFkBmbCYQAAAMwAAAA2aGhlYQzu/tUAAAEEAAAAJGhtdHgSYA6nAAABqAAAASxsb2NhABskJAAABegAAAJYbWF4cAC/ASsAAAEoAAAAIG5hbWWAs0JrAABu4AAAEDlwb3N0/4YAMgAAfxwAAAAgAAEAAAABAAA+S/skXw889QADA+gAAAAAz87zegAAAADP+IsO/Bj76AtwBxAAAAADAAIAAQAAAAAAAQAAA3D/iAH0A+j8GPtjC...&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;truetype&#x27;</span>);<br>&#125;<br><br><span class="hljs-selector-class">.font-cxsecret</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">p</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">div</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">i</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">em</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">b</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">strong</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">a</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-attribute">font</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">span</span>,<br><span class="hljs-selector-class">.font-cxsecret</span> pre,<br><span class="hljs-selector-class">.font-cxsecret</span> <span class="hljs-selector-tag">code</span>&#123;<br>    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&#x27;font-cxsecret&#x27;</span> <span class="hljs-meta">!important</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>解码之后保存为了 ttf 格式</p>
+<img src="https://img.dkdun.cn/v1/2026/12/e5e78479951b2bd0.png" style="zoom: 33%;" />
+
+<p>找了个网站查看了一下，<a target="_blank" rel="noopener" href="https://www.luxa.org/zh/font">字体查看器和分析器 - 在线预览和检查字体</a>，字体是 <strong>Source Han Sans CN Normal，版本 Version 1.000;PS 1;hotconv 1.0.78;makeotf.lib2.5.61930</strong>，看着是正常的，这些字符本身都属于合法 Unicode，但大多比较冷门。也就是说，学习通这里是挑了一批合法但很少见的 Unicode 字符，当成占位符塞进 HTML，再让自定义字体把这些占位符显示成真正想显示的文字。</p>
+<img src="https://img.dkdun.cn/v1/2026/12/2576c1fd05cf2dc9.png" style="zoom: 33%;" />
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><code class="hljs css">冩 U+<span class="hljs-number">51</span>A9<br>孇 U+<span class="hljs-number">5</span>B47<br>孈 U+<span class="hljs-number">5</span>B48<br>孉 U+<span class="hljs-number">5</span>B49<br>孊 U+<span class="hljs-number">5</span>B4A<br>孋 U+<span class="hljs-number">5</span>B4B<br>孌 U+<span class="hljs-number">5</span>B4C<br>孍 U+<span class="hljs-number">5</span>B4D<br>孎 U+<span class="hljs-number">5</span>B4E<br>孏 U+<span class="hljs-number">5</span>B4F<br>孞 U+<span class="hljs-number">5</span>B5E<br>孠 U+<span class="hljs-number">5</span>B60<br>孡 U+<span class="hljs-number">5</span>B61<br>孢 U+<span class="hljs-number">5</span>B62<br>孥 U+<span class="hljs-number">5</span>B65<br>孧 U+<span class="hljs-number">5</span>B67<br>孨 U+<span class="hljs-number">5</span>B68<br>孫 U+<span class="hljs-number">5</span>B6B<br>孬 U+<span class="hljs-number">5</span>B6C<br>孭 U+<span class="hljs-number">5</span>B6D<br>孮 U+<span class="hljs-number">5</span>B6E<br>孯 U+<span class="hljs-number">5</span>B6F<br>孰 U+<span class="hljs-number">5</span>B70<br>孱 U+<span class="hljs-number">5</span>B71<br>孲 U+<span class="hljs-number">5</span>B72<br>孳 U+<span class="hljs-number">5</span>B73<br>孴 U+<span class="hljs-number">5</span>B74<br>孵 U+<span class="hljs-number">5</span>B75<br>孶 U+<span class="hljs-number">5</span>B76<br>孷 U+<span class="hljs-number">5</span>B77<br>孹 U+<span class="hljs-number">5</span>B79<br>孻 U+<span class="hljs-number">5</span>B7B<br>孼 U+<span class="hljs-number">5</span>B7C<br>孾 U+<span class="hljs-number">5</span>B7E<br>孿 U+<span class="hljs-number">5</span>B7F<br>宄 U+<span class="hljs-number">5</span>B84<br>宆 U+<span class="hljs-number">5</span>B86<br>宊 U+<span class="hljs-number">5</span>B8A<br>宍 U+<span class="hljs-number">5</span>B8D<br>宎 U+<span class="hljs-number">5</span>B8E<br>宐 U+<span class="hljs-number">5</span>B90<br>宑 U+<span class="hljs-number">5</span>B91<br>宒 U+<span class="hljs-number">5</span>B92<br>宓 U+<span class="hljs-number">5</span>B93<br>宔 U+<span class="hljs-number">5</span>B94<br>宖 U+<span class="hljs-number">5</span>B96<br>実 U+<span class="hljs-number">5</span>B9F<br>宥 U+<span class="hljs-number">5</span>BA5<br>宧 U+<span class="hljs-number">5</span>BA7<br>宨 U+<span class="hljs-number">5</span>BA8<br>宩 U+<span class="hljs-number">5</span>BA9<br>宬 U+<span class="hljs-number">5</span>BAC<br>宭 U+<span class="hljs-number">5</span>BAD<br>宯 U+<span class="hljs-number">5</span>BAF<br>宱 U+<span class="hljs-number">5</span>BB1<br>宲 U+<span class="hljs-number">5</span>BB2<br>宷 U+<span class="hljs-number">5</span>BB7<br>宸 U+<span class="hljs-number">5</span>BB8<br>宺 U+<span class="hljs-number">5</span>BBA<br>宻 U+<span class="hljs-number">5</span>BBB<br>宼 U+<span class="hljs-number">5</span>BBC<br>寀 U+<span class="hljs-number">5</span>BC0<br>寁 U+<span class="hljs-number">5</span>BC1<br>寃 U+<span class="hljs-number">5</span>BC3<br>寈 U+<span class="hljs-number">5</span>BC8<br>寉 U+<span class="hljs-number">5</span>BC9<br>寊 U+<span class="hljs-number">5</span>BCA<br>寋 U+<span class="hljs-number">5</span>BCB<br>寍 U+<span class="hljs-number">5</span>BCD<br>寎 U+<span class="hljs-number">5</span>BCE<br>寏 U+<span class="hljs-number">5</span>BCF<br>寑 U+<span class="hljs-number">5</span>BD1<br>寔 U+<span class="hljs-number">5</span>BD4<br>寕 U+<span class="hljs-number">5</span>BD5<br>寖 U+<span class="hljs-number">5</span>BD6<br>寗 U+<span class="hljs-number">5</span>BD7<br>寘 U+<span class="hljs-number">5</span>BD8<br>寙 U+<span class="hljs-number">5</span>BD9<br>寚 U+<span class="hljs-number">5</span>BDA<br>寜 U+<span class="hljs-number">5</span>BDC<br>寠 U+<span class="hljs-number">5</span>BE0<br>寡 U+<span class="hljs-number">5</span>BE1<br>寣 U+<span class="hljs-number">5</span>BE3<br>寥 U+<span class="hljs-number">5</span>BE5<br>實 U+<span class="hljs-number">5</span>BE6<br>寨 U+<span class="hljs-number">5</span>BE8<br>寪 U+<span class="hljs-number">5</span>BEA<br>寬 U+<span class="hljs-number">5</span>BEC<br>寭 U+<span class="hljs-number">5</span>BED<br>寮 U+<span class="hljs-number">5</span>BEE<br>寯 U+<span class="hljs-number">5</span>BEF<br>寱 U+<span class="hljs-number">5</span>BF1<br>寲 U+<span class="hljs-number">5</span>BF2<br>寴 U+<span class="hljs-number">5</span>BF4<br>寵 U+<span class="hljs-number">5</span>BF5<br>寶 U+<span class="hljs-number">5</span>BF6<br>寷 U+<span class="hljs-number">5</span>BF7<br>寽 U+<span class="hljs-number">5</span>BFD<br>対 U+<span class="hljs-number">5</span>BFE<br>尀 U+<span class="hljs-number">5</span>C00<br>専 U+<span class="hljs-number">5</span>C02<br>尃 U+<span class="hljs-number">5</span>C03<br>尅 U+<span class="hljs-number">5</span>C05<br>將 U+<span class="hljs-number">5</span>C07<br>尌 U+<span class="hljs-number">5</span>C0C<br>尐 U+<span class="hljs-number">5</span>C10<br>尗 U+<span class="hljs-number">5</span>C17<br>尛 U+<span class="hljs-number">5</span>C1B<br>尜 U+<span class="hljs-number">5</span>C1C<br>尞 U+<span class="hljs-number">5</span>C1E<br>尟 U+<span class="hljs-number">5</span>C1F<br>尠 U+<span class="hljs-number">5</span>C20<br>尢 U+<span class="hljs-number">5</span>C22<br>尣 U+<span class="hljs-number">5</span>C23<br>尥 U+<span class="hljs-number">5</span>C25<br>尦 U+<span class="hljs-number">5</span>C26<br>尨 U+<span class="hljs-number">5</span>C28<br>尩 U+<span class="hljs-number">5</span>C29<br>尪 U+<span class="hljs-number">5</span>C2A<br>尫 U+<span class="hljs-number">5</span>C2B<br>尬 U+<span class="hljs-number">5</span>C2C<br>尭 U+<span class="hljs-number">5</span>C2D<br>尮 U+<span class="hljs-number">5</span>C2E<br>尯 U+<span class="hljs-number">5</span>C2F<br>尰 U+<span class="hljs-number">5</span>C30<br>尲 U+<span class="hljs-number">5</span>C32<br>尳 U+<span class="hljs-number">5</span>C33<br>屆 U+<span class="hljs-number">5</span>C46<br>屇 U+<span class="hljs-number">5</span>C47<br>屈 U+<span class="hljs-number">5</span>C48<br>屍 U+<span class="hljs-number">5</span>C4D<br>屐 U+<span class="hljs-number">5</span>C50<br>屑 U+<span class="hljs-number">5</span>C51<br>屒 U+<span class="hljs-number">5</span>C52<br>屓 U+<span class="hljs-number">5</span>C53<br>屔 U+<span class="hljs-number">5</span>C54<br>屖 U+<span class="hljs-number">5</span>C56<br>屗 U+<span class="hljs-number">5</span>C57<br>屘 U+<span class="hljs-number">5</span>C58<br>屙 U+<span class="hljs-number">5</span>C59<br>屟 U+<span class="hljs-number">5</span>C5F<br>摶 U+<span class="hljs-number">6476</span><br>敩 U+<span class="hljs-number">6569</span><br>潯 U+<span class="hljs-number">6</span>F6F<br>糵 U+<span class="hljs-number">7</span>CF5<br>苧 U+<span class="hljs-number">82</span>E7<br>谉 U+<span class="hljs-number">8</span>C09<br>迉 U+<span class="hljs-number">8</span>FC9<br></code></pre></td></tr></table></figure>
+
+<p>这些字本身都是真实存在的 Unicode 字符，所以浏览器渲染、复制、存储都不会报错。</p>
+<h1 id="逆向分析"><a href="#逆向分析" class="headerlink" title="逆向分析"></a>逆向分析</h1><p>没找到同版本的 TTF 文件字符集，用的同一个版本的 OTF 字符集，统一渲染成位图，再做批量相似度匹配（如果有 TTF 就不用这样）。</p>
+<p>逆向思路很简单：</p>
+<ol>
+<li>准备同版本完整字符集 SourceHanSansCN-Normal.otf</li>
+<li>分别读取两份字体的 cmap</li>
+<li>把混淆字符和完整字库里的所有候选字符都渲染成统一尺寸的黑白位图</li>
+<li>用异或距离统计位图差异，给每个混淆字符找出最相近的候选</li>
+</ol>
+<p>这里的核心思路是把字符统一转换成二值位图，再用 NumPy 统计当前混淆字符位图与参考字符集位图之间的逐像素异或差异，差异值越小就越接近：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">char_to_bitmap</span>(<span class="hljs-params"></span><br><span class="hljs-params">    font: ImageFont.FreeTypeFont,</span><br><span class="hljs-params">    text: <span class="hljs-built_in">str</span>,</span><br><span class="hljs-params">    canvas_size: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params">    bitmap_size: <span class="hljs-built_in">int</span>,</span><br><span class="hljs-params"></span>) -&gt; np.ndarray:<br>    canvas = Image.new(<span class="hljs-string">&quot;L&quot;</span>, (canvas_size, canvas_size), <span class="hljs-number">255</span>)<br>    draw = ImageDraw.Draw(canvas)<br>    bbox = draw.textbbox((<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), text, font=font)<br>    width = bbox[<span class="hljs-number">2</span>] - bbox[<span class="hljs-number">0</span>]<br>    height = bbox[<span class="hljs-number">3</span>] - bbox[<span class="hljs-number">1</span>]<br>    x = (canvas_size - width) // <span class="hljs-number">2</span> - bbox[<span class="hljs-number">0</span>]<br>    y = (canvas_size - height) // <span class="hljs-number">2</span> - bbox[<span class="hljs-number">1</span>]<br>    draw.text((x, y), text, font=font, fill=<span class="hljs-number">0</span>)<br>    bitmap = canvas.resize((bitmap_size, bitmap_size), Image.Resampling.LANCZOS)<br>    data = np.asarray(bitmap, dtype=np.uint8)<br>    <span class="hljs-keyword">return</span> (data &lt; <span class="hljs-number">200</span>).astype(np.uint8)<br><br><span class="hljs-keyword">for</span> fake_codepoint <span class="hljs-keyword">in</span> <span class="hljs-built_in">sorted</span>(download_ttfont[<span class="hljs-string">&quot;cmap&quot;</span>].getBestCmap()):<br>    fake_char = <span class="hljs-built_in">chr</span>(fake_codepoint)<br>    fake_bitmap = char_to_bitmap(<br>        download_font,<br>        fake_char,<br>        args.canvas_size,<br>        args.bitmap_size,<br>    )<br>    distances = np.bitwise_xor(reference_bitmaps, fake_bitmap).<span class="hljs-built_in">sum</span>(<br>        axis=(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>),<br>        dtype=np.uint32,<br>    )<br>    top_indices = np.argsort(distances)[: args.top_k]<br></code></pre></td></tr></table></figure>
+
+<p>跑出来结果如下，和在线网页转换的一样结果</p>
+<table>
+<thead>
+<tr>
+<th>替代字符</th>
+<th>替代码点</th>
+<th>第一候选</th>
+<th>码点</th>
+<th>距离</th>
+<th>次佳距离</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>冩</td>
+<td>U+51A9</td>
+<td>为</td>
+<td>U+4E3A</td>
+<td>46</td>
+<td>120</td>
+</tr>
+<tr>
+<td>孇</td>
+<td>U+5B47</td>
+<td>辑</td>
+<td>U+8F91</td>
+<td>62</td>
+<td>222</td>
+</tr>
+<tr>
+<td>孈</td>
+<td>U+5B48</td>
+<td>要</td>
+<td>U+8981</td>
+<td>4</td>
+<td>153</td>
+</tr>
+<tr>
+<td>孉</td>
+<td>U+5B49</td>
+<td>段</td>
+<td>U+6BB5</td>
+<td>19</td>
+<td>241</td>
+</tr>
+<tr>
+<td>孊</td>
+<td>U+5B4A</td>
+<td>什</td>
+<td>U+4EC0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>孋</td>
+<td>U+5B4B</td>
+<td>的</td>
+<td>U+7684</td>
+<td>33</td>
+<td>190</td>
+</tr>
+<tr>
+<td>孌</td>
+<td>U+5B4C</td>
+<td>逻</td>
+<td>U+903B</td>
+<td>40</td>
+<td>231</td>
+</tr>
+<tr>
+<td>孍</td>
+<td>U+5B4D</td>
+<td>主</td>
+<td>U+4E3B</td>
+<td>33</td>
+<td>135</td>
+</tr>
+<tr>
+<td>孎</td>
+<td>U+5B4E</td>
+<td>号</td>
+<td>U+53F7</td>
+<td>6</td>
+<td>147</td>
+</tr>
+<tr>
+<td>孏</td>
+<td>U+5B4F</td>
+<td>确</td>
+<td>U+786E</td>
+<td>54</td>
+<td>184</td>
+</tr>
+<tr>
+<td>孞</td>
+<td>U+5B5E</td>
+<td>定</td>
+<td>U+5B9A</td>
+<td>28</td>
+<td>109</td>
+</tr>
+<tr>
+<td>孠</td>
+<td>U+5B60</td>
+<td>具</td>
+<td>U+5177</td>
+<td>3</td>
+<td>164</td>
+</tr>
+<tr>
+<td>孡</td>
+<td>U+5B61</td>
+<td>络</td>
+<td>U+7EDC</td>
+<td>9</td>
+<td>178</td>
+</tr>
+<tr>
+<td>孢</td>
+<td>U+5B62</td>
+<td>体</td>
+<td>U+4F53</td>
+<td>17</td>
+<td>118</td>
+</tr>
+<tr>
+<td>孥</td>
+<td>U+5B65</td>
+<td>设</td>
+<td>U+8BBE</td>
+<td>17</td>
+<td>180</td>
+</tr>
+<tr>
+<td>孧</td>
+<td>U+5B67</td>
+<td>协</td>
+<td>U+534F</td>
+<td>27</td>
+<td>226</td>
+</tr>
+<tr>
+<td>孨</td>
+<td>U+5B68</td>
+<td>划</td>
+<td>U+5212</td>
+<td>11</td>
+<td>230</td>
+</tr>
+<tr>
+<td>孫</td>
+<td>U+5B6B</td>
+<td>配</td>
+<td>U+914D</td>
+<td>14</td>
+<td>219</td>
+</tr>
+<tr>
+<td>孬</td>
+<td>U+5B6C</td>
+<td>计</td>
+<td>U+8BA1</td>
+<td>9</td>
+<td>156</td>
+</tr>
+<tr>
+<td>孭</td>
+<td>U+5B6D</td>
+<td>线</td>
+<td>U+7EBF</td>
+<td>17</td>
+<td>168</td>
+</tr>
+<tr>
+<td>孮</td>
+<td>U+5B6E</td>
+<td>进</td>
+<td>U+8FDB</td>
+<td>31</td>
+<td>110</td>
+</tr>
+<tr>
+<td>孯</td>
+<td>U+5B6F</td>
+<td>行</td>
+<td>U+884C</td>
+<td>43</td>
+<td>43</td>
+</tr>
+<tr>
+<td>孰</td>
+<td>U+5B70</td>
+<td>布</td>
+<td>U+5E03</td>
+<td>4</td>
+<td>160</td>
+</tr>
+<tr>
+<td>孱</td>
+<td>U+5B71</td>
+<td>册</td>
+<td>U+518C</td>
+<td>9</td>
+<td>220</td>
+</tr>
+<tr>
+<td>孲</td>
+<td>U+5B72</td>
+<td>编</td>
+<td>U+7F16</td>
+<td>38</td>
+<td>131</td>
+</tr>
+<tr>
+<td>孳</td>
+<td>U+5B73</td>
+<td>写</td>
+<td>U+5199</td>
+<td>5</td>
+<td>166</td>
+</tr>
+<tr>
+<td>孴</td>
+<td>U+5B74</td>
+<td>操</td>
+<td>U+64CD</td>
+<td>49</td>
+<td>195</td>
+</tr>
+<tr>
+<td>孵</td>
+<td>U+5B75</td>
+<td>作</td>
+<td>U+4F5C</td>
+<td>3</td>
+<td>94</td>
+</tr>
+<tr>
+<td>孶</td>
+<td>U+5B76</td>
+<td>系</td>
+<td>U+7CFB</td>
+<td>46</td>
+<td>195</td>
+</tr>
+<tr>
+<td>孷</td>
+<td>U+5B77</td>
+<td>工</td>
+<td>U+5DE5</td>
+<td>46</td>
+<td>46</td>
+</tr>
+<tr>
+<td>孹</td>
+<td>U+5B79</td>
+<td>⼀</td>
+<td>U+2F00</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>孻</td>
+<td>U+5B7B</td>
+<td>统</td>
+<td>U+7EDF</td>
+<td>17</td>
+<td>192</td>
+</tr>
+<tr>
+<td>孼</td>
+<td>U+5B7C</td>
+<td>成</td>
+<td>U+6210</td>
+<td>14</td>
+<td>90</td>
+</tr>
+<tr>
+<td>孾</td>
+<td>U+5B7E</td>
+<td>结</td>
+<td>U+7ED3</td>
+<td>16</td>
+<td>150</td>
+</tr>
+<tr>
+<td>孿</td>
+<td>U+5B7F</td>
+<td>架</td>
+<td>U+67B6</td>
+<td>16</td>
+<td>178</td>
+</tr>
+<tr>
+<td>宄</td>
+<td>U+5B84</td>
+<td>拓</td>
+<td>U+FA02</td>
+<td>16</td>
+<td>16</td>
+</tr>
+<tr>
+<td>宆</td>
+<td>U+5B86</td>
+<td>扑</td>
+<td>U+6251</td>
+<td>1</td>
+<td>114</td>
+</tr>
+<tr>
+<td>宊</td>
+<td>U+5B8A</td>
+<td>商</td>
+<td>U+5546</td>
+<td>19</td>
+<td>224</td>
+</tr>
+<tr>
+<td>宍</td>
+<td>U+5B8D</td>
+<td>备</td>
+<td>U+5907</td>
+<td>20</td>
+<td>213</td>
+</tr>
+<tr>
+<td>宎</td>
+<td>U+5B8E</td>
+<td>选</td>
+<td>U+9009</td>
+<td>28</td>
+<td>187</td>
+</tr>
+<tr>
+<td>宐</td>
+<td>U+5B90</td>
+<td>应</td>
+<td>U+5E94</td>
+<td>63</td>
+<td>149</td>
+</tr>
+<tr>
+<td>宑</td>
+<td>U+5B91</td>
+<td>择</td>
+<td>U+62E9</td>
+<td>35</td>
+<td>129</td>
+</tr>
+<tr>
+<td>宒</td>
+<td>U+5B92</td>
+<td>供</td>
+<td>U+4F9B</td>
+<td>6</td>
+<td>138</td>
+</tr>
+<tr>
+<td>宓</td>
+<td>U+5B93</td>
+<td>需</td>
+<td>U+9700</td>
+<td>7</td>
+<td>164</td>
+</tr>
+<tr>
+<td>宔</td>
+<td>U+5B94</td>
+<td>析</td>
+<td>U+6790</td>
+<td>19</td>
+<td>100</td>
+</tr>
+<tr>
+<td>宖</td>
+<td>U+5B96</td>
+<td>求</td>
+<td>U+6C42</td>
+<td>39</td>
+<td>195</td>
+</tr>
+<tr>
+<td>実</td>
+<td>U+5B9F</td>
+<td>制</td>
+<td>U+5236</td>
+<td>27</td>
+<td>249</td>
+</tr>
+<tr>
+<td>宥</td>
+<td>U+5BA5</td>
+<td>策</td>
+<td>U+7B56</td>
+<td>27</td>
+<td>139</td>
+</tr>
+<tr>
+<td>宧</td>
+<td>U+5BA7</td>
+<td>安</td>
+<td>U+5B89</td>
+<td>34</td>
+<td>178</td>
+</tr>
+<tr>
+<td>宨</td>
+<td>U+5BA8</td>
+<td>全</td>
+<td>U+5168</td>
+<td>12</td>
+<td>148</td>
+</tr>
+<tr>
+<td>宩</td>
+<td>U+5BA9</td>
+<td>范</td>
+<td>U+8303</td>
+<td>2</td>
+<td>177</td>
+</tr>
+<tr>
+<td>宬</td>
+<td>U+5BAC</td>
+<td>程</td>
+<td>U+7A0B</td>
+<td>16</td>
+<td>137</td>
+</tr>
+<tr>
+<td>宭</td>
+<td>U+5BAD</td>
+<td>哪</td>
+<td>U+54EA</td>
+<td>18</td>
+<td>139</td>
+</tr>
+<tr>
+<td>宯</td>
+<td>U+5BAF</td>
+<td>是</td>
+<td>U+662F</td>
+<td>2</td>
+<td>168</td>
+</tr>
+<tr>
+<td>宱</td>
+<td>U+5BB1</td>
+<td>功</td>
+<td>U+529F</td>
+<td>16</td>
+<td>168</td>
+</tr>
+<tr>
+<td>宲</td>
+<td>U+5BB2</td>
+<td>因</td>
+<td>U+56E0</td>
+<td>30</td>
+<td>158</td>
+</tr>
+<tr>
+<td>宷</td>
+<td>U+5BB7</td>
+<td>关</td>
+<td>U+5173</td>
+<td>7</td>
+<td>186</td>
+</tr>
+<tr>
+<td>宸</td>
+<td>U+5BB8</td>
+<td>素</td>
+<td>U+7D20</td>
+<td>17</td>
+<td>180</td>
+</tr>
+<tr>
+<td>宺</td>
+<td>U+5BBA</td>
+<td>技</td>
+<td>U+6280</td>
+<td>30</td>
+<td>104</td>
+</tr>
+<tr>
+<td>宻</td>
+<td>U+5BBB</td>
+<td>术</td>
+<td>U+672F</td>
+<td>5</td>
+<td>89</td>
+</tr>
+<tr>
+<td>宼</td>
+<td>U+5BBC</td>
+<td>杂</td>
+<td>U+6742</td>
+<td>8</td>
+<td>198</td>
+</tr>
+<tr>
+<td>寀</td>
+<td>U+5BC0</td>
+<td>方</td>
+<td>U+65B9</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>寁</td>
+<td>U+5BC1</td>
+<td>复</td>
+<td>U+590D</td>
+<td>37</td>
+<td>163</td>
+</tr>
+<tr>
+<td>寃</td>
+<td>U+5BC3</td>
+<td>案</td>
+<td>U+6848</td>
+<td>4</td>
+<td>217</td>
+</tr>
+<tr>
+<td>寈</td>
+<td>U+5BC8</td>
+<td>用</td>
+<td>U+2F64</td>
+<td>19</td>
+<td>19</td>
+</tr>
+<tr>
+<td>寉</td>
+<td>U+5BC9</td>
+<td>户</td>
+<td>U+2F3E</td>
+<td>23</td>
+<td>23</td>
+</tr>
+<tr>
+<td>寊</td>
+<td>U+5BCA</td>
+<td>明</td>
+<td>U+660E</td>
+<td>39</td>
+<td>121</td>
+</tr>
+<tr>
+<td>寋</td>
+<td>U+5BCB</td>
+<td>品</td>
+<td>U+54C1</td>
+<td>3</td>
+<td>210</td>
+</tr>
+<tr>
+<td>寍</td>
+<td>U+5BCD</td>
+<td>人</td>
+<td>U+4EBA</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>寎</td>
+<td>U+5BCE</td>
+<td>量</td>
+<td>U+91CF</td>
+<td>17</td>
+<td>17</td>
+</tr>
+<tr>
+<td>寏</td>
+<td>U+5BCF</td>
+<td>员</td>
+<td>U+5458</td>
+<td>4</td>
+<td>174</td>
+</tr>
+<tr>
+<td>寑</td>
+<td>U+5BD1</td>
+<td>通</td>
+<td>U+901A</td>
+<td>16</td>
+<td>167</td>
+</tr>
+<tr>
+<td>寔</td>
+<td>U+5BD4</td>
+<td>施</td>
+<td>U+65BD</td>
+<td>17</td>
+<td>175</td>
+</tr>
+<tr>
+<td>寕</td>
+<td>U+5BD5</td>
+<td>数</td>
+<td>U+6570</td>
+<td>37</td>
+<td>242</td>
+</tr>
+<tr>
+<td>寖</td>
+<td>U+5BD6</td>
+<td>键</td>
+<td>U+952E</td>
+<td>9</td>
+<td>139</td>
+</tr>
+<tr>
+<td>寗</td>
+<td>U+5BD7</td>
+<td>包</td>
+<td>U+5305</td>
+<td>3</td>
+<td>198</td>
+</tr>
+<tr>
+<td>寘</td>
+<td>U+5BD8</td>
+<td>括</td>
+<td>U+62EC</td>
+<td>19</td>
+<td>95</td>
+</tr>
+<tr>
+<td>寙</td>
+<td>U+5BD9</td>
+<td>波</td>
+<td>U+6CE2</td>
+<td>10</td>
+<td>141</td>
+</tr>
+<tr>
+<td>寚</td>
+<td>U+5BDA</td>
+<td>信</td>
+<td>U+4FE1</td>
+<td>52</td>
+<td>192</td>
+</tr>
+<tr>
+<td>寜</td>
+<td>U+5BDC</td>
+<td>米</td>
+<td>U+2F76</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr>
+<td>寠</td>
+<td>U+5BE0</td>
+<td>切</td>
+<td>U+5207</td>
+<td>26</td>
+<td>176</td>
+</tr>
+<tr>
+<td>寡</td>
+<td>U+5BE1</td>
+<td>迟</td>
+<td>U+8FDF</td>
+<td>3</td>
+<td>103</td>
+</tr>
+<tr>
+<td>寣</td>
+<td>U+5BE3</td>
+<td>输</td>
+<td>U+8F93</td>
+<td>21</td>
+<td>200</td>
+</tr>
+<tr>
+<td>寥</td>
+<td>U+5BE5</td>
+<td>延</td>
+<td>U+5EF6</td>
+<td>23</td>
+<td>147</td>
+</tr>
+<tr>
+<td>實</td>
+<td>U+5BE6</td>
+<td>传</td>
+<td>U+4F20</td>
+<td>37</td>
+<td>146</td>
+</tr>
+<tr>
+<td>寨</td>
+<td>U+5BE8</td>
+<td>纤</td>
+<td>U+7EA4</td>
+<td>29</td>
+<td>100</td>
+</tr>
+<tr>
+<td>寪</td>
+<td>U+5BEA</td>
+<td>目</td>
+<td>U+2F6C</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>寬</td>
+<td>U+5BEC</td>
+<td>中</td>
+<td>U+4E2D</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>寭</td>
+<td>U+5BED</td>
+<td>详</td>
+<td>U+8BE6</td>
+<td>13</td>
+<td>117</td>
+</tr>
+<tr>
+<td>寮</td>
+<td>U+5BEE</td>
+<td>录</td>
+<td>U+5F55</td>
+<td>5</td>
+<td>206</td>
+</tr>
+<tr>
+<td>寯</td>
+<td>U+5BEF</td>
+<td>分</td>
+<td>U+5206</td>
+<td>20</td>
+<td>191</td>
+</tr>
+<tr>
+<td>寱</td>
+<td>U+5BF1</td>
+<td>告</td>
+<td>U+544A</td>
+<td>37</td>
+<td>105</td>
+</tr>
+<tr>
+<td>寲</td>
+<td>U+5BF2</td>
+<td>验</td>
+<td>U+9A8C</td>
+<td>48</td>
+<td>203</td>
+</tr>
+<tr>
+<td>寴</td>
+<td>U+5BF4</td>
+<td>项</td>
+<td>U+9879</td>
+<td>19</td>
+<td>182</td>
+</tr>
+<tr>
+<td>寵</td>
+<td>U+5BF5</td>
+<td>收</td>
+<td>U+6536</td>
+<td>17</td>
+<td>178</td>
+</tr>
+<tr>
+<td>寶</td>
+<td>U+5BF6</td>
+<td>手</td>
+<td>U+2F3F</td>
+<td>32</td>
+<td>32</td>
+</tr>
+<tr>
+<td>寷</td>
+<td>U+5BF7</td>
+<td>文</td>
+<td>U+2F42</td>
+<td>27</td>
+<td>27</td>
+</tr>
+<tr>
+<td>寽</td>
+<td>U+5BFD</td>
+<td>以</td>
+<td>U+4EE5</td>
+<td>14</td>
+<td>222</td>
+</tr>
+<tr>
+<td>対</td>
+<td>U+5BFE</td>
+<td>实</td>
+<td>U+5B9E</td>
+<td>24</td>
+<td>202</td>
+</tr>
+<tr>
+<td>尀</td>
+<td>U+5C00</td>
+<td>果</td>
+<td>U+679C</td>
+<td>32</td>
+<td>104</td>
+</tr>
+<tr>
+<td>専</td>
+<td>U+5C02</td>
+<td>档</td>
+<td>U+6863</td>
+<td>31</td>
+<td>88</td>
+</tr>
+<tr>
+<td>尃</td>
+<td>U+5C03</td>
+<td>规</td>
+<td>U+89C4</td>
+<td>25</td>
+<td>129</td>
+</tr>
+<tr>
+<td>尅</td>
+<td>U+5C05</td>
+<td>说</td>
+<td>U+8BF4</td>
+<td>43</td>
+<td>140</td>
+</tr>
+<tr>
+<td>將</td>
+<td>U+5C07</td>
+<td>书</td>
+<td>U+4E66</td>
+<td>4</td>
+<td>231</td>
+</tr>
+<tr>
+<td>尌</td>
+<td>U+5C0C</td>
+<td>不</td>
+<td>U+4E0D</td>
+<td>52</td>
+<td>52</td>
+</tr>
+<tr>
+<td>尐</td>
+<td>U+5C10</td>
+<td>管</td>
+<td>U+7BA1</td>
+<td>9</td>
+<td>182</td>
+</tr>
+<tr>
+<td>尗</td>
+<td>U+5C17</td>
+<td>记</td>
+<td>U+8BB0</td>
+<td>10</td>
+<td>144</td>
+</tr>
+<tr>
+<td>尛</td>
+<td>U+5C1B</td>
+<td>展</td>
+<td>U+5C55</td>
+<td>67</td>
+<td>178</td>
+</tr>
+<tr>
+<td>尜</td>
+<td>U+5C1C</td>
+<td>提</td>
+<td>U+63D0</td>
+<td>27</td>
+<td>133</td>
+</tr>
+<tr>
+<td>尞</td>
+<td>U+5C1E</td>
+<td>持</td>
+<td>U+6301</td>
+<td>8</td>
+<td>94</td>
+</tr>
+<tr>
+<td>尟</td>
+<td>U+5C1F</td>
+<td>团</td>
+<td>U+56E2</td>
+<td>16</td>
+<td>140</td>
+</tr>
+<tr>
+<td>尠</td>
+<td>U+5C20</td>
+<td>促</td>
+<td>U+4FC3</td>
+<td>29</td>
+<td>160</td>
+</tr>
+<tr>
+<td>尢</td>
+<td>U+5C22</td>
+<td>度</td>
+<td>U+5EA6</td>
+<td>31</td>
+<td>190</td>
+</tr>
+<tr>
+<td>尣</td>
+<td>U+5C23</td>
+<td>队</td>
+<td>U+961F</td>
+<td>16</td>
+<td>193</td>
+</tr>
+<tr>
+<td>尥</td>
+<td>U+5C25</td>
+<td>高</td>
+<td>U+9AD8</td>
+<td>51</td>
+<td>51</td>
+</tr>
+<tr>
+<td>尦</td>
+<td>U+5C26</td>
+<td>型</td>
+<td>U+578B</td>
+<td>8</td>
+<td>253</td>
+</tr>
+<tr>
+<td>尨</td>
+<td>U+5C28</td>
+<td>典</td>
+<td>U+5178</td>
+<td>12</td>
+<td>246</td>
+</tr>
+<tr>
+<td>尩</td>
+<td>U+5C29</td>
+<td>机</td>
+<td>U+673A</td>
+<td>16</td>
+<td>117</td>
+</tr>
+<tr>
+<td>尪</td>
+<td>U+5C2A</td>
+<td>赁</td>
+<td>U+8D41</td>
+<td>27</td>
+<td>206</td>
+</tr>
+<tr>
+<td>尫</td>
+<td>U+5C2B</td>
+<td>拟</td>
+<td>U+62DF</td>
+<td>59</td>
+<td>184</td>
+</tr>
+<tr>
+<td>尬</td>
+<td>U+5C2C</td>
+<td>租</td>
+<td>U+79DF</td>
+<td>47</td>
+<td>134</td>
+</tr>
+<tr>
+<td>尭</td>
+<td>U+5C2D</td>
+<td>办</td>
+<td>U+529E</td>
+<td>16</td>
+<td>240</td>
+</tr>
+<tr>
+<td>尮</td>
+<td>U+5C2E</td>
+<td>软</td>
+<td>U+8F6F</td>
+<td>19</td>
+<td>166</td>
+</tr>
+<tr>
+<td>尯</td>
+<td>U+5C2F</td>
+<td>如</td>
+<td>U+5982</td>
+<td>23</td>
+<td>232</td>
+</tr>
+<tr>
+<td>尰</td>
+<td>U+5C30</td>
+<td>公</td>
+<td>U+516C</td>
+<td>31</td>
+<td>163</td>
+</tr>
+<tr>
+<td>尲</td>
+<td>U+5C32</td>
+<td>在</td>
+<td>U+5728</td>
+<td>49</td>
+<td>165</td>
+</tr>
+<tr>
+<td>尳</td>
+<td>U+5C33</td>
+<td>件</td>
+<td>U+4EF6</td>
+<td>12</td>
+<td>125</td>
+</tr>
+<tr>
+<td>屆</td>
+<td>U+5C46</td>
+<td>库</td>
+<td>U+5E93</td>
+<td>22</td>
+<td>148</td>
+</tr>
+<tr>
+<td>屇</td>
+<td>U+5C47</td>
+<td>理</td>
+<td>U+7406</td>
+<td>16</td>
+<td>16</td>
+</tr>
+<tr>
+<td>屈</td>
+<td>U+5C48</td>
+<td>据</td>
+<td>U+636E</td>
+<td>35</td>
+<td>187</td>
+</tr>
+<tr>
+<td>屍</td>
+<td>U+5C4D</td>
+<td>列</td>
+<td>U+5217</td>
+<td>33</td>
+<td>226</td>
+</tr>
+<tr>
+<td>屐</td>
+<td>U+5C50</td>
+<td>财</td>
+<td>U+8D22</td>
+<td>51</td>
+<td>156</td>
+</tr>
+<tr>
+<td>屑</td>
+<td>U+5C51</td>
+<td>务</td>
+<td>U+52A1</td>
+<td>10</td>
+<td>218</td>
+</tr>
+<tr>
+<td>屒</td>
+<td>U+5C52</td>
+<td>预</td>
+<td>U+9884</td>
+<td>36</td>
+<td>124</td>
+</tr>
+<tr>
+<td>屓</td>
+<td>U+5C53</td>
+<td>产</td>
+<td>U+4EA7</td>
+<td>4</td>
+<td>180</td>
+</tr>
+<tr>
+<td>屔</td>
+<td>U+5C54</td>
+<td>材</td>
+<td>U+6750</td>
+<td>3</td>
+<td>170</td>
+</tr>
+<tr>
+<td>屖</td>
+<td>U+5C56</td>
+<td>广</td>
+<td>U+5E7F</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>屗</td>
+<td>U+5C57</td>
+<td>装</td>
+<td>U+88C5</td>
+<td>18</td>
+<td>102</td>
+</tr>
+<tr>
+<td>屘</td>
+<td>U+5C58</td>
+<td>宣</td>
+<td>U+5BA3</td>
+<td>85</td>
+<td>110</td>
+</tr>
+<tr>
+<td>屙</td>
+<td>U+5C59</td>
+<td>于</td>
+<td>U+4E8E</td>
+<td>32</td>
+<td>88</td>
+</tr>
+<tr>
+<td>屟</td>
+<td>U+5C5F</td>
+<td>过</td>
+<td>U+8FC7</td>
+<td>45</td>
+<td>155</td>
+</tr>
+<tr>
+<td>摶</td>
+<td>U+6476</td>
+<td>格</td>
+<td>U+683C</td>
+<td>20</td>
+<td>100</td>
+</tr>
+<tr>
+<td>敩</td>
+<td>U+6569</td>
+<td>网</td>
+<td>U+2F79</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>潯</td>
+<td>U+6F6F</td>
+<td>报</td>
+<td>U+62A5</td>
+<td>37</td>
+<td>189</td>
+</tr>
+<tr>
+<td>糵</td>
+<td>U+7CF5</td>
+<td>阶</td>
+<td>U+9636</td>
+<td>49</td>
+<td>145</td>
+</tr>
+<tr>
+<td>苧</td>
+<td>U+82E7</td>
+<td>光</td>
+<td>U+5149</td>
+<td>20</td>
+<td>167</td>
+</tr>
+<tr>
+<td>谉</td>
+<td>U+8C09</td>
+<td>到</td>
+<td>U+5230</td>
+<td>5</td>
+<td>201</td>
+</tr>
+<tr>
+<td>迉</td>
+<td>U+8FC9</td>
+<td>属</td>
+<td>U+5C5E</td>
+<td>18</td>
+<td>140</td>
+</tr>
+</tbody></table>
+<p>这里的距离越小，说明形状越接近，像 <code>冩 -&gt; 为</code>、<code>孉 -&gt; 段</code>、<code>孍 -&gt; 主</code> 这种，第一候选和第二候选差距比较明显，可信度就更高。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实原理很简单，学习通网页版的这层混淆本质上：</p>
+<ol>
+<li>页面里放的是合法 Unicode 生僻字。</li>
+<li>让它看起来正常的是内联的自定义字体。</li>
+<li>只要拿到子集字体，再找到同版本完整字符集，就可以通过位图相似匹配把映射关系恢复出来。</li>
+</ol>
+<p>说白了就是底层源码里塞的生僻字，渲染成了常见的字，复制粘贴的还是底层的生僻字。这种混淆防君子不防小人~（已学习到如何阴一手hhh），更多是为了干扰复制、搜索和简单脚本提取，不过只需要把“字符”和“字形”分开看就行了。做个作业可太难了~</p>
+<p>还可以看看 52 的这篇文章 <a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1631357-1-1.html"><strong>关于超星学习通网页版字体加密分析</strong></a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Web/" class="category-chain-item">Web</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Web/Reverse/" class="category-chain-item">Reverse</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Web-Reverse/" class="print-no-link">#Web Reverse</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>记一次对超星学习通网页版字体的混淆加密分析</div>
+      <div>http://example.com/2026/06/29/记一次对超星学习通网页版字体的加密混淆分析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>butt3rf1y</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/04/%E5%AF%B9%E8%B6%85%E6%98%9F%E5%AD%A6%E4%B9%A0%E9%80%9A%E7%BD%91%E9%A1%B5%E7%89%88%E5%AD%97%E4%BD%93%E5%8A%A0%E5%AF%86%E5%88%86%E6%9E%90/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments">
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"rWKtzRd76Kz6dC7Vd9dUwQux-gzGzoHsz","appKey":"DxMgc7gveh6B1aJKyAZnoFNj","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":true,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span> </a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/snow.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+<script type="text/javascript" src="\js\snow.js"></script>
+<script type="text/javascript" src="\js\backgroundize.js"></script>
+
